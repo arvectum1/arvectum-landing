@@ -1,15 +1,16 @@
 (function () {
   const config = window.SITE_CONFIG || {};
+  const routes = config.routes || {};
   const defaultLanguage = config.defaultLanguage || "ru";
+  const currentPage = document.body.dataset.page || "home";
   const COOKIE_PREFIX = "arvectum_";
   const CONSENT_COOKIE_NAME = `${COOKIE_PREFIX}cookie_consent`;
   const CONSENT_VERSION = "v1";
 
   let currentLanguage = defaultLanguage;
   let currentContent = null;
+  let currentCommon = null;
   let revealObserver = null;
-  let carouselInitialized = false;
-  let activeIndex = 0;
 
   const setText = (id, value) => {
     const el = document.getElementById(id);
@@ -27,6 +28,712 @@
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;");
+
+  const getLanguage = () => {
+    const lang = new URLSearchParams(window.location.search).get("lang");
+    return config.languages?.[lang] ? lang : defaultLanguage;
+  };
+
+  const buildUrl = (slug, hash = "") => {
+    const file = routes[slug] || routes.home || "index.html";
+    const query =
+      currentLanguage === defaultLanguage ? "" : `?lang=${currentLanguage}`;
+    return `${file}${query}${hash}`;
+  };
+
+  const renderMeta = (meta) => {
+    document.documentElement.lang = currentLanguage;
+    document.title = meta?.title || "Arvectum";
+
+    const description = document.getElementById("metaDescription");
+    const ogTitle = document.getElementById("metaOgTitle");
+    const ogDescription = document.getElementById("metaOgDescription");
+    const ogLocale = document.getElementById("metaOgLocale");
+
+    if (description) {
+      description.setAttribute("content", meta?.description || "");
+    }
+    if (ogTitle) {
+      ogTitle.setAttribute("content", meta?.ogTitle || "");
+    }
+    if (ogDescription) {
+      ogDescription.setAttribute("content", meta?.ogDescription || "");
+    }
+    if (ogLocale) {
+      ogLocale.setAttribute("content", currentCommon?.locale || "ru_RU");
+    }
+  };
+
+  const renderHeader = () => {
+    setText("skipLink", currentCommon.skipLink);
+    setText("brandMeta", currentCommon.brandMeta);
+    setText("topbarTelegram", currentCommon.telegramLabel);
+    setText("topbarCta", currentCommon.headerCta);
+    setText("mobileTelegram", currentCommon.telegramLabel);
+    setText("mobileCta", currentCommon.headerCta);
+    setText("menuButtonText", currentCommon.menuLabel);
+    setText("menuTitle", currentCommon.menuTitle);
+    setText("menuCloseText", currentCommon.menuClose);
+    setText("menuSectionTitle", currentCommon.pagesLabel);
+    setText("menuPrimaryCta", currentCommon.headerCta);
+
+    const navMarkup = (currentCommon.nav || [])
+      .map((item) => {
+        const isActive = item.slug === currentPage ? " is-active" : "";
+        return `<a class="nav-link${isActive}" href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`;
+      })
+      .join("");
+
+    setHtml("desktopNav", navMarkup);
+    setHtml("menuNav", navMarkup);
+
+    const contactUrl = buildUrl("contact");
+    const telegramUrl = "https://t.me/arvectum";
+
+    ["topbarCta", "mobileCta", "menuPrimaryCta"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.setAttribute("href", contactUrl);
+    });
+
+    ["topbarTelegram", "mobileTelegram"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.setAttribute("href", telegramUrl);
+    });
+
+    document.querySelectorAll(".lang-switch__button").forEach((button) => {
+      const isActive = button.dataset.lang === currentLanguage;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    const brandImage = document.getElementById("brandLogo");
+    if (brandImage) {
+      brandImage.setAttribute(
+        "alt",
+        currentLanguage === "ru" ? "Логотип Arvectum" : "Arvectum logo",
+      );
+    }
+  };
+
+  const renderFooter = () => {
+    const footer = currentCommon.footer;
+    const contactLabel =
+      (currentCommon.nav || []).find((item) => item.slug === "contact")
+        ?.label || currentCommon.headerCta;
+    const footerGrid = document.querySelector(".footer-grid");
+    if (!footerGrid) return;
+
+    footerGrid.innerHTML = `
+      <div class="footer-bar">
+        <div class="footer-bar__lead">
+          <h2>Arvectum</h2>
+          <p>${escapeHtml(footer.shortText)}</p>
+        </div>
+        <div class="footer-bar__links">
+          ${(currentCommon.nav || [])
+            .map(
+              (item) =>
+                `<a href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`,
+            )
+            .join("")}
+        </div>
+        <div class="footer-bar__contact">
+          <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+          <a href="https://t.me/arvectum" target="_blank" rel="noreferrer">t.me/arvectum</a>
+          <a href="${buildUrl("contact")}">${escapeHtml(contactLabel)}</a>
+        </div>
+      </div>
+    `;
+  };
+
+  const renderHeroBullets = (items) =>
+    (items || [])
+      .map(
+        (item) => `
+          <li class="hero-bullet">
+            <span></span>
+            <p>${escapeHtml(item)}</p>
+          </li>
+        `,
+      )
+      .join("");
+
+  const renderHome = (page) => `
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
+          <h1>${escapeHtml(page.hero.title)}</h1>
+          <p class="hero-text">${escapeHtml(page.hero.text)}</p>
+          <ul class="hero-bullets">
+            ${renderHeroBullets(page.hero.bullets)}
+          </ul>
+          <div class="hero-actions">
+            <a class="button" href="${buildUrl("contact")}">${escapeHtml(page.hero.primaryCta)}</a>
+            <a class="button button-ghost" href="${buildUrl("solutions")}">${escapeHtml(page.hero.secondaryCta)}</a>
+          </div>
+        </div>
+        <aside class="hero-panel glass reveal">
+          <img
+            class="hero-panel__logo"
+            src="assets/brand/arvectum-logo-primary.png"
+            alt="${currentLanguage === "ru" ? "Логотип Arvectum" : "Arvectum logo"}"
+          />
+          <span class="hero-panel__label">${escapeHtml(page.hero.sideLabel)}</span>
+          <div class="hero-panel__stack">
+            ${(page.hero.sideItems || [])
+              .map(
+                (item) => `
+                  <article class="stack-card">
+                    <h3>${escapeHtml(item.title)}</h3>
+                    <p>${escapeHtml(item.text)}</p>
+                  </article>
+                `,
+              )
+              .join("")}
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.sectors.title)}</h2>
+          <p>${escapeHtml(page.sectors.text)}</p>
+        </div>
+        <div class="grid grid-3 overview-grid">
+          ${(page.sectors.cards || [])
+            .map(
+              (card) => `
+                <article class="info-card">
+                  <span class="card-label">${escapeHtml(card.label)}</span>
+                  <h3>${escapeHtml(card.title)}</h3>
+                  <p>${escapeHtml(card.text)}</p>
+                  <a class="text-link" href="${buildUrl(card.route, card.hash || "")}">${escapeHtml(card.cta)}</a>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+        <div class="home-summary">
+          <div class="chip-grid">
+            ${(page.focus.items || [])
+              .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
+              .join("")}
+          </div>
+          <a class="text-link" href="${buildUrl(page.compactCase.route, page.compactCase.hash || "")}">${escapeHtml(page.compactCase.cta)}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <article class="cta-band">
+          <div>
+            <h2>${escapeHtml(page.cta.title)}</h2>
+            <p>${escapeHtml(page.cta.text)}</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="button" href="${buildUrl("contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildUrl("approach")}">${escapeHtml(page.cta.secondary)}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  `;
+
+  const renderSolutions = (page) => `
+    <section class="page-hero">
+      <div class="container reveal">
+        <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
+        <h1>${escapeHtml(page.hero.title)}</h1>
+        <p class="page-hero__text">${escapeHtml(page.hero.text)}</p>
+        <div class="page-pills">
+          ${(page.quickLinks || [])
+            .map(
+              (link) =>
+                `<a class="page-pill" href="#${escapeHtml(link.id)}">${escapeHtml(link.label)}</a>`,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="grid grid-2">
+          ${(page.cards || [])
+            .map(
+              (card) => `
+                <article class="solution-card" id="${escapeHtml(card.id)}">
+                  <span class="card-label">${escapeHtml(card.label)}</span>
+                  <h2>${escapeHtml(card.title)}</h2>
+                  <p class="solution-card__audience">${escapeHtml(card.audience)}</p>
+                  <div class="solution-meta">
+                    <div>
+                      <span>${currentLanguage === "ru" ? "Где болит" : "Pain point"}</span>
+                      <p>${escapeHtml(card.pain)}</p>
+                    </div>
+                    <div>
+                      <span>${currentLanguage === "ru" ? "Как это делаем" : "How we build it"}</span>
+                      <ul class="compact-list">
+                        ${(card.steps || [])
+                          .map((step) => `<li>${escapeHtml(step)}</li>`)
+                          .join("")}
+                      </ul>
+                    </div>
+                    <div>
+                      <span>${currentLanguage === "ru" ? "Срок первого этапа" : "First-stage timing"}</span>
+                      <p>${escapeHtml(card.timing)}</p>
+                    </div>
+                    <div>
+                      <span>${currentLanguage === "ru" ? "Что получает команда" : "What the team gets"}</span>
+                      <p>${escapeHtml(card.result)}</p>
+                    </div>
+                  </div>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <article class="cta-band">
+          <div>
+            <h2>${escapeHtml(page.cta.title)}</h2>
+            <p>${escapeHtml(page.cta.text)}</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="button" href="${buildUrl("contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildUrl("cases")}">${escapeHtml(page.cta.secondary)}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  `;
+
+  const renderCases = (page) => `
+    <section class="page-hero">
+      <div class="container reveal">
+        <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
+        <h1>${escapeHtml(page.hero.title)}</h1>
+        <p class="page-hero__text">${escapeHtml(page.hero.text)}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="case-list">
+          ${(page.cases || [])
+            .map(
+              (item) => `
+                <article class="case-card" id="${escapeHtml(item.id)}">
+                  <span class="case-card__label">${escapeHtml(item.label)}</span>
+                  <h2>${escapeHtml(item.title)}</h2>
+                  <div class="case-flow">
+                    <div>
+                      <span>${currentLanguage === "ru" ? "Бизнес-вызов" : "Challenge"}</span>
+                      <p>${escapeHtml(item.challenge)}</p>
+                    </div>
+                    <div>
+                      <span>${currentLanguage === "ru" ? "Что построили" : "Solution"}</span>
+                      <p>${escapeHtml(item.solution)}</p>
+                    </div>
+                    <div>
+                      <span>${currentLanguage === "ru" ? "Что получил клиент" : "Result"}</span>
+                      <p>${escapeHtml(item.result)}</p>
+                    </div>
+                  </div>
+                  <ul class="compact-list compact-list--light">
+                    ${(item.outcomes || [])
+                      .map((outcome) => `<li>${escapeHtml(outcome)}</li>`)
+                      .join("")}
+                  </ul>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <article class="cta-band">
+          <div>
+            <h2>${escapeHtml(page.cta.title)}</h2>
+            <p>${escapeHtml(page.cta.text)}</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="button" href="${buildUrl("contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildUrl("solutions")}">${escapeHtml(page.cta.secondary)}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  `;
+
+  const renderApproach = (page) => `
+    <section class="page-hero">
+      <div class="container reveal">
+        <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
+        <h1>${escapeHtml(page.hero.title)}</h1>
+        <p class="page-hero__text">${escapeHtml(page.hero.text)}</p>
+        <div class="page-pills">
+          ${(page.quickLinks || [])
+            .map(
+              (link) =>
+                `<a class="page-pill" href="#${escapeHtml(link.id)}">${escapeHtml(link.label)}</a>`,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="signals">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.signals.title)}</h2>
+          <p>${escapeHtml(page.signals.text)}</p>
+        </div>
+        <div class="grid grid-4">
+          ${(page.signals.items || [])
+            .map(
+              (item) => `
+                <article class="info-card metric-card">
+                  <strong>${escapeHtml(item.value)}</strong>
+                  <h3>${escapeHtml(item.title)}</h3>
+                  <p>${escapeHtml(item.text)}</p>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="deliverables">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.deliverables.title)}</h2>
+          <p>${escapeHtml(page.deliverables.text)}</p>
+        </div>
+        <div class="grid grid-4">
+          ${(page.deliverables.items || [])
+            .map(
+              (item) => `
+                <article class="info-card info-card--dark">
+                  <span class="card-label">${escapeHtml(item.label)}</span>
+                  <h3>${escapeHtml(item.title)}</h3>
+                  <p>${escapeHtml(item.text)}</p>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.timeline.title)}</h2>
+          <p>${escapeHtml(page.timeline.text)}</p>
+        </div>
+        <div class="step-grid">
+          ${(page.timeline.items || [])
+            .map(
+              (item, index) => `
+                <article class="step-card">
+                  <strong>${String(index + 1).padStart(2, "0")}</strong>
+                  <p>${escapeHtml(item)}</p>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="trust">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.trust.title)}</h2>
+          <p>${escapeHtml(page.trust.text)}</p>
+        </div>
+        <div class="grid grid-3">
+          ${(page.trust.items || [])
+            .map(
+              (item) => `
+                <article class="info-card">
+                  <h3>${escapeHtml(item.title)}</h3>
+                  <p>${escapeHtml(item.text)}</p>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.stack.title)}</h2>
+          <p>${escapeHtml(page.stack.text)}</p>
+        </div>
+        <div class="chip-grid">
+          ${(page.stack.items || [])
+            .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.faq.title)}</h2>
+        </div>
+        <div class="faq-list">
+          ${(page.faq.items || [])
+            .map(
+              (item) => `
+                <details class="faq-item">
+                  <summary>${escapeHtml(item.question)}</summary>
+                  <p>${escapeHtml(item.answer)}</p>
+                </details>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <article class="cta-band">
+          <div>
+            <h2>${escapeHtml(page.cta.title)}</h2>
+            <p>${escapeHtml(page.cta.text)}</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="button" href="${buildUrl("contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildUrl("home")}">${escapeHtml(page.cta.secondary)}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  `;
+
+  const renderForm = () => {
+    const form = currentCommon.form;
+    const methodOptions = [
+      `<option value="">${escapeHtml(form.contactMethodPlaceholder)}</option>`,
+      ...(form.contactMethodOptions || []).map(
+        (option) =>
+          `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`,
+      ),
+    ].join("");
+    const projectOptions = [
+      `<option value="">${escapeHtml(form.projectTypePlaceholder)}</option>`,
+      ...(form.projectTypeOptions || []).map(
+        (option) =>
+          `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`,
+      ),
+    ].join("");
+
+    return `
+      <section class="form-shell">
+        <div class="form-block glass">
+          <h2>${escapeHtml(form.title)}</h2>
+          <p>${escapeHtml(form.intro)}</p>
+          <form id="leadForm" novalidate>
+            <label>
+              <span>${escapeHtml(form.nameLabel)}</span>
+              <input
+                type="text"
+                name="name"
+                maxlength="120"
+                autocomplete="name"
+                placeholder="${escapeHtml(form.namePlaceholder)}"
+              />
+            </label>
+
+            <div class="grid grid-2">
+              <label>
+                <span>${escapeHtml(form.contactMethodLabel)}</span>
+                <select name="contactMethod" id="contactMethod">
+                  ${methodOptions}
+                </select>
+              </label>
+              <label id="contactMethodOtherWrap" hidden>
+                <span>${escapeHtml(form.contactMethodOtherLabel)}</span>
+                <input
+                  type="text"
+                  name="contactMethodOther"
+                  maxlength="80"
+                  placeholder="${escapeHtml(form.contactMethodOtherPlaceholder)}"
+                />
+              </label>
+            </div>
+
+            <div class="grid grid-2">
+              <label>
+                <span>${escapeHtml(form.contactValueLabel)}</span>
+                <input
+                  type="text"
+                  name="contactValue"
+                  id="contactValue"
+                  maxlength="160"
+                  autocomplete="off"
+                  placeholder="${escapeHtml(form.contactValuePlaceholders.default)}"
+                />
+              </label>
+              <label>
+                <span>${escapeHtml(form.projectTypeLabel)}</span>
+                <select name="projectType">
+                  ${projectOptions}
+                </select>
+              </label>
+            </div>
+
+            <label>
+              <span>${escapeHtml(form.messageLabel)}</span>
+              <textarea
+                name="message"
+                rows="6"
+                maxlength="2000"
+                placeholder="${escapeHtml(form.messagePlaceholder)}"
+              ></textarea>
+            </label>
+
+            <div class="grid grid-2">
+              <label>
+                <span>${escapeHtml(form.deadlineLabel)}</span>
+                <input
+                  type="text"
+                  name="deadline"
+                  maxlength="80"
+                  autocomplete="off"
+                  placeholder="${escapeHtml(form.deadlinePlaceholder)}"
+                />
+              </label>
+              <label>
+                <span>${escapeHtml(form.budgetLabel)}</span>
+                <input
+                  type="text"
+                  name="budget"
+                  maxlength="80"
+                  autocomplete="off"
+                  placeholder="${escapeHtml(form.budgetPlaceholder)}"
+                />
+              </label>
+            </div>
+
+            <input
+              type="text"
+              name="website"
+              class="hp"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+
+            <button class="button" type="submit">${escapeHtml(form.submitLabel)}</button>
+            <p class="form-status" id="formStatus" aria-live="polite"></p>
+            <p class="form-disclaimer">${escapeHtml(form.legalNotice)}</p>
+          </form>
+        </div>
+      </section>
+    `;
+  };
+
+  const renderContactBand = () => {
+    const band = currentCommon.contactBand;
+    const requisites = currentCommon.footer.requisites || [];
+    return `
+      <section class="contact-band glass">
+        <div class="contact-band__intro">
+          <h2>${escapeHtml(band.title)}</h2>
+          <p>${escapeHtml(band.text)}</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="contact-panel">
+            <span>${escapeHtml(band.directTitle)}</span>
+            <div class="contact-links">
+              <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+              <a href="https://t.me/arvectum" target="_blank" rel="noreferrer">t.me/arvectum</a>
+            </div>
+          </article>
+          <article class="contact-panel">
+            <span>${escapeHtml(band.formatTitle)}</span>
+            <p>${escapeHtml(band.formatText)}</p>
+          </article>
+          <article class="contact-panel">
+            <span>${escapeHtml(band.requisitesTitle)}</span>
+            <dl class="footer-requisites footer-requisites--inverted">
+              ${requisites
+                .map((item) => {
+                  const value =
+                    item.type === "email"
+                      ? `<a href="mailto:${escapeHtml(item.value)}">${escapeHtml(item.value)}</a>`
+                      : escapeHtml(item.value);
+                  return `
+                    <div class="footer-requisite">
+                      <dt>${escapeHtml(item.label)}</dt>
+                      <dd>${value}</dd>
+                    </div>
+                  `;
+                })
+                .join("")}
+            </dl>
+          </article>
+        </div>
+      </section>
+    `;
+  };
+
+  const renderContact = (page) => `
+    <section class="page-hero">
+      <div class="container reveal">
+        <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
+        <h1>${escapeHtml(page.hero.title)}</h1>
+        <p class="page-hero__text">${escapeHtml(page.hero.text)}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        ${renderForm()}
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container reveal">
+        ${renderContactBand()}
+      </div>
+    </section>
+  `;
+
+  const pageRenderers = {
+    home: renderHome,
+    solutions: renderSolutions,
+    cases: renderCases,
+    approach: renderApproach,
+    contact: renderContact,
+  };
+
+  const renderPage = () => {
+    const pageRoot = document.getElementById("pageRoot");
+    const renderer = pageRenderers[currentPage] || pageRenderers.home;
+    if (!pageRoot) return;
+    pageRoot.innerHTML = renderer(currentContent);
+  };
 
   const setCookie = (name, value, days = 180) => {
     const expires = days
@@ -51,9 +758,6 @@
     const random = Math.random().toString(36).slice(2, 10);
     return `${prefix}_${Date.now().toString(36)}_${random}`;
   };
-
-  const getLanguageContent = (lang) =>
-    config.languages?.[lang] || config.languages?.[defaultLanguage] || {};
 
   const readConsent = () => {
     let storedConsent = null;
@@ -85,7 +789,7 @@
     try {
       window.localStorage.setItem(CONSENT_COOKIE_NAME, serialized);
     } catch (_) {
-      // Some browser/privacy modes may block localStorage access.
+      // localStorage may be unavailable in privacy modes.
     }
   };
 
@@ -127,14 +831,14 @@
     }
 
     const snapshot = getVisitSnapshot();
-    const existingVisitorId =
+    const visitorId =
       getCookie(`${COOKIE_PREFIX}visitor_id`) || generateId("visitor");
-    const existingFirstVisit =
+    const firstVisit =
       getCookie(`${COOKIE_PREFIX}first_visit`) || new Date().toISOString();
 
-    setCookie(`${COOKIE_PREFIX}visitor_id`, existingVisitorId, 180);
+    setCookie(`${COOKIE_PREFIX}visitor_id`, visitorId, 180);
     setCookie(`${COOKIE_PREFIX}session_id`, generateId("session"), 1);
-    setCookie(`${COOKIE_PREFIX}first_visit`, existingFirstVisit, 180);
+    setCookie(`${COOKIE_PREFIX}first_visit`, firstVisit, 180);
     setCookie(`${COOKIE_PREFIX}last_visit`, new Date().toISOString(), 180);
     setCookie(`${COOKIE_PREFIX}landing_path`, snapshot.path, 30);
     setCookie(`${COOKIE_PREFIX}referrer`, snapshot.referrer, 30);
@@ -171,7 +875,7 @@
         body: JSON.stringify(payload),
       });
     } catch (_) {
-      // Consent logging must never block the page.
+      // Consent logging should never block the page.
     }
   };
 
@@ -181,354 +885,24 @@
       analytics: !!analytics,
       updatedAt: new Date().toISOString(),
     };
+
     persistConsent(payload);
     applyConsent(payload);
     void sendConsentLog(payload);
     return payload;
   };
 
-  const renderMeta = (meta) => {
-    if (!meta) return;
-    document.title = meta.title || document.title;
-    document.documentElement.lang = currentLanguage;
-
-    const description = document.getElementById("metaDescription");
-    const ogTitle = document.getElementById("metaOgTitle");
-    const ogDescription = document.getElementById("metaOgDescription");
-    const ogLocale = document.getElementById("metaOgLocale");
-
-    if (description)
-      description.setAttribute("content", meta.description || "");
-    if (ogTitle) ogTitle.setAttribute("content", meta.ogTitle || "");
-    if (ogDescription)
-      ogDescription.setAttribute("content", meta.ogDescription || "");
-    if (ogLocale) ogLocale.setAttribute("content", meta.locale || "ru_RU");
+  const syncCookieToggleLabel = () => {
+    const label = document.getElementById("cookieAnalyticsLabel");
+    const toggle = document.getElementById("cookieAnalyticsToggle");
+    if (!label || !toggle) return;
+    label.textContent = toggle.checked
+      ? currentCommon.cookies.analyticsOn
+      : currentCommon.cookies.analyticsOff;
   };
 
-  const renderHero = (hero) => {
-    setText("founderLabel", hero.founderLabel);
-    setText("heroAudience", hero.audience);
-    setText("heroTitle", hero.title);
-    setText("heroSubtitle", hero.subtitle);
-    setText("heroPositioningLabel", currentContent.ui.heroPositioningLabel);
-    setText("heroPositioning", hero.positioning);
-    setText("heroPositioningMirror", hero.positioning);
-    setText("primaryCta", hero.ctaPrimary);
-    setText("secondaryCta", hero.ctaSecondary);
-    setText("primaryCtaTopbar", currentContent.ui.topbarCta);
-
-    setHtml(
-      "heroPainList",
-      (hero.pains || [])
-        .map(
-          (item) => `
-        <article class="hero-pain-item reveal">
-          <span></span>
-          <p>${escapeHtml(item)}</p>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-
-    setHtml(
-      "heroProofList",
-      (hero.proof || [])
-        .map(
-          (item) => `
-        <span class="reveal">${escapeHtml(item)}</span>
-      `,
-        )
-        .join(""),
-    );
-
-    setHtml(
-      "trustStrip",
-      (hero.trustStrip || [])
-        .map(
-          (item) => `
-        <span class="trust-pill reveal">${escapeHtml(item)}</span>
-      `,
-        )
-        .join(""),
-    );
-
-    setHtml(
-      "heroSignals",
-      (hero.signals || [])
-        .map((item) => `<span>${escapeHtml(item)}</span>`)
-        .join(""),
-    );
-
-    setHtml(
-      "heroPanels",
-      (hero.panels || [])
-        .map(
-          (item) => `
-        <article class="signal-card">
-          <small>${escapeHtml(item.label)}</small>
-          <strong>${escapeHtml(item.title)}</strong>
-          <p>${escapeHtml(item.text)}</p>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderMetrics = (metrics) => {
-    setHtml(
-      "metricsGrid",
-      (metrics || [])
-        .map(
-          (item) => `
-        <div class="metric-card reveal">
-          <strong>${escapeHtml(item.value)}</strong>
-          <span>${escapeHtml(item.label)}</span>
-          <p>${escapeHtml(item.description)}</p>
-        </div>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderAudience = (items) => {
-    setHtml(
-      "audienceGrid",
-      (items || [])
-        .map(
-          (item) => `
-        <article class="card reveal audience-card">
-          <h3>${escapeHtml(item.title)}</h3>
-          <p>${escapeHtml(item.text)}</p>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderPositioningCards = (items) => {
-    setHtml(
-      "positioningGrid",
-      (items || [])
-        .map(
-          (item) => `
-        <article class="card reveal positioning-card">
-          <h3>${escapeHtml(item.title)}</h3>
-          <p>${escapeHtml(item.text)}</p>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderServices = (items) => {
-    const labels = currentContent.labels || {};
-    setHtml(
-      "servicesGrid",
-      (items || [])
-        .map(
-          (item) => `
-        <article class="card reveal solution-card">
-          <h3>${escapeHtml(item.title)}</h3>
-          <p class="solution-audience">${escapeHtml(item.audience)}</p>
-          <div class="solution-meta">
-            <div>
-              <span>${escapeHtml(labels.solutionPain)}</span>
-              <p>${escapeHtml(item.pain)}</p>
-            </div>
-            <div>
-              <span>${escapeHtml(labels.solutionTiming)}</span>
-              <p>${escapeHtml(item.timing)}</p>
-            </div>
-          </div>
-          <div class="solution-block">
-            <span>${escapeHtml(labels.solutionHow)}</span>
-            <ul class="solution-list">
-              ${(item.how || [])
-                .map((howItem) => `<li>${escapeHtml(howItem)}</li>`)
-                .join("")}
-            </ul>
-          </div>
-          <div class="solution-footer">
-            <div class="solution-result">
-              <span>${escapeHtml(labels.solutionResult)}</span>
-              <p>${escapeHtml(item.result)}</p>
-            </div>
-            <a class="button button-ghost solution-cta" href="#contacts">${escapeHtml(item.ctaLabel)}</a>
-          </div>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderDeliverables = (items) => {
-    setHtml(
-      "deliverablesGrid",
-      (items || [])
-        .map(
-          (item) => `
-        <article class="card reveal deliverable-card">
-          <div class="deliverable-badge">${escapeHtml(item.badge)}</div>
-          <h3>${escapeHtml(item.title)}</h3>
-          <p>${escapeHtml(item.text)}</p>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderCases = (items) => {
-    const labels = currentContent.labels || {};
-    setHtml(
-      "casesGrid",
-      (items || [])
-        .map(
-          (item, index) => `
-        <article class="case-card reveal" aria-label="Case ${index + 1}: ${escapeHtml(item.niche)}">
-          <div class="case-result">${escapeHtml(item.result)}</div>
-          <h3>${escapeHtml(item.niche)}</h3>
-          <div class="case-flow">
-            <p><span>${escapeHtml(labels.caseChallenge)}</span>${escapeHtml(item.challenge)}</p>
-            <p><span>${escapeHtml(labels.caseSolution)}</span>${escapeHtml(item.solution)}</p>
-            <p><span>${escapeHtml(labels.caseResult)}</span>${escapeHtml(item.effect)}</p>
-          </div>
-          <ul class="case-results">
-            ${(item.outcomes || [])
-              .map((outcome) => `<li>${escapeHtml(outcome)}</li>`)
-              .join("")}
-          </ul>
-          <div class="case-footer">
-            <span class="case-note">${escapeHtml(item.timing)}</span>
-            <a href="#contacts" class="case-demo-link">${escapeHtml(item.ctaLabel)}</a>
-          </div>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderTimeline = (items) => {
-    setHtml(
-      "processList",
-      (items || [])
-        .map(
-          (item, index) => `
-        <li class="reveal">
-          <div class="timeline-index">${index + 1}</div>
-          <div>
-            <h3>${escapeHtml(item.title)}</h3>
-            <p>${escapeHtml(item.text)}</p>
-          </div>
-        </li>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderTrustPoints = (items) => {
-    setHtml(
-      "trustGrid",
-      (items || [])
-        .map(
-          (item) => `
-        <article class="card reveal trust-card">
-          <h3>${escapeHtml(item.title)}</h3>
-          <p>${escapeHtml(item.text)}</p>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderEngagement = (items) => {
-    setHtml(
-      "engagementGrid",
-      (items || [])
-        .map(
-          (item) => `
-        <article class="card reveal engagement-card">
-          <div class="engagement-badge">${escapeHtml(item.badge)}</div>
-          <h3>${escapeHtml(item.title)}</h3>
-          <p>${escapeHtml(item.text)}</p>
-        </article>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderStack = (items) => {
-    setHtml(
-      "stackChips",
-      (items || [])
-        .map((item) => `<span class="chip reveal">${escapeHtml(item)}</span>`)
-        .join(""),
-    );
-  };
-
-  const renderFaq = (items) => {
-    setHtml(
-      "faqList",
-      (items || [])
-        .map(
-          (item) => `
-        <details class="glass reveal">
-          <summary>${escapeHtml(item.question)}</summary>
-          <p>${escapeHtml(item.answer)}</p>
-        </details>
-      `,
-        )
-        .join(""),
-    );
-  };
-
-  const renderSelectOptions = (selectEl, placeholder, options) => {
-    if (!selectEl) return;
-    const currentValue = selectEl.value;
-    selectEl.innerHTML = `
-      <option value="" selected disabled>${escapeHtml(placeholder)}</option>
-      ${(options || [])
-        .map(
-          (item) =>
-            `<option value="${escapeHtml(item.value)}">${escapeHtml(item.label)}</option>`,
-        )
-        .join("")}
-    `;
-
-    const hasCurrentValue = (options || []).some(
-      (item) => item.value === currentValue,
-    );
-    selectEl.value = hasCurrentValue ? currentValue : "";
-  };
-
-  const renderFooter = (footer) => {
-    setText("contactBandTitle", footer.bandTitle);
-    setText("contactBandText", footer.bandText);
-    setText("contactLinksLabel", footer.contactLinksLabel);
-    setText("workFormatLabel", footer.workFormatLabel);
-    setText("workFormatText", footer.workFormatText);
-    setText("requisitesLabel", footer.requisitesLabel);
-    setText("requisitesNameLabel", footer.requisitesNameLabel);
-    setText("requisitesNameValue", footer.requisitesNameValue);
-    setText("requisitesTaxLabel", footer.requisitesTaxLabel);
-    setText("requisitesTaxValue", footer.requisitesTaxValue);
-    setText("requisitesEmailLabel", footer.requisitesEmailLabel);
-    setText("requisitesEmailValue", footer.requisitesEmailValue);
-    setText("requisitesPhoneLabel", footer.requisitesPhoneLabel);
-    setText("requisitesPhoneValue", footer.requisitesPhoneValue);
-  };
-
-  const renderCookies = (cookies) => {
+  const renderCookies = () => {
+    const cookies = currentCommon.cookies;
     setText("cookieBannerEyebrow", cookies.bannerEyebrow);
     setText("cookieBannerTitle", cookies.bannerTitle);
     setText("cookieBannerText", cookies.bannerText);
@@ -544,121 +918,140 @@
     setText("cookieAnalyticsText", cookies.analyticsText);
     setText("cookieSaveEssentialBtn", cookies.saveEssential);
     setText("cookieSavePrefsBtn", cookies.savePrefs);
+
     const closeButton = document.getElementById("cookieModalClose");
     if (closeButton) {
       closeButton.setAttribute("aria-label", cookies.closeLabel);
     }
+
+    syncCookieToggleLabel();
   };
 
-  const renderForm = (formContent) => {
-    setText("formTitle", formContent.title);
-    setText("formIntro", formContent.intro);
-    setText("nameLabel", formContent.nameLabel);
-    setText("contactMethodLabel", formContent.contactMethodLabel);
-    setText("contactMethodOtherLabel", formContent.contactMethodOtherLabel);
-    setText("contactValueLabel", formContent.contactValueLabel);
-    setText("projectTypeLabel", formContent.projectTypeLabel);
-    setText("messageLabel", formContent.messageLabel);
-    setText("deadlineLabel", formContent.deadlineLabel);
-    setText("budgetLabel", formContent.budgetLabel);
-    setText("submitButton", formContent.submitLabel);
-    setText("legalNotice", formContent.legalNotice);
+  const initializeCookieConsent = () => {
+    const banner = document.getElementById("cookieBanner");
+    const modal = document.getElementById("cookieModalBackdrop");
+    const toggle = document.getElementById("cookieAnalyticsToggle");
+    const acceptBtn = document.getElementById("cookieAcceptBtn");
+    const declineBtn = document.getElementById("cookieDeclineBtn");
+    const customizeBtn = document.getElementById("cookieCustomizeBtn");
+    const saveEssentialBtn = document.getElementById("cookieSaveEssentialBtn");
+    const savePrefsBtn = document.getElementById("cookieSavePrefsBtn");
+    const closeBtn = document.getElementById("cookieModalClose");
 
-    const nameInput = document.getElementById("nameInput");
-    const contactMethodOther = document.getElementById("contactMethodOther");
-    const contactValue = document.getElementById("contactValue");
-    const messageInput = document.getElementById("messageInput");
-    const deadlineInput = document.getElementById("deadlineInput");
-    const budgetInput = document.getElementById("budgetInput");
-    const contactMethodSelect = document.getElementById("contactMethod");
-    const projectTypeSelect = document.getElementById("projectType");
+    const closeModal = () => {
+      document.body.classList.remove("cookie-modal-open");
+      if (modal) modal.hidden = true;
+    };
 
-    if (nameInput) nameInput.placeholder = formContent.namePlaceholder;
-    if (contactMethodOther)
-      contactMethodOther.placeholder =
-        formContent.contactMethodOtherPlaceholder;
-    if (contactValue)
-      contactValue.placeholder = formContent.contactValuePlaceholderDefault;
-    if (messageInput) messageInput.placeholder = formContent.messagePlaceholder;
-    if (deadlineInput)
-      deadlineInput.placeholder = formContent.deadlinePlaceholder;
-    if (budgetInput) budgetInput.placeholder = formContent.budgetPlaceholder;
+    const openModal = () => {
+      document.body.classList.add("cookie-modal-open");
+      if (modal) modal.hidden = false;
+    };
 
-    renderSelectOptions(
-      contactMethodSelect,
-      formContent.contactMethodPlaceholder,
-      formContent.contactMethodOptions,
-    );
-    renderSelectOptions(
-      projectTypeSelect,
-      formContent.projectTypePlaceholder,
-      formContent.projectTypeOptions,
-    );
-  };
+    const finalize = (analytics) => {
+      saveConsent({ analytics });
+      if (banner) banner.hidden = true;
+      closeModal();
+      syncCookieToggleLabel();
+    };
 
-  const renderStaticUi = (ui) => {
-    setText("skipLink", ui.skipLink);
-    setText("brandMeta", ui.brandMeta);
-    setText("navAudience", ui.navAudience);
-    setText("navAttention", ui.navAttention);
-    setText("navServices", ui.navServices);
-    setText("navCases", ui.navCases);
-    setText("navContacts", ui.navContacts);
-    setText("topbarTelegram", ui.topbarTelegram);
-    setText("primaryCtaTopbar", ui.topbarCta);
-    setText("attentionTitle", ui.attentionTitle);
-    setText("attentionText", ui.attentionText);
-    setText("audienceTitle", ui.audienceTitle);
-    setText("audienceText", ui.audienceText);
-    setText("positioningTitle", ui.positioningTitle);
-    setText("positioningText", ui.positioningText);
-    setText("positioningStatementLabel", ui.positioningStatementLabel);
-    setText("positioningStatementNote", ui.positioningStatementNote);
-    setText("positioningCta", ui.positioningCta);
-    setText("servicesTitle", ui.servicesTitle);
-    setText("servicesText", ui.servicesText);
-    setText("deliverablesTitle", ui.deliverablesTitle);
-    setText("deliverablesText", ui.deliverablesText);
-    setText("casesTitle", ui.casesTitle);
-    setText("casesText", ui.casesText);
-    setText("processTitle", ui.processTitle);
-    setText("processText", ui.processText);
-    setText("trustTitle", ui.trustTitle);
-    setText("trustText", ui.trustText);
-    setText("engagementTitle", ui.engagementTitle);
-    setText("engagementText", ui.engagementText);
-    setText("stackTitle", ui.stackTitle);
-    setText("stackText", ui.stackText);
-    setText("faqTitle", ui.faqTitle);
-    setText("faqText", ui.faqText);
-    setText("finalCtaTitle", ui.finalCtaTitle);
-    setText("finalCtaText", ui.finalCtaText);
-    setText("finalCtaButton", ui.finalCtaButton);
+    const consent = readConsent();
+    if (consent) {
+      applyConsent(consent);
+      if (banner) banner.hidden = true;
+      if (toggle) toggle.checked = !!consent.analytics;
+      syncCookieToggleLabel();
+    } else if (banner) {
+      banner.hidden = false;
+    }
 
-    const casePrev = document.getElementById("casePrev");
-    const caseNext = document.getElementById("caseNext");
-    const casesViewer = document.getElementById("casesViewer");
-    const caseDots = document.getElementById("caseDots");
-
-    if (casePrev) casePrev.setAttribute("aria-label", ui.carouselPrevLabel);
-    if (caseNext) caseNext.setAttribute("aria-label", ui.carouselNextLabel);
-    if (casesViewer)
-      casesViewer.setAttribute("aria-label", ui.carouselRegionLabel);
-    if (caseDots) caseDots.setAttribute("aria-label", ui.carouselDotsLabel);
-
-    document.querySelectorAll(".brand img, .hero-monogram").forEach((img) => {
-      img.setAttribute(
-        "alt",
-        currentLanguage === "ru" ? "Логотип Arvectum" : "Arvectum logo",
+    if (toggle) {
+      toggle.addEventListener("change", syncCookieToggleLabel);
+    }
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", () => finalize(true));
+    }
+    if (declineBtn) {
+      declineBtn.addEventListener("click", () => finalize(false));
+    }
+    if (customizeBtn) {
+      customizeBtn.addEventListener("click", () => {
+        const currentConsent = readConsent();
+        if (toggle) {
+          toggle.checked = currentConsent ? !!currentConsent.analytics : false;
+        }
+        syncCookieToggleLabel();
+        openModal();
+      });
+    }
+    if (saveEssentialBtn) {
+      saveEssentialBtn.addEventListener("click", () => finalize(false));
+    }
+    if (savePrefsBtn) {
+      savePrefsBtn.addEventListener("click", () =>
+        finalize(toggle ? toggle.checked : false),
       );
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeModal);
+    }
+    if (modal) {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeModal();
+      });
+    }
+  };
+
+  const initMenu = () => {
+    const body = document.body;
+    const drawer = document.getElementById("menuDrawer");
+    const toggle = document.getElementById("menuToggle");
+    const close = document.getElementById("menuClose");
+
+    const closeMenu = () => {
+      body.classList.remove("menu-open");
+      if (drawer) drawer.classList.remove("is-open");
+    };
+
+    const openMenu = () => {
+      body.classList.add("menu-open");
+      if (drawer) drawer.classList.add("is-open");
+    };
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        if (body.classList.contains("menu-open")) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
+
+    if (close) {
+      close.addEventListener("click", closeMenu);
+    }
+
+    if (drawer) {
+      drawer.addEventListener("click", (event) => {
+        if (event.target === drawer) closeMenu();
+      });
+    }
+
+    document.querySelectorAll("#menuDrawer a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
     });
   };
 
-  const updateLanguageSwitch = () => {
+  const initLanguageSwitch = () => {
     document.querySelectorAll(".lang-switch__button").forEach((button) => {
-      const isActive = button.dataset.lang === currentLanguage;
-      button.classList.toggle("is-active", isActive);
-      button.setAttribute("aria-pressed", String(isActive));
+      button.addEventListener("click", () => {
+        const nextLang = button.dataset.lang;
+        if (!nextLang || nextLang === currentLanguage) return;
+        const file = routes[currentPage] || "index.html";
+        const query = nextLang === defaultLanguage ? "" : `?lang=${nextLang}`;
+        window.location.href = `${file}${query}${window.location.hash}`;
+      });
     });
   };
 
@@ -668,19 +1061,16 @@
       revealObserver = null;
     }
 
-    const revealNodes = document.querySelectorAll(".reveal");
-
+    const nodes = document.querySelectorAll(".reveal");
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      revealNodes.forEach((el) => el.classList.add("is-visible"));
+      nodes.forEach((node) => node.classList.add("is-visible"));
       return;
     }
 
     if (typeof window.IntersectionObserver !== "function") {
-      revealNodes.forEach((el) => el.classList.add("is-visible"));
+      nodes.forEach((node) => node.classList.add("is-visible"));
       return;
     }
-
-    revealNodes.forEach((el) => el.classList.remove("is-visible"));
 
     revealObserver = new IntersectionObserver(
       (entries) => {
@@ -691,333 +1081,45 @@
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
     );
 
-    revealNodes.forEach((el) => revealObserver.observe(el));
-  };
-
-  const getCards = () =>
-    Array.from(document.querySelectorAll("#casesGrid .case-card"));
-  const getDots = () =>
-    Array.from(document.querySelectorAll("#caseDots .carousel-dot"));
-  const getCaseTrack = () => document.getElementById("casesGrid");
-  const getCasesViewer = () => document.getElementById("casesViewer");
-  const getSlideWidth = () => getCasesViewer()?.clientWidth || 0;
-  const getMaxIndex = () => Math.max(0, getCards().length - 1);
-
-  const syncCarouselUi = () => {
-    const casePrev = document.getElementById("casePrev");
-    const caseNext = document.getElementById("caseNext");
-    if (casePrev) casePrev.disabled = activeIndex <= 0;
-    if (caseNext) caseNext.disabled = activeIndex >= getMaxIndex();
-
-    getDots().forEach((dot, index) => {
-      const isActive = index === activeIndex;
-      dot.classList.toggle("is-active", isActive);
-      dot.setAttribute("aria-current", String(isActive));
+    nodes.forEach((node) => {
+      node.classList.remove("is-visible");
+      revealObserver.observe(node);
     });
   };
 
-  const renderCarouselDots = () => {
-    const caseDots = document.getElementById("caseDots");
-    if (!caseDots) return;
-    const dotLabel = currentContent?.ui?.carouselDotLabel || "Case";
+  const initForm = () => {
+    const form = document.getElementById("leadForm");
+    if (!form) return;
 
-    caseDots.innerHTML = getCards()
-      .map(
-        (_, index) => `
-      <button
-        class="button carousel-dot${index === activeIndex ? " is-active" : ""}"
-        type="button"
-        aria-label="${dotLabel} ${index + 1}"
-        aria-current="${index === activeIndex ? "true" : "false"}"
-        data-index="${index}"
-      ></button>
-    `,
-      )
-      .join("");
-  };
+    const methodSelect = document.getElementById("contactMethod");
+    const otherWrap = document.getElementById("contactMethodOtherWrap");
+    const contactValue = document.getElementById("contactValue");
+    const formConfig = currentCommon.form;
+    const statusEl = document.getElementById("formStatus");
 
-  const scrollToCaseIndex = (index, behavior = "smooth") => {
-    const track = getCaseTrack();
-    if (!track) return;
-    activeIndex = Math.min(Math.max(index, 0), getMaxIndex());
-    track.scrollTo({ left: activeIndex * getSlideWidth(), behavior });
-    syncCarouselUi();
-  };
-
-  const syncCaseIndexFromScroll = () => {
-    const track = getCaseTrack();
-    const width = getSlideWidth();
-    if (!track || !width) return;
-    activeIndex = Math.round(track.scrollLeft / width);
-    syncCarouselUi();
-  };
-
-  const initCasesCarousel = () => {
-    const casePrev = document.getElementById("casePrev");
-    const caseNext = document.getElementById("caseNext");
-    const caseDots = document.getElementById("caseDots");
-    const casesViewer = document.getElementById("casesViewer");
-    const casesTrack = getCaseTrack();
-
-    if (!casePrev || !caseNext || !caseDots || !casesViewer || !casesTrack)
-      return;
-
-    if (!carouselInitialized) {
-      casePrev.addEventListener("click", () =>
-        scrollToCaseIndex(activeIndex - 1),
-      );
-      caseNext.addEventListener("click", () =>
-        scrollToCaseIndex(activeIndex + 1),
-      );
-      caseDots.addEventListener("click", (event) => {
-        const target = event.target.closest(".carousel-dot");
-        if (!target) return;
-        scrollToCaseIndex(Number(target.dataset.index));
-      });
-
-      casesTrack.addEventListener(
-        "scroll",
-        () => {
-          window.clearTimeout(syncCaseIndexFromScroll._timer);
-          syncCaseIndexFromScroll._timer = window.setTimeout(
-            syncCaseIndexFromScroll,
-            80,
-          );
-        },
-        { passive: true },
-      );
-
-      window.addEventListener("resize", () => {
-        window.clearTimeout(scrollToCaseIndex._timer);
-        scrollToCaseIndex._timer = window.setTimeout(
-          () => scrollToCaseIndex(activeIndex, "auto"),
-          120,
-        );
-      });
-
-      casesViewer.addEventListener("keydown", (event) => {
-        if (event.key === "ArrowLeft") scrollToCaseIndex(activeIndex - 1);
-        if (event.key === "ArrowRight") scrollToCaseIndex(activeIndex + 1);
-      });
-
-      carouselInitialized = true;
-    }
-
-    activeIndex = 0;
-    renderCarouselDots();
-    scrollToCaseIndex(0, "auto");
-  };
-
-  const renderLanguage = (lang) => {
-    currentLanguage = config.languages?.[lang] ? lang : defaultLanguage;
-    currentContent = getLanguageContent(currentLanguage);
-    renderMeta(currentContent.meta);
-    renderStaticUi(currentContent.ui);
-    renderHero(currentContent.hero);
-    renderMetrics(currentContent.metrics);
-    renderAudience(currentContent.audiences);
-    renderPositioningCards(currentContent.positioningCards);
-    renderServices(currentContent.services);
-    renderDeliverables(currentContent.deliverables);
-    renderCases(currentContent.cases);
-    renderTimeline(currentContent.process);
-    renderTrustPoints(currentContent.trustPoints);
-    renderEngagement(currentContent.engagementModels);
-    renderStack(currentContent.stack);
-    renderFaq(currentContent.faq);
-    renderForm(currentContent.form);
-    renderFooter(currentContent.footer);
-    renderCookies(currentContent.cookies);
-    updateLanguageSwitch();
-    initReveal();
-    initCasesCarousel();
-    syncContactFields();
-    syncCookieToggleLabel();
-  };
-
-  const contactMethodEl = document.getElementById("contactMethod");
-  const contactMethodOtherWrap = document.getElementById(
-    "contactMethodOtherWrap",
-  );
-  const contactMethodOtherEl = document.getElementById("contactMethodOther");
-  const contactValueEl = document.getElementById("contactValue");
-
-  const syncContactFields = () => {
-    if (!contactMethodEl || !contactMethodOtherWrap || !contactMethodOtherEl)
-      return;
-
-    const method = String(contactMethodEl.value || "").trim();
-    const isOther = method === "other";
-    const placeholders = currentContent?.form?.contactValuePlaceholders || {};
-
-    contactMethodOtherWrap.hidden = !isOther;
-    contactMethodOtherEl.required = isOther;
-    if (!isOther) contactMethodOtherEl.value = "";
-
-    if (!contactValueEl) return;
-
-    const placeholder =
-      placeholders[method] ||
-      placeholders.default ||
-      currentContent?.form?.contactValuePlaceholderDefault ||
-      "";
-    contactValueEl.placeholder = placeholder;
-
-    if (method === "phone" || method === "whatsapp") {
-      contactValueEl.autocomplete = "tel";
-    } else if (method === "email") {
-      contactValueEl.autocomplete = "email";
-    } else {
-      contactValueEl.autocomplete = "off";
-    }
-  };
-
-  const cookieBanner = document.getElementById("cookieBanner");
-  const cookieAcceptBtn = document.getElementById("cookieAcceptBtn");
-  const cookieDeclineBtn = document.getElementById("cookieDeclineBtn");
-  const cookieCustomizeBtn = document.getElementById("cookieCustomizeBtn");
-  const cookieModalBackdrop = document.getElementById("cookieModalBackdrop");
-  const cookieModalClose = document.getElementById("cookieModalClose");
-  const cookieAnalyticsToggle = document.getElementById(
-    "cookieAnalyticsToggle",
-  );
-  const cookieAnalyticsLabel = document.getElementById("cookieAnalyticsLabel");
-  const cookieSavePrefsBtn = document.getElementById("cookieSavePrefsBtn");
-  const cookieSaveEssentialBtn = document.getElementById(
-    "cookieSaveEssentialBtn",
-  );
-
-  const syncCookieToggleLabel = () => {
-    if (!cookieAnalyticsToggle || !cookieAnalyticsLabel || !currentContent)
-      return;
-    cookieAnalyticsLabel.textContent = cookieAnalyticsToggle.checked
-      ? currentContent.cookies.analyticsOn
-      : currentContent.cookies.analyticsOff;
-  };
-
-  const openCookieModal = () => {
-    if (!cookieModalBackdrop) return;
-    cookieModalBackdrop.hidden = false;
-    document.body.classList.add("cookie-modal-open");
-    syncCookieToggleLabel();
-  };
-
-  const closeCookieModal = () => {
-    if (!cookieModalBackdrop) return;
-    cookieModalBackdrop.hidden = true;
-    document.body.classList.remove("cookie-modal-open");
-  };
-
-  const hideCookieBanner = () => {
-    if (cookieBanner) cookieBanner.hidden = true;
-  };
-
-  const showCookieBanner = () => {
-    if (cookieBanner) cookieBanner.hidden = false;
-  };
-
-  const initializeCookieConsent = () => {
-    const existingConsent = readConsent();
-    if (existingConsent) {
-      applyConsent(existingConsent);
-      hideCookieBanner();
-      if (cookieAnalyticsToggle) {
-        cookieAnalyticsToggle.checked = !!existingConsent.analytics;
-      }
-    } else {
-      showCookieBanner();
-    }
-    syncCookieToggleLabel();
-  };
-
-  const finalizeConsentChoice = (analytics) => {
-    if (cookieAnalyticsToggle) cookieAnalyticsToggle.checked = !!analytics;
-    syncCookieToggleLabel();
-    hideCookieBanner();
-    closeCookieModal();
-
-    try {
-      saveConsent({ analytics });
-    } catch (_) {
-      // Consent UI must not get stuck even if storage fails.
-    }
-  };
-
-  if (cookieAnalyticsToggle) {
-    cookieAnalyticsToggle.addEventListener("change", syncCookieToggleLabel);
-  }
-
-  if (cookieAcceptBtn) {
-    cookieAcceptBtn.addEventListener("click", () =>
-      finalizeConsentChoice(true),
-    );
-  }
-
-  if (cookieDeclineBtn) {
-    cookieDeclineBtn.addEventListener("click", () =>
-      finalizeConsentChoice(false),
-    );
-  }
-
-  if (cookieCustomizeBtn) {
-    cookieCustomizeBtn.addEventListener("click", () => {
-      const currentConsent = readConsent();
-      if (cookieAnalyticsToggle) {
-        cookieAnalyticsToggle.checked = currentConsent
-          ? !!currentConsent.analytics
-          : false;
-      }
-      syncCookieToggleLabel();
-      openCookieModal();
-    });
-  }
-
-  if (cookieModalClose) {
-    cookieModalClose.addEventListener("click", closeCookieModal);
-  }
-
-  if (cookieModalBackdrop) {
-    cookieModalBackdrop.addEventListener("click", (event) => {
-      if (event.target === cookieModalBackdrop) closeCookieModal();
-    });
-  }
-
-  if (cookieSavePrefsBtn) {
-    cookieSavePrefsBtn.addEventListener("click", () => {
-      const analytics = cookieAnalyticsToggle
-        ? cookieAnalyticsToggle.checked
-        : false;
-      finalizeConsentChoice(analytics);
-    });
-  }
-
-  if (cookieSaveEssentialBtn) {
-    cookieSaveEssentialBtn.addEventListener("click", () =>
-      finalizeConsentChoice(false),
-    );
-  }
-
-  if (contactMethodEl) {
-    contactMethodEl.addEventListener("change", syncContactFields);
-  }
-
-  document.querySelectorAll(".lang-switch__button").forEach((button) => {
-    button.addEventListener("click", () => {
-      renderLanguage(button.dataset.lang);
-    });
-  });
-
-  const form = document.getElementById("leadForm");
-  const statusEl = document.getElementById("formStatus");
-
-  if (form && statusEl) {
     const setStatus = (message, isError = false) => {
+      if (!statusEl) return;
       statusEl.textContent = message;
-      statusEl.style.color = isError ? "#d14d72" : "#43e5c5";
+      statusEl.style.color = isError ? "#ff8da6" : "#43e5c5";
     };
+
+    const syncContactFields = () => {
+      if (!methodSelect || !contactValue || !otherWrap) return;
+      const value = methodSelect.value || "default";
+      otherWrap.hidden = value !== "other";
+      contactValue.placeholder =
+        formConfig.contactValuePlaceholders?.[value] ||
+        formConfig.contactValuePlaceholders?.default ||
+        "";
+    };
+
+    if (methodSelect) {
+      methodSelect.addEventListener("change", syncContactFields);
+      syncContactFields();
+    }
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -1037,7 +1139,7 @@
         website: String(formData.get("website") || "").trim(),
       };
 
-      const validation = currentContent?.form?.validation || {};
+      const validation = formConfig.validation || {};
 
       if (!payload.name) {
         setStatus(validation.nameRequired, true);
@@ -1056,10 +1158,10 @@
         return;
       }
 
-      const methodOption = (
-        currentContent.form.contactMethodOptions || []
-      ).find((item) => item.value === payload.contactMethod);
-      const projectOption = (currentContent.form.projectTypeOptions || []).find(
+      const methodOption = (formConfig.contactMethodOptions || []).find(
+        (item) => item.value === payload.contactMethod,
+      );
+      const projectOption = (formConfig.projectTypeOptions || []).find(
         (item) => item.value === payload.projectType,
       );
 
@@ -1099,8 +1201,26 @@
         if (submitButton) submitButton.disabled = false;
       }
     });
-  }
+  };
 
-  renderLanguage(defaultLanguage);
-  initializeCookieConsent();
+  const renderAll = () => {
+    currentLanguage = getLanguage();
+    const langPack =
+      config.languages?.[currentLanguage] || config.languages?.ru;
+    currentCommon = langPack.common;
+    currentContent = langPack.pages?.[currentPage] || langPack.pages?.home;
+
+    renderMeta(currentContent.meta);
+    renderHeader();
+    renderPage();
+    renderFooter();
+    renderCookies();
+    initMenu();
+    initLanguageSwitch();
+    initReveal();
+    initForm();
+    initializeCookieConsent();
+  };
+
+  renderAll();
 })();

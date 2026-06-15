@@ -21,10 +21,14 @@ npm run lint
 
 ## Структура
 
-- `public/index.html` — главная страница
-- `public/styles.css` — стили лендинга
-- `public/site-config.js` — контентные блоки
-- `public/app.js` — гидратация секций и логика формы
+- `public/index.html` — компактная главная страница-обзор
+- `public/solutions.html` — подробная страница по решениям
+- `public/cases.html` — отдельная страница с кейсами
+- `public/approach.html` — страница про подход, этапы и стек
+- `public/contact.html` — форма заявки, контакты и реквизиты
+- `public/styles.css` — общие стили для всех страниц
+- `public/site-config.js` — двуязычный контент и маршруты
+- `public/app.js` — общая логика рендера, меню, переключателя языка и формы
 - `public/api/submit.php` — отправка заявки в Telegram и на email
 
 ## Каналы заявок
