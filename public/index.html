@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arvectum</title>
+    <meta id="metaDescription" name="description" content="" />
+    <meta id="metaOgTitle" property="og:title" content="" />
+    <meta id="metaOgDescription" property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta id="metaOgLocale" property="og:locale" content="ru_RU" />
+    <meta name="theme-color" content="#041A33" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/brand/arvectum-logo-primary.png"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Arvectum LLC",
+        "url": "https://arvectum.com",
+        "logo": "https://arvectum.com/assets/brand/arvectum-logo-primary.png",
+        "email": "info@arvectum.com",
+        "sameAs": ["https://t.me/arvectum"],
+        "description": "Arvectum designs AI systems, automation workflows and controlled digital operating contours for business."
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#top" id="skipLink">Перейти к содержимому</a>
+    <header class="topbar glass">
+      <a class="brand" href="#top" aria-label="Arvectum">
+        <img
+          src="assets/brand/arvectum-logo-header-light.png"
+          alt="Arvectum logo"
+        />
+        <span class="brand-meta" id="brandMeta">Arvectum LLC</span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#audience" id="navAudience">Для кого</a>
+        <a href="#attention" id="navAttention">Сигналы</a>
+        <a href="#services" id="navServices">Решения</a>
+        <a href="#cases" id="navCases">Кейсы</a>
+        <a href="#contacts" id="navContacts">Контакты</a>
+      </nav>
+      <div class="topbar-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button
+            class="lang-switch__button is-active"
+            id="langRu"
+            type="button"
+            data-lang="ru"
+          >
+            RU
+          </button>
+          <button
+            class="lang-switch__button"
+            id="langEn"
+            type="button"
+            data-lang="en"
+          >
+            EN
+          </button>
+        </div>
+        <a
+          class="button button-ghost"
+          href="https://t.me/arvectum"
+          target="_blank"
+          rel="noreferrer"
+          id="topbarTelegram"
+        >
+          Telegram
+        </a>
+        <a class="button" href="#contacts" id="primaryCtaTopbar"></a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero reveal">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="kicker" id="founderLabel"></p>
+            <p class="hero-audience" id="heroAudience"></p>
+            <h1 id="heroTitle"></h1>
+            <p class="hero-text" id="heroSubtitle"></p>
+            <div class="hero-positioning">
+              <span
+                class="hero-positioning__label"
+                id="heroPositioningLabel"
+              ></span>
+              <p id="heroPositioning"></p>
+            </div>
+            <div class="hero-pains" id="heroPainList"></div>
+            <div class="hero-proof" id="heroProofList"></div>
+            <div class="hero-actions">
+              <a class="button" href="#contacts" id="primaryCta"></a>
+              <a
+                class="button button-ghost"
+                href="#cases"
+                id="secondaryCta"
+              ></a>
+            </div>
+            <div class="hero-strip" id="trustStrip"></div>
+          </div>
+
+          <aside class="hero-visual glass" id="heroVisual">
+            <div class="hero-visual-top">
+              <img
+                class="hero-monogram"
+                src="assets/brand/arvectum-logo-primary.png"
+                alt="Arvectum logo"
+              />
+              <div class="hero-signals" id="heroSignals"></div>
+            </div>
+            <div class="hero-panels" id="heroPanels"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="metrics container reveal" id="attention">
+        <div class="section-head">
+          <h2 id="attentionTitle"></h2>
+          <p id="attentionText"></p>
+        </div>
+        <div class="metrics-grid" id="metricsGrid"></div>
+      </section>
+
+      <section class="audience container reveal" id="audience">
+        <div class="section-head">
+          <h2 id="audienceTitle"></h2>
+          <p id="audienceText"></p>
+        </div>
+        <div class="card-grid card-grid--four" id="audienceGrid"></div>
+      </section>
+
+      <section class="positioning container reveal" id="positioning">
+        <div class="section-head">
+          <h2 id="positioningTitle"></h2>
+          <p id="positioningText"></p>
+        </div>
+        <div class="positioning-layout">
+          <article class="positioning-statement">
+            <span
+              class="positioning-statement__label"
+              id="positioningStatementLabel"
+            ></span>
+            <p
+              class="positioning-statement__quote"
+              id="heroPositioningMirror"
+            ></p>
+            <p
+              class="positioning-statement__note"
+              id="positioningStatementNote"
+            ></p>
+            <a class="button" href="#contacts" id="positioningCta"></a>
+          </article>
+          <div class="card-grid card-grid--three" id="positioningGrid"></div>
+        </div>
+      </section>
+
+      <section class="services container reveal" id="services">
+        <div class="section-head">
+          <h2 id="servicesTitle"></h2>
+          <p id="servicesText"></p>
+        </div>
+        <div class="service-grid" id="servicesGrid"></div>
+      </section>
+
+      <section class="deliverables container reveal" id="deliverables">
+        <div class="section-head">
+          <h2 id="deliverablesTitle"></h2>
+          <p id="deliverablesText"></p>
+        </div>
+        <div class="card-grid deliverables-grid" id="deliverablesGrid"></div>
+      </section>
+
+      <section class="cases container reveal" id="cases">
+        <div class="section-head">
+          <h2 id="casesTitle"></h2>
+          <p id="casesText"></p>
+        </div>
+        <div class="carousel-wrapper">
+          <button class="carousel-btn prev" id="casePrev" aria-label="Назад">
+            ❮
+          </button>
+          <div
+            class="carousel-viewer"
+            id="casesViewer"
+            tabindex="0"
+            role="region"
+          >
+            <div class="case-grid" id="casesGrid" aria-live="polite"></div>
+          </div>
+          <button class="carousel-btn next" id="caseNext" aria-label="Вперед">
+            ❯
+          </button>
+        </div>
+        <div class="carousel-dots" id="caseDots"></div>
+      </section>
+
+      <section class="process container reveal" id="process">
+        <div class="section-head">
+          <h2 id="processTitle"></h2>
+          <p id="processText"></p>
+        </div>
+        <ol class="timeline" id="processList"></ol>
+      </section>
+
+      <section class="trust container reveal" id="trust">
+        <div class="section-head">
+          <h2 id="trustTitle"></h2>
+          <p id="trustText"></p>
+        </div>
+        <div class="card-grid trust-grid" id="trustGrid"></div>
+      </section>
+
+      <section class="engagement container reveal" id="engagement">
+        <div class="section-head">
+          <h2 id="engagementTitle"></h2>
+          <p id="engagementText"></p>
+        </div>
+        <div class="card-grid card-grid--three" id="engagementGrid"></div>
+      </section>
+
+      <section class="stack container reveal" id="stack">
+        <div class="section-head">
+          <h2 id="stackTitle"></h2>
+          <p id="stackText"></p>
+        </div>
+        <div class="chips" id="stackChips"></div>
+      </section>
+
+      <section class="faq container reveal">
+        <div class="section-head">
+          <h2 id="faqTitle"></h2>
+          <p id="faqText"></p>
+        </div>
+        <div class="faq-list" id="faqList"></div>
+      </section>
+
+      <section class="cta container reveal">
+        <h2 id="finalCtaTitle"></h2>
+        <p id="finalCtaText"></p>
+        <a class="button" href="#contacts" id="finalCtaButton"></a>
+      </section>
+    </main>
+
+    <footer class="footer" id="contacts">
+      <div class="container footer-stack">
+        <div class="form-block glass reveal">
+          <h3 id="formTitle"></h3>
+          <p id="formIntro"></p>
+          <form id="leadForm" novalidate>
+            <div class="grid-two">
+              <label>
+                <span id="nameLabel"></span>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  maxlength="80"
+                  autocomplete="name"
+                  id="nameInput"
+                />
+              </label>
+              <label>
+                <span id="contactMethodLabel"></span>
+                <select
+                  name="contactMethod"
+                  id="contactMethod"
+                  required
+                ></select>
+              </label>
+            </div>
+
+            <label id="contactMethodOtherWrap" hidden>
+              <span id="contactMethodOtherLabel"></span>
+              <input
+                type="text"
+                name="contactMethodOther"
+                id="contactMethodOther"
+                maxlength="80"
+                autocomplete="off"
+              />
+            </label>
+
+            <label id="contactValueWrap">
+              <span id="contactValueLabel"></span>
+              <input
+                type="text"
+                name="contactValue"
+                id="contactValue"
+                required
+                maxlength="120"
+                autocomplete="email"
+              />
+            </label>
+
+            <label>
+              <span id="projectTypeLabel"></span>
+              <select name="projectType" id="projectType" required></select>
+            </label>
+
+            <label>
+              <span id="messageLabel"></span>
+              <textarea
+                name="message"
+                rows="5"
+                required
+                maxlength="2000"
+                id="messageInput"
+              ></textarea>
+            </label>
+
+            <div class="grid-two">
+              <label>
+                <span id="deadlineLabel"></span>
+                <input
+                  type="text"
+                  name="deadline"
+                  maxlength="80"
+                  autocomplete="off"
+                  id="deadlineInput"
+                />
+              </label>
+              <label>
+                <span id="budgetLabel"></span>
+                <input
+                  type="text"
+                  name="budget"
+                  maxlength="80"
+                  autocomplete="off"
+                  id="budgetInput"
+                />
+              </label>
+            </div>
+
+            <input
+              type="text"
+              name="website"
+              class="hp"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+
+            <button class="button" type="submit" id="submitButton"></button>
+            <p id="formStatus" class="form-status" aria-live="polite"></p>
+            <p class="form-disclaimer" id="legalNotice"></p>
+          </form>
+        </div>
+
+        <section class="contact-band glass reveal" id="contactBand">
+          <div class="contact-band__intro">
+            <h3 id="contactBandTitle"></h3>
+            <p id="contactBandText"></p>
+          </div>
+          <div class="contact-band__grid">
+            <article class="contact-panel">
+              <span id="contactLinksLabel"></span>
+              <div class="contact-links" id="contactLinks">
+                <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+                <a href="https://t.me/arvectum" target="_blank" rel="noreferrer"
+                  >t.me/arvectum</a
+                >
+              </div>
+            </article>
+
+            <article class="contact-panel contact-note">
+              <span id="workFormatLabel"></span>
+              <p id="workFormatText"></p>
+            </article>
+
+            <article class="contact-panel company-requisites">
+              <span id="requisitesLabel"></span>
+              <dl class="company-requisites__grid">
+                <div>
+                  <dt id="requisitesNameLabel"></dt>
+                  <dd id="requisitesNameValue"></dd>
+                </div>
+                <div>
+                  <dt id="requisitesTaxLabel"></dt>
+                  <dd id="requisitesTaxValue"></dd>
+                </div>
+                <div>
+                  <dt id="requisitesEmailLabel"></dt>
+                  <dd>
+                    <a
+                      href="mailto:info@arvectum.com"
+                      id="requisitesEmailValue"
+                    ></a>
+                  </dd>
+                </div>
+                <div>
+                  <dt id="requisitesPhoneLabel"></dt>
+                  <dd id="requisitesPhoneValue"></dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+        </section>
+      </div>
+    </footer>
+
+    <section class="cookie-banner glass" id="cookieBanner" hidden>
+      <div class="cookie-banner__content">
+        <p class="cookie-banner__eyebrow" id="cookieBannerEyebrow"></p>
+        <h2 id="cookieBannerTitle"></h2>
+        <p id="cookieBannerText"></p>
+      </div>
+      <div class="cookie-banner__actions">
+        <button
+          class="button button-ghost"
+          id="cookieDeclineBtn"
+          type="button"
+        ></button>
+        <button
+          class="button button-ghost"
+          id="cookieCustomizeBtn"
+          type="button"
+        ></button>
+        <button class="button" id="cookieAcceptBtn" type="button"></button>
+      </div>
+    </section>
+
+    <section class="cookie-modal-backdrop" id="cookieModalBackdrop" hidden>
+      <div
+        class="cookie-modal glass"
+        id="cookieModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookieModalTitle"
+      >
+        <div class="cookie-modal__header">
+          <div>
+            <p class="cookie-banner__eyebrow" id="cookiePrefsEyebrow"></p>
+            <h2 id="cookieModalTitle"></h2>
+          </div>
+          <button
+            class="cookie-modal__close"
+            id="cookieModalClose"
+            type="button"
+            aria-label="Закрыть"
+          >
+            ×
+          </button>
+        </div>
+        <div class="cookie-modal__body">
+          <article class="cookie-option">
+            <div>
+              <h3 id="cookieEssentialTitle"></h3>
+              <p id="cookieEssentialText"></p>
+            </div>
+            <label class="cookie-switch cookie-switch--locked">
+              <input type="checkbox" checked disabled />
+              <span id="cookieEssentialAlwaysOn"></span>
+            </label>
+          </article>
+
+          <article class="cookie-option">
+            <div>
+              <h3 id="cookieAnalyticsTitle"></h3>
+              <p id="cookieAnalyticsText"></p>
+            </div>
+            <label class="cookie-switch">
+              <input type="checkbox" id="cookieAnalyticsToggle" />
+              <span id="cookieAnalyticsLabel"></span>
+            </label>
+          </article>
+        </div>
+        <div class="cookie-modal__footer">
+          <button
+            class="button button-ghost"
+            id="cookieSaveEssentialBtn"
+            type="button"
+          ></button>
+          <button class="button" id="cookieSavePrefsBtn" type="button"></button>
+        </div>
+      </div>
+    </section>
+
+    <script src="site-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
