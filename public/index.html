@@ -3,13 +3,32 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Arvectum</title>
-    <meta id="metaDescription" name="description" content="" />
-    <meta id="metaOgTitle" property="og:title" content="" />
-    <meta id="metaOgDescription" property="og:description" content="" />
+    <title>Arvectum — AI-автоматизация закупок и бизнес-процессов</title>
+    <meta
+      id="metaDescription"
+      name="description"
+      content="Arvectum проектирует закрытые AI-контуры для закупок, тендеров, согласований и операционных процессов: диагностика, MVP, пилот и внедрение."
+    />
+    <meta
+      id="metaOgTitle"
+      property="og:title"
+      content="Arvectum — AI-автоматизация закупок и бизнес-процессов"
+    />
+    <meta
+      id="metaOgDescription"
+      property="og:description"
+      content="Arvectum проектирует закрытые AI-контуры для закупок, тендеров, согласований и операционных процессов: диагностика, MVP, пилот и внедрение."
+    />
+    <meta id="metaOgUrl" property="og:url" content="https://arvectum.com/" />
+    <meta
+      property="og:image"
+      content="https://arvectum.com/assets/brand/logo-horizontal.png"
+    />
     <meta property="og:type" content="website" />
     <meta id="metaOgLocale" property="og:locale" content="ru_RU" />
-    <meta name="theme-color" content="#041A33" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#041a33" />
+    <link id="canonicalLink" rel="canonical" href="https://arvectum.com/" />
     <link
       rel="icon"
       type="image/png"
@@ -32,7 +51,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260615b" />
+    <link rel="stylesheet" href="styles.css?v=20260616a" />
   </head>
   <body data-page="home">
     <a class="skip-link" href="#pageRoot" id="skipLink"
@@ -47,22 +66,30 @@
               <img
                 id="brandLogo"
                 src="assets/brand/arvectum-logo-header-light.png"
-                alt="Arvectum logo"
+                alt="Логотип Arvectum"
               />
-              <span class="brand-meta" id="brandMeta">Arvectum LLC</span>
+              <span class="brand-meta" id="brandMeta">ООО "Арвектум"</span>
             </a>
 
             <nav
               class="desktop-nav"
               id="desktopNav"
-              aria-label="Main navigation"
-            ></nav>
+              aria-label="Основная навигация"
+            >
+              <a class="nav-link is-active" href="index.html">Главная</a>
+              <a class="nav-link" href="solutions.html">Решения</a>
+              <a class="nav-link" href="cases.html">Сценарии</a>
+              <a class="nav-link" href="approach.html">Подход</a>
+              <a class="nav-link" href="contact.html">Контакты</a>
+            </nav>
 
             <div class="topbar-tools">
-              <div class="lang-switch" aria-label="Language switcher">
+              <div
+                class="lang-switch desktop-lang-switch"
+                aria-label="Переключатель языка"
+              >
                 <button
                   class="lang-switch__button is-active"
-                  id="langRu"
                   type="button"
                   data-lang="ru"
                 >
@@ -70,50 +97,19 @@
                 </button>
                 <button
                   class="lang-switch__button"
-                  id="langEn"
                   type="button"
                   data-lang="en"
                 >
                   EN
                 </button>
               </div>
-
-              <a
-                class="button button-ghost desktop-action"
-                id="topbarTelegram"
-                href="https://t.me/arvectum"
-                target="_blank"
-                rel="noreferrer"
+              <a class="button header-cta" id="topbarCta" href="contact.html"
+                >Получить разбор</a
               >
-                Telegram
-              </a>
-              <a
-                class="button desktop-action"
-                id="topbarCta"
-                href="contact.html"
-              >
-                Разобрать процесс
-              </a>
-
               <button class="menu-toggle" id="menuToggle" type="button">
-                <span id="menuButtonText">Menu</span>
+                <span id="menuButtonText">Меню</span>
               </button>
             </div>
-          </div>
-
-          <div class="mobile-actions">
-            <a
-              class="button button-ghost"
-              id="mobileTelegram"
-              href="https://t.me/arvectum"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Telegram
-            </a>
-            <a class="button" id="mobileCta" href="contact.html"
-              >Разобрать процесс</a
-            >
           </div>
         </div>
       </div>
@@ -129,47 +125,183 @@
               <span id="menuCloseText">Закрыть меню</span>
             </button>
           </div>
-          <nav class="menu-nav" id="menuNav" aria-label="Site navigation"></nav>
+
+          <nav class="menu-nav" id="menuNav" aria-label="Навигация по разделам">
+            <a class="nav-link is-active" href="index.html">Главная</a>
+            <a class="nav-link" href="solutions.html">Решения</a>
+            <a class="nav-link" href="cases.html">Сценарии</a>
+            <a class="nav-link" href="approach.html">Подход</a>
+            <a class="nav-link" href="contact.html">Контакты</a>
+          </nav>
+
+          <div class="menu-drawer__extras">
+            <div
+              class="lang-switch menu-lang-switch"
+              aria-label="Language switcher"
+            >
+              <button
+                class="lang-switch__button is-active"
+                type="button"
+                data-lang="ru"
+              >
+                RU
+              </button>
+              <button class="lang-switch__button" type="button" data-lang="en">
+                EN
+              </button>
+            </div>
+            <a
+              class="menu-telegram"
+              id="menuTelegramLink"
+              href="https://t.me/arvectum"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Телеграм
+            </a>
+          </div>
+
           <a class="button" id="menuPrimaryCta" href="contact.html"
-            >Разобрать процесс</a
+            >Получить разбор</a
           >
         </div>
       </div>
     </header>
 
-    <main id="pageRoot"></main>
+    <main id="pageRoot">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              AI-автоматизация закупок, тендеров и сложных бизнес-процессов
+            </p>
+            <h1>
+              Превращаем ручные закупочные и операционные процессы в управляемые
+              AI-контуры
+            </h1>
+            <p class="hero-text">
+              Arvectum проектирует и внедряет закрытые цифровые системы для
+              процессов, где важно не потерять документы, сроки, риски,
+              экономику и историю решений.
+            </p>
+            <ul class="hero-bullets">
+              <li>Разбор процесса и карта автоматизации за 1–2 недели</li>
+              <li>MVP закупочного или операционного контура за 2–4 недели</li>
+              <li>
+                Закрытая архитектура: данные, роли, логи и контроль доступа
+              </li>
+              <li>
+                Первый шаг: диагностика и сценарий пилота на реальном процессе
+              </li>
+            </ul>
+            <div class="hero-actions">
+              <a class="button" href="contact.html">Получить разбор процесса</a>
+              <a class="button button-ghost" href="solutions.html"
+                >Посмотреть сценарии</a
+              >
+            </div>
+          </div>
+
+          <aside class="hero-panel glass">
+            <span class="hero-panel__label"
+              >Что можно автоматизировать первым</span
+            >
+            <div class="hero-panel__stack">
+              <article class="stack-card">
+                <h3>Закупки и тендеры</h3>
+                <p>
+                  Поиск, разбор требований, RFQ, сбор ТКП, экономика сделки и
+                  риск-проверка.
+                </p>
+              </article>
+              <article class="stack-card">
+                <h3>Согласования и статусы</h3>
+                <p>
+                  Роли, этапы, ответственные, журнал решений и контроль зависших
+                  шагов.
+                </p>
+              </article>
+              <article class="stack-card">
+                <h3>Документы и проверки</h3>
+                <p>
+                  Комплектность, договорные риски, требования, история изменений
+                  и протоколы.
+                </p>
+              </article>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head">
+            <h2>Кому это нужно</h2>
+            <p>
+              Компаниям, где закупочный или операционный процесс уже влияет на
+              сроки, маржу, качество исполнения и чувствительность данных.
+            </p>
+          </div>
+          <div class="chip-grid">
+            <span class="chip">Поставщикам и тендерным командам</span>
+            <span class="chip">Закупочным отделам</span>
+            <span class="chip">Операционным руководителям</span>
+            <span class="chip">Компаниям с закрытым контуром данных</span>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid glass">
-          <div class="footer-lead">
-            <h2>Arvectum</h2>
-            <p id="footerLead"></p>
-            <a class="text-link" id="footerPrimaryLink" href="contact.html"
-              >Contact</a
-            >
+          <div class="footer-block footer-block--lead">
+            <h2>ООО "Арвектум"</h2>
+            <p>
+              Arvectum автоматизирует закупочные, тендерные и операционные
+              процессы с помощью AI-агентов и управляемых цифровых контуров.
+            </p>
           </div>
-          <div class="footer-column">
-            <span id="footerLinksTitle"></span>
-            <div class="footer-links" id="footerLinks"></div>
-          </div>
-          <div class="footer-column">
-            <span id="footerDirectTitle"></span>
+          <div class="footer-block">
+            <span>Разделы</span>
             <div class="footer-links">
-              <a href="mailto:info@arvectum.com">info@arvectum.com</a>
-              <a
-                id="footerTelegramLink"
-                href="https://t.me/arvectum"
-                target="_blank"
-                rel="noreferrer"
-              >
-                t.me/arvectum
-              </a>
+              <a href="index.html">Главная</a>
+              <a href="solutions.html">Решения</a>
+              <a href="cases.html">Сценарии</a>
+              <a href="approach.html">Подход</a>
+              <a href="contact.html">Контакты</a>
             </div>
           </div>
-          <div class="footer-column">
-            <span id="footerRequisitesTitle"></span>
-            <dl class="footer-requisites" id="footerRequisites"></dl>
+          <div class="footer-block">
+            <span>Юридическая информация</span>
+            <div class="footer-links">
+              <a href="privacy.html">Политика конфиденциальности</a>
+              <a href="personal-data-consent.html"
+                >Согласие на обработку персональных данных</a
+              >
+              <a href="cookies.html">Политика cookies</a>
+            </div>
+          </div>
+          <div class="footer-block">
+            <span>Контакты</span>
+            <div class="footer-links">
+              <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+              <a href="https://t.me/arvectum" target="_blank" rel="noreferrer"
+                >t.me/arvectum</a
+              >
+            </div>
+            <dl class="footer-requisites footer-requisites--compact">
+              <div class="footer-requisite">
+                <dt>Название</dt>
+                <dd>ООО "Арвектум"</dd>
+              </div>
+              <div class="footer-requisite">
+                <dt>Почта</dt>
+                <dd>
+                  <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
@@ -177,22 +309,28 @@
 
     <section class="cookie-banner glass" id="cookieBanner" hidden>
       <div class="cookie-banner__content">
-        <p class="cookie-banner__eyebrow" id="cookieBannerEyebrow"></p>
-        <h2 id="cookieBannerTitle"></h2>
-        <p id="cookieBannerText"></p>
+        <p class="cookie-banner__eyebrow" id="cookieBannerEyebrow">Cookies</p>
+        <h2 id="cookieBannerTitle">Используем cookies для работы сайта</h2>
+        <p id="cookieBannerText">
+          Обязательные cookies нужны для базовой работы сайта. Аналитические
+          включаем только с вашего согласия.
+        </p>
+        <div id="cookieBannerLinks"></div>
       </div>
       <div class="cookie-banner__actions">
-        <button
-          class="button button-ghost"
-          id="cookieDeclineBtn"
-          type="button"
-        ></button>
+        <button class="button button-ghost" id="cookieDeclineBtn" type="button">
+          Только обязательные
+        </button>
         <button
           class="button button-ghost"
           id="cookieCustomizeBtn"
           type="button"
-        ></button>
-        <button class="button" id="cookieAcceptBtn" type="button"></button>
+        >
+          Настроить
+        </button>
+        <button class="button" id="cookieAcceptBtn" type="button">
+          Принять все
+        </button>
       </div>
     </section>
 
@@ -206,13 +344,16 @@
       >
         <div class="cookie-modal__header">
           <div>
-            <p class="cookie-banner__eyebrow" id="cookiePrefsEyebrow"></p>
-            <h2 id="cookieModalTitle"></h2>
+            <p class="cookie-banner__eyebrow" id="cookiePrefsEyebrow">
+              Настройки cookies
+            </p>
+            <h2 id="cookieModalTitle">Настройки cookies</h2>
           </div>
           <button
             class="cookie-modal__close"
             id="cookieModalClose"
             type="button"
+            aria-label="Закрыть"
           >
             ×
           </button>
@@ -220,23 +361,28 @@
         <div class="cookie-modal__body">
           <article class="cookie-option">
             <div>
-              <h3 id="cookieEssentialTitle"></h3>
-              <p id="cookieEssentialText"></p>
+              <h3 id="cookieEssentialTitle">Обязательные cookies</h3>
+              <p id="cookieEssentialText">
+                Нужны для базовой работы сайта, формы и хранения вашего выбора
+                по cookies.
+              </p>
             </div>
             <label class="cookie-switch cookie-switch--locked">
               <input type="checkbox" checked disabled />
-              <span id="cookieEssentialAlwaysOn"></span>
+              <span id="cookieEssentialAlwaysOn">Всегда включено</span>
             </label>
           </article>
-
           <article class="cookie-option">
             <div>
-              <h3 id="cookieAnalyticsTitle"></h3>
-              <p id="cookieAnalyticsText"></p>
+              <h3 id="cookieAnalyticsTitle">Аналитические cookies</h3>
+              <p id="cookieAnalyticsText">
+                Сохраняют first-party идентификатор визита, источник перехода и
+                UTM-параметры только при согласии на аналитику.
+              </p>
             </div>
             <label class="cookie-switch">
               <input type="checkbox" id="cookieAnalyticsToggle" />
-              <span id="cookieAnalyticsLabel"></span>
+              <span id="cookieAnalyticsLabel">Выключено</span>
             </label>
           </article>
         </div>
@@ -245,13 +391,17 @@
             class="button button-ghost"
             id="cookieSaveEssentialBtn"
             type="button"
-          ></button>
-          <button class="button" id="cookieSavePrefsBtn" type="button"></button>
+          >
+            Сохранить только обязательные
+          </button>
+          <button class="button" id="cookieSavePrefsBtn" type="button">
+            Сохранить настройки
+          </button>
         </div>
       </div>
     </section>
 
-    <script src="site-config.js?v=20260615b"></script>
-    <script src="app.js?v=20260615b"></script>
+    <script src="site-config.js?v=20260616a"></script>
+    <script src="app.js?v=20260616a"></script>
   </body>
 </html>

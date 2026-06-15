@@ -3,41 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Контакты Arvectum — обсудить AI-пилот или автоматизацию процесса
-    </title>
+    <title>Согласие на обработку персональных данных — Arvectum</title>
     <meta
-      id="metaDescription"
       name="description"
-      content="Оставьте заявку на разбор закупочного, тендерного или операционного процесса. Связь через email, Telegram или удобный канал."
+      content="Согласие на обработку персональных данных при отправке заявки на сайте Arvectum."
     />
     <meta
-      id="metaOgTitle"
       property="og:title"
-      content="Контакты Arvectum — обсудить AI-пилот или автоматизацию процесса"
+      content="Согласие на обработку персональных данных — Arvectum"
     />
     <meta
-      id="metaOgDescription"
       property="og:description"
-      content="Оставьте заявку на разбор закупочного, тендерного или операционного процесса. Связь через email, Telegram или удобный канал."
+      content="Согласие на обработку персональных данных при отправке заявки на сайте Arvectum."
     />
     <meta
-      id="metaOgUrl"
       property="og:url"
-      content="https://arvectum.com/contact.html"
+      content="https://arvectum.com/personal-data-consent.html"
     />
     <meta
       property="og:image"
       content="https://arvectum.com/assets/brand/logo-horizontal.png"
     />
     <meta property="og:type" content="website" />
-    <meta id="metaOgLocale" property="og:locale" content="ru_RU" />
+    <meta property="og:locale" content="ru_RU" />
     <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#041a33" />
     <link
-      id="canonicalLink"
       rel="canonical"
-      href="https://arvectum.com/contact.html"
+      href="https://arvectum.com/personal-data-consent.html"
     />
     <link
       rel="icon"
@@ -52,7 +44,7 @@
     />
     <link rel="stylesheet" href="styles.css?v=20260616a" />
   </head>
-  <body data-page="contact">
+  <body data-page="personalDataConsent">
     <a class="skip-link" href="#pageRoot" id="skipLink"
       >Перейти к содержимому</a
     >
@@ -153,116 +145,35 @@
     <main id="pageRoot">
       <section class="page-hero">
         <div class="container">
-          <p class="eyebrow">Первый шаг</p>
-          <h1>Оставьте заявку на разбор процесса или напишите напрямую</h1>
+          <p class="eyebrow">Юридическая информация</p>
+          <h1>Согласие на обработку персональных данных</h1>
           <p class="page-hero__text">
-            Если у вас закупочный, тендерный или операционный процесс с
-            документами, статусами и рисками, достаточно коротко описать задачу
-            и желаемый первый результат.
+            Отправляя заявку через сайт Arvectum, пользователь подтверждает
+            согласие на обработку данных для обратной связи и обсуждения
+            проекта.
           </p>
         </div>
       </section>
       <section class="section">
         <div class="container">
-          <section class="form-shell">
-            <div class="form-block glass">
-              <h2>Получить разбор процесса</h2>
-              <p>
-                Форма работает и без JavaScript: заявка уйдет в email и в
-                Telegram при настроенном backend.
-              </p>
-              <form action="api/submit.php" method="post">
-                <label for="fallbackName"><span>Как вас зовут?</span></label>
-                <input id="fallbackName" type="text" name="name" required />
-
-                <label for="fallbackMethod"
-                  ><span>Удобный способ связи</span></label
-                >
-                <select id="fallbackMethod" name="contactMethod" required>
-                  <option value="">Выберите канал</option>
-                  <option value="Телеграм">Телеграм</option>
-                  <option value="Почта">Почта</option>
-                  <option value="Телефон">Телефон</option>
-                  <option value="WhatsApp">WhatsApp</option>
-                  <option value="Другое">Другое</option>
-                </select>
-
-                <label for="fallbackContact"><span>Ваш контакт</span></label>
-                <input
-                  id="fallbackContact"
-                  type="text"
-                  name="contactValue"
-                  required
-                />
-
-                <label for="fallbackProject"
-                  ><span>Что нужно автоматизировать?</span></label
-                >
-                <select id="fallbackProject" name="projectType" required>
-                  <option value="">Выберите ближайший вариант</option>
-                  <option value="Закупочный маршрут">Закупочный маршрут</option>
-                  <option value="RFQ и сравнение ТКП">
-                    RFQ и сравнение ТКП
-                  </option>
-                  <option value="Договорные и коммерческие риски">
-                    Договорные и коммерческие риски
-                  </option>
-                  <option value="Операционный процесс">
-                    Операционный процесс
-                  </option>
-                  <option value="Закрытый AI-пилот">Закрытый AI-пилот</option>
-                </select>
-
-                <label for="fallbackMessage"
-                  ><span>Кратко опишите задачу</span></label
-                >
-                <textarea
-                  id="fallbackMessage"
-                  name="message"
-                  rows="6"
-                  required
-                ></textarea>
-
-                <div class="grid grid-2">
-                  <div>
-                    <label for="fallbackDeadline"
-                      ><span>Горизонт пилота</span></label
-                    >
-                    <input id="fallbackDeadline" type="text" name="deadline" />
-                  </div>
-                  <div>
-                    <label for="fallbackBudget"
-                      ><span>Бюджетный диапазон</span></label
-                    >
-                    <input id="fallbackBudget" type="text" name="budget" />
-                  </div>
-                </div>
-
-                <input
-                  class="hp"
-                  type="text"
-                  name="website"
-                  tabindex="-1"
-                  autocomplete="off"
-                  aria-hidden="true"
-                />
-                <button class="button" type="submit">Отправить заявку</button>
-                <p class="form-disclaimer">
-                  Отправляя заявку, вы соглашаетесь на обработку персональных
-                  данных для подготовки ответа и обсуждения пилота.
-                </p>
-                <p class="form-legal-links">
-                  <a href="privacy.html">Политика конфиденциальности</a>
-                  <span>·</span>
-                  <a href="personal-data-consent.html"
-                    >Согласие на обработку персональных данных</a
-                  >
-                  <span>·</span>
-                  <a href="cookies.html">Политика cookies</a>
-                </p>
-              </form>
-            </div>
-          </section>
+          <article class="solution-card">
+            <p>
+              Пользователь подтверждает, что самостоятельно и добровольно
+              передаёт свои данные через форму сайта, включая имя, контакты и
+              содержание обращения.
+            </p>
+            <p>
+              Данные используются исключительно для ответа на обращение,
+              проведения первичного разбора, подготовки демонстрации,
+              предложения или пилота.
+            </p>
+            <p>
+              Согласие действует до достижения целей обработки или до получения
+              запроса на отзыв согласия по адресу
+              <a href="mailto:info@arvectum.com">info@arvectum.com</a>, если
+              иное не требуется законодательством.
+            </p>
+          </article>
         </div>
       </section>
     </main>

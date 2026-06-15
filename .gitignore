@@ -2,3 +2,5 @@ node_modules/
 .wrangler/
 public/.env
 arvectum-hosting-deploy.zip
+public/api/storage/*.jsonl
+public/api/storage/*.log
