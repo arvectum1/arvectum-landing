@@ -14,19 +14,18 @@ window.SITE_CONFIG = {
     ru: {
       common: {
         locale: "ru_RU",
-        brandMeta: 'ООО "Арвектум"',
+        brandMeta: "",
         skipLink: "Перейти к содержимому",
         menuLabel: "Меню",
         menuTitle: "Навигация по сайту",
         menuClose: "Закрыть меню",
         telegramLabel: "Телеграм",
-        headerCta: "Получить разбор",
+        headerCta: "Связаться с нами",
         pagesLabel: "Разделы",
         nav: [
           { slug: "home", label: "Главная" },
           { slug: "solutions", label: "Решения" },
           { slug: "approach", label: "Как запускаем" },
-          { slug: "contact", label: "Контакты" },
         ],
         footerNav: [
           { slug: "home", label: "Главная" },
@@ -629,19 +628,18 @@ window.SITE_CONFIG = {
     en: {
       common: {
         locale: "en_US",
-        brandMeta: "Arvectum LLC",
+        brandMeta: "",
         skipLink: "Skip to content",
         menuLabel: "Menu",
         menuTitle: "Site navigation",
         menuClose: "Close menu",
         telegramLabel: "Telegram",
-        headerCta: "Get an assessment",
+        headerCta: "Contact Us",
         pagesLabel: "Pages",
         nav: [
           { slug: "home", label: "Home" },
           { slug: "solutions", label: "Solutions" },
           { slug: "approach", label: "How We Launch" },
-          { slug: "contact", label: "Contact" },
         ],
         footerNav: [
           { slug: "home", label: "Home" },
