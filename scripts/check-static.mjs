@@ -92,6 +92,7 @@ const legacyHomepageH1 =
 const incomingLinks = new Map(
   htmlFiles.map((fileName) => [fileName, new Set()]),
 );
+const pageMeta = new Map();
 
 const isExternalUrl = (value) =>
   /^(?:[a-z]+:|\/\/|#)/i.test(value) ||
@@ -119,6 +120,26 @@ const toCanonicalUrl = (relPath) =>
 
 const readHtml = (relPath) =>
   fs.readFileSync(path.join(publicDir, relPath), "utf8");
+
+const normalizeText = (value) =>
+  String(value || "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const extractTitle = (html) =>
+  normalizeText(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || "");
+
+const extractDescription = (html) =>
+  html.match(/<meta[^>]+name="description"[^>]+content="([^"]+)"/i)?.[1] || "";
+
+const extractCanonical = (html) =>
+  html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/i)?.[1] || "";
+
+const extractH1s = (html) =>
+  Array.from(html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi), (match) =>
+    normalizeText(match[1]),
+  ).filter(Boolean);
 
 const getJsonLd = (html, id) => {
   const match = html.match(
@@ -148,18 +169,27 @@ for (const filePath of faviconFiles) {
 
 for (const fileName of htmlFiles) {
   const html = readHtml(fileName);
+  const title = extractTitle(html);
+  const description = extractDescription(html);
+  const canonical = extractCanonical(html);
+  const h1s = extractH1s(html);
+  pageMeta.set(fileName, { title, description, canonical, h1s });
 
-  const hasTitle = /<title>\s*[^<][\s\S]*?<\/title>/i.test(html);
-  const hasDescription =
-    /<meta[^>]+name="description"[^>]+content="[^"]+"/i.test(html);
-  const hasCanonical =
-    /<link[^>]+rel="canonical"[^>]+href="https:\/\/arvectum\.com\/[^"]*"/i.test(
-      html,
-    );
+  const hasTitle = title.length > 0;
+  const hasDescription = description.length > 0;
+  const hasCanonical = canonical.length > 0;
 
   record(hasTitle, `${fileName}: missing or empty <title>`);
   record(hasDescription, `${fileName}: missing meta description`);
   record(hasCanonical, `${fileName}: missing canonical link`);
+  record(
+    !html.includes("/Users/"),
+    `${fileName}: must not contain local machine paths`,
+  );
+  record(
+    !html.includes("file://"),
+    `${fileName}: must not contain file:// links`,
+  );
 
   record(
     /<link[^>]+rel="icon"[^>]+type="image\/svg\+xml"[^>]+href="\/assets\/brand\/favicon\.svg\?v=20260616-seo24"/i.test(
@@ -255,6 +285,14 @@ for (const fileName of htmlFiles) {
       organizationLd && organizationLd !== "INVALID",
       `${fileName}: missing or invalid Organization JSON-LD`,
     );
+    record(
+      h1s.length === 1,
+      `${fileName}: must contain exactly one H1 (found ${h1s.length})`,
+    );
+    record(
+      canonical === toCanonicalUrl(fileName),
+      `${fileName}: canonical must equal ${toCanonicalUrl(fileName)}`,
+    );
   }
 
   if (fileName === "index.html") {
@@ -264,8 +302,7 @@ for (const fileName of htmlFiles) {
       "index.html: missing or invalid WebSite JSON-LD",
     );
 
-    const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-    const h1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, " ").trim() : "";
+    const h1 = h1s[0] || "";
     record(h1.length > 0, "index.html: homepage H1 is missing");
     record(
       !/где теряются/iu.test(h1),
@@ -332,14 +369,22 @@ for (const fileName of htmlFiles) {
   }
 
   if (materialArticlePages.includes(fileName)) {
+    const articleLd = getJsonLd(html, "articleLd");
     record(
       /aria-label="Хлебные крошки"/i.test(html) && /materials\.html/.test(html),
       `${fileName}: missing visible breadcrumbs`,
     );
     record(
-      getJsonLd(html, "articleLd") &&
-        getJsonLd(html, "articleLd") !== "INVALID",
+      articleLd && articleLd !== "INVALID",
       `${fileName}: missing or invalid Article JSON-LD`,
+    );
+    record(
+      articleLd?.headline && normalizeText(articleLd.headline) === h1s[0],
+      `${fileName}: Article JSON-LD headline must match the visible H1`,
+    );
+    record(
+      articleLd?.datePublished && articleLd?.dateModified,
+      `${fileName}: Article JSON-LD must include datePublished and dateModified`,
     );
     record(
       (html.match(/<time\b[^>]+datetime=/g) || []).length >= 2,
@@ -362,6 +407,7 @@ for (const fileName of htmlFiles) {
   }
 
   if (fileName.startsWith("solutions/")) {
+    const faqLd = getJsonLd(html, "faqLd");
     record(
       /aria-label="Хлебные крошки"/i.test(html) && /solutions\.html/.test(html),
       `${fileName}: missing visible breadcrumbs`,
@@ -376,7 +422,6 @@ for (const fileName of htmlFiles) {
         getJsonLd(html, "serviceLd") !== "INVALID",
       `${fileName}: missing or invalid Service JSON-LD`,
     );
-    const faqLd = getJsonLd(html, "faqLd");
     record(
       faqLd && faqLd !== "INVALID",
       `${fileName}: missing or invalid FAQPage JSON-LD`,
@@ -389,6 +434,16 @@ for (const fileName of htmlFiles) {
       (html.match(/<details class="faq-item">/g) || []).length >= 4,
       `${fileName}: visible FAQ must include at least 4 items`,
     );
+    for (const entity of faqLd?.mainEntity || []) {
+      record(
+        html.includes(entity.name),
+        `${fileName}: FAQ question from JSON-LD must be visible in HTML -> ${entity.name}`,
+      );
+      record(
+        html.includes(entity.acceptedAnswer?.text || ""),
+        `${fileName}: FAQ answer from JSON-LD must be visible in HTML -> ${entity.name}`,
+      );
+    }
     record(
       !/"aggregateRating"|"reviewRating"|"reviewCount"|"bestRating"|"worstRating"|"award"/u.test(
         html,
@@ -456,6 +511,32 @@ for (const relPath of publicIndexablePages) {
     sitemapUrls.includes(toCanonicalUrl(relPath)),
     `sitemap.xml: missing URL -> ${toCanonicalUrl(relPath)}`,
   );
+}
+
+const seenTitles = new Map();
+const seenDescriptions = new Map();
+
+for (const relPath of publicIndexablePages) {
+  const meta = pageMeta.get(relPath);
+  if (!meta) continue;
+
+  if (seenTitles.has(meta.title)) {
+    record(
+      false,
+      `duplicate <title>: ${relPath} and ${seenTitles.get(meta.title)} share "${meta.title}"`,
+    );
+  } else {
+    seenTitles.set(meta.title, relPath);
+  }
+
+  if (seenDescriptions.has(meta.description)) {
+    record(
+      false,
+      `duplicate meta description: ${relPath} and ${seenDescriptions.get(meta.description)} share "${meta.description}"`,
+    );
+  } else {
+    seenDescriptions.set(meta.description, relPath);
+  }
 }
 
 for (const relPath of hiddenPages) {
