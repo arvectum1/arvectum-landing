@@ -189,7 +189,8 @@
     setText("menuPrimaryCta", currentCommon.headerCta);
     setText("menuTelegramLink", currentCommon.telegramLabel);
 
-    const navMarkup = (currentCommon.nav || [])
+    const primaryNav = currentCommon.nav || [];
+    const navMarkup = primaryNav
       .map((item) => {
         const isActive = item.slug === currentPage ? " is-active" : "";
         return `<a class="nav-link${isActive}" href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`;
@@ -237,7 +238,9 @@
     if (!footerGrid) return;
 
     const footer = currentCommon.footer;
-    const navLinks = createLinkList(currentCommon.nav);
+    const navLinks = createLinkList(
+      currentCommon.footerNav || currentCommon.nav,
+    );
     const legalLinks = (footer.legalLinks || [])
       .map(
         (item) =>
@@ -305,9 +308,11 @@
   };
 
   const renderListItems = (items, className = "compact-list") =>
-    `<ul class="${className}">${(items || [])
-      .map((item) => `<li>${escapeHtml(item)}</li>`)
-      .join("")}</ul>`;
+    items?.length
+      ? `<ul class="${className}">${items
+          .map((item) => `<li>${escapeHtml(item)}</li>`)
+          .join("")}</ul>`
+      : "";
 
   const renderInfoCards = (items) =>
     (items || [])
@@ -320,24 +325,6 @@
         `,
       )
       .join("");
-
-  const renderFlow = (flow) => `
-    <section class="section section-soft">
-      <div class="container reveal">
-        <div class="section-head">
-          <h2>${escapeHtml(flow.title)}</h2>
-        </div>
-        <div class="process-flow" aria-label="${escapeHtml(flow.title)}">
-          ${(flow.items || [])
-            .map(
-              (item) =>
-                `<span class="process-flow__step">${escapeHtml(item)}</span>`,
-            )
-            .join("")}
-        </div>
-      </div>
-    </section>
-  `;
 
   const renderHome = (page) => `
     <section class="hero">
@@ -372,56 +359,12 @@
 
     <section class="section">
       <div class="container reveal">
-        <div class="split split-compact">
-          <div>
-            <div class="section-head section-head--left">
-              <h2>${escapeHtml(page.audiences.title)}</h2>
-              <p>${escapeHtml(page.audiences.text)}</p>
-            </div>
-            <div class="grid grid-2">
-              ${renderInfoCards(page.audiences.items)}
-            </div>
-          </div>
-          <article class="info-card info-card--accent">
-            <div class="section-head section-head--left">
-              <h2>${escapeHtml(page.automation.title)}</h2>
-              <p>${escapeHtml(page.automation.text)}</p>
-            </div>
-            <div class="chip-grid">
-              ${(page.automation.items || [])
-                .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
-                .join("")}
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container reveal">
         <div class="section-head">
-          <h2>${escapeHtml(page.process.title)}</h2>
-          <p>${escapeHtml(page.process.text)}</p>
+          <h2>${escapeHtml(page.automation.title)}</h2>
+          <p>${escapeHtml(page.automation.text)}</p>
         </div>
-        <div class="process-flow" aria-label="${escapeHtml(page.flow.title)}">
-          ${(page.flow.items || [])
-            .map(
-              (item) =>
-                `<span class="process-flow__step">${escapeHtml(item)}</span>`,
-            )
-            .join("")}
-        </div>
-        <div class="step-grid">
-          ${(page.process.items || [])
-            .map(
-              (item, index) => `
-                <article class="step-card">
-                  <strong>${String(index + 1).padStart(2, "0")}</strong>
-                  <p>${escapeHtml(item)}</p>
-                </article>
-              `,
-            )
-            .join("")}
+        <div class="grid grid-3">
+          ${renderInfoCards(page.automation.items)}
         </div>
       </div>
     </section>
@@ -429,35 +372,11 @@
     <section class="section section-soft">
       <div class="container reveal">
         <div class="section-head">
-          <h2>${escapeHtml(page.who.title)}</h2>
-          <p>${escapeHtml(page.who.text)}</p>
+          <h2>${escapeHtml(page.advantages.title)}</h2>
+          <p>${escapeHtml(page.advantages.text)}</p>
         </div>
         <div class="grid grid-3">
-          ${renderInfoCards(page.who.items)}
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container reveal">
-        <div class="split split-compact">
-          <article class="info-card info-card--accent">
-            <div class="section-head section-head--left">
-              <h2>${escapeHtml(page.firstCall.title)}</h2>
-            </div>
-            ${renderListItems(page.firstCall.items)}
-          </article>
-          <article class="info-card">
-            <div class="section-head section-head--left">
-              <h2>${escapeHtml(page.safety.title)}</h2>
-              <p>${escapeHtml(page.safety.text)}</p>
-            </div>
-            <div class="chip-grid">
-              ${(page.safety.items || [])
-                .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
-                .join("")}
-            </div>
-          </article>
+          ${renderInfoCards(page.advantages.items)}
         </div>
       </div>
     </section>
@@ -615,36 +534,6 @@
         <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
         <h1>${escapeHtml(page.hero.title)}</h1>
         <p class="page-hero__text">${escapeHtml(page.hero.text)}</p>
-        <div class="page-pills">
-          ${(page.quickLinks || [])
-            .map(
-              (link) =>
-                `<a class="page-pill" href="#${escapeHtml(link.id)}">${escapeHtml(link.label)}</a>`,
-            )
-            .join("")}
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="deliverables">
-      <div class="container reveal">
-        <div class="section-head">
-          <h2>${escapeHtml(page.deliverables.title)}</h2>
-          <p>${escapeHtml(page.deliverables.text)}</p>
-        </div>
-        <div class="grid grid-3">
-          ${(page.deliverables.items || [])
-            .map(
-              (item) => `
-                <article class="info-card">
-                  <span class="card-label">${escapeHtml(item.label)}</span>
-                  <h3>${escapeHtml(item.title)}</h3>
-                  <p>${escapeHtml(item.text)}</p>
-                </article>
-              `,
-            )
-            .join("")}
-        </div>
       </div>
     </section>
 
@@ -690,15 +579,6 @@
             .join("")}
         </div>
         <p class="section-note">${escapeHtml(page.formats.note)}</p>
-      </div>
-    </section>
-
-    <section class="section" id="limits">
-      <div class="container reveal">
-        <div class="section-head">
-          <h2>${escapeHtml(page.limits.title)}</h2>
-        </div>
-        ${renderListItems(page.limits.items)}
       </div>
     </section>
 
