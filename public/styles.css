@@ -20,6 +20,11 @@
   --site-padding: clamp(1rem, 2vw, 1.6rem);
   --section-space: clamp(1.8rem, 3.2vw, 2.9rem);
   --timing: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-sans:
+    "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono:
+    "SFMono-Regular", "SF Mono", "JetBrains Mono", "Cascadia Code", Consolas,
+    "Liberation Mono", Menlo, monospace;
 }
 
 * {
@@ -34,7 +39,7 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: "PT Sans", sans-serif;
+  font-family: var(--font-sans);
   color: var(--text);
   background:
     radial-gradient(
@@ -56,7 +61,7 @@ body.cookie-modal-open {
 h1,
 h2,
 h3 {
-  font-family: "PT Sans", sans-serif;
+  font-family: var(--font-sans);
   font-weight: 700;
   letter-spacing: -0.03em;
   text-wrap: balance;
@@ -78,6 +83,11 @@ a {
     border-color 0.25s var(--timing),
     transform 0.25s var(--timing),
     box-shadow 0.25s var(--timing);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(0, 200, 160, 0.35);
+  outline-offset: 3px;
 }
 
 button,
@@ -232,7 +242,7 @@ img {
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -333,7 +343,7 @@ body.menu-open .menu-drawer {
 
 .menu-telegram {
   color: var(--deep-navy);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.86rem;
   font-weight: 700;
 }
@@ -374,6 +384,7 @@ body.menu-open .menu-drawer {
 .breadcrumbs {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.45rem;
   min-height: 2.5rem;
   padding: 0.75rem 1rem;
@@ -387,6 +398,11 @@ body.menu-open .menu-drawer {
 .breadcrumbs a {
   color: var(--deep-navy);
   font-weight: 600;
+}
+
+.breadcrumbs a,
+.breadcrumbs span {
+  overflow-wrap: anywhere;
 }
 
 .breadcrumbs__sep {
@@ -450,7 +466,7 @@ body.menu-open .menu-drawer {
   align-items: center;
   gap: 0.45rem;
   color: var(--mint-light);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -615,7 +631,7 @@ body.menu-open .menu-drawer {
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.94);
   color: var(--deep-navy);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.84rem;
   font-weight: 700;
   text-align: center;
@@ -786,7 +802,7 @@ main {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   color: var(--deep-navy);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -893,7 +909,7 @@ main {
 .step-card strong,
 .metric-card strong {
   color: var(--mint);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   line-height: 1;
 }
@@ -1138,7 +1154,7 @@ textarea[aria-invalid="true"] {
 .footer-links a {
   width: fit-content;
   color: var(--mint-light);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-weight: 700;
 }
 
@@ -1217,7 +1233,7 @@ textarea[aria-invalid="true"] {
 
 .footer-resource-links a {
   color: var(--mint-light);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.88rem;
   font-weight: 700;
 }
@@ -1284,7 +1300,7 @@ textarea[aria-invalid="true"] {
 
 .footer-bar__contact a {
   color: var(--mint-light);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.88rem;
   font-weight: 700;
 }
@@ -1308,7 +1324,7 @@ textarea[aria-invalid="true"] {
 
 .footer-requisite dd {
   margin: 0;
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.92rem;
   line-height: 1.45;
 }
@@ -1376,7 +1392,7 @@ textarea[aria-invalid="true"] {
   border-radius: 999px;
   background: rgba(67, 229, 197, 0.12);
   color: var(--deep-navy);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -1389,7 +1405,7 @@ textarea[aria-invalid="true"] {
 
 .case-card__demo > span {
   color: var(--deep-navy);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
 }
@@ -1538,7 +1554,7 @@ textarea[aria-invalid="true"] {
   border-radius: 999px;
   background: rgba(9, 23, 43, 0.82);
   color: var(--white);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
