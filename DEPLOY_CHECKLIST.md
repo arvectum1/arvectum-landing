@@ -44,5 +44,6 @@
 6. Hard refresh the browser if the old favicon is still cached.
 7. Check the browser tab in both light and dark browser themes.
 8. Run `npm run check:production`.
-9. Re-submit sitemap in Google Search Console if sitemap changed.
-10. Re-submit sitemap in Yandex Webmaster if sitemap changed.
+9. Re-submit sitemap in Google Search Console after this deploy, because the sitemap and materials section changed.
+10. Re-submit sitemap in Yandex Webmaster after this deploy, because the sitemap and materials section changed.
+11. If a new page or article is added later, update `public/sitemap.xml` and re-submit it in both webmaster tools again.

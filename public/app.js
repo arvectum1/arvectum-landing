@@ -464,6 +464,28 @@
       )
       .join("");
 
+  const renderResourceSection = (resources, fallbackSlug = "materials") =>
+    resources?.items?.length
+      ? `
+        <section class="section section-soft">
+          <div class="container reveal">
+            <div class="section-head">
+              <h2>${escapeHtml(resources.title)}</h2>
+              ${resources.text ? `<p>${escapeHtml(resources.text)}</p>` : ""}
+            </div>
+            <div class="grid ${resources.items.length === 4 ? "grid-2" : "grid-3"}">
+              ${renderInfoCards(
+                resources.items.map((item) => ({
+                  ...item,
+                  link: item.link || { slug: fallbackSlug },
+                })),
+              )}
+            </div>
+          </div>
+        </section>
+      `
+      : "";
+
   const renderHome = (page) => `
     <section class="hero">
       <div class="container hero-grid${page.hero.sideItems?.length ? "" : " hero-grid--single"}">
@@ -573,6 +595,8 @@
         </div>
       </div>
     </section>
+
+    ${renderResourceSection(page.resources)}
 
     <section class="section">
       <div class="container reveal">
@@ -734,13 +758,10 @@
             )
             .join("")}
         </div>
-        ${
-          page.resources
-            ? `<p class="section-note section-note--link"><a class="text-link" href="${buildConfigLink(page.resources.link, "materials")}">${escapeHtml(page.resources.cta)}</a><span>${escapeHtml(page.resources.text)}</span></p>`
-            : ""
-        }
       </div>
     </section>
+
+    ${renderResourceSection(page.resources)}
 
     <section class="section" id="faq">
       <div class="container reveal">
@@ -1089,6 +1110,8 @@
         </div>
       </div>
     </section>
+
+    ${renderResourceSection(page.resources)}
 
     <section class="section">
       <div class="container reveal">

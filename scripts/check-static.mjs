@@ -89,6 +89,9 @@ const siteConfigContent = fs.readFileSync(siteConfigPath, "utf8");
 const cssContent = fs.readFileSync(cssPath, "utf8");
 const legacyHomepageH1 =
   "Автоматизируем процессы, где теряются документы, статусы и сроки";
+const incomingLinks = new Map(
+  htmlFiles.map((fileName) => [fileName, new Set()]),
+);
 
 const isExternalUrl = (value) =>
   /^(?:[a-z]+:|\/\/|#)/i.test(value) ||
@@ -100,6 +103,7 @@ const stripQuery = (value) => value.split("#")[0].split("?")[0];
 const resolvePublicPath = (fromRel, rawHref) => {
   const cleaned = stripQuery(rawHref);
   if (!cleaned) return "";
+  if (cleaned === "/") return "index.html";
   if (cleaned.startsWith("/")) {
     return cleaned.replace(/^\/+/, "");
   }
@@ -204,6 +208,9 @@ for (const fileName of htmlFiles) {
         htmlSet.has(resolved),
         `${fileName}: broken local HTML link -> ${href}`,
       );
+      if (htmlSet.has(resolved) && resolved !== fileName) {
+        incomingLinks.get(resolved)?.add(fileName);
+      }
     }
 
     if (/\.(?:png|jpg|jpeg|webp|gif|svg|ico|css|js|json)$/i.test(resolved)) {
@@ -455,6 +462,21 @@ for (const relPath of hiddenPages) {
   record(
     !sitemapUrls.includes(toCanonicalUrl(relPath)),
     `sitemap.xml: must not include hidden page -> ${toCanonicalUrl(relPath)}`,
+  );
+}
+
+const orphanAllowed = new Set([
+  "index.html",
+  "privacy.html",
+  "personal-data-consent.html",
+  "cookies.html",
+]);
+
+for (const relPath of publicIndexablePages) {
+  if (orphanAllowed.has(relPath)) continue;
+  record(
+    (incomingLinks.get(relPath)?.size || 0) > 0,
+    `orphan page: ${relPath} is in sitemap but has no incoming internal links`,
   );
 }
 

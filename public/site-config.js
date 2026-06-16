@@ -440,6 +440,30 @@ window.SITE_CONFIG = {
               secondaryLink: { slug: "contact" },
             },
           ],
+          resources: {
+            title: "Полезные материалы",
+            text: "Короткие разборы помогут быстрее выбрать первый сценарий и масштаб MVP.",
+            items: [
+              {
+                title: "Как выбрать первый процесс",
+                text: "На что смотреть, если хочется начать с одного полезного маршрута.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "MVP за 2–4 недели",
+                text: "Что реально проверить на первом этапе без большого запуска.",
+                link: { slug: "materialsMvpAutomation" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "AI-автоматизация простыми словами",
+                text: "Чем рабочая система отличается от чата и где нужен AI-модуль.",
+                link: { slug: "materialsAiAutomationSimple" },
+                cta: "Открыть материал",
+              },
+            ],
+          },
           cta: {
             title: "Нужен первый сценарий для запуска?",
             text: "Опишите задачу, и мы предложим, с какого процесса лучше начать и как собрать первый MVP.",
@@ -554,6 +578,30 @@ window.SITE_CONFIG = {
                 question: "Можно ли запускать в закрытом контуре?",
                 answer:
                   "Да. Если есть чувствительные документы и строгие доступы, закладываем локальную или гибридную архитектуру с самого начала.",
+              },
+            ],
+          },
+          resources: {
+            title: "Полезно по теме",
+            text: "Материалы для тех, кто хочет сначала очертить первый сценарий и формат запуска.",
+            items: [
+              {
+                title: "Как выбрать первый процесс",
+                text: "На что смотреть, если хочется начать с одного рабочего маршрута.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "MVP за 2–4 недели",
+                text: "Что реально проверить на первом этапе закупочной автоматизации.",
+                link: { slug: "materialsMvpAutomation" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "Согласования и документооборот",
+                text: "Соседний сценарий, если закупка упирается в версии и замечания по документам.",
+                link: { slug: "documentWorkflow" },
+                cta: "Открыть страницу",
               },
             ],
           },
@@ -672,6 +720,30 @@ window.SITE_CONFIG = {
               },
             ],
           },
+          resources: {
+            title: "Полезно по теме",
+            text: "Если хотите лучше понять первый этап и роль AI в документных процессах.",
+            items: [
+              {
+                title: "Как выбрать первый процесс",
+                text: "Подсказка, как выбрать один маршрут вместо большой перестройки.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "Почему чат-бота недостаточно",
+                text: "Что отличает рабочую систему от одиночного интерфейса общения.",
+                link: { slug: "materialsChatbotVsProcessAutomation" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "Проверка документов с AI",
+                text: "Сценарий, если согласования упираются в замечания и повторную ручную проверку.",
+                link: { slug: "aiDocumentChecks" },
+                cta: "Открыть страницу",
+              },
+            ],
+          },
           cta: {
             title: "Нужно навести порядок в согласованиях",
             text: "Напишите, какие документы и этапы сейчас создают больше всего задержек.",
@@ -784,6 +856,30 @@ window.SITE_CONFIG = {
                   "Можно ли потом масштабировать решение на другие процессы?",
                 answer:
                   "Да. Один рабочий маршрут обычно становится основой для следующих сценариев внутри компании.",
+              },
+            ],
+          },
+          resources: {
+            title: "Полезно по теме",
+            text: "Материалы и соседние страницы, если хотите быстрее очертить первый пилот.",
+            items: [
+              {
+                title: "Как выбрать первый процесс",
+                text: "Критерии хорошего стартового маршрута для MVP.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "MVP за 2–4 недели",
+                text: "Что можно проверить на операционном сценарии уже в первом цикле.",
+                link: { slug: "materialsMvpAutomation" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "Согласования и документооборот",
+                text: "Часто именно рядом с операционным маршрутом возникает потребность в видимости версий и решений.",
+                link: { slug: "documentWorkflow" },
+                cta: "Открыть страницу",
               },
             ],
           },
@@ -901,6 +997,30 @@ window.SITE_CONFIG = {
               },
             ],
           },
+          resources: {
+            title: "Полезно по теме",
+            text: "Материалы и соседние разделы, если хотите понять, где AI-модуль действительно полезен.",
+            items: [
+              {
+                title: "AI-автоматизация простыми словами",
+                text: "Где AI помогает как модуль, а где нужна полноценная система процесса.",
+                link: { slug: "materialsAiAutomationSimple" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "Почему чат-бота недостаточно",
+                text: "Чем отличается проверка документов в рабочем маршруте от простого диалога.",
+                link: { slug: "materialsChatbotVsProcessAutomation" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "Закупки и тендеры",
+                text: "Частый сценарий, где проверка комплектности и рисков нужна прямо внутри процесса.",
+                link: { slug: "procurement" },
+                cta: "Открыть страницу",
+              },
+            ],
+          },
           cta: {
             title: "Нужно ускорить проверку документов",
             text: "Опишите текущий поток документов и задачу, с которой команда сталкивается чаще всего.",
@@ -994,9 +1114,22 @@ window.SITE_CONFIG = {
             ],
           },
           resources: {
-            cta: "Материалы по теме",
-            text: "Короткие разборы о выборе первого процесса и запуске MVP.",
-            link: { slug: "materials" },
+            title: "Что полезно прочитать до старта",
+            text: "Два коротких материала, которые помогают подготовиться к первому разговору о процессе и MVP.",
+            items: [
+              {
+                title: "Как выбрать первый процесс",
+                text: "Практические признаки хорошего стартового маршрута.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Открыть материал",
+              },
+              {
+                title: "MVP за 2–4 недели",
+                text: "Что реально входит в первый этап и какие метрики смотреть.",
+                link: { slug: "materialsMvpAutomation" },
+                cta: "Открыть материал",
+              },
+            ],
           },
           faq: {
             title: "Что обычно важно обсудить до старта",
@@ -1470,6 +1603,30 @@ window.SITE_CONFIG = {
               secondaryLink: { slug: "contact" },
             },
           ],
+          resources: {
+            title: "Useful materials",
+            text: "Short reads that help frame the first scenario and the scope of an MVP.",
+            items: [
+              {
+                title: "How to choose the first process",
+                text: "What to look for when you want to start with one useful workflow.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Open article",
+              },
+              {
+                title: "What an MVP can validate in 2–4 weeks",
+                text: "What is realistic to test in the first iteration without a large launch.",
+                link: { slug: "materialsMvpAutomation" },
+                cta: "Open article",
+              },
+              {
+                title: "AI automation in simple terms",
+                text: "How a working system differs from a chatbot and where AI modules fit.",
+                link: { slug: "materialsAiAutomationSimple" },
+                cta: "Open article",
+              },
+            ],
+          },
           cta: {
             title: "Need a first scenario to launch?",
             text: "Describe the task and we will suggest which process should move first and how to frame the first MVP.",
@@ -1582,6 +1739,30 @@ window.SITE_CONFIG = {
                 question: "Can this run in a closed environment?",
                 answer:
                   "Yes. If sensitive documents and strict access rules matter, we plan a local or hybrid setup from the start.",
+              },
+            ],
+          },
+          resources: {
+            title: "Useful next reads",
+            text: "For teams that want to frame the first scenario and the launch format before kickoff.",
+            items: [
+              {
+                title: "How to choose the first process",
+                text: "What to look for when starting with one live workflow.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Open article",
+              },
+              {
+                title: "What an MVP can validate in 2–4 weeks",
+                text: "What is realistic to test in a first procurement automation cycle.",
+                link: { slug: "materialsMvpAutomation" },
+                cta: "Open article",
+              },
+              {
+                title: "Approvals and document flow",
+                text: "A neighboring scenario when procurement depends on versions, comments and document visibility.",
+                link: { slug: "documentWorkflow" },
+                cta: "Open page",
               },
             ],
           },
@@ -1700,6 +1881,30 @@ window.SITE_CONFIG = {
               },
             ],
           },
+          resources: {
+            title: "Useful next reads",
+            text: "Helpful materials if you want to scope the first stage and understand where AI is useful.",
+            items: [
+              {
+                title: "How to choose the first process",
+                text: "How to pick one route instead of redesigning everything at once.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Open article",
+              },
+              {
+                title: "Why a chatbot is not enough",
+                text: "What makes a working system different from a single conversational interface.",
+                link: { slug: "materialsChatbotVsProcessAutomation" },
+                cta: "Open article",
+              },
+              {
+                title: "AI document checks",
+                text: "A related scenario when approvals stall on comments and repeated manual review.",
+                link: { slug: "aiDocumentChecks" },
+                cta: "Open page",
+              },
+            ],
+          },
           cta: {
             title: "Need more order in approvals",
             text: "Tell us which documents and stages create the biggest delays right now.",
@@ -1814,6 +2019,30 @@ window.SITE_CONFIG = {
               },
             ],
           },
+          resources: {
+            title: "Useful next reads",
+            text: "Materials and related pages that help define the first pilot more clearly.",
+            items: [
+              {
+                title: "How to choose the first process",
+                text: "Criteria for a good starting workflow for an MVP.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Open article",
+              },
+              {
+                title: "What an MVP can validate in 2–4 weeks",
+                text: "What can be tested on an operational route in the first cycle.",
+                link: { slug: "materialsMvpAutomation" },
+                cta: "Open article",
+              },
+              {
+                title: "Approvals and document flow",
+                text: "Operational routes often need better version visibility and clearer decision ownership too.",
+                link: { slug: "documentWorkflow" },
+                cta: "Open page",
+              },
+            ],
+          },
           cta: {
             title: "Do you have an internal workflow that drags",
             text: "Describe it briefly and we will suggest how to choose the first pilot scenario.",
@@ -1925,6 +2154,30 @@ window.SITE_CONFIG = {
                 question: "How do you handle sensitive documents?",
                 answer:
                   "If needed, we design a closed setup, restrict access and formalize how data can be used.",
+              },
+            ],
+          },
+          resources: {
+            title: "Useful next reads",
+            text: "Materials and related pages if you want to understand where an AI review module is genuinely useful.",
+            items: [
+              {
+                title: "AI automation in simple terms",
+                text: "Where AI helps as a module and where a full workflow system is still required.",
+                link: { slug: "materialsAiAutomationSimple" },
+                cta: "Open article",
+              },
+              {
+                title: "Why a chatbot is not enough",
+                text: "Why document review inside a workflow is different from a conversational helper.",
+                link: { slug: "materialsChatbotVsProcessAutomation" },
+                cta: "Open article",
+              },
+              {
+                title: "Procurement and tenders",
+                text: "A frequent use case where completeness and risk checks are needed inside the process itself.",
+                link: { slug: "procurement" },
+                cta: "Open page",
               },
             ],
           },
@@ -2109,9 +2362,22 @@ window.SITE_CONFIG = {
             ],
           },
           resources: {
-            cta: "Related materials",
-            text: "Short notes on choosing the first workflow and framing an MVP.",
-            link: { slug: "materials" },
+            title: "What is useful to read before kickoff",
+            text: "Two short materials that help prepare for the first conversation about workflow scope and MVP.",
+            items: [
+              {
+                title: "How to choose the first process",
+                text: "Practical signs of a good starting workflow.",
+                link: { slug: "materialsHowToChooseFirstProcess" },
+                cta: "Open article",
+              },
+              {
+                title: "What an MVP can validate in 2–4 weeks",
+                text: "What usually belongs in the first stage and which metrics matter.",
+                link: { slug: "materialsMvpAutomation" },
+                cta: "Open article",
+              },
+            ],
           },
           faq: {
             title: "What is usually worth clarifying before kickoff",
