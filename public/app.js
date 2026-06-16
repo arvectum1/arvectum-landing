@@ -246,9 +246,6 @@
     if (!footerGrid) return;
 
     const footer = currentCommon.footer;
-    const navLinks = createLinkList(
-      currentCommon.footerNav || currentCommon.nav,
-    );
     const legalLinks = (footer.legalLinks || [])
       .map(
         (item) =>
@@ -287,10 +284,7 @@
           target="_blank"
           rel="noreferrer"
           aria-label="${escapeHtml(footer.telegramLabel || footer.telegramHandle || "Telegram")}"
-        >
-          <span class="telegram-link__icon">${TELEGRAM_ICON}</span>
-          <span>${escapeHtml(footer.telegramHandle || footer.telegramUrl)}</span>
-        </a>
+        ><span class="telegram-link__icon">${TELEGRAM_ICON}</span></a>
       `);
     }
     if (footer.note) {
@@ -301,17 +295,13 @@
 
     footerGrid.innerHTML = `
       <div class="footer-block">
-        <span>${escapeHtml(currentCommon.pagesLabel)}</span>
-        <div class="footer-links">${navLinks}</div>
-      </div>
-      <div class="footer-block">
-        <span>${escapeHtml(footer.legalLinksTitle)}</span>
-        <div class="footer-links">${legalLinks}</div>
-      </div>
-      <div class="footer-block footer-block--contacts">
         <span>${escapeHtml(footer.contactsTitle)}</span>
         <div class="footer-contact-stack">${contactItems.join("")}</div>
       </div>
+      <details class="footer-legal">
+        <summary>${escapeHtml(footer.legalLinksTitle)}</summary>
+        <div class="footer-links">${legalLinks}</div>
+      </details>
     `;
   };
 
@@ -336,7 +326,7 @@
 
   const renderHome = (page) => `
     <section class="hero">
-      <div class="container hero-grid">
+      <div class="container hero-grid${page.hero.sideItems?.length ? "" : " hero-grid--single"}">
         <div class="hero-copy reveal">
           <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
           <h1>${escapeHtml(page.hero.title)}</h1>
@@ -347,7 +337,9 @@
             <a class="button button-ghost" href="${buildUrl("solutions")}">${escapeHtml(page.hero.secondaryCta)}</a>
           </div>
         </div>
-        <aside class="hero-panel glass reveal">
+        ${
+          page.hero.sideItems?.length
+            ? `<aside class="hero-panel glass reveal">
           <span class="hero-panel__label">${escapeHtml(page.hero.sideLabel)}</span>
           <div class="hero-panel__stack">
             ${(page.hero.sideItems || [])
@@ -361,7 +353,9 @@
               )
               .join("")}
           </div>
-        </aside>
+        </aside>`
+            : ""
+        }
       </div>
     </section>
 
@@ -374,33 +368,6 @@
         <div class="grid grid-3">
           ${renderInfoCards(page.automation.items)}
         </div>
-      </div>
-    </section>
-
-    <section class="section section-soft">
-      <div class="container reveal">
-        <div class="section-head">
-          <h2>${escapeHtml(page.advantages.title)}</h2>
-          <p>${escapeHtml(page.advantages.text)}</p>
-        </div>
-        <div class="grid grid-3">
-          ${renderInfoCards(page.advantages.items)}
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container reveal">
-        <article class="cta-band">
-          <div>
-            <p class="eyebrow">${escapeHtml(page.flagship.eyebrow)}</p>
-            <h2>${escapeHtml(page.flagship.title)}</h2>
-            <p>${escapeHtml(page.flagship.text)}</p>
-          </div>
-          <div class="cta-band__actions">
-            <a class="button button-ghost" href="${buildConfigLink(page.flagship.link, "solutions")}">${escapeHtml(page.flagship.cta)}</a>
-          </div>
-        </article>
       </div>
     </section>
 

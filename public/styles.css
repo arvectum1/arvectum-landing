@@ -192,6 +192,10 @@ img {
   white-space: nowrap;
 }
 
+.hero-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .desktop-lang-switch {
   display: inline-flex;
 }
@@ -1082,7 +1086,7 @@ textarea[aria-invalid="true"] {
   padding: 1.1rem 1.2rem;
   border-radius: 28px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
   gap: 1.2rem;
 }
 
@@ -1113,18 +1117,49 @@ textarea[aria-invalid="true"] {
   font-size: 0.9rem;
 }
 
+.footer-legal {
+  align-self: start;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.footer-legal summary {
+  padding: 0.95rem 1rem;
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.footer-legal summary::-webkit-details-marker {
+  display: none;
+}
+
+.footer-legal[open] summary {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-legal .footer-links {
+  padding: 0.9rem 1rem 1rem;
+}
+
 .telegram-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  width: fit-content;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
   margin-top: 0.25rem;
+  border: 1px solid rgba(122, 241, 221, 0.22);
+  border-radius: 999px;
+  background: rgba(122, 241, 221, 0.08);
 }
 
 .telegram-link__icon {
   display: inline-flex;
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 1.2rem;
+  height: 1.2rem;
   color: var(--mint-light);
 }
 
@@ -1520,12 +1555,30 @@ textarea[aria-invalid="true"] {
   }
 
   .topbar {
-    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-columns: 1fr;
     gap: 0.7rem;
   }
 
   .topbar-tools {
-    gap: 0.45rem;
+    width: 100%;
+    justify-content: stretch;
+    gap: 0.65rem;
+  }
+
+  .header-cta,
+  .menu-toggle {
+    min-height: 46px;
+    border: 1px solid rgba(4, 26, 51, 0.14);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 10px 24px rgba(8, 28, 54, 0.08);
+  }
+
+  .header-cta {
+    flex: 1 1 auto;
+  }
+
+  .menu-toggle {
+    min-width: 118px;
   }
 
   .hero-grid,
@@ -1554,7 +1607,6 @@ textarea[aria-invalid="true"] {
   }
 
   .topbar {
-    grid-template-columns: minmax(0, 1fr) auto auto;
     align-items: center;
   }
 
@@ -1567,15 +1619,15 @@ textarea[aria-invalid="true"] {
   }
 
   .header-cta {
-    min-height: 40px;
-    padding: 0.7rem 0.95rem;
-    font-size: 0.84rem;
+    min-height: 48px;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
   }
 
   .lang-switch__button,
   .menu-toggle {
-    min-height: 34px;
-    padding-inline: 0.75rem;
+    min-height: 48px;
+    padding-inline: 1rem;
   }
 
   .hero {
