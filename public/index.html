@@ -99,7 +99,7 @@
             <a class="brand" href="index.html" aria-label="Arvectum">
               <img
                 id="brandLogo"
-                src="assets/brand/arvectum-logo-header-light.svg"
+                src="assets/brand/logo-horizontal.svg"
                 alt="Логотип Arvectum"
               />
               <span class="brand-meta" id="brandMeta"></span>
@@ -139,7 +139,13 @@
                 >Связаться с нами</a
               >
               <button class="menu-toggle" id="menuToggle" type="button">
-                <span id="menuButtonText">Меню</span>
+                <img
+                  class="menu-toggle__logo"
+                  src="assets/brand/menu-logo.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span class="sr-only" id="menuButtonText">Меню</span>
               </button>
             </div>
           </div>
@@ -198,6 +204,14 @@
       </div>
     </header>
 
+    <section class="breadcrumbs-band">
+      <div class="container">
+        <nav class="breadcrumbs" id="breadcrumbs" aria-label="Хлебные крошки">
+          <span aria-current="page">Главная</span>
+        </nav>
+      </div>
+    </section>
+
     <noscript>
       <div class="noscript-note">
         Сайт работает без JavaScript в базовом режиме. Для переключения языка и
@@ -207,7 +221,7 @@
 
     <main id="pageRoot">
       <section class="hero">
-        <div class="container hero-grid hero-grid--single">
+        <div class="container hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">AI-автоматизация бизнес-процессов</p>
             <h1>
@@ -229,6 +243,23 @@
               >
             </div>
           </div>
+          <aside class="hero-panel glass">
+            <span class="hero-panel__label">Коротко</span>
+            <div class="hero-panel__stack">
+              <article class="stack-card">
+                <h3>Один процесс</h3>
+                <p>Без запуска большой платформы.</p>
+              </article>
+              <article class="stack-card">
+                <h3>2-4 недели</h3>
+                <p>Чтобы собрать первый MVP.</p>
+              </article>
+              <article class="stack-card">
+                <h3>Контроль</h3>
+                <p>Роли, доступы и история решений.</p>
+              </article>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -294,10 +325,6 @@
                   >↗</span
                 ></a
               >
-              <p class="footer-note">
-                Реквизиты и договорные данные предоставляются по запросу перед
-                началом работ.
-              </p>
             </div>
           </div>
           <details class="footer-legal">

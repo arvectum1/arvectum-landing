@@ -88,7 +88,7 @@
             <a class="brand" href="index.html" aria-label="Arvectum">
               <img
                 id="brandLogo"
-                src="assets/brand/arvectum-logo-header-light.svg"
+                src="assets/brand/logo-horizontal.svg"
                 alt="Логотип Arvectum"
               />
               <span class="brand-meta" id="brandMeta"></span>
@@ -126,7 +126,13 @@
                 >Связаться с нами</a
               >
               <button class="menu-toggle" id="menuToggle" type="button">
-                <span id="menuButtonText">Меню</span>
+                <img
+                  class="menu-toggle__logo"
+                  src="assets/brand/menu-logo.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span class="sr-only" id="menuButtonText">Меню</span>
               </button>
             </div>
           </div>
@@ -179,6 +185,15 @@
         </div>
       </div>
     </header>
+    <section class="breadcrumbs-band">
+      <div class="container">
+        <nav class="breadcrumbs" id="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a>
+          <span class="breadcrumbs__sep">/</span>
+          <span aria-current="page">Контакты</span>
+        </nav>
+      </div>
+    </section>
     <noscript>
       <div class="noscript-note">
         Сайт работает без JavaScript в базовом режиме. Для переключения языка и
@@ -348,10 +363,6 @@
                   >↗</span
                 ></a
               >
-              <p class="footer-note">
-                Реквизиты и договорные данные предоставляются по запросу перед
-                началом работ.
-              </p>
             </div>
           </div>
           <details class="footer-legal">

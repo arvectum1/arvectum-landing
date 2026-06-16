@@ -241,6 +241,60 @@
     }
   };
 
+  const renderBreadcrumbs = () => {
+    const breadcrumbs = document.getElementById("breadcrumbs");
+    if (!breadcrumbs) return;
+
+    const navMap = Object.fromEntries(
+      (currentCommon.nav || []).map((item) => [item.slug, item.label]),
+    );
+    const legalMap = Object.fromEntries(
+      (currentCommon.footer?.legalLinks || []).map((item) => [
+        item.slug,
+        item.label,
+      ]),
+    );
+
+    const labels = {
+      home: navMap.home || (currentLanguage === "ru" ? "Главная" : "Home"),
+      solutions:
+        navMap.solutions ||
+        (currentLanguage === "ru" ? "Решения" : "Solutions"),
+      approach:
+        navMap.approach ||
+        (currentLanguage === "ru" ? "Как запускаем" : "How We Launch"),
+      contact: currentLanguage === "ru" ? "Контакты" : "Contact",
+      cases: currentLanguage === "ru" ? "Сценарии" : "Scenarios",
+      privacy:
+        legalMap.privacy ||
+        (currentLanguage === "ru"
+          ? "Политика конфиденциальности"
+          : "Privacy policy"),
+      "personal-data-consent":
+        legalMap.personalDataConsent ||
+        (currentLanguage === "ru"
+          ? "Согласие на обработку персональных данных"
+          : "Personal data consent"),
+      personalDataConsent:
+        legalMap.personalDataConsent ||
+        (currentLanguage === "ru"
+          ? "Согласие на обработку персональных данных"
+          : "Personal data consent"),
+      cookies:
+        legalMap.cookiesPolicy ||
+        (currentLanguage === "ru" ? "Политика cookies" : "Cookies policy"),
+      cookiesPolicy:
+        legalMap.cookiesPolicy ||
+        (currentLanguage === "ru" ? "Политика cookies" : "Cookies policy"),
+    };
+
+    const currentLabel = labels[currentPage] || labels.home;
+    breadcrumbs.innerHTML =
+      currentPage === "home"
+        ? `<span aria-current="page">${escapeHtml(currentLabel)}</span>`
+        : `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`;
+  };
+
   const renderFooter = () => {
     const footerGrid = document.querySelector(".footer-grid");
     if (!footerGrid) return;
@@ -533,7 +587,7 @@
           <h2>${escapeHtml(page.timeline.title)}</h2>
           <p>${escapeHtml(page.timeline.text)}</p>
         </div>
-        <div class="step-grid">
+        <div class="step-grid step-grid--four">
           ${(page.timeline.items || [])
             .map(
               (item, index) => `
@@ -1469,6 +1523,7 @@
     renderMeta();
     renderStructuredData();
     renderHeader();
+    renderBreadcrumbs();
     renderPage();
     renderFooter();
     renderCookies();

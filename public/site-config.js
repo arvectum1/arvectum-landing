@@ -44,7 +44,7 @@ window.SITE_CONFIG = {
           telegramUrl: "https://t.me/arvectum",
           telegramLabel: "Telegram Arvectum",
           telegramHandle: "t.me/arvectum",
-          note: "Реквизиты и договорные данные предоставляются по запросу перед началом работ.",
+          note: "",
           legalLinksTitle: "Юридическая информация",
           legalLinks: [
             {
@@ -201,8 +201,21 @@ window.SITE_CONFIG = {
             ],
             primaryCta: "Связаться с нами",
             secondaryCta: "Открыть решения",
-            sideLabel: "",
-            sideItems: [],
+            sideLabel: "Коротко",
+            sideItems: [
+              {
+                title: "Один процесс",
+                text: "Без запуска большой платформы.",
+              },
+              {
+                title: "2-4 недели",
+                text: "Чтобы собрать первый MVP.",
+              },
+              {
+                title: "Контроль",
+                text: "Роли, доступы и история решений.",
+              },
+            ],
           },
           automation: {
             title: "Что можно запустить первым",
@@ -251,8 +264,9 @@ window.SITE_CONFIG = {
           quickLinks: [
             { id: "procurement", label: "Закупки и тендеры" },
             { id: "approvals", label: "Согласования и документооборот" },
+            { id: "documents", label: "Документы и проверки" },
             { id: "operations", label: "Операционные процессы" },
-            { id: "ai-modules", label: "AI-модули и проверки" },
+            { id: "ai-modules", label: "AI-модули" },
             { id: "secure", label: "Закрытые контуры" },
           ],
           cards: [
@@ -295,6 +309,24 @@ window.SITE_CONFIG = {
               cta: "Разобрать процесс согласования",
             },
             {
+              id: "documents",
+              label: "Документы и проверки",
+              title: "Документы и проверки",
+              audience:
+                "Для команд, которым нужно быстрее проверять комплектность, версии и замечания.",
+              pain: "Собираем комплектность, требования, замечания и историю изменений в одном рабочем сценарии.",
+              modules: [
+                "Комплектность и требования",
+                "Версии документов",
+                "Замечания и комментарии",
+                "Журнал изменений",
+              ],
+              firstResult:
+                "Сценарий, где видно, что проверено, что отсутствует и что требует решения.",
+              timing: "MVP 2-4 недели",
+              cta: "Обсудить проверку документов",
+            },
+            {
               id: "operations",
               label: "Внутренние маршруты",
               title: "Операционные процессы",
@@ -314,8 +346,8 @@ window.SITE_CONFIG = {
             },
             {
               id: "ai-modules",
-              label: "Проверки и анализ",
-              title: "AI-модули и проверки",
+              label: "AI-модули",
+              title: "AI-модули",
               audience:
                 "Для команд, которым нужно быстрее анализировать документы и сравнивать варианты.",
               pain: "Подключаем AI-модули туда, где они реально ускоряют проверку, сравнение и подготовку материалов для решения.",
@@ -612,7 +644,7 @@ window.SITE_CONFIG = {
           telegramUrl: "https://t.me/arvectum",
           telegramLabel: "Arvectum Telegram",
           telegramHandle: "t.me/arvectum",
-          note: "Company details and contracting data are shared on request before the start of work.",
+          note: "",
           legalLinksTitle: "Legal",
           legalLinks: [
             { slug: "privacy", label: "Privacy policy" },
@@ -764,8 +796,21 @@ window.SITE_CONFIG = {
             ],
             primaryCta: "Contact us",
             secondaryCta: "Open solutions",
-            sideLabel: "",
-            sideItems: [],
+            sideLabel: "In short",
+            sideItems: [
+              {
+                title: "One process",
+                text: "Without launching a large platform.",
+              },
+              {
+                title: "2-4 weeks",
+                text: "To assemble the first MVP.",
+              },
+              {
+                title: "Control",
+                text: "Roles, access and decision history.",
+              },
+            ],
           },
           automation: {
             title: "What you can launch first",
@@ -814,8 +859,9 @@ window.SITE_CONFIG = {
           quickLinks: [
             { id: "procurement", label: "Procurement and tenders" },
             { id: "approvals", label: "Approvals and document flow" },
+            { id: "documents", label: "Documents and checks" },
             { id: "operations", label: "Operational workflows" },
-            { id: "ai-modules", label: "AI modules and checks" },
+            { id: "ai-modules", label: "AI modules" },
             { id: "secure", label: "Secure setups" },
           ],
           cards: [
@@ -858,6 +904,24 @@ window.SITE_CONFIG = {
               cta: "Review an approval workflow",
             },
             {
+              id: "documents",
+              label: "Documents and checks",
+              title: "Documents and checks",
+              audience:
+                "For teams that need faster completeness checks, version control and review notes.",
+              pain: "We structure completeness checks, requirements, comments and document history in one working flow.",
+              modules: [
+                "Completeness and requirements",
+                "Document versions",
+                "Comments and review notes",
+                "Change log",
+              ],
+              firstResult:
+                "A flow where it is clear what was checked, what is missing and what needs a decision.",
+              timing: "MVP in 2-4 weeks",
+              cta: "Discuss document review",
+            },
+            {
               id: "operations",
               label: "Internal routes",
               title: "Operational workflows",
@@ -877,8 +941,8 @@ window.SITE_CONFIG = {
             },
             {
               id: "ai-modules",
-              label: "Checks and analysis",
-              title: "AI modules and checks",
+              label: "AI modules",
+              title: "AI modules",
               audience:
                 "For teams that need faster document analysis and clearer comparison of options.",
               pain: "We add AI modules where they really speed up review, comparison and memo preparation without taking control away from the team.",
