@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /health.html
+Disallow: /thank-you.html
+Disallow: /api/
 
 Sitemap: https://arvectum.com/sitemap.xml

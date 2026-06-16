@@ -5,6 +5,8 @@ const rootDir = process.cwd();
 const publicDir = path.join(rootDir, "public");
 const sitemapPath = path.join(publicDir, "sitemap.xml");
 const cssPath = path.join(publicDir, "styles.css");
+const robotsPath = path.join(publicDir, "robots.txt");
+const siteConfigPath = path.join(publicDir, "site-config.js");
 const jsFiles = [
   path.join(publicDir, "app.js"),
   path.join(publicDir, "site-config.js"),
@@ -21,6 +23,32 @@ const sitemapUrls = Array.from(
   sitemap.matchAll(/<loc>([^<]+)<\/loc>/g),
   (match) => match[1],
 );
+const robotsContent = fs.readFileSync(robotsPath, "utf8");
+const siteConfigContent = fs.readFileSync(siteConfigPath, "utf8");
+
+const expectedSitemapFiles = [
+  "index.html",
+  "solutions.html",
+  "approach.html",
+  "contact.html",
+  "privacy.html",
+  "personal-data-consent.html",
+  "cookies.html",
+].filter((fileName) => localHtmlFiles.has(fileName));
+
+const forbiddenSitemapFiles = [
+  "cases.html",
+  "health.html",
+  "seo-checklist.html",
+  "thank-you.html",
+];
+
+const expectedFaviconFiles = [
+  "favicon.ico",
+  "assets/brand/favicon-32x32.png",
+  "assets/brand/favicon-16x16.png",
+  "assets/brand/apple-touch-icon.png",
+];
 
 const failures = [];
 
@@ -34,6 +62,13 @@ const isExternalUrl = (value) =>
   value.startsWith("tel:");
 
 const stripQuery = (value) => value.split("#")[0].split("?")[0];
+
+const toPublicRelative = (value) => stripQuery(value).replace(/^\/+/, "");
+
+const fileNameToUrl = (fileName) =>
+  fileName === "index.html"
+    ? "https://arvectum.com/"
+    : `https://arvectum.com/${fileName}`;
 
 for (const fileName of htmlFiles) {
   const filePath = path.join(publicDir, fileName);
@@ -52,6 +87,31 @@ for (const fileName of htmlFiles) {
     `${fileName}: missing canonical link`,
   );
 
+  record(
+    /<link[^>]+rel="icon"[^>]+href="\/favicon\.ico"[^>]*sizes="any"/i.test(
+      html,
+    ),
+    `${fileName}: missing /favicon.ico link`,
+  );
+  record(
+    /<link[^>]+rel="icon"[^>]+sizes="32x32"[^>]+href="\/assets\/brand\/favicon-32x32\.png"/i.test(
+      html,
+    ),
+    `${fileName}: missing 32x32 favicon link`,
+  );
+  record(
+    /<link[^>]+rel="icon"[^>]+sizes="16x16"[^>]+href="\/assets\/brand\/favicon-16x16\.png"/i.test(
+      html,
+    ),
+    `${fileName}: missing 16x16 favicon link`,
+  );
+  record(
+    /<link[^>]+rel="apple-touch-icon"[^>]+href="\/assets\/brand\/apple-touch-icon\.png"/i.test(
+      html,
+    ),
+    `${fileName}: missing apple-touch-icon link`,
+  );
+
   const hrefs = Array.from(
     html.matchAll(/\b(?:href|src)="([^"]+)"/g),
     (match) => match[1],
@@ -59,22 +119,22 @@ for (const fileName of htmlFiles) {
 
   for (const rawHref of hrefs) {
     if (isExternalUrl(rawHref)) continue;
-    const href = stripQuery(rawHref);
+    const href = toPublicRelative(rawHref);
     if (!href) continue;
 
     if (href.endsWith(".html")) {
       record(
-        localHtmlFiles.has(href),
-        `${fileName}: broken local HTML link -> ${href}`,
+        localHtmlFiles.has(path.basename(href)),
+        `${fileName}: broken local HTML link -> ${rawHref}`,
       );
     }
 
-    if (
-      /\.(?:png|jpg|jpeg|webp|gif|svg|ico|css|js|json)$/i.test(href) &&
-      !href.startsWith("/")
-    ) {
+    if (/\.(?:png|jpg|jpeg|webp|gif|svg|ico|css|js|json)$/i.test(href)) {
       const assetPath = path.join(publicDir, href);
-      record(fs.existsSync(assetPath), `${fileName}: missing asset -> ${href}`);
+      record(
+        fs.existsSync(assetPath),
+        `${fileName}: missing asset -> ${rawHref}`,
+      );
     }
   }
 
@@ -93,7 +153,7 @@ for (const fileName of htmlFiles) {
     );
   } else {
     record(
-      !/href="cases\.html(?:[#?"][^"]*)?"/i.test(html),
+      !/href="(?:\/)?cases\.html(?:[#?"][^"]*)?"/i.test(html),
       `${fileName}: must not link to cases.html`,
     );
   }
@@ -127,7 +187,7 @@ const cssContent = fs.readFileSync(cssPath, "utf8");
 for (const match of cssContent.matchAll(/url\((['"]?)([^)'"]+)\1\)/g)) {
   const asset = match[2];
   if (isExternalUrl(asset) || asset.startsWith("data:")) continue;
-  const assetPath = path.join(publicDir, stripQuery(asset));
+  const assetPath = path.join(publicDir, toPublicRelative(asset));
   record(fs.existsSync(assetPath), `styles.css: missing asset -> ${asset}`);
 }
 
@@ -144,13 +204,13 @@ for (const filePath of jsFiles) {
   }
 
   for (const match of content.matchAll(
-    /["'](assets\/[^"']+\.(?:png|jpg|jpeg|webp|gif|svg|ico))["']/g,
+    /["'](\/?assets\/[^"']+\.(?:png|jpg|jpeg|webp|gif|svg|ico))["']/g,
   )) {
-    const asset = match[1];
+    const asset = toPublicRelative(match[1]);
     const assetPath = path.join(publicDir, asset);
     record(
       fs.existsSync(assetPath),
-      `${path.basename(filePath)}: missing asset -> ${asset}`,
+      `${path.basename(filePath)}: missing asset -> ${match[1]}`,
     );
   }
 }
@@ -161,32 +221,69 @@ record(
   "Missing og:image asset -> assets/brand/logo-horizontal.svg",
 );
 
-const expectedSitemapFiles = htmlFiles.filter(
-  (fileName) => !["health.html", "cases.html"].includes(fileName),
-);
+for (const filePath of expectedFaviconFiles) {
+  record(
+    fs.existsSync(path.join(publicDir, filePath)),
+    `Missing favicon asset -> ${filePath}`,
+  );
+}
+
+for (const url of sitemapUrls) {
+  record(
+    url.startsWith("https://arvectum.com/"),
+    `sitemap.xml: URL must use https://arvectum.com/ -> ${url}`,
+  );
+  record(!url.startsWith("http://"), `sitemap.xml: must not use http -> ${url}`);
+  record(
+    !url.startsWith("https://www.arvectum.com/"),
+    `sitemap.xml: must not use www -> ${url}`,
+  );
+
+  const fileName = url === "https://arvectum.com/" ? "index.html" : path.basename(url);
+  record(
+    localHtmlFiles.has(fileName),
+    `sitemap.xml: URL points to non-existing file -> ${url}`,
+  );
+}
+
 for (const fileName of expectedSitemapFiles) {
-  const url =
-    fileName === "index.html"
-      ? "https://arvectum.com/"
-      : `https://arvectum.com/${fileName}`;
+  const url = fileNameToUrl(fileName);
   record(sitemapUrls.includes(url), `sitemap.xml: missing URL -> ${url}`);
 }
 
-const siteConfigPath = path.join(publicDir, "site-config.js");
-const siteConfigContent = fs.readFileSync(siteConfigPath, "utf8");
+for (const fileName of forbiddenSitemapFiles) {
+  const url = fileNameToUrl(fileName);
+  record(!sitemapUrls.includes(url), `sitemap.xml: must not include ${url}`);
+}
+
 record(
-  !/{ slug: "cases", label: "Сценарии" }/.test(siteConfigContent) &&
-    !/{ slug: "cases", label: "Scenarios" }/.test(siteConfigContent),
-  "site-config.js: cases must not appear in public navigation",
+  !/nav:\s*\[[\s\S]*?slug:\s*"cases"[\s\S]*?\]/u.test(siteConfigContent),
+  "site-config.js: cases must not appear in primary navigation",
 );
 record(
-  /Флагманский сценарий/u.test(siteConfigContent) &&
-    /Закупки и тендеры/u.test(siteConfigContent),
-  "site-config.js: solutions must present procurement as the flagship scenario",
+  !/footerNav:\s*\[[\s\S]*?slug:\s*"cases"[\s\S]*?\]/u.test(siteConfigContent),
+  "site-config.js: cases must not appear in footer navigation",
 );
 record(
   !/Посмотреть сценарии|View scenarios/u.test(siteConfigContent),
   "site-config.js: hidden scenarios page must not be used in CTA copy",
+);
+
+record(
+  /Sitemap:\s+https:\/\/arvectum\.com\/sitemap\.xml/u.test(robotsContent),
+  "robots.txt: missing sitemap directive",
+);
+record(
+  /Disallow:\s+\/health\.html/u.test(robotsContent),
+  "robots.txt: missing Disallow: /health.html",
+);
+record(
+  /Disallow:\s+\/thank-you\.html/u.test(robotsContent),
+  "robots.txt: missing Disallow: /thank-you.html",
+);
+record(
+  /Disallow:\s+\/api\//u.test(robotsContent),
+  "robots.txt: missing Disallow: /api/",
 );
 
 if (failures.length) {

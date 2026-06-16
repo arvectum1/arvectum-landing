@@ -15,3 +15,29 @@
     - проксирование/маршрутизацию на стороне Cloudflare;
     - версию PHP и логи веб-сервера;
     - корректность путей до `index.html` и `api/*.php`.
+
+## SEO Checklist
+
+### Before deploy
+
+1. Run `npm run lint`.
+2. Run `npm run check`.
+3. Verify `sitemap.xml` contains only public indexable pages.
+4. Verify `robots.txt` contains `Sitemap: https://arvectum.com/sitemap.xml`.
+5. Verify favicon files exist:
+   - `public/favicon.ico`
+   - `public/assets/brand/favicon-32x32.png`
+   - `public/assets/brand/favicon-16x16.png`
+   - `public/assets/brand/apple-touch-icon.png`
+6. Verify `cases.html` is `noindex,nofollow` or removed from public SEO structure.
+7. Deploy `public/` to hosting.
+
+### After deploy
+
+1. Open `https://arvectum.com/`.
+2. Open `https://arvectum.com/robots.txt`.
+3. Open `https://arvectum.com/sitemap.xml`.
+4. Open `https://arvectum.com/favicon.ico`.
+5. Run `npm run check:production`.
+6. Re-submit sitemap in Google Search Console if sitemap changed.
+7. Re-submit sitemap in Yandex Webmaster if sitemap changed.
