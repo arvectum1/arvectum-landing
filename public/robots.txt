@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /health.html
+Disallow: /favicon-preview.html
 Disallow: /thank-you.html
 Disallow: /api/
 

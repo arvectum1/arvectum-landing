@@ -53,6 +53,10 @@ npm run check:production
 
 - `public/index.html` — главная страница с no-JS fallback.
 - `public/solutions.html` — решения с закупочным фокусом.
+- `public/solutions/procurement.html` — отдельная SEO-страница по закупкам и тендерам.
+- `public/solutions/document-workflow.html` — отдельная SEO-страница по согласованиям и документообороту.
+- `public/solutions/operations.html` — отдельная SEO-страница по операционным процессам.
+- `public/solutions/ai-document-checks.html` — отдельная SEO-страница по AI-проверке документов.
 - `public/cases.html` — скрытая вспомогательная страница со сценариями, держится вне публичной SEO-структуры через `noindex,nofollow`.
 - `public/approach.html` — этапы работы, форматы и FAQ.
 - `public/contact.html` — форма заявки и прямые контакты.
@@ -63,9 +67,12 @@ npm run check:production
 - `public/health.html` — статический health-check.
 - `public/build-info.json` — версия и дата сборки для health-check.
 - `public/favicon.ico` — корневой favicon.
+- `public/assets/brand/favicon.svg` — основной favicon для современных браузеров.
 - `public/assets/brand/favicon-32x32.png` — favicon 32x32.
 - `public/assets/brand/favicon-16x16.png` — favicon 16x16.
+- `public/assets/brand/favicon-48x48.png` — favicon 48x48.
 - `public/assets/brand/apple-touch-icon.png` — Apple touch icon.
+- `public/favicon-preview.html` — служебная страница для визуальной проверки favicon, исключена из индексации.
 - `public/app.js` — рендер страниц, навигация, форма, cookie-consent, RU/EN.
 - `public/site-config.js` — двуязычный контент.
 - `public/api/submit.php` — отправка заявок в Telegram и email.
@@ -127,7 +134,9 @@ npm run check:production
 3. `https://arvectum.com/api/health.php` возвращает JSON.
 4. `https://arvectum.com/robots.txt` и `https://arvectum.com/sitemap.xml` доступны.
 5. `https://arvectum.com/favicon.ico` открывается.
-6. Форма заявки доходит хотя бы в один канал.
+6. `https://arvectum.com/favicon-preview.html` показывает SVG/PNG-версии favicon.
+7. После обновления favicon выполнен hard refresh браузера.
+8. Форма заявки доходит хотя бы в один канал.
 
 Если хотите собрать архив для хостинга:
 

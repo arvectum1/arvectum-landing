@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Favicon Preview — Arvectum</title>
+    <meta
+      name="description"
+      content="Preview page for Arvectum favicon assets."
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href="https://arvectum.com/favicon-preview.html" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/assets/brand/favicon.svg?v=20260616-seo24"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/brand/favicon-32x32.png?v=20260616-seo24"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/brand/favicon-16x16.png?v=20260616-seo24"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/assets/brand/apple-touch-icon.png?v=20260616-seo24"
+    />
+    <link rel="shortcut icon" href="/favicon.ico?v=20260616-seo24" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: "PT Sans", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 2rem;
+        background: linear-gradient(180deg, #eff6f8 0%, #f8fbfc 100%);
+        color: #08213f;
+      }
+
+      h1,
+      h2 {
+        margin: 0 0 0.8rem;
+      }
+
+      p {
+        margin: 0 0 1rem;
+        line-height: 1.6;
+      }
+
+      .stack {
+        display: grid;
+        gap: 1.25rem;
+        max-width: 1080px;
+        margin: 0 auto;
+      }
+
+      .panel {
+        padding: 1.4rem;
+        border: 1px solid rgba(8, 33, 63, 0.12);
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 18px 40px rgba(8, 33, 63, 0.08);
+      }
+
+      .panel--dark {
+        background: linear-gradient(180deg, #081c36 0%, #031026 100%);
+        color: #fff;
+      }
+
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 1rem;
+      }
+
+      .preview-card {
+        display: grid;
+        gap: 0.7rem;
+        justify-items: center;
+        padding: 1rem;
+        border: 1px solid rgba(8, 33, 63, 0.08);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .panel--dark .preview-card {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(120, 250, 230, 0.14);
+      }
+
+      .preview-card span {
+        font-size: 0.92rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="stack">
+      <section class="panel">
+        <h1>Favicon preview</h1>
+        <p>
+          Проверка, как favicon Arvectum выглядит в разных размерах и на
+          светлом/тёмном фоне.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>Светлый фон</h2>
+        <div class="preview-grid">
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 16px"
+              width="16"
+              height="16"
+            />
+            <span>SVG 16×16</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 24px"
+              width="24"
+              height="24"
+            />
+            <span>SVG 24×24</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 32px"
+              width="32"
+              height="32"
+            />
+            <span>SVG 32×32</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 48px"
+              width="48"
+              height="48"
+            />
+            <span>SVG 48×48</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 64px"
+              width="64"
+              height="64"
+            />
+            <span>SVG 64×64</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon-16x16.png"
+              alt="PNG 16px"
+              width="16"
+              height="16"
+            />
+            <span>PNG 16×16</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon-32x32.png"
+              alt="PNG 32px"
+              width="32"
+              height="32"
+            />
+            <span>PNG 32×32</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon-48x48.png"
+              alt="PNG 48px"
+              width="48"
+              height="48"
+            />
+            <span>PNG 48×48</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/apple-touch-icon.png"
+              alt="Apple touch icon 180px"
+              width="72"
+              height="72"
+            />
+            <span>Apple touch 180×180</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel--dark">
+        <h2>Тёмный фон</h2>
+        <div class="preview-grid">
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 16px on dark"
+              width="16"
+              height="16"
+            />
+            <span>SVG 16×16</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 24px on dark"
+              width="24"
+              height="24"
+            />
+            <span>SVG 24×24</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 32px on dark"
+              width="32"
+              height="32"
+            />
+            <span>SVG 32×32</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 48px on dark"
+              width="48"
+              height="48"
+            />
+            <span>SVG 48×48</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon.svg"
+              alt="SVG 64px on dark"
+              width="64"
+              height="64"
+            />
+            <span>SVG 64×64</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon-16x16.png"
+              alt="PNG 16px on dark"
+              width="16"
+              height="16"
+            />
+            <span>PNG 16×16</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon-32x32.png"
+              alt="PNG 32px on dark"
+              width="32"
+              height="32"
+            />
+            <span>PNG 32×32</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/favicon-48x48.png"
+              alt="PNG 48px on dark"
+              width="48"
+              height="48"
+            />
+            <span>PNG 48×48</span>
+          </div>
+          <div class="preview-card">
+            <img
+              src="/assets/brand/apple-touch-icon.png"
+              alt="Apple touch icon on dark"
+              width="72"
+              height="72"
+            />
+            <span>Apple touch 180×180</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

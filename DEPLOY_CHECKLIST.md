@@ -26,8 +26,10 @@
 4. Verify `robots.txt` contains `Sitemap: https://arvectum.com/sitemap.xml`.
 5. Verify favicon files exist:
    - `public/favicon.ico`
+   - `public/assets/brand/favicon.svg`
    - `public/assets/brand/favicon-32x32.png`
    - `public/assets/brand/favicon-16x16.png`
+   - `public/assets/brand/favicon-48x48.png`
    - `public/assets/brand/apple-touch-icon.png`
 6. Verify `cases.html` is `noindex,nofollow` or removed from public SEO structure.
 7. Deploy `public/` to hosting.
@@ -38,6 +40,9 @@
 2. Open `https://arvectum.com/robots.txt`.
 3. Open `https://arvectum.com/sitemap.xml`.
 4. Open `https://arvectum.com/favicon.ico`.
-5. Run `npm run check:production`.
-6. Re-submit sitemap in Google Search Console if sitemap changed.
-7. Re-submit sitemap in Yandex Webmaster if sitemap changed.
+5. Open `https://arvectum.com/favicon-preview.html`.
+6. Hard refresh the browser if the old favicon is still cached.
+7. Check the browser tab in both light and dark browser themes.
+8. Run `npm run check:production`.
+9. Re-submit sitemap in Google Search Console if sitemap changed.
+10. Re-submit sitemap in Yandex Webmaster if sitemap changed.

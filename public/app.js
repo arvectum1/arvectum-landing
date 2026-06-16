@@ -3,6 +3,7 @@
   const routes = config.routes || {};
   const defaultLanguage = config.defaultLanguage || "ru";
   const currentPage = document.body.dataset.page || "home";
+  const currentNav = document.body.dataset.nav || currentPage;
   const COOKIE_PREFIX = "arvectum_";
   const CONSENT_COOKIE_NAME = `${COOKIE_PREFIX}cookie_consent`;
   const CONSENT_VERSION = "v2";
@@ -47,7 +48,8 @@
     const file = routes[slug] || routes.home || "index.html";
     const query =
       currentLanguage === defaultLanguage ? "" : `?lang=${currentLanguage}`;
-    return `${file}${query}${hash}`;
+    const path = file === "index.html" ? "/" : `/${file}`;
+    return `${path}${query}${hash}`;
   };
 
   const buildAbsoluteUrl = (slug, language = currentLanguage) => {
@@ -123,13 +125,25 @@
 
   const renderStructuredData = () => {
     const footer = currentCommon?.footer || {};
+    const websiteLd = document.getElementById("websiteLd");
+    if (websiteLd) {
+      websiteLd.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Arvectum",
+        alternateName: "Арвектум",
+        url: "https://arvectum.com/",
+      });
+    }
+
     const organizationLd = document.getElementById("organizationLd");
     if (organizationLd) {
       organizationLd.textContent = JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Organization",
-        name: footer.companyName || currentCommon.brandMeta,
-        url: "https://arvectum.com",
+        name: footer.companyName || 'ООО "Арвектум"',
+        alternateName: "Arvectum",
+        url: "https://arvectum.com/",
         logo: "https://arvectum.com/assets/brand/logo-horizontal.svg",
         email: footer.email || "info@arvectum.com",
         sameAs: footer.telegramUrl ? [footer.telegramUrl] : [],
@@ -197,10 +211,15 @@
     setText("menuPrimaryCta", currentCommon.headerCta);
     setText("menuTelegramLink", currentCommon.telegramLabel);
 
+    const brandLink = document.querySelector(".brand");
+    if (brandLink) {
+      brandLink.setAttribute("href", buildUrl("home"));
+    }
+
     const primaryNav = currentCommon.nav || [];
     const navMarkup = primaryNav
       .map((item) => {
-        const isActive = item.slug === currentPage ? " is-active" : "";
+        const isActive = item.slug === currentNav ? " is-active" : "";
         return `<a class="nav-link${isActive}" href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`;
       })
       .join("");
@@ -263,6 +282,22 @@
       approach:
         navMap.approach ||
         (currentLanguage === "ru" ? "Как запускаем" : "How We Launch"),
+      procurement:
+        currentLanguage === "ru"
+          ? "Автоматизация закупок и тендеров"
+          : "Procurement and tender automation",
+      documentWorkflow:
+        currentLanguage === "ru"
+          ? "Согласования и документооборот"
+          : "Document workflow and approvals",
+      operationsAutomation:
+        currentLanguage === "ru"
+          ? "Операционные процессы"
+          : "Operational workflow automation",
+      aiDocumentChecks:
+        currentLanguage === "ru"
+          ? "AI-проверка документов"
+          : "AI document checks",
       contact: currentLanguage === "ru" ? "Контакты" : "Contact",
       cases: currentLanguage === "ru" ? "Сценарии" : "Scenarios",
       privacy:
@@ -289,10 +324,18 @@
     };
 
     const currentLabel = labels[currentPage] || labels.home;
+    const detailPages = new Set([
+      "procurement",
+      "documentWorkflow",
+      "operationsAutomation",
+      "aiDocumentChecks",
+    ]);
     breadcrumbs.innerHTML =
       currentPage === "home"
         ? `<span aria-current="page">${escapeHtml(currentLabel)}</span>`
-        : `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`;
+        : detailPages.has(currentPage)
+          ? `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><a href="${buildUrl("solutions")}">${escapeHtml(labels.solutions)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`
+          : `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`;
   };
 
   const renderFooter = () => {
@@ -370,8 +413,14 @@
       .map(
         (item) => `
           <article class="info-card">
+            ${item.label ? `<span class="card-label">${escapeHtml(item.label)}</span>` : ""}
             <h3>${escapeHtml(item.title)}</h3>
             <p>${escapeHtml(item.text)}</p>
+            ${
+              item.link
+                ? `<a class="text-link" href="${buildConfigLink(item.link, "solutions")}">${escapeHtml(item.cta || (currentLanguage === "ru" ? "Открыть" : "Open"))}</a>`
+                : ""
+            }
           </article>
         `,
       )
@@ -418,7 +467,7 @@
           <h2>${escapeHtml(page.automation.title)}</h2>
           <p>${escapeHtml(page.automation.text)}</p>
         </div>
-        <div class="grid grid-3">
+        <div class="grid ${page.automation.items?.length === 4 ? "grid-2" : "grid-3"}">
           ${renderInfoCards(page.automation.items)}
         </div>
       </div>
@@ -451,7 +500,14 @@
         <p><strong>${escapeHtml(currentCommon.labels.firstResult)}:</strong> ${escapeHtml(card.firstResult)}</p>
         <p><strong>${escapeHtml(currentCommon.labels.timing)}:</strong> ${escapeHtml(card.timing)}</p>
       </div>
-      <a class="text-link" href="${buildUrl("contact")}">${escapeHtml(card.cta)}</a>
+      <div class="solution-card__actions">
+        <a class="text-link" href="${buildConfigLink(card.primaryLink || "contact", "contact")}">${escapeHtml(card.cta)}</a>
+        ${
+          card.secondaryCta
+            ? `<a class="text-link" href="${buildConfigLink(card.secondaryLink || "contact", "contact")}">${escapeHtml(card.secondaryCta)}</a>`
+            : ""
+        }
+      </div>
     </article>
   `;
 
@@ -633,7 +689,11 @@
         </div>
         <div class="chip-grid">
           ${(page.startingPoints.items || [])
-            .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
+            .map((item) =>
+              item.link
+                ? `<a class="chip" href="${buildConfigLink(item.link, "solutions")}">${escapeHtml(item.label)}</a>`
+                : `<span class="chip">${escapeHtml(item)}</span>`,
+            )
             .join("")}
         </div>
       </div>
@@ -892,12 +952,127 @@
     </section>
   `;
 
+  const renderDirectionPage = (page) => `
+    <section class="page-hero">
+      <div class="container reveal">
+        <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
+        <h1>${escapeHtml(page.hero.title)}</h1>
+        <p class="page-hero__text">${escapeHtml(page.hero.text)}</p>
+        ${
+          page.hero.pills?.length
+            ? `<div class="page-pills">
+                ${page.hero.pills
+                  .map(
+                    (item) =>
+                      `<span class="page-pill">${escapeHtml(item)}</span>`,
+                  )
+                  .join("")}
+              </div>`
+            : ""
+        }
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.audience.title)}</h2>
+          <p>${escapeHtml(page.audience.text)}</p>
+        </div>
+        <div class="grid grid-2">
+          ${renderInfoCards(page.audience.items)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.capabilities.title)}</h2>
+          <p>${escapeHtml(page.capabilities.text)}</p>
+        </div>
+        <div class="grid grid-2">
+          ${(page.capabilities.items || [])
+            .map(
+              (item) => `
+                <article class="info-card">
+                  <h3>${escapeHtml(item.title)}</h3>
+                  <ul class="compact-list">
+                    ${(item.points || [])
+                      .map((point) => `<li>${escapeHtml(point)}</li>`)
+                      .join("")}
+                  </ul>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="grid grid-3">
+          ${(page.outcomes || [])
+            .map(
+              (item) => `
+                <article class="info-card">
+                  <h3>${escapeHtml(item.title)}</h3>
+                  <p>${escapeHtml(item.text)}</p>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.faq.title)}</h2>
+        </div>
+        <div class="faq-list">
+          ${(page.faq.items || [])
+            .map(
+              (item) => `
+                <details class="faq-item">
+                  <summary>${escapeHtml(item.question)}</summary>
+                  <p>${escapeHtml(item.answer)}</p>
+                </details>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <article class="cta-band">
+          <div>
+            <h2>${escapeHtml(page.cta.title)}</h2>
+            <p>${escapeHtml(page.cta.text)}</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="button" href="${buildConfigLink(page.cta.primaryLink, "contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildConfigLink(page.cta.secondaryLink, "solutions")}">${escapeHtml(page.cta.secondary)}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  `;
+
   const pageRenderers = {
     home: renderHome,
     solutions: renderSolutions,
     cases: renderCases,
     approach: renderApproach,
     contact: renderContact,
+    procurement: renderDirectionPage,
+    documentWorkflow: renderDirectionPage,
+    operationsAutomation: renderDirectionPage,
+    aiDocumentChecks: renderDirectionPage,
   };
 
   const renderPage = () => {
@@ -1283,8 +1458,9 @@
         const nextLang = button.dataset.lang;
         if (!nextLang || nextLang === currentLanguage) return;
         const file = routes[currentPage] || `${currentPage}.html`;
+        const path = file === "index.html" ? "/" : `/${file}`;
         const query = nextLang === defaultLanguage ? "" : `?lang=${nextLang}`;
-        window.location.href = `${file}${query}${window.location.hash}`;
+        window.location.href = `${path}${query}${window.location.hash}`;
       });
     });
   };
