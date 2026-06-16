@@ -61,6 +61,12 @@
       : `${pageUrl}?lang=${language}`;
   };
 
+  const buildConfigLink = (link, fallbackSlug = "contact") => {
+    if (!link) return buildUrl(fallbackSlug);
+    if (typeof link === "string") return buildUrl(link);
+    return buildUrl(link.slug || fallbackSlug, link.hash || "");
+  };
+
   const createLinkList = (items) =>
     (items || [])
       .map(
@@ -124,7 +130,7 @@
         "@type": "Organization",
         name: footer.companyName || currentCommon.brandMeta,
         url: "https://arvectum.com",
-        logo: "https://arvectum.com/assets/brand/arvectum-logo-primary.png",
+        logo: "https://arvectum.com/assets/brand/logo-horizontal.svg",
         email: footer.email || "info@arvectum.com",
         sameAs: footer.telegramUrl ? [footer.telegramUrl] : [],
       });
@@ -137,8 +143,8 @@
         "@type": "Service",
         name:
           currentLanguage === "ru"
-            ? "AI-автоматизация закупок и операционных процессов"
-            : "AI automation for procurement and operational workflows",
+            ? "AI-автоматизация бизнес-процессов"
+            : "AI automation for business processes",
         provider: {
           "@type": "Organization",
           name: footer.companyName || currentCommon.brandMeta,
@@ -150,11 +156,13 @@
             ? [
                 "Автоматизация бизнес-процессов",
                 "Автоматизация закупок",
+                "Автоматизация согласований и документооборота",
                 "Автоматизация рабочих процессов с AI",
               ]
             : [
                 "Business process automation",
                 "Procurement automation",
+                "Approval and document workflow automation",
                 "AI workflow automation",
               ],
         url: buildAbsoluteUrl("home", currentLanguage),
@@ -385,12 +393,27 @@
       <div class="container reveal">
         <article class="cta-band">
           <div>
+            <p class="eyebrow">${escapeHtml(page.flagship.eyebrow)}</p>
+            <h2>${escapeHtml(page.flagship.title)}</h2>
+            <p>${escapeHtml(page.flagship.text)}</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="button button-ghost" href="${buildConfigLink(page.flagship.link, "solutions")}">${escapeHtml(page.flagship.cta)}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <article class="cta-band">
+          <div>
             <h2>${escapeHtml(page.cta.title)}</h2>
             <p>${escapeHtml(page.cta.text)}</p>
           </div>
           <div class="cta-band__actions">
-            <a class="button" href="${buildUrl("contact")}">${escapeHtml(page.cta.primary)}</a>
-            <a class="button button-ghost" href="${buildUrl("solutions")}">${escapeHtml(page.cta.secondary)}</a>
+            <a class="button" href="${buildConfigLink(page.cta.primaryLink, "contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildConfigLink(page.cta.secondaryLink, "solutions")}">${escapeHtml(page.cta.secondary)}</a>
           </div>
         </article>
       </div>
@@ -445,8 +468,8 @@
             <p>${escapeHtml(page.cta.text)}</p>
           </div>
           <div class="cta-band__actions">
-            <a class="button" href="${buildUrl("contact")}">${escapeHtml(page.cta.primary)}</a>
-            <a class="button button-ghost" href="${buildUrl("cases")}">${escapeHtml(page.cta.secondary)}</a>
+            <a class="button" href="${buildConfigLink(page.cta.primaryLink, "contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildConfigLink(page.cta.secondaryLink, "approach")}">${escapeHtml(page.cta.secondary)}</a>
           </div>
         </article>
       </div>
@@ -582,6 +605,20 @@
       </div>
     </section>
 
+    <section class="section">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.startingPoints.title)}</h2>
+          <p>${escapeHtml(page.startingPoints.text)}</p>
+        </div>
+        <div class="chip-grid">
+          ${(page.startingPoints.items || [])
+            .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
+            .join("")}
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="faq">
       <div class="container reveal">
         <div class="section-head">
@@ -610,8 +647,8 @@
             <p>${escapeHtml(page.cta.text)}</p>
           </div>
           <div class="cta-band__actions">
-            <a class="button" href="${buildUrl("contact")}">${escapeHtml(page.cta.primary)}</a>
-            <a class="button button-ghost" href="${buildUrl("contact")}">${escapeHtml(page.cta.secondary)}</a>
+            <a class="button" href="${buildConfigLink(page.cta.primaryLink, "contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildConfigLink(page.cta.secondaryLink, "contact")}">${escapeHtml(page.cta.secondary)}</a>
           </div>
         </article>
       </div>

@@ -85,6 +85,42 @@ for (const fileName of htmlFiles) {
       `${fileName}: forbidden placeholder text matched ${pattern}`,
     );
   }
+
+  if (fileName === "cases.html") {
+    record(
+      /<meta[^>]+name="robots"[^>]+content="noindex,nofollow"/i.test(html),
+      "cases.html: must use noindex,nofollow",
+    );
+  } else {
+    record(
+      !/href="cases\.html(?:[#?"][^"]*)?"/i.test(html),
+      `${fileName}: must not link to cases.html`,
+    );
+  }
+
+  if (fileName === "index.html") {
+    record(
+      !/Кто стоит за Arvectum|Кто делает Arvectum|Основатель/iu.test(html),
+      "index.html: founder/about block must not appear on homepage",
+    );
+
+    const homeH1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+    const homeH1 = homeH1Match
+      ? homeH1Match[1]
+          .replace(/<[^>]+>/g, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+      : "";
+    record(homeH1.length > 0, "index.html: homepage H1 is missing");
+    record(
+      !/закупочн(ый|ого|ому|ом)? маршрут/iu.test(homeH1),
+      "index.html: homepage H1 is too narrow and must not position procurement as the only focus",
+    );
+    record(
+      !/только закупки/iu.test(homeH1),
+      "index.html: homepage H1 must not position the company as procurement-only",
+    );
+  }
 }
 
 const cssContent = fs.readFileSync(cssPath, "utf8");
@@ -119,14 +155,14 @@ for (const filePath of jsFiles) {
   }
 }
 
-const ogImagePath = path.join(publicDir, "assets/brand/logo-horizontal.png");
+const ogImagePath = path.join(publicDir, "assets/brand/logo-horizontal.svg");
 record(
   fs.existsSync(ogImagePath),
-  "Missing og:image asset -> assets/brand/logo-horizontal.png",
+  "Missing og:image asset -> assets/brand/logo-horizontal.svg",
 );
 
 const expectedSitemapFiles = htmlFiles.filter(
-  (fileName) => fileName !== "health.html",
+  (fileName) => !["health.html", "cases.html"].includes(fileName),
 );
 for (const fileName of expectedSitemapFiles) {
   const url =
@@ -135,6 +171,23 @@ for (const fileName of expectedSitemapFiles) {
       : `https://arvectum.com/${fileName}`;
   record(sitemapUrls.includes(url), `sitemap.xml: missing URL -> ${url}`);
 }
+
+const siteConfigPath = path.join(publicDir, "site-config.js");
+const siteConfigContent = fs.readFileSync(siteConfigPath, "utf8");
+record(
+  !/{ slug: "cases", label: "Сценарии" }/.test(siteConfigContent) &&
+    !/{ slug: "cases", label: "Scenarios" }/.test(siteConfigContent),
+  "site-config.js: cases must not appear in public navigation",
+);
+record(
+  /Флагманский сценарий/u.test(siteConfigContent) &&
+    /Закупки и тендеры/u.test(siteConfigContent),
+  "site-config.js: solutions must present procurement as the flagship scenario",
+);
+record(
+  !/Посмотреть сценарии|View scenarios/u.test(siteConfigContent),
+  "site-config.js: hidden scenarios page must not be used in CTA copy",
+);
 
 if (failures.length) {
   console.error("Static checks failed:");

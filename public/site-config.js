@@ -31,7 +31,6 @@ window.SITE_CONFIG = {
         footerNav: [
           { slug: "home", label: "Главная" },
           { slug: "solutions", label: "Решения" },
-          { slug: "cases", label: "Сценарии" },
           { slug: "approach", label: "Как запускаем" },
           { slug: "contact", label: "Контакты" },
         ],
@@ -184,121 +183,140 @@ window.SITE_CONFIG = {
       pages: {
         home: {
           meta: {
-            title: "Arvectum — AI-автоматизация закупок и бизнес-процессов",
+            title: "Arvectum — AI-автоматизация бизнес-процессов",
             description:
-              "Arvectum автоматизирует закупки, согласования и документооборот: разбор процесса, MVP, пилот и запуск рабочей системы.",
-            ogTitle: "Arvectum — AI-автоматизация закупок и бизнес-процессов",
+              "Arvectum автоматизирует закупки, согласования, документооборот и операционные процессы: диагностика, MVP, AI-модули, роли, статусы, документы и контроль исполнения.",
+            ogTitle: "Arvectum — AI-автоматизация бизнес-процессов",
             ogDescription:
-              "Автоматизация закупок, согласований и документооборота: от разбора процесса до MVP и пилота.",
+              "Arvectum автоматизирует закупки, согласования, документооборот и операционные процессы: диагностика, MVP, AI-модули, роли, статусы, документы и контроль исполнения.",
           },
           hero: {
-            eyebrow:
-              "AI-автоматизация закупок, тендеров и операционных процессов",
-            title:
-              "Автоматизируем закупки, согласования и документооборот без потери контроля",
-            text: "Arvectum помогает перевести ручные процессы в рабочую систему со статусами, документами, проверками и журналом решений.",
+            eyebrow: "AI-автоматизация бизнес-процессов",
+            title: "Превращаем ручные процессы в управляемые цифровые контуры",
+            text: "Arvectum помогает компаниям автоматизировать процессы, где теряются документы, статусы, сроки, решения и ответственность. Мы собираем рабочие системы с ролями, проверками, журналом действий и AI-модулями там, где они действительно полезны.",
             bullets: [
-              "Разбор процесса за 1-2 недели",
-              "MVP на одном сценарии за 2-4 недели",
-              "Закрытая архитектура и контроль доступов",
-              "Человек сохраняет финальное решение",
+              "Закупки, тендеры, согласования, документы и операционные маршруты",
+              "MVP одного процесса без запуска большой платформы",
+              "Контроль ролей, доступов, статусов и истории решений",
+              "AI не заменяет управление, а помогает быстрее проверять, сравнивать и фиксировать данные",
             ],
-            primaryCta: "Получить разбор процесса",
+            primaryCta: "Разобрать процесс",
             secondaryCta: "Посмотреть решения",
-            sideLabel: "Что можно автоматизировать первым",
+            sideLabel: "Основные направления",
             sideItems: [
               {
                 title: "Закупки и тендеры",
-                text: "RFQ, ТКП, риски, экономика и комплект заявки в одном маршруте.",
+                text: "RFQ, ТКП, экономика, риски и контроль исполнения.",
               },
               {
-                title: "Согласования и статусы",
-                text: "Понятные этапы, ответственные и контроль зависших шагов.",
+                title: "Согласования и документооборот",
+                text: "Маршруты, версии документов, комментарии и журнал решений.",
               },
               {
-                title: "Документы и проверки",
-                text: "Комплектность, требования и история изменений без ручного пересбора.",
+                title: "Операционные процессы",
+                text: "Повторяющиеся внутренние маршруты, статусы, SLA и отчётность.",
+              },
+              {
+                title: "Проверки и AI-модули",
+                text: "Анализ документов, сравнение вариантов и подготовка memo.",
               },
             ],
           },
           automation: {
             title: "Что автоматизируем",
-            text: "Берем только прикладные процессы, где важны сроки, документы, статусы и прозрачность решений.",
+            text: "Главная даёт компактный обзор направлений, а детали раскрываются уже на странице решений.",
             items: [
               {
                 title: "Закупки и тендеры",
-                text: "RFQ, ТКП, риски, экономика сделки и комплект заявки в одной системе.",
+                text: "RFQ, ТКП, риски, документы, статусы и контроль исполнения.",
               },
               {
-                title: "Согласования и статусы",
-                text: "Этапы, ответственные, зависшие шаги и история решений без ручных таблиц.",
+                title: "Согласования и документооборот",
+                text: "Маршруты согласования, версии документов и журнал решений.",
               },
               {
-                title: "Документы и проверки",
-                text: "Комплектность, требования, комментарии и контроль изменений до финального решения.",
+                title: "Операционные процессы",
+                text: "Внутренние маршруты, статусы, SLA и контроль зависших шагов.",
+              },
+              {
+                title: "Проверки и внутренние AI-модули",
+                text: "Анализ документов, сравнение вариантов и подсказки для человека.",
               },
             ],
           },
           advantages: {
-            title: "Почему с нами удобно начать",
-            text: "Начинаем не с большой платформы, а с одного реального процесса и понятного следующего шага.",
+            title: "Как мы подходим к задаче",
+            text: "Сначала понимаем процесс, затем собираем первый рабочий сценарий и только после этого масштабируем решение.",
             items: [
               {
-                title: "Один процесс в фокусе",
-                text: "Сначала приводим в порядок один рабочий сценарий, а не растягиваем проект на всё сразу.",
+                title: "Разбираем процесс",
+                text: "Находим, где теряются документы, статусы, сроки и ответственность.",
               },
               {
-                title: "Понятный MVP",
-                text: "За 2-4 недели можно собрать первый рабочий вариант и проверить его на реальных данных.",
+                title: "Собираем MVP одного маршрута",
+                text: "Стартуем с одного процесса без запуска большой платформы.",
               },
               {
-                title: "Контроль остается у клиента",
-                text: "Данные, роли, доступы и журнал действий остаются прозрачными и управляемыми.",
+                title: "Проверяем пользу и масштабируем",
+                text: "Смотрим, что реально работает, и только потом расширяем систему.",
               },
             ],
           },
+          flagship: {
+            eyebrow: "Флагманский сценарий",
+            title: "Флагманский сценарий — закупочный контур",
+            text: "Закупки и тендеры — один из первых прикладных сценариев Arvectum: RFQ, ТКП, сравнение предложений, экономика, риски, документы, статусы и контроль исполнения.",
+            cta: "Подробнее о решениях",
+            link: { slug: "solutions", hash: "#procurement" },
+          },
           cta: {
-            title: "Получите первичный разбор процесса",
-            text: "Поймём, что стоит автоматизировать первым и какой сценарий имеет смысл запустить в пилот.",
-            primary: "Оставить заявку",
-            secondary: "Перейти в контакты",
+            title: "Начать можно с одного процесса",
+            text: "Опишите, какой маршрут сейчас держится на таблицах, переписках и ручных проверках. Мы предложим, что можно автоматизировать первым.",
+            primary: "Разобрать процесс",
+            secondary: "Перейти в решения",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "solutions" },
           },
         },
         solutions: {
           meta: {
             title:
-              "Решения Arvectum — закупки, согласования, документы и закрытые пилоты",
+              "Решения Arvectum — закупки, согласования, операции, AI-модули и закрытые контуры",
             description:
-              "Решения Arvectum для закупок, согласований, проверки документов и закрытых пилотов.",
+              "Решения Arvectum для закупок, согласований, операционных процессов, AI-модулей и закрытых контуров.",
             ogTitle:
-              "Решения Arvectum — закупки, согласования, документы и закрытые пилоты",
+              "Решения Arvectum — закупки, согласования, операции, AI-модули и закрытые контуры",
             ogDescription:
-              "Решения Arvectum для закупок, согласований, проверки документов и закрытых пилотов.",
+              "Решения Arvectum для закупок, согласований, операционных процессов, AI-модулей и закрытых контуров.",
           },
           hero: {
             eyebrow: "Решения",
             title:
-              "Решения для закупок, согласований, документов и закрытых пилотов",
-            text: "Здесь собраны основные направления, с которых обычно начинают автоматизацию процесса.",
+              "Решения для закупок, согласований, операционных процессов и AI-модулей",
+            text: "Здесь раскрыты основные направления автоматизации, которые Arvectum запускает на реальных бизнес-процессах.",
           },
           quickLinks: [
             { id: "procurement", label: "Закупки и тендеры" },
-            { id: "approvals", label: "Согласования" },
-            { id: "documents", label: "Документы" },
-            { id: "secure", label: "Закрытый AI-пилот" },
+            { id: "approvals", label: "Согласования и документооборот" },
+            { id: "operations", label: "Операционные процессы" },
+            { id: "ai-modules", label: "AI-модули и проверки" },
+            { id: "secure", label: "Закрытые контуры" },
           ],
           cards: [
             {
               id: "procurement",
-              label: "Основной фокус",
+              label: "Флагманский сценарий",
               title: "Закупки и тендеры",
               audience:
                 "Для закупочных отделов, тендерных групп и поставщиков.",
-              pain: "Автоматизируем RFQ, ТКП, проверку рисков, комплект заявки и контроль ключевых этапов.",
+              pain: "Автоматизируем закупочный контур от первого запроса до контроля исполнения, чтобы документы, статусы и экономика сделки не терялись между каналами.",
               modules: [
                 "RFQ и вопросы поставщикам",
                 "Сравнение ТКП и экономика сделки",
-                "Риски, комплектность и статус заявки",
+                "Договорные и коммерческие риски",
+                "Комплект документов",
+                "Статусы и журнал решений",
+                "Контроль исполнения",
               ],
               firstResult:
                 "Карта процесса и первый рабочий сценарий на одном реальном участке.",
@@ -307,50 +325,73 @@ window.SITE_CONFIG = {
             },
             {
               id: "approvals",
-              label: "Рабочие процессы",
-              title: "Согласования и статусы",
+              label: "Документы и ответственность",
+              title: "Согласования и документооборот",
               audience:
-                "Для внутренних команд и руководителей, которым важна видимость хода процесса.",
-              pain: "Собираем этапы, ответственных и зависшие шаги в одной системе без ручной координации.",
+                "Для команд, где нужно упорядочить прохождение документов и решений.",
+              pain: "Собираем маршруты согласования, ответственных, версии документов и комментарии в одном процессе.",
               modules: [
-                "Этапы и ответственные",
-                "Статусы и зависшие шаги",
-                "Комментарии и журнал действий",
+                "Маршруты согласования",
+                "Ответственные и роли",
+                "Документы и версии",
+                "Комментарии и журнал решений",
               ],
               firstResult:
-                "Процесс, где сразу видно следующий шаг и узкие места.",
+                "Процесс, где видно, кто отвечает за следующий шаг и какая версия документа актуальна.",
               timing: "MVP 2-4 недели",
               cta: "Разобрать процесс согласования",
             },
             {
-              id: "documents",
-              label: "Проверка документов",
-              title: "Документы и проверки",
+              id: "operations",
+              label: "Внутренние маршруты",
+              title: "Операционные процессы",
               audience:
-                "Для команд, которым нужно быстрее проверять комплектность, версии и риски.",
-              pain: "Помогаем выстроить проверку документов, требований и комментариев без постоянного ручного пересбора.",
+                "Для компаний с повторяющимися внутренними сценариями и большим числом ручных статусов.",
+              pain: "Упорядочиваем внутренние маршруты, где важны сроки, SLA, точки контроля и понятная отчётность.",
               modules: [
-                "Комплектность и требования",
-                "Риски и отклонения",
-                "История изменений и комментарии",
+                "Повторяющиеся внутренние маршруты",
+                "Статусы и SLA",
+                "Контроль зависших шагов",
+                "Отчётность и контроль исполнения",
               ],
               firstResult:
-                "Понятный сценарий проверки с единым журналом и итоговыми замечаниями.",
+                "Маршрут, в котором видны узкие места и следующие действия без ручной координации.",
               timing: "MVP 2-4 недели",
-              cta: "Обсудить проверку документов",
+              cta: "Описать операционный процесс",
+            },
+            {
+              id: "ai-modules",
+              label: "Проверки и анализ",
+              title: "AI-модули и проверки",
+              audience:
+                "Для команд, которым нужно быстрее анализировать документы и сравнивать варианты.",
+              pain: "Подключаем AI-модули туда, где они реально ускоряют проверку, сравнение и подготовку материалов для решения.",
+              modules: [
+                "Анализ документов",
+                "Сравнение вариантов",
+                "Выделение рисков",
+                "Подготовка memo",
+                "Подсказки для человека",
+                "Контроль качества",
+              ],
+              firstResult:
+                "Рабочий модуль, который помогает проверять данные быстрее, но не забирает финальное решение у команды.",
+              timing: "MVP 2-4 недели",
+              cta: "Обсудить первый сценарий",
             },
             {
               id: "secure",
               label: "Архитектура и безопасность",
-              title: "Закрытые AI-пилоты",
+              title: "Закрытые контуры",
               audience:
                 "Для компаний, которым важны доступы, аудит и границы данных.",
-              pain: "Проектируем безопасный пилот там, где нельзя терять контроль над документами, логами и правами доступа.",
+              pain: "Проектируем локальную или гибридную архитектуру там, где нельзя выносить чувствительные данные и терять контроль над доступами.",
               modules: [
-                "Требования к данным и доступам",
-                "Локальный или гибридный контур",
-                "Логи и контроль действий",
-                "Границы использования модели",
+                "Роли и доступы",
+                "Аудит действий",
+                "Локальная или гибридная архитектура",
+                "Ограничения по данным",
+                "Безопасность и контроль использования модели",
               ],
               firstResult: "Архитектурная схема и план первого пилота.",
               timing: "Архитектурный разбор 1-2 недели",
@@ -358,11 +399,12 @@ window.SITE_CONFIG = {
             },
           ],
           cta: {
-            title:
-              "Если нужен более предметный пример, покажем похожий сценарий",
-            text: "На отдельной странице собраны короткие демо-сценарии, которые можно разобрать на вашем процессе.",
-            primary: "Получить разбор",
-            secondary: "Посмотреть сценарии",
+            title: "Нужен первый сценарий для запуска?",
+            text: "Опишите задачу, и мы предложим, с какого процесса лучше начать и как собрать первый MVP.",
+            primary: "Обсудить первый сценарий",
+            secondary: "Как запускаем",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "approach" },
           },
         },
         cases: {
@@ -463,17 +505,22 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "Как запускаем",
-            title: "Как запускаем проект: диагностика, MVP и пилот",
-            text: "Сначала разбираем один процесс, затем собираем первый рабочий сценарий и проверяем его в пилоте.",
+            title: "Как запускаем автоматизацию процесса",
+            text: "Подход Arvectum универсален: сначала диагностируем процесс, затем собираем первый рабочий сценарий, проверяем его на практике и только после этого масштабируем.",
           },
           timeline: {
             title: "Как идет работа",
-            text: "Работа строится короткими этапами, чтобы быстро проверить результат и не раздувать проект.",
-            items: ["Диагностика", "Карта процесса", "MVP", "Пилот"],
+            text: "Работа идёт по короткому маршруту, который подходит и для закупки, и для согласования, и для внутреннего операционного сценария.",
+            items: [
+              "Диагностика процесса",
+              "Карта ролей, данных и решений",
+              "Выбор первого сценария и MVP",
+              "Пилот, метрики и масштабирование",
+            ],
           },
           formats: {
             title: "Форматы работы",
-            text: "Формат зависит от того, насколько уже понятен процесс и что именно нужно проверить первым.",
+            text: "Формат зависит от зрелости процесса и того, насколько быстро нужно получить первый проверяемый результат.",
             note: "Стоимость зависит от процесса, данных, интеграций и требований к размещению. Для оценки достаточно первичного разбора.",
             items: [
               {
@@ -486,10 +533,10 @@ window.SITE_CONFIG = {
                 timing: "1-2 недели",
               },
               {
-                title: "MVP одного маршрута",
+                title: "MVP одного сценария",
                 audienceLabel: "Для кого",
                 audience:
-                  "Если уже есть конкретный закупочный или операционный сценарий.",
+                  "Если уже понятно, какой процесс нужно автоматизировать первым.",
                 resultLabel: "Результат",
                 result:
                   "Рабочий прототип с ролями, статусами, документами и журналом решений.",
@@ -506,6 +553,17 @@ window.SITE_CONFIG = {
                 timingLabel: "Срок",
                 timing: "4-8 недель",
               },
+            ],
+          },
+          startingPoints: {
+            title: "С какого процесса можно начать",
+            text: "Обычно стартуем с процесса, где уже много ручных статусов, документов и проверок.",
+            items: [
+              "Закупка или тендер",
+              "Согласование документов",
+              "Регулярная проверка комплектности",
+              "Контроль исполнения",
+              "Внутренний маршрут с большим количеством ручных статусов",
             ],
           },
           faq: {
@@ -531,10 +589,12 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title: "Достаточно короткого разбора, чтобы понять следующий шаг",
-            text: "После него становится ясно, что брать в работу первым и как проверять результат.",
-            primary: "Получить разбор",
-            secondary: "Открыть контакты",
+            title: "Начать можно с короткой диагностики",
+            text: "Этого достаточно, чтобы выбрать первый сценарий, собрать MVP и определить границы пилота.",
+            primary: "Начать с диагностики",
+            secondary: "Обсудить MVP одного процесса",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "contact" },
           },
         },
         contact: {
@@ -586,7 +646,6 @@ window.SITE_CONFIG = {
         footerNav: [
           { slug: "home", label: "Home" },
           { slug: "solutions", label: "Solutions" },
-          { slug: "cases", label: "Scenarios" },
           { slug: "approach", label: "How We Launch" },
           { slug: "contact", label: "Contact" },
         ],
@@ -734,121 +793,140 @@ window.SITE_CONFIG = {
       pages: {
         home: {
           meta: {
-            title: "Arvectum — AI automation for procurement and workflows",
+            title: "Arvectum — AI automation for business processes",
             description:
-              "Arvectum automates procurement, approvals and document-heavy workflows: diagnostics, MVP, pilot and launch.",
-            ogTitle: "Arvectum — AI automation for procurement and workflows",
+              "Arvectum automates procurement, approvals, document-heavy and operational workflows: diagnostics, MVP, AI modules, roles, statuses, documents and execution control.",
+            ogTitle: "Arvectum — AI automation for business processes",
             ogDescription:
-              "Automation for procurement, approvals and document-heavy workflows from diagnostics to pilot.",
+              "Arvectum automates procurement, approvals, document-heavy and operational workflows: diagnostics, MVP, AI modules, roles, statuses, documents and execution control.",
           },
           hero: {
-            eyebrow:
-              "AI automation for procurement, tenders and operational workflows",
-            title:
-              "We automate procurement, approvals and document-heavy workflows without losing control",
-            text: "Arvectum turns manual work into a practical system with statuses, documents, checks and a decision log.",
+            eyebrow: "AI automation for business processes",
+            title: "We turn manual workflows into controlled digital systems",
+            text: "Arvectum helps companies automate processes where documents, statuses, deadlines, decisions and ownership are hard to track. We build practical systems with roles, checks, action logs and AI modules where they genuinely help.",
             bullets: [
-              "Workflow review in 1-2 weeks",
-              "MVP on one scenario in 2-4 weeks",
-              "Controlled architecture and access control",
-              "Final decisions stay with people",
+              "Procurement, tenders, approvals, document-heavy and operational workflows",
+              "An MVP for one process without launching a large platform",
+              "Control of roles, access, statuses and decision history",
+              "AI supports review, comparison and data capture instead of replacing management",
             ],
-            primaryCta: "Get a workflow assessment",
+            primaryCta: "Review the process",
             secondaryCta: "View solutions",
-            sideLabel: "What can be automated first",
+            sideLabel: "Core directions",
             sideItems: [
               {
                 title: "Procurement and tenders",
-                text: "RFQ, quotes, risks, commercials and bid-package control in one route.",
+                text: "RFQ, quotes, economics, risks and execution control.",
               },
               {
-                title: "Approvals and statuses",
-                text: "Clear stages, ownership and stalled-step visibility.",
+                title: "Approvals and document flow",
+                text: "Approval routes, document versions, comments and decision logs.",
               },
               {
-                title: "Documents and checks",
-                text: "Completeness, requirements and version history without manual reconstruction.",
+                title: "Operational workflows",
+                text: "Internal routes, statuses, SLA signals and reporting.",
+              },
+              {
+                title: "Checks and AI modules",
+                text: "Document analysis, option comparison and memo preparation.",
               },
             ],
           },
           automation: {
             title: "What we automate",
-            text: "We focus on practical workflows where timing, documents, statuses and clear decisions matter.",
+            text: "The homepage gives a compact overview, while the detailed logic lives on the solutions page.",
             items: [
               {
                 title: "Procurement and tenders",
-                text: "RFQ, quotes, risks, commercials and bid-package control in one system.",
+                text: "RFQ, quotes, risks, documents, statuses and execution control.",
               },
               {
-                title: "Approvals and statuses",
-                text: "Stages, ownership, stalled steps and decision history without manual chasing.",
+                title: "Approvals and document flow",
+                text: "Approval routes, document versions and decision logs.",
               },
               {
-                title: "Documents and checks",
-                text: "Completeness, requirements, comments and change control before the final decision.",
+                title: "Operational workflows",
+                text: "Internal routes, statuses, SLA signals and stalled-step control.",
+              },
+              {
+                title: "Checks and internal AI modules",
+                text: "Document analysis, option comparison and human-facing guidance.",
               },
             ],
           },
           advantages: {
-            title: "Why it is easy to start with us",
-            text: "We start from one real workflow and a clear next step instead of turning the project into a large platform immediately.",
+            title: "How we approach the task",
+            text: "The logic is simple: understand the workflow, build the first working route and only then expand the system.",
             items: [
               {
-                title: "One workflow first",
-                text: "We focus on one practical scenario instead of trying to redesign everything at once.",
+                title: "We review the process",
+                text: "We find where documents, statuses, deadlines and ownership are getting lost.",
               },
               {
-                title: "Clear MVP",
-                text: "In 2-4 weeks you can get a first working version and test it on real work.",
+                title: "We build an MVP for one route",
+                text: "We start with one process instead of rolling out a large platform.",
               },
               {
-                title: "Control stays visible",
-                text: "Data, roles, access and logs remain clear and reviewable.",
+                title: "We validate value and scale",
+                text: "We test what works in practice and then expand deliberately.",
               },
             ],
           },
+          flagship: {
+            eyebrow: "Flagship scenario",
+            title: "Flagship scenario: the procurement workflow",
+            text: "Procurement and tenders are one of Arvectum's first practical scenarios: RFQ, quote comparison, economics, risks, documents, statuses and execution control in one system.",
+            cta: "More about solutions",
+            link: { slug: "solutions", hash: "#procurement" },
+          },
           cta: {
-            title: "Get an initial workflow review",
-            text: "We will see what should be automated first and which scenario makes sense for a pilot.",
-            primary: "Send a request",
-            secondary: "Go to contact",
+            title: "You can start with one process",
+            text: "Tell us which route still depends on spreadsheets, chats and manual checks. We will suggest what makes sense to automate first.",
+            primary: "Review the process",
+            secondary: "Go to solutions",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "solutions" },
           },
         },
         solutions: {
           meta: {
             title:
-              "Arvectum solutions — procurement, approvals, document review and secure pilots",
+              "Arvectum solutions — procurement, approvals, operations, AI modules and secure setups",
             description:
-              "Arvectum solutions for procurement, approvals, document review and secure pilots.",
+              "Arvectum solutions for procurement, approvals, operational workflows, AI modules and secure setups.",
             ogTitle:
-              "Arvectum solutions — procurement, approvals, document review and secure pilots",
+              "Arvectum solutions — procurement, approvals, operations, AI modules and secure setups",
             ogDescription:
-              "Arvectum solutions for procurement, approvals, document review and secure pilots.",
+              "Arvectum solutions for procurement, approvals, operational workflows, AI modules and secure setups.",
           },
           hero: {
             eyebrow: "Solutions",
             title:
-              "Solutions for procurement, approvals, documents and secure pilots",
-            text: "These are the main directions companies usually start from.",
+              "Solutions for procurement, approvals, operations and AI-enabled checks",
+            text: "This is where the main automation directions are explained in more practical detail.",
           },
           quickLinks: [
             { id: "procurement", label: "Procurement and tenders" },
-            { id: "approvals", label: "Approvals" },
-            { id: "documents", label: "Documents" },
-            { id: "secure", label: "Secure AI pilot" },
+            { id: "approvals", label: "Approvals and document flow" },
+            { id: "operations", label: "Operational workflows" },
+            { id: "ai-modules", label: "AI modules and checks" },
+            { id: "secure", label: "Secure setups" },
           ],
           cards: [
             {
               id: "procurement",
-              label: "Primary focus",
+              label: "Flagship scenario",
               title: "Procurement and tenders",
               audience:
                 "For procurement departments, tender teams and suppliers.",
-              pain: "We automate RFQ, quotes, risk review, bid-package checks and control of key stages.",
+              pain: "We automate the procurement route from the first request to execution control so documents, statuses and deal economics do not get lost between channels.",
               modules: [
                 "RFQ and supplier questions",
                 "Quote comparison and deal economics",
-                "Risks, completeness and bid status",
+                "Contract and commercial risks",
+                "Document package",
+                "Statuses and decision log",
+                "Execution control",
               ],
               firstResult:
                 "A mapped process and the first working scenario on a live workflow.",
@@ -857,50 +935,73 @@ window.SITE_CONFIG = {
             },
             {
               id: "approvals",
-              label: "Workflow visibility",
-              title: "Approvals and statuses",
+              label: "Documents and ownership",
+              title: "Approvals and document flow",
               audience:
-                "For internal teams and managers who need clear visibility into process flow.",
-              pain: "We gather stages, owners and stalled steps in one place instead of tracking them manually.",
+                "For teams that need cleaner document movement and clearer ownership.",
+              pain: "We bring approval routes, document versions, owners and comments into one governed process.",
               modules: [
-                "Stages and ownership",
-                "Statuses and stalled steps",
-                "Comments and action log",
+                "Approval routes",
+                "Owners and roles",
+                "Documents and versions",
+                "Comments and decision log",
               ],
               firstResult:
-                "A process where the next step and the bottlenecks are immediately visible.",
+                "A process where the next step, owner and current document version are clear.",
               timing: "MVP in 2-4 weeks",
               cta: "Review an approval workflow",
             },
             {
-              id: "documents",
-              label: "Document review",
-              title: "Documents and checks",
+              id: "operations",
+              label: "Internal routes",
+              title: "Operational workflows",
               audience:
-                "For teams that need faster completeness checks, version control and risk notes.",
-              pain: "We structure document review so comments, requirements and changes are no longer spread across separate files.",
+                "For companies with recurring internal routes and too many manual status updates.",
+              pain: "We structure internal workflows where deadlines, SLA signals and execution checkpoints matter.",
               modules: [
-                "Completeness and requirements",
-                "Risks and deviations",
-                "Version history and comments",
+                "Recurring internal routes",
+                "Statuses and SLA signals",
+                "Stalled-step control",
+                "Reporting and execution control",
               ],
               firstResult:
-                "A clear review scenario with one log and final remarks in one place.",
+                "A route where bottlenecks and the next actions are visible without manual coordination.",
               timing: "MVP in 2-4 weeks",
-              cta: "Discuss document review",
+              cta: "Describe an operational workflow",
+            },
+            {
+              id: "ai-modules",
+              label: "Checks and analysis",
+              title: "AI modules and checks",
+              audience:
+                "For teams that need faster document analysis and clearer comparison of options.",
+              pain: "We add AI modules where they really speed up review, comparison and memo preparation without taking control away from the team.",
+              modules: [
+                "Document analysis",
+                "Option comparison",
+                "Risk extraction",
+                "Memo preparation",
+                "Human-facing guidance",
+                "Quality control",
+              ],
+              firstResult:
+                "A working module that helps people review data faster while final decisions stay human.",
+              timing: "MVP in 2-4 weeks",
+              cta: "Discuss the first scenario",
             },
             {
               id: "secure",
               label: "Architecture and security",
-              title: "Secure AI pilots",
+              title: "Secure setups",
               audience:
                 "For companies where access control, audit and data boundaries matter.",
-              pain: "We design a safe pilot where documents, logs and access rights remain under control.",
+              pain: "We design local or hybrid architectures when sensitive data cannot be pushed into uncontrolled environments.",
               modules: [
-                "Data and access requirements",
-                "Local or hybrid contour",
-                "Logs and action control",
-                "Model-usage boundaries",
+                "Roles and access control",
+                "Action audit",
+                "Local or hybrid architecture",
+                "Data constraints",
+                "Security and model-use boundaries",
               ],
               firstResult:
                 "An architecture scheme and a plan for the first pilot.",
@@ -909,11 +1010,12 @@ window.SITE_CONFIG = {
             },
           ],
           cta: {
-            title:
-              "If you need a more concrete example, we can show a similar scenario",
-            text: "A separate page collects short demo scenarios that can be reviewed on your process.",
-            primary: "Get an assessment",
-            secondary: "View scenarios",
+            title: "Need a first scenario to launch?",
+            text: "Describe the task and we will suggest which process should move first and how to frame the first MVP.",
+            primary: "Discuss the first scenario",
+            secondary: "How we launch",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "approach" },
           },
         },
         cases: {
@@ -1016,17 +1118,22 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "How We Launch",
-            title: "How we launch a project: diagnostics, MVP and pilot",
-            text: "We start with one workflow, build the first working scenario and then validate it in a pilot.",
+            title: "How we launch workflow automation",
+            text: "The Arvectum approach is universal: we diagnose the workflow, build the first working scenario, validate it in practice and only then scale it up.",
           },
           timeline: {
             title: "How the work moves",
-            text: "The work moves in short stages so the result can be checked quickly and the scope does not grow too early.",
-            items: ["Diagnostics", "Process map", "MVP", "Pilot"],
+            text: "The route is short enough to fit procurement, approvals, document review and internal operational workflows.",
+            items: [
+              "Workflow diagnostics",
+              "Map of roles, data and decisions",
+              "First scenario and MVP",
+              "Pilot, metrics and scale-up",
+            ],
           },
           formats: {
             title: "Work formats",
-            text: "The right entry format depends on how clear the workflow already is and what needs to be tested first.",
+            text: "The right format depends on workflow maturity and on how quickly the first testable result is needed.",
             note: "Pricing depends on the workflow, data, integrations and deployment requirements. An initial review is enough for a first estimate.",
             items: [
               {
@@ -1039,10 +1146,10 @@ window.SITE_CONFIG = {
                 timing: "1-2 weeks",
               },
               {
-                title: "MVP of one route",
+                title: "MVP of one scenario",
                 audienceLabel: "For whom",
                 audience:
-                  "When there is already a specific procurement or operations route to improve.",
+                  "When it is already clear which workflow should be automated first.",
                 resultLabel: "Result",
                 result:
                   "A working prototype with roles, statuses, documents and a decision log.",
@@ -1059,6 +1166,17 @@ window.SITE_CONFIG = {
                 timingLabel: "Timing",
                 timing: "4-8 weeks",
               },
+            ],
+          },
+          startingPoints: {
+            title: "Where you can start",
+            text: "The usual entry point is a workflow with too many manual statuses, documents and checks.",
+            items: [
+              "A procurement or tender route",
+              "Document approvals",
+              "Recurring completeness checks",
+              "Execution control",
+              "An internal route with too many manual status updates",
             ],
           },
           faq: {
@@ -1083,10 +1201,12 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title: "A short review is enough to define the next step",
-            text: "After that it becomes clear what should move into work first and how success should be checked.",
-            primary: "Get an assessment",
-            secondary: "Open contact",
+            title: "A short diagnostic is enough to begin",
+            text: "That is usually enough to choose the first scenario, frame the MVP and define the pilot boundaries.",
+            primary: "Start with diagnostics",
+            secondary: "Discuss an MVP for one process",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "contact" },
           },
         },
         contact: {
