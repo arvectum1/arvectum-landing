@@ -298,6 +298,23 @@
         currentLanguage === "ru"
           ? "AI-проверка документов"
           : "AI document checks",
+      materials: currentLanguage === "ru" ? "Материалы" : "Materials",
+      materialsHowToChooseFirstProcess:
+        currentLanguage === "ru"
+          ? "Как выбрать первый бизнес-процесс для автоматизации"
+          : "How to choose the first business process for automation",
+      materialsAiAutomationSimple:
+        currentLanguage === "ru"
+          ? "AI-автоматизация бизнес-процессов простыми словами"
+          : "AI automation for business processes in simple terms",
+      materialsChatbotVsProcessAutomation:
+        currentLanguage === "ru"
+          ? "Почему чат-бот — это не автоматизация бизнес-процесса"
+          : "Why a chatbot is not business process automation",
+      materialsMvpAutomation:
+        currentLanguage === "ru"
+          ? "MVP автоматизации: что можно проверить за 2–4 недели"
+          : "Automation MVP: what you can validate in 2–4 weeks",
       contact: currentLanguage === "ru" ? "Контакты" : "Contact",
       cases: currentLanguage === "ru" ? "Сценарии" : "Scenarios",
       privacy:
@@ -330,12 +347,22 @@
       "operationsAutomation",
       "aiDocumentChecks",
     ]);
+    const materialPages = new Set([
+      "materialsHowToChooseFirstProcess",
+      "materialsAiAutomationSimple",
+      "materialsChatbotVsProcessAutomation",
+      "materialsMvpAutomation",
+    ]);
     breadcrumbs.innerHTML =
       currentPage === "home"
         ? `<span aria-current="page">${escapeHtml(currentLabel)}</span>`
-        : detailPages.has(currentPage)
-          ? `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><a href="${buildUrl("solutions")}">${escapeHtml(labels.solutions)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`
-          : `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`;
+        : currentPage === "materials"
+          ? `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`
+          : materialPages.has(currentPage)
+            ? `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><a href="${buildUrl("materials")}">${escapeHtml(labels.materials)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`
+            : detailPages.has(currentPage)
+              ? `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><a href="${buildUrl("solutions")}">${escapeHtml(labels.solutions)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`
+              : `<a href="${buildUrl("home")}">${escapeHtml(labels.home)}</a><span class="breadcrumbs__sep">/</span><span aria-current="page">${escapeHtml(currentLabel)}</span>`;
   };
 
   const renderFooter = () => {
@@ -351,6 +378,12 @@
       .join("");
     const contactItems = [];
     let telegramLink = "";
+    const resourceLinks = (footer.resourceLinks || [])
+      .map(
+        (item) =>
+          `<a href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`,
+      )
+      .join("");
     if (footer.companyName) {
       contactItems.push(`<p>${escapeHtml(footer.companyName)}</p>`);
     }
@@ -393,6 +426,11 @@
           <div class="footer-contact-stack">${contactItems.join("")}</div>
           ${telegramLink}
         </div>
+        ${
+          resourceLinks
+            ? `<div class="footer-resource-links">${resourceLinks}</div>`
+            : ""
+        }
       </div>
       <details class="footer-legal">
         <summary>${escapeHtml(footer.legalLinksTitle)}</summary>
@@ -696,6 +734,11 @@
             )
             .join("")}
         </div>
+        ${
+          page.resources
+            ? `<p class="section-note section-note--link"><a class="text-link" href="${buildConfigLink(page.resources.link, "materials")}">${escapeHtml(page.resources.cta)}</a><span>${escapeHtml(page.resources.text)}</span></p>`
+            : ""
+        }
       </div>
     </section>
 

@@ -7,6 +7,13 @@ window.SITE_CONFIG = {
     documentWorkflow: "solutions/document-workflow.html",
     operationsAutomation: "solutions/operations.html",
     aiDocumentChecks: "solutions/ai-document-checks.html",
+    materials: "materials.html",
+    materialsHowToChooseFirstProcess:
+      "materials/how-to-choose-first-process.html",
+    materialsAiAutomationSimple: "materials/ai-automation-simple.html",
+    materialsChatbotVsProcessAutomation:
+      "materials/chatbot-vs-process-automation.html",
+    materialsMvpAutomation: "materials/mvp-automation-2-4-weeks.html",
     cases: "cases.html",
     approach: "approach.html",
     contact: "contact.html",
@@ -35,6 +42,7 @@ window.SITE_CONFIG = {
           { slug: "home", label: "Главная" },
           { slug: "solutions", label: "Решения" },
           { slug: "approach", label: "Как запускаем" },
+          { slug: "materials", label: "Материалы" },
           { slug: "contact", label: "Контакты" },
         ],
         footer: {
@@ -49,6 +57,7 @@ window.SITE_CONFIG = {
           telegramLabel: "Telegram Arvectum",
           telegramHandle: "t.me/arvectum",
           note: "",
+          resourceLinks: [{ slug: "materials", label: "Материалы" }],
           legalLinksTitle: "Юридическая информация",
           legalLinks: [
             {
@@ -259,6 +268,64 @@ window.SITE_CONFIG = {
             secondary: "Перейти в контакты",
             primaryLink: { slug: "contact" },
             secondaryLink: { slug: "contact" },
+          },
+        },
+        materials: {
+          meta: {
+            title: "Материалы Arvectum — AI-автоматизация бизнес-процессов",
+            description:
+              "Практические материалы Arvectum об AI-автоматизации бизнес-процессов, закупок, согласований, документооборота, проверок документов и MVP.",
+            ogTitle: "Материалы Arvectum — AI-автоматизация бизнес-процессов",
+            ogDescription:
+              "Практические материалы Arvectum об AI-автоматизации бизнес-процессов, закупок, согласований, документооборота, проверок документов и MVP.",
+          },
+        },
+        materialsHowToChooseFirstProcess: {
+          meta: {
+            title:
+              "Как выбрать первый бизнес-процесс для автоматизации — Arvectum",
+            description:
+              "Как понять, какой процесс автоматизировать первым: ручная координация, документы, статусы, риски, роли и быстрый MVP.",
+            ogTitle:
+              "Как выбрать первый бизнес-процесс для автоматизации — Arvectum",
+            ogDescription:
+              "Как понять, какой процесс автоматизировать первым: ручная координация, документы, статусы, риски, роли и быстрый MVP.",
+          },
+        },
+        materialsAiAutomationSimple: {
+          meta: {
+            title:
+              "AI-автоматизация бизнес-процессов простыми словами — Arvectum",
+            description:
+              "Что такое AI-автоматизация бизнес-процессов, чем она отличается от чат-бота и как помогает с документами, статусами, проверками и решениями.",
+            ogTitle:
+              "AI-автоматизация бизнес-процессов простыми словами — Arvectum",
+            ogDescription:
+              "Что такое AI-автоматизация бизнес-процессов, чем она отличается от чат-бота и как помогает с документами, статусами, проверками и решениями.",
+          },
+        },
+        materialsChatbotVsProcessAutomation: {
+          meta: {
+            title:
+              "Почему чат-бот — это не автоматизация бизнес-процесса — Arvectum",
+            description:
+              "Чем отличается чат-бот от рабочей системы: роли, статусы, документы, журнал решений, проверки и контроль исполнения.",
+            ogTitle:
+              "Почему чат-бот — это не автоматизация бизнес-процесса — Arvectum",
+            ogDescription:
+              "Чем отличается чат-бот от рабочей системы: роли, статусы, документы, журнал решений, проверки и контроль исполнения.",
+          },
+        },
+        materialsMvpAutomation: {
+          meta: {
+            title:
+              "MVP автоматизации: что можно проверить за 2–4 недели — Arvectum",
+            description:
+              "Как запустить MVP автоматизации одного процесса за 2–4 недели: диагностика, маршрут, роли, документы, статусы, AI-модули и метрики.",
+            ogTitle:
+              "MVP автоматизации: что можно проверить за 2–4 недели — Arvectum",
+            ogDescription:
+              "Как запустить MVP автоматизации одного процесса за 2–4 недели: диагностика, маршрут, роли, документы, статусы, AI-модули и метрики.",
           },
         },
         solutions: {
@@ -926,6 +993,11 @@ window.SITE_CONFIG = {
               },
             ],
           },
+          resources: {
+            cta: "Материалы по теме",
+            text: "Короткие разборы о выборе первого процесса и запуске MVP.",
+            link: { slug: "materials" },
+          },
           faq: {
             title: "Что обычно важно обсудить до старта",
             items: [
@@ -1004,6 +1076,7 @@ window.SITE_CONFIG = {
           { slug: "home", label: "Home" },
           { slug: "solutions", label: "Solutions" },
           { slug: "approach", label: "How We Launch" },
+          { slug: "materials", label: "Materials" },
           { slug: "contact", label: "Contact" },
         ],
         footer: {
@@ -1018,6 +1091,7 @@ window.SITE_CONFIG = {
           telegramLabel: "Arvectum Telegram",
           telegramHandle: "t.me/arvectum",
           note: "",
+          resourceLinks: [{ slug: "materials", label: "Materials" }],
           legalLinksTitle: "Legal",
           legalLinks: [
             { slug: "privacy", label: "Privacy policy" },
@@ -1223,6 +1297,65 @@ window.SITE_CONFIG = {
             secondary: "Go to contact",
             primaryLink: { slug: "contact" },
             secondaryLink: { slug: "contact" },
+          },
+        },
+        materials: {
+          meta: {
+            title: "Arvectum materials — AI automation for business processes",
+            description:
+              "Practical Arvectum materials on AI automation for business processes, procurement, approvals, document workflows, document checks and MVP launches.",
+            ogTitle:
+              "Arvectum materials — AI automation for business processes",
+            ogDescription:
+              "Practical Arvectum materials on AI automation for business processes, procurement, approvals, document workflows, document checks and MVP launches.",
+          },
+        },
+        materialsHowToChooseFirstProcess: {
+          meta: {
+            title:
+              "How to choose the first business process for automation — Arvectum",
+            description:
+              "How to identify the first process to automate: manual coordination, documents, statuses, risks, roles and a fast MVP.",
+            ogTitle:
+              "How to choose the first business process for automation — Arvectum",
+            ogDescription:
+              "How to identify the first process to automate: manual coordination, documents, statuses, risks, roles and a fast MVP.",
+          },
+        },
+        materialsAiAutomationSimple: {
+          meta: {
+            title:
+              "AI automation for business processes in simple terms — Arvectum",
+            description:
+              "What AI automation for business processes means, how it differs from a chatbot and where it helps with documents, statuses, checks and decisions.",
+            ogTitle:
+              "AI automation for business processes in simple terms — Arvectum",
+            ogDescription:
+              "What AI automation for business processes means, how it differs from a chatbot and where it helps with documents, statuses, checks and decisions.",
+          },
+        },
+        materialsChatbotVsProcessAutomation: {
+          meta: {
+            title:
+              "Why a chatbot is not business process automation — Arvectum",
+            description:
+              "How a chatbot differs from a working system with roles, statuses, documents, decision logs, checks and execution control.",
+            ogTitle:
+              "Why a chatbot is not business process automation — Arvectum",
+            ogDescription:
+              "How a chatbot differs from a working system with roles, statuses, documents, decision logs, checks and execution control.",
+          },
+        },
+        materialsMvpAutomation: {
+          meta: {
+            title:
+              "Automation MVP: what you can validate in 2–4 weeks — Arvectum",
+            description:
+              "How to launch an MVP for one workflow in 2–4 weeks: diagnostics, route, roles, documents, statuses, AI modules and metrics.",
+            ogTitle:
+              "Automation MVP: what you can validate in 2–4 weeks — Arvectum",
+            ogDescription:
+              "How to launch an MVP for one workflow in 2–4 weeks: diagnostics, route, roles, documents, statuses, AI modules and metrics.",
           },
         },
         solutions: {
@@ -1974,6 +2107,11 @@ window.SITE_CONFIG = {
                 link: { slug: "aiDocumentChecks" },
               },
             ],
+          },
+          resources: {
+            cta: "Related materials",
+            text: "Short notes on choosing the first workflow and framing an MVP.",
+            link: { slug: "materials" },
           },
           faq: {
             title: "What is usually worth clarifying before kickoff",

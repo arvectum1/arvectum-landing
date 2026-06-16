@@ -46,9 +46,21 @@ const publicIndexablePages = [
   "solutions/ai-document-checks.html",
   "approach.html",
   "contact.html",
+  "materials.html",
+  "materials/how-to-choose-first-process.html",
+  "materials/ai-automation-simple.html",
+  "materials/chatbot-vs-process-automation.html",
+  "materials/mvp-automation-2-4-weeks.html",
   "privacy.html",
   "personal-data-consent.html",
   "cookies.html",
+];
+
+const materialArticlePages = [
+  "materials/how-to-choose-first-process.html",
+  "materials/ai-automation-simple.html",
+  "materials/chatbot-vs-process-automation.html",
+  "materials/mvp-automation-2-4-weeks.html",
 ];
 
 const hiddenPages = [
@@ -285,6 +297,19 @@ for (const fileName of htmlFiles) {
     }
   }
 
+  if (fileName === "materials.html") {
+    for (const link of materialArticlePages) {
+      record(
+        html.includes(link),
+        `materials.html: missing article link -> ${link}`,
+      );
+    }
+    record(
+      /href="(?:\/)?contact\.html"/i.test(html),
+      "materials.html: missing contact CTA",
+    );
+  }
+
   if (fileName === "approach.html") {
     for (const link of [
       "solutions/procurement.html",
@@ -297,6 +322,36 @@ for (const fileName of htmlFiles) {
         `approach.html: missing internal direction link -> ${link}`,
       );
     }
+  }
+
+  if (materialArticlePages.includes(fileName)) {
+    record(
+      /aria-label="Хлебные крошки"/i.test(html) && /materials\.html/.test(html),
+      `${fileName}: missing visible breadcrumbs`,
+    );
+    record(
+      getJsonLd(html, "articleLd") &&
+        getJsonLd(html, "articleLd") !== "INVALID",
+      `${fileName}: missing or invalid Article JSON-LD`,
+    );
+    record(
+      (html.match(/<time\b[^>]+datetime=/g) || []).length >= 2,
+      `${fileName}: must include publication and modified dates`,
+    );
+    record(
+      /href="(?:\/)?contact\.html"/i.test(html),
+      `${fileName}: missing contact CTA`,
+    );
+    record(
+      /href="(?:\/)?materials\.html"/i.test(html),
+      `${fileName}: missing link back to materials.html`,
+    );
+    record(
+      /href="(?:\/)?(?:solutions\.html|approach\.html|solutions\/[^"]+\.html)"/i.test(
+        html,
+      ),
+      `${fileName}: missing commercial page link`,
+    );
   }
 
   if (fileName.startsWith("solutions/")) {
