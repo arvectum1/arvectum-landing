@@ -307,6 +307,7 @@
       )
       .join("");
     const contactItems = [];
+    let telegramLink = "";
     if (footer.companyName) {
       contactItems.push(`<p>${escapeHtml(footer.companyName)}</p>`);
     }
@@ -331,7 +332,7 @@
       );
     }
     if (footer.telegramUrl) {
-      contactItems.push(`
+      telegramLink = `
         <a
           class="telegram-link"
           href="${escapeHtml(footer.telegramUrl)}"
@@ -339,18 +340,16 @@
           rel="noreferrer"
           aria-label="${escapeHtml(footer.telegramLabel || footer.telegramHandle || "Telegram")}"
         ><span class="telegram-link__icon">${TELEGRAM_ICON}</span></a>
-      `);
-    }
-    if (footer.note) {
-      contactItems.push(
-        `<p class="footer-note">${escapeHtml(footer.note)}</p>`,
-      );
+      `;
     }
 
     footerGrid.innerHTML = `
       <div class="footer-block">
         <span>${escapeHtml(footer.contactsTitle)}</span>
-        <div class="footer-contact-stack">${contactItems.join("")}</div>
+        <div class="footer-contact-row">
+          <div class="footer-contact-stack">${contactItems.join("")}</div>
+          ${telegramLink}
+        </div>
       </div>
       <details class="footer-legal">
         <summary>${escapeHtml(footer.legalLinksTitle)}</summary>
