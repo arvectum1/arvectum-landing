@@ -3,11 +3,74 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Arvectum Health Check</title>
+    <title>Arvectum health</title>
+    <meta
+      name="description"
+      content="Static health-check page for Arvectum deployment verification."
+    />
+    <link rel="canonical" href="https://arvectum.com/health.html" />
+    <meta name="robots" content="noindex,nofollow" />
+    <style>
+      body {
+        margin: 0;
+        font:
+          16px/1.5 Arial,
+          sans-serif;
+        background: #f5f7fb;
+        color: #122033;
+      }
+
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .panel {
+        background: #fff;
+        border: 1px solid #d8e2ef;
+        border-radius: 16px;
+        padding: 24px;
+      }
+
+      code {
+        font-family: Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
   </head>
   <body>
-    <p>Arvectum site is online.</p>
-    <p>version: build-placeholder</p>
-    <p>timestamp: 2026-06-16T00:00:00Z</p>
+    <main>
+      <div class="panel">
+        <p><strong>Arvectum site is online.</strong></p>
+        <p>This page works as a static deployment check.</p>
+        <p id="healthBuildInfo">Loading build info...</p>
+      </div>
+    </main>
+    <script>
+      (async function () {
+        const target = document.getElementById("healthBuildInfo");
+        try {
+          const response = await fetch("./build-info.json", {
+            cache: "no-store",
+          });
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+          const info = await response.json();
+          target.innerHTML =
+            "version: <code>" +
+            String(info.version || "unknown") +
+            "</code><br />build: <code>" +
+            String(info.build || "unknown") +
+            "</code><br />updatedAt: <code>" +
+            String(info.updatedAt || "unknown") +
+            "</code>";
+        } catch (error) {
+          target.textContent =
+            "Build info is unavailable. Check build-info.json deployment. " +
+            (error && error.message ? error.message : "");
+        }
+      })();
+    </script>
   </body>
 </html>

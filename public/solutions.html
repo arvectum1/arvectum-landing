@@ -9,7 +9,7 @@
     <meta
       id="metaDescription"
       name="description"
-      content="Сценарии автоматизации: закупочный контур, RFQ, анализ ТКП, контроль рисков, маркетинговые проверки и внутренние AI-ассистенты."
+      content="Сценарии автоматизации для закупок, RFQ, анализа ТКП, контроля рисков, согласований и закрытых AI-пилотов."
     />
     <meta
       id="metaOgTitle"
@@ -19,7 +19,7 @@
     <meta
       id="metaOgDescription"
       property="og:description"
-      content="Сценарии автоматизации: закупочный контур, RFQ, анализ ТКП, контроль рисков, маркетинговые проверки и внутренние AI-ассистенты."
+      content="Сценарии автоматизации для закупок, RFQ, анализа ТКП, контроля рисков, согласований и закрытых AI-пилотов."
     />
     <meta
       id="metaOgUrl"
@@ -40,14 +40,43 @@
       href="https://arvectum.com/solutions.html"
     />
     <link
+      id="hrefLangRu"
+      rel="alternate"
+      hreflang="ru"
+      href="https://arvectum.com/solutions.html"
+    />
+    <link
+      id="hrefLangEn"
+      rel="alternate"
+      hreflang="en"
+      href="https://arvectum.com/solutions.html?lang=en"
+    />
+    <link
+      id="hrefLangDefault"
+      rel="alternate"
+      hreflang="x-default"
+      href="https://arvectum.com/solutions.html"
+    />
+    <link
       rel="icon"
       type="image/png"
       href="assets/brand/arvectum-logo-primary.png"
     />
+    <script id="organizationLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Arvectum LLC",
+        "url": "https://arvectum.com",
+        "logo": "https://arvectum.com/assets/brand/arvectum-logo-primary.png",
+        "email": "info@arvectum.com",
+        "sameAs": ["https://t.me/arvectum"]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=PT+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260616a" />
@@ -73,7 +102,13 @@
               class="desktop-nav"
               id="desktopNav"
               aria-label="Основная навигация"
-            ></nav>
+            >
+              <a class="nav-link" href="index.html">Главная</a>
+              <a class="nav-link is-active" href="solutions.html">Решения</a>
+              <a class="nav-link" href="cases.html">Сценарии</a>
+              <a class="nav-link" href="approach.html">Подход</a>
+              <a class="nav-link" href="contact.html">Контакты</a>
+            </nav>
             <div class="topbar-tools">
               <div
                 class="lang-switch desktop-lang-switch"
@@ -115,11 +150,13 @@
               <span id="menuCloseText">Закрыть меню</span>
             </button>
           </div>
-          <nav
-            class="menu-nav"
-            id="menuNav"
-            aria-label="Навигация по разделам"
-          ></nav>
+          <nav class="menu-nav" id="menuNav" aria-label="Навигация по разделам">
+            <a class="nav-link" href="index.html">Главная</a>
+            <a class="nav-link is-active" href="solutions.html">Решения</a>
+            <a class="nav-link" href="cases.html">Сценарии</a>
+            <a class="nav-link" href="approach.html">Подход</a>
+            <a class="nav-link" href="contact.html">Контакты</a>
+          </nav>
           <div class="menu-drawer__extras">
             <div
               class="lang-switch menu-lang-switch"
@@ -151,6 +188,13 @@
         </div>
       </div>
     </header>
+
+    <noscript>
+      <div class="noscript-note">
+        Сайт работает без JavaScript в базовом режиме. Для переключения языка и
+        расширенной формы включите JavaScript.
+      </div>
+    </noscript>
 
     <main id="pageRoot">
       <section class="page-hero">
@@ -265,7 +309,47 @@
 
     <footer class="site-footer">
       <div class="container">
-        <div class="footer-grid glass"></div>
+        <div class="footer-grid glass">
+          <div class="footer-block">
+            <span>Разделы</span>
+            <div class="footer-links">
+              <a href="index.html">Главная</a>
+              <a href="solutions.html">Решения</a>
+              <a href="cases.html">Сценарии</a>
+              <a href="approach.html">Подход</a>
+              <a href="contact.html">Контакты</a>
+            </div>
+          </div>
+          <div class="footer-block">
+            <span>Юридическая информация</span>
+            <div class="footer-links">
+              <a href="privacy.html">Политика конфиденциальности</a>
+              <a href="personal-data-consent.html"
+                >Согласие на обработку персональных данных</a
+              >
+              <a href="cookies.html">Политика cookies</a>
+            </div>
+          </div>
+          <div class="footer-block footer-block--contacts">
+            <span>Контакты</span>
+            <div class="footer-contact-stack">
+              <p>ООО "Арвектум"</p>
+              <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+              <a
+                class="telegram-link"
+                href="https://t.me/arvectum"
+                target="_blank"
+                rel="noreferrer"
+                ><span class="telegram-link__icon" aria-hidden="true">↗</span
+                ><span>t.me/arvectum</span></a
+              >
+              <p class="footer-note">
+                Реквизиты и договорные данные предоставляются по запросу перед
+                началом работ.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
 

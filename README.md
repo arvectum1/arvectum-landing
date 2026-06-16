@@ -1,6 +1,6 @@
 # Arvectum Landing
 
-Корпоративный лендинг Arvectum: AI-системы, автоматизация и цифровые продукты для бизнеса.
+Статический B2B-сайт Arvectum про автоматизацию закупок, тендеров и операционных процессов. Проект рассчитан на обычный PHP-хостинг: HTML/CSS/JS лежат в `public/`, а backend-обработчики формы и cookies находятся в `public/api/`.
 
 ## Локальный запуск
 
@@ -9,93 +9,122 @@ npm install
 npm run dev
 ```
 
-Проверка фронтенда и PHP-обработчиков:
+Локальный адрес по умолчанию:
+
+- `http://localhost:8788`
+
+## Проверки
+
+Запуск линта:
 
 ```bash
 npm run lint
 ```
 
-Локальный адрес:
+Комплексная локальная проверка:
 
-- `http://localhost:8788`
+```bash
+npm run check
+```
+
+Она включает:
+
+- форматирование HTML/CSS/JS;
+- синтаксис `public/app.js` и `public/site-config.js`;
+- проверку PHP-обработчиков;
+- статическую проверку `title`, `description`, `canonical`, sitemap, локальных ссылок и ассетов.
+
+Проверка production:
+
+```bash
+npm run check:production
+```
+
+Скрипт проверяет:
+
+- `https://arvectum.com/`
+- `https://www.arvectum.com/`
+- `https://arvectum.com/health.html`
+- `https://arvectum.com/api/health.php`
+- `https://arvectum.com/robots.txt`
+- `https://arvectum.com/sitemap.xml`
 
 ## Структура
 
-- `public/index.html` — компактная главная страница-обзор
-- `public/solutions.html` — подробная страница по решениям
-- `public/cases.html` — отдельная страница с кейсами
-- `public/approach.html` — страница про подход, этапы и стек
-- `public/contact.html` — форма заявки, контакты и реквизиты
-- `public/styles.css` — общие стили для всех страниц
-- `public/site-config.js` — двуязычный контент и маршруты
-- `public/app.js` — общая логика рендера, меню, переключателя языка и формы
-- `public/api/submit.php` — отправка заявки в Telegram и на email
+- `public/index.html` — главная страница с no-JS fallback.
+- `public/solutions.html` — решения с закупочным фокусом.
+- `public/cases.html` — сценарии и демо-маршруты.
+- `public/approach.html` — этапы работы, форматы и FAQ.
+- `public/contact.html` — форма заявки и прямые контакты.
+- `public/privacy.html` — политика конфиденциальности.
+- `public/personal-data-consent.html` — согласие на обработку персональных данных.
+- `public/cookies.html` — политика cookies.
+- `public/thank-you.html` — страница успешной отправки формы без JS.
+- `public/health.html` — статический health-check.
+- `public/build-info.json` — версия и дата сборки для health-check.
+- `public/app.js` — рендер страниц, навигация, форма, cookie-consent, RU/EN.
+- `public/site-config.js` — двуязычный контент.
+- `public/api/submit.php` — отправка заявок в Telegram и email.
+- `public/api/health.php` — проверка PHP/backend.
+- `public/api/cookie-consent.php` — серверный лог согласий по cookies.
+- `scripts/check-static.mjs` — локальная статическая проверка сайта.
+- `scripts/check-production.mjs` — внешняя проверка production URL.
 
-## Каналы заявок
+## Настройка `.env`
 
-Создайте `public/.env` по образцу `public/.env.example` и заполните:
+Создайте `public/.env` по образцу `public/.env.example`.
+
+Основные переменные:
 
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+- `TELEGRAM_THREAD_ID` — опционально
 - `FORM_TO_EMAIL`
-- `TELEGRAM_THREAD_ID` — опционально, если используется topic в супергруппе
 
-Форма поддерживает два канала доставки одновременно:
+В репозиторий нельзя коммитить реальные секреты.
+
+## Как работает форма
+
+Форма заявки отправляет данные сразу в два канала, если они настроены:
 
 - Telegram-бот
-- email через `mail()` на хостинге
+- email через `mail()`
 
-Если один канал недоступен, заявка все равно считается успешно доставленной, если сработал второй.
+Правило успеха:
+
+- если сработал хотя бы один канал, заявка считается доставленной;
+- при JS-отправке frontend получает JSON и показывает статус прямо в форме;
+- без JavaScript обычный POST уходит в `public/api/submit.php`, а после успеха пользователь попадает на `thank-you.html`.
+
+Если отправка не удалась:
+
+- JS-пользователь увидит понятное сообщение с прямыми контактами;
+- пользователь без JS получит HTML-страницу ошибки, а не сырой JSON.
 
 ## Cookies и consent
 
-На сайте реализован реальный consent-механизм:
+На сайте есть:
 
-- баннер согласия
-- модальное окно настроек cookies
-- first-party cookies для обязательных данных и аналитики
-- хранение выбора пользователя в cookie и `localStorage`
-- серверный лог согласий через `public/api/cookie-consent.php`
+- баннер cookies;
+- модальное окно настроек;
+- разделение обязательных и аналитических cookies;
+- серверный лог согласий в `public/api/storage/`.
 
-При согласии на аналитику сайт сохраняет:
+При выборе `Только обязательные` аналитические cookies не создаются.
 
-- `arvectum_cookie_consent`
-- `arvectum_consent_status`
-- `arvectum_consent_updated_at`
-- `arvectum_visitor_id`
-- `arvectum_session_id`
-- `arvectum_first_visit`
-- `arvectum_last_visit`
-- `arvectum_landing_path`
-- `arvectum_referrer`
-- `arvectum_utm_*`
+## Деплой на PHP-хостинг
 
-Серверный лог согласий записывается в:
+Загрузите содержимое папки `public/` в web root хостинга.
 
-- `public/api/storage/cookie-consents.jsonl`
+После загрузки проверьте:
 
-Файл создается автоматически при первом успешном POST на `/api/cookie-consent.php`.
-Папка `public/api/storage/` уже добавлена в проект. Для Apache-хостинга в ней лежит `.htaccess`, закрывающий прямой веб-доступ к журналу согласий. На другом веб-сервере стоит отдельно запретить публичную выдачу этой директории и оставить для нее права на запись со стороны PHP.
+1. `index.html` лежит в корне сайта.
+2. `https://arvectum.com/health.html` открывается.
+3. `https://arvectum.com/api/health.php` возвращает JSON.
+4. `https://arvectum.com/robots.txt` и `https://arvectum.com/sitemap.xml` доступны.
+5. Форма заявки доходит хотя бы в один канал.
 
-## Контакты на сайте
-
-- `info@arvectum.com`
-- `https://t.me/arvectum`
-
-## Реквизиты в футере
-
-В футере выведен отдельный блок реквизитов компании. Сейчас заполнены:
-
-- `ООО "Арвектум"`
-- `info@arvectum.com`
-
-Поля `ИНН / КПП` и `Телефон` оставлены как плейсхолдеры до появления финальных данных.
-
-## Деплой на обычный PHP-хостинг
-
-В корень хостинга нужно загрузить содержимое папки `public/`.
-
-Для удобства можно собрать архив:
+Если хотите собрать архив для хостинга:
 
 ```bash
 cd public

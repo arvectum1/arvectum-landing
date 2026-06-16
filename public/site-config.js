@@ -31,8 +31,16 @@ window.SITE_CONFIG = {
         ],
         footer: {
           companyName: 'ООО "Арвектум"',
-          shortText:
-            "Arvectum автоматизирует закупочные, тендерные и операционные процессы с помощью AI-агентов и управляемых цифровых контуров.",
+          contactsTitle: "Контакты",
+          inn: "",
+          ogrn: "",
+          address: "",
+          phone: "",
+          email: "info@arvectum.com",
+          telegramUrl: "https://t.me/arvectum",
+          telegramLabel: "Telegram Arvectum",
+          telegramHandle: "t.me/arvectum",
+          note: "Реквизиты и договорные данные предоставляются по запросу перед началом работ.",
           legalLinksTitle: "Юридическая информация",
           legalLinks: [
             {
@@ -47,10 +55,6 @@ window.SITE_CONFIG = {
               slug: "cookiesPolicy",
               label: "Политика cookies",
             },
-          ],
-          requisites: [
-            { label: "Название", value: 'ООО "Арвектум"' },
-            { label: "Почта", value: "info@arvectum.com", type: "email" },
           ],
         },
         contactBand: {
@@ -168,6 +172,7 @@ window.SITE_CONFIG = {
           audience: "Для кого",
           firstResult: "Первый результат",
           status: "Статус сценария",
+          demo: "Что увидите на демо",
         },
       },
       pages: {
@@ -185,75 +190,105 @@ window.SITE_CONFIG = {
               "AI-автоматизация закупок, тендеров и сложных бизнес-процессов",
             title:
               "Превращаем ручные закупочные и операционные процессы в управляемые AI-контуры",
-            text: "Arvectum проектирует и внедряет закрытые цифровые системы для процессов, где важно не потерять документы, сроки, риски, экономику и историю решений. Начинаем с диагностики, затем собираем MVP или пилот на реальном процессе.",
+            text: "Arvectum строит рабочие системы для процессов, где важно не терять документы, статусы, сроки, риски и экономику сделки.",
             bullets: [
               "Разбор процесса и карта автоматизации за 1-2 недели",
-              "MVP закупочного или операционного контура за 2-4 недели",
-              "Закрытая архитектура: данные, роли, логи и контроль доступа",
-              "AI-агенты не болтают, а помогают проверять документы, риски, ТКП и статусы",
+              "MVP закупочного или операционного маршрута за 2-4 недели",
+              "Закрытая архитектура: роли, доступы и журнал действий",
+              "AI помогает проверять документы, ТКП, риски и статусы",
             ],
             primaryCta: "Получить разбор процесса",
-            secondaryCta: "Посмотреть сценарии",
+            secondaryCta: "Посмотреть решения",
             sideLabel: "Что можно автоматизировать первым",
             sideItems: [
               {
                 title: "Закупки и тендеры",
-                text: "Поиск, анализ закупки, RFQ, сбор ТКП, сравнение предложений, экономика и риски.",
+                text: "RFQ, ТКП, риски, экономика и комплект заявки в одном маршруте.",
               },
               {
                 title: "Согласования и статусы",
-                text: "Роли, этапы, ответственные, журнал решений и контроль зависших шагов.",
+                text: "Понятные этапы, ответственные и контроль зависших шагов.",
               },
               {
                 title: "Документы и проверки",
-                text: "Комплектность, договорные риски, требования, протоколы и история изменений.",
+                text: "Комплектность, требования и история изменений без ручного пересбора.",
               },
             ],
           },
           audiences: {
-            title: "Кому это нужно",
-            text: "Сервис особенно полезен там, где процесс уже влияет на сделку, маржу, сроки или риски, но пока держится на ручной координации.",
+            title: "Где Arvectum полезен",
+            text: "Там, где ручной процесс уже влияет на сроки, маржу и качество решений.",
             items: [
               {
-                title: "Поставщикам, участвующим в тендерах",
-                text: "Когда нужно быстрее собирать комплект заявки, проверять требования и не терять историю решений.",
+                title: "Поставщикам и тендерным командам",
+                text: "Чтобы быстрее собирать заявку и видеть следующий шаг.",
               },
               {
-                title: "Закупочным и тендерным отделам",
-                text: "Когда важно видеть статусы, сравнение предложений, контроль сроков и экономику по маршруту.",
+                title: "Закупочным отделам",
+                text: "Чтобы держать в одном контуре статусы, ТКП и проверку рисков.",
               },
               {
                 title: "Операционным руководителям",
-                text: "Когда ручные проверки и постоянный пересбор контекста начинают тормозить команду.",
+                text: "Чтобы процесс читался без чатов, таблиц и ручных уточнений.",
               },
               {
-                title: "Компаниям с чувствительными документами",
-                text: "Когда нужен закрытый контур с ролями, логами, доступами и контролем выноса данных.",
+                title: "Компаниям с закрытым контуром",
+                text: "Чтобы данные, роли и доступы оставались под контролем.",
               },
             ],
           },
           automation: {
             title: "Что автоматизируем",
-            text: "Берем не абстрактный AI для бизнеса, а конкретные маршруты, где уже важны документы, статусы, риски и экономика.",
+            text: "Под контуром мы понимаем не чат-бота, а рабочую систему: роли, статусы, документы, проверки, логи и понятный следующий шаг.",
             items: [
               "Закупочный маршрут",
               "RFQ и ТКП",
               "Договорные и коммерческие риски",
+              "Согласования и статусы",
               "Контроль исполнения",
-              "Внутренние операционные процессы",
             ],
           },
           process: {
-            title: "Как начинается работа",
+            title: "Как начинается проект",
+            text: "Стартуем с одного процесса и быстро доводим его до пилота.",
             items: [
               "Диагностика процесса",
-              "Карта ролей, данных и решений",
-              "MVP на одном реальном сценарии",
+              "Карта ролей и данных",
+              "MVP на одном сценарии",
               "Пилот и метрики",
+            ],
+          },
+          who: {
+            title: "Кто стоит за Arvectum",
+            text: "Arvectum развивает Никита Арутюнов — разработчик и основатель компании. Фокус проекта — практическая автоматизация закупочных, тендерных и операционных процессов.",
+            items: [
+              {
+                title: "Практический фокус",
+                text: "Закупки, тендеры, документы, риски и статусы без лишней абстракции.",
+              },
+              {
+                title: "Закрытая архитектура",
+                text: "Контроль данных, доступов и логов с учетом требований к безопасности.",
+              },
+              {
+                title: "MVP-подход",
+                text: "Сначала один реальный процесс, потом масштабирование на соседние маршруты.",
+              },
+            ],
+          },
+          firstCall: {
+            title: "Что будет на первом разборе",
+            items: [
+              "Уточним процесс: закупка, тендер, RFQ, ТКП, согласование или операционная проверка.",
+              "Определим, где теряются документы, статусы, сроки и решения.",
+              "Выберем один сценарий для MVP или пилота.",
+              "Зафиксируем ограничения по данным, доступам и безопасности.",
+              "Сформируем первый план: что можно сделать за 1-2 недели и что проверить за 2-4 недели.",
             ],
           },
           safety: {
             title: "Почему это безопаснее, чем просто подключить чат-бота",
+            text: "Система собирается вокруг процесса и ответственности, а не вокруг свободного чата без границ.",
             items: [
               "Роли и доступы",
               "Журнал действий",
@@ -276,9 +311,8 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title:
-              "Если процесс уже упирается в документы, статусы и ручные проверки, можно быстро собрать первый управляемый контур",
-            text: "Первый шаг — короткий разбор процесса и сценария, на котором имеет смысл запускать MVP.",
+            title: "Первый шаг — короткий разбор процесса",
+            text: "После него станет понятно, какой сценарий брать в MVP и как быстро запускать пилот.",
             primary: "Получить разбор процесса",
             secondary: "Открыть решения",
           },
@@ -288,7 +322,7 @@ window.SITE_CONFIG = {
             title:
               "Решения Arvectum — закупки, тендеры, операции и закрытые AI-контуры",
             description:
-              "Сценарии автоматизации: закупочный контур, RFQ, анализ ТКП, контроль рисков, маркетинговые проверки и внутренние AI-ассистенты.",
+              "Сценарии автоматизации для закупок, RFQ, анализа ТКП, контроля рисков, согласований и закрытых AI-пилотов.",
             ogTitle:
               "Решения Arvectum — закупки, тендеры, операции и закрытые AI-контуры",
             ogDescription:
@@ -296,14 +330,12 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "Решения",
-            title:
-              "Сценарии автоматизации для закупок, тендеров и операционных процессов",
-            text: "Основной фокус Arvectum — закупочный и тендерный контур. Остальные направления расширяют ту же архитектурную логику: статусы, документы, проверки, риски и управляемые роли.",
+            title: "Решения для закупок, тендеров и операционных процессов",
+            text: "Основной фокус Arvectum — закупочный контур. Остальные сценарии строятся на той же управляемой архитектуре.",
           },
           quickLinks: [
             { id: "procurement", label: "Закупки и тендеры" },
             { id: "operations", label: "Операции" },
-            { id: "marketing", label: "Маркетинговые проверки" },
             { id: "secure", label: "Закрытый AI-пилот" },
           ],
           cards: [
@@ -312,7 +344,7 @@ window.SITE_CONFIG = {
               label: "Основной фокус",
               title: "Закупки и тендеры",
               audience:
-                "Для закупочных отделов, тендерных групп, категорийных менеджеров, поставщиков и операционных руководителей.",
+                "Для закупочных отделов, тендерных групп и поставщиков.",
               pain: "Ручной маршрут теряет статусы, документы, вопросы поставщикам и историю решений; сравнение ТКП и контроль рисков остаются фрагментированными.",
               modules: [
                 "Поиск или ввод закупки",
@@ -334,8 +366,8 @@ window.SITE_CONFIG = {
               label: "Расширение компетенции",
               title: "Операционные процессы и внутренние проверки",
               audience:
-                "Для бэк-офиса, сервисных функций, согласовательных маршрутов и операционных команд.",
-              pain: "Рутина съедает время сильных людей, а статусы, документы и история решений живут в переписке и таблицах.",
+                "Для операционных команд, бэк-офиса и согласовательных маршрутов.",
+              pain: "Статусы, документы и история решений живут в переписке и таблицах, из-за чего процесс трудно читать и контролировать.",
               modules: [
                 "Роли и ответственные",
                 "Статусы и зависшие шаги",
@@ -348,29 +380,12 @@ window.SITE_CONFIG = {
               cta: "Разобрать операционный процесс",
             },
             {
-              id: "marketing",
-              label: "Дополнительный сценарий",
-              title: "Маркетинговые проверки и контуры согласования материалов",
-              audience:
-                "Для команд, которым важно держать брифы, материалы и рекомендации внутри контролируемой среды.",
-              pain: "Материалы, комментарии и критерии оценки разбросаны, а вынос чувствительного контента во внешние сервисы нежелателен.",
-              modules: [
-                "Контроль бренд-материалов",
-                "Проверка понятности и рисков",
-                "Согласование версий и комментариев",
-              ],
-              firstResult:
-                "Первый внутренний сценарий проверки материалов и управляемой обратной связи.",
-              timing: "Пилот 2-5 недель",
-              cta: "Обсудить сценарий проверки",
-            },
-            {
               id: "secure",
               label: "Архитектурный вход",
               title: "Закрытые AI-пилоты и локальные контуры",
               audience:
-                "Для компаний, которым важны NDA, контроль выноса данных, роли, аудит и юридические ограничения.",
-              pain: "AI нужен, но без понятной архитектуры легко потерять контроль над доступами, логами и происхождением данных.",
+                "Для компаний, которым важны доступы, аудит и контроль выноса данных.",
+              pain: "Если AI внедрять без понятной архитектуры, быстро теряется контроль над ролями, логами и границами данных.",
               modules: [
                 "Требования к данным и доступам",
                 "Локальный или гибридный контур",
@@ -384,9 +399,8 @@ window.SITE_CONFIG = {
             },
           ],
           cta: {
-            title:
-              "Если в приоритете закупки, тендеры или связанный с ними маршрут согласований, начнем с него как с первого продукта",
-            text: "Остальные сценарии подключаются как развитие той же системы, а не как отдельный абстрактный AI-проект.",
+            title: "Начать можно с одного приоритетного маршрута",
+            text: "Обычно это закупки, тендеры или связанный с ними процесс согласований.",
             primary: "Получить разбор",
             secondary: "Посмотреть сценарии",
           },
@@ -395,7 +409,7 @@ window.SITE_CONFIG = {
           meta: {
             title: "Сценарии внедрения — Arvectum",
             description:
-              "Примеры маршрутов внедрения AI-контуров: от ручных процессов и разрозненных документов к статусам, журналу решений и прозрачному управлению.",
+              "Сценарии внедрения для закупок, согласований и проверки документов: маршруты, статусы, журнал решений и демонстрация без выдуманных метрик.",
             ogTitle: "Сценарии внедрения — Arvectum",
             ogDescription:
               "Пилотные сценарии, демо-маршруты и то, что можно показать на демонстрации без выдуманных метрик.",
@@ -403,11 +417,11 @@ window.SITE_CONFIG = {
           hero: {
             eyebrow: "Сценарии",
             title:
-              "Сценарии внедрения: что можно показать на демо и как выглядит первый маршрут",
-            text: "Если реальных клиентских кейсов еще немного, лучше честно показывать пилотные сценарии, демо-маршруты и внутренние прототипы, чем создавать ощущение выдуманных кейсов.",
+              "Сценарии внедрения для закупок, согласований и проверки документов",
+            text: "Ниже — типовые маршруты, на которых мы обычно запускаем первый пилот.",
           },
           demoBlock: {
-            title: "Что можно показать на демо",
+            title: "На демонстрации вы увидите",
             items: [
               "Маршрут закупки",
               "Карточка сделки",
@@ -434,6 +448,12 @@ window.SITE_CONFIG = {
                 "Видно, кто отвечает за следующий шаг",
                 "История решений и контроль рисков по маршруту",
               ],
+              demo: [
+                "Карточку закупки и список документов",
+                "Этапы маршрута и RFQ",
+                "Сравнение ТКП, экономику и риск-мемо",
+                "Журнал решений по сделке",
+              ],
             },
             {
               id: "ops-case",
@@ -450,6 +470,11 @@ window.SITE_CONFIG = {
                 "Понятная карта этапов и ответственных",
                 "Видимость зависших шагов и эскалаций",
                 "История действий по каждому кейсу",
+              ],
+              demo: [
+                "Этапы и ответственных",
+                "Зависшие шаги и SLA",
+                "Комментарии и историю действий",
               ],
             },
             {
@@ -468,13 +493,17 @@ window.SITE_CONFIG = {
                 "Выделение потенциальных рисков и отклонений",
                 "Фиксация истории изменений и комментариев",
               ],
+              demo: [
+                "Чек-лист комплектности",
+                "Найденные пробелы и потенциальные риски",
+                "Комментарии человека и итоговый memo",
+              ],
             },
           ],
           cta: {
-            title:
-              "Если хотите увидеть похожий маршрут на своей задаче, соберем демо под конкретный процесс",
-            text: "Без выдуманных цифр: покажем, что именно можно измерять в пилоте и какой первый сценарий имеет смысл запускать.",
-            primary: "Получить разбор",
+            title: "Можно разобрать такой же маршрут на вашем процессе",
+            text: "Покажем, какой сценарий имеет смысл запускать первым и что измерять в пилоте.",
+            primary: "Запросить демо на похожем процессе",
             secondary: "Открыть решения",
           },
         },
@@ -489,13 +518,13 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "Подход",
-            title: "Диагностика, MVP и пилот без абстрактного AI-шума",
-            text: "Подход Arvectum строится вокруг одного реального процесса: сначала разбор маршрута, затем архитектура и MVP, после этого пилот на измеримом сценарии.",
+            title: "Диагностика, MVP и пилот на одном реальном процессе",
+            text: "Сначала разбираем маршрут и ограничения, затем собираем MVP и запускаем пилот.",
           },
           quickLinks: [
-            { id: "signals", label: "Когда стартовать" },
             { id: "deliverables", label: "После первого этапа" },
             { id: "timeline", label: "Этапы" },
+            { id: "formats", label: "Форматы работы" },
             { id: "limits", label: "Чего не обещаем" },
             { id: "faq", label: "FAQ" },
           ],
@@ -527,7 +556,7 @@ window.SITE_CONFIG = {
           },
           deliverables: {
             title: "Что клиент получает после первого этапа",
-            text: "Первый этап должен снижать неопределенность, а не увеличивать ее. Поэтому мы фиксируем понятные артефакты и ограничения.",
+            text: "После первого этапа у вас есть понятная карта работ и следующий шаг.",
             items: [
               {
                 label: "Артефакт",
@@ -536,8 +565,8 @@ window.SITE_CONFIG = {
               },
               {
                 label: "Артефакт",
-                title: "Список автоматизируемых шагов",
-                text: "Что реально автоматизируем первым, а что пока оставляем человеку.",
+                title: "Список шагов для автоматизации",
+                text: "Что имеет смысл автоматизировать в первую очередь.",
               },
               {
                 label: "Артефакт",
@@ -546,35 +575,56 @@ window.SITE_CONFIG = {
               },
               {
                 label: "Артефакт",
-                title: "Прототип интерфейса или MVP",
-                text: "Первый сценарий, на котором можно проверять маршрут и полезность.",
-              },
-              {
-                label: "Артефакт",
-                title: "Критерии качества",
-                text: "По каким признакам считаем, что пилот полезен и управляем.",
-              },
-              {
-                label: "Артефакт",
-                title: "План пилота",
-                text: "Кто участвует, какие сценарии проверяем и что измеряем.",
-              },
-              {
-                label: "Артефакт",
-                title: "Риски и ограничения",
-                text: "Где нужны ручные проверки, какие есть чувствительные данные и что нельзя обещать заранее.",
+                title: "Прототип или MVP",
+                text: "Первый рабочий сценарий, который можно проверить на реальном процессе.",
               },
             ],
           },
           timeline: {
             title: "Как идет работа",
-            text: "Маршрут построен так, чтобы быстро проверить пользу на одном процессе и не строить большой продукт до появления фактов.",
+            text: "Двигаемся короткими этапами, чтобы быстро проверить пользу.",
             items: [
               "Диагностика процесса и бизнес-вызова",
               "Карта ролей, данных и решений",
-              "Архитектура и границы ответственности AI",
               "MVP на одном реальном сценарии",
               "Пилот, метрики и следующий шаг",
+            ],
+          },
+          formats: {
+            title: "Форматы работы",
+            text: "Старт можно подобрать по зрелости процесса и ожидаемой глубине проверки.",
+            note: "Стоимость зависит от процесса, данных, интеграций и требований к закрытому контуру. Для оценки достаточно первичного разбора.",
+            items: [
+              {
+                title: "Диагностика процесса",
+                audienceLabel: "Для кого",
+                audience: "Если нужно понять, что автоматизировать первым.",
+                resultLabel: "Результат",
+                result: "Карта процесса, список узких мест и сценарий MVP.",
+                timingLabel: "Срок",
+                timing: "1-2 недели",
+              },
+              {
+                title: "MVP одного маршрута",
+                audienceLabel: "Для кого",
+                audience:
+                  "Если уже есть конкретный закупочный или операционный сценарий.",
+                resultLabel: "Результат",
+                result:
+                  "Рабочий прототип с ролями, статусами, документами и журналом решений.",
+                timingLabel: "Срок",
+                timing: "2-4 недели",
+              },
+              {
+                title: "Пилот с метриками",
+                audienceLabel: "Для кого",
+                audience: "Если нужно проверить пользу на реальных данных.",
+                resultLabel: "Результат",
+                result:
+                  "Сценарий, метрики, ограничения и план масштабирования.",
+                timingLabel: "Срок",
+                timing: "4-8 недель",
+              },
             ],
           },
           trust: {
@@ -627,9 +677,8 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title:
-              "Если хотите быстро понять, какой процесс брать первым, начнем с диагностики и карты автоматизации",
-            text: "После этого можно решить, нужен ли MVP, пилот или сначала архитектурный разбор закрытого контура.",
+            title: "Начать можно с короткой диагностики процесса",
+            text: "Этого достаточно, чтобы определить сценарий для MVP и пилота.",
             primary: "Получить разбор",
             secondary: "Открыть контакты",
           },
@@ -647,8 +696,18 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "Контакты",
-            title: "Получить разбор процесса и обсудить первый пилот",
-            text: "Опишите, где у процесса теряются документы, статусы, сроки, ТКП, экономика или история решений. Мы предложим, с какого сценария имеет смысл начинать.",
+            title: "Оставьте заявку на разбор процесса",
+            text: "Опишите задачу, текущие ограничения и желаемый результат. Мы предложим следующий шаг.",
+          },
+          firstCall: {
+            title: "Что будет на первом разборе",
+            items: [
+              "Уточним, какой именно процесс вы хотите ускорить или привести в порядок.",
+              "Найдем точки, где теряются документы, статусы и управленческий контекст.",
+              "Выберем один сценарий для MVP или пилота.",
+              "Согласуем ограничения по данным, доступам и безопасности.",
+              "Зафиксируем ближайший план работ на 1-2 и 2-4 недели.",
+            ],
           },
         },
       },
@@ -673,8 +732,16 @@ window.SITE_CONFIG = {
         ],
         footer: {
           companyName: "Arvectum LLC",
-          shortText:
-            "Arvectum automates procurement, tenders and operational workflows with AI agents and controlled digital contours.",
+          contactsTitle: "Contacts",
+          inn: "",
+          ogrn: "",
+          address: "",
+          phone: "",
+          email: "info@arvectum.com",
+          telegramUrl: "https://t.me/arvectum",
+          telegramLabel: "Arvectum Telegram",
+          telegramHandle: "t.me/arvectum",
+          note: "Company details and contracting data are shared on request before the start of work.",
           legalLinksTitle: "Legal",
           legalLinks: [
             { slug: "privacy", label: "Privacy policy" },
@@ -683,10 +750,6 @@ window.SITE_CONFIG = {
               label: "Personal data consent",
             },
             { slug: "cookiesPolicy", label: "Cookies policy" },
-          ],
-          requisites: [
-            { label: "Company", value: "Arvectum LLC" },
-            { label: "Email", value: "info@arvectum.com", type: "email" },
           ],
         },
         contactBand: {
@@ -805,6 +868,7 @@ window.SITE_CONFIG = {
           audience: "For whom",
           firstResult: "First result",
           status: "Scenario status",
+          demo: "What you will see in the demo",
         },
       },
       pages: {
@@ -822,75 +886,105 @@ window.SITE_CONFIG = {
               "AI automation for procurement, tenders and complex workflows",
             title:
               "We turn manual procurement and operational workflows into controlled AI-powered systems",
-            text: "Arvectum designs and deploys secure digital systems for workflows where documents, timing, risks, commercial logic and decision history matter. We start with diagnostics, then build an MVP or pilot on a real workflow.",
+            text: "Arvectum builds working systems for document-heavy workflows where statuses, risks, deadlines and commercials must stay visible.",
             bullets: [
               "Workflow review and automation map in 1-2 weeks",
               "MVP for procurement or operations in 2-4 weeks",
-              "Controlled architecture with data, roles, logs and access control",
-              "AI agents help review documents, risks, vendor quotes and statuses instead of acting like generic chatbots",
+              "Controlled architecture with roles, access control and logs",
+              "AI helps review documents, quotes, risks and statuses",
             ],
             primaryCta: "Get a workflow assessment",
-            secondaryCta: "View scenarios",
+            secondaryCta: "View solutions",
             sideLabel: "What can be automated first",
             sideItems: [
               {
                 title: "Procurement and tenders",
-                text: "Opportunity intake, requirement review, RFQ, quote collection, comparison, commercial view and risks.",
+                text: "RFQ, quotes, risks, commercials and bid-package control in one route.",
               },
               {
                 title: "Approvals and statuses",
-                text: "Roles, stages, owners, decision log and visibility into stuck steps.",
+                text: "Clear stages, ownership and stalled-step visibility.",
               },
               {
                 title: "Documents and checks",
-                text: "Completeness, contract risks, requirements, protocols and version history.",
+                text: "Completeness, requirements and version history without manual reconstruction.",
               },
             ],
           },
           audiences: {
-            title: "Who this is for",
-            text: "This is especially useful where the workflow already affects revenue, margin, timing or risk but still depends on manual coordination.",
+            title: "Where Arvectum is useful",
+            text: "Where manual coordination already affects timing, margin and decision quality.",
             items: [
               {
-                title: "Suppliers taking part in tenders",
-                text: "When bid-package assembly, requirement review and decision history still live in scattered documents.",
+                title: "Vendors and tender teams",
+                text: "To assemble bid packages faster and keep the next step visible.",
               },
               {
-                title: "Procurement and tender teams",
-                text: "When route visibility, vendor quote comparison and timing control matter at every stage.",
+                title: "Procurement teams",
+                text: "To keep statuses, quotes and risk checks in one controlled layer.",
               },
               {
                 title: "Operations leaders",
-                text: "When manual checks and status chasing start slowing down the team.",
+                text: "To read the process without chasing chats and spreadsheets.",
               },
               {
-                title: "Companies with sensitive documents",
-                text: "When a secure contour with roles, logs, access control and limited data exposure is required.",
+                title: "Companies with a closed data contour",
+                text: "To keep data, roles and access boundaries under control.",
               },
             ],
           },
           automation: {
             title: "What we automate",
-            text: "Not abstract AI for business, but concrete document-heavy routes where timing, statuses, risks and economics already matter.",
+            text: "By a contour we mean not a chatbot, but a working system with roles, statuses, documents, checks, logs and a clear next step.",
             items: [
               "Procurement route",
               "RFQ and vendor quotes",
               "Contract and commercial risks",
+              "Approvals and statuses",
               "Execution control",
-              "Internal operational workflows",
             ],
           },
           process: {
-            title: "How the work starts",
+            title: "How a project starts",
+            text: "We start from one workflow and move it quickly into a pilot.",
             items: [
               "Workflow diagnostics",
-              "Map of roles, data and decisions",
-              "MVP on one real scenario",
+              "Map of roles and data",
+              "MVP on one scenario",
               "Pilot and metrics",
+            ],
+          },
+          who: {
+            title: "Who is behind Arvectum",
+            text: "Arvectum is developed by Nikita Arutyunov, the company's founder and builder. The focus is practical automation of procurement, tender and operational workflows.",
+            items: [
+              {
+                title: "Practical focus",
+                text: "Procurement, tenders, documents, risks and statuses without vague AI language.",
+              },
+              {
+                title: "Controlled architecture",
+                text: "Data, access and logs stay visible and reviewable.",
+              },
+              {
+                title: "MVP first",
+                text: "One real workflow first, then scale across adjacent routes.",
+              },
+            ],
+          },
+          firstCall: {
+            title: "What happens in the first review call",
+            items: [
+              "We clarify the workflow: procurement, tender, RFQ, quotes, approvals or an operational check.",
+              "We identify where documents, statuses, deadlines and decisions get lost.",
+              "We choose one scenario for MVP or pilot.",
+              "We capture data, access and security constraints.",
+              "We shape the first plan: what can be done in 1-2 weeks and what to test in 2-4 weeks.",
             ],
           },
           safety: {
             title: "Why this is safer than simply connecting a chatbot",
+            text: "The system is designed around a business process and accountability, not around an unrestricted chat box.",
             items: [
               "Roles and access control",
               "Action logs",
@@ -913,9 +1007,8 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title:
-              "If the workflow already depends on manual document checks and status coordination, we can quickly define the first controlled contour",
-            text: "The first step is a short review of the workflow and the most sensible scenario for the MVP.",
+            title: "The first step is a short workflow review",
+            text: "After that, it becomes clear which scenario should move into MVP and pilot first.",
             primary: "Get an assessment",
             secondary: "Open solutions",
           },
@@ -925,7 +1018,7 @@ window.SITE_CONFIG = {
             title:
               "Arvectum solutions — procurement, tenders, operations and secure AI contours",
             description:
-              "Automation scenarios for procurement workflows, RFQ, vendor quotes, risk control, marketing review and internal AI assistants.",
+              "Automation scenarios for procurement workflows, RFQ, vendor quotes, risk control, approvals and secure AI pilots.",
             ogTitle:
               "Arvectum solutions — procurement, tenders, operations and secure AI contours",
             ogDescription:
@@ -934,13 +1027,12 @@ window.SITE_CONFIG = {
           hero: {
             eyebrow: "Solutions",
             title:
-              "Automation scenarios for procurement, tenders and operational workflows",
-            text: "Arvectum is primarily focused on procurement and tender automation. The other directions extend the same architectural logic: statuses, documents, checks, risks and controlled ownership.",
+              "Solutions for procurement, tenders and operational workflows",
+            text: "Arvectum is primarily focused on procurement contours. The other scenarios extend the same controlled architecture.",
           },
           quickLinks: [
             { id: "procurement", label: "Procurement and tenders" },
             { id: "operations", label: "Operations" },
-            { id: "marketing", label: "Marketing review" },
             { id: "secure", label: "Secure AI pilot" },
           ],
           cards: [
@@ -949,7 +1041,7 @@ window.SITE_CONFIG = {
               label: "Primary focus",
               title: "Procurement and tenders",
               audience:
-                "For procurement departments, tender teams, category managers, suppliers and operations leaders.",
+                "For procurement departments, tender teams and suppliers.",
               pain: "Manual routes lose statuses, documents, vendor questions and decision history, while quote comparison and risk control stay fragmented.",
               modules: [
                 "Opportunity intake or capture",
@@ -971,7 +1063,7 @@ window.SITE_CONFIG = {
               label: "Extension",
               title: "Operational workflows and internal controls",
               audience:
-                "For back-office teams, service functions, approval routes and operations teams.",
+                "For operations teams, back-office functions and approval routes.",
               pain: "Routine work consumes valuable time, while statuses, documents and decision history remain scattered across messages and spreadsheets.",
               modules: [
                 "Roles and ownership",
@@ -985,28 +1077,11 @@ window.SITE_CONFIG = {
               cta: "Review an operations workflow",
             },
             {
-              id: "marketing",
-              label: "Additional scenario",
-              title: "Marketing review and controlled material approval",
-              audience:
-                "For teams that need to keep briefs, materials and review comments inside a controlled environment.",
-              pain: "Materials, comments and review criteria are spread out, while pushing sensitive content into open tools is undesirable.",
-              modules: [
-                "Brand-material control",
-                "Clarity and risk checks",
-                "Version approval and comments",
-              ],
-              firstResult:
-                "A first internal review flow for materials and controlled feedback.",
-              timing: "Pilot in 2-5 weeks",
-              cta: "Discuss a review scenario",
-            },
-            {
               id: "secure",
               label: "Architectural entry point",
               title: "Secure AI pilots and local contours",
               audience:
-                "For companies where NDA, data exposure control, roles, audit and legal constraints matter.",
+                "For companies where access control, audit and data boundaries matter.",
               pain: "AI is needed, but without a controlled architecture it is easy to lose track of access, logs and data boundaries.",
               modules: [
                 "Data and access requirements",
@@ -1021,9 +1096,8 @@ window.SITE_CONFIG = {
             },
           ],
           cta: {
-            title:
-              "If procurement or tender automation is the priority, we can treat it as the first product contour",
-            text: "The other scenarios then extend the same system instead of becoming a separate abstract AI project.",
+            title: "You can start from one priority route",
+            text: "Most often that is procurement, tenders or a linked approval workflow.",
             primary: "Get an assessment",
             secondary: "View scenarios",
           },
@@ -1032,7 +1106,7 @@ window.SITE_CONFIG = {
           meta: {
             title: "Implementation scenarios — Arvectum",
             description:
-              "Examples of AI contour rollouts: from manual document-heavy workflows to statuses, decision logs and transparent control.",
+              "Implementation scenarios for procurement, approvals and document review with clear demo routes and no invented metrics.",
             ogTitle: "Implementation scenarios — Arvectum",
             ogDescription:
               "Pilot scenarios, demo routes and what can be shown without invented metrics.",
@@ -1040,11 +1114,11 @@ window.SITE_CONFIG = {
           hero: {
             eyebrow: "Scenarios",
             title:
-              "Implementation scenarios: what we can demo and how the first route looks",
-            text: "If there are not many public client cases yet, it is more honest to show pilot scenarios, demo routes and internal prototypes than to create fake certainty.",
+              "Implementation scenarios for procurement, approvals and document review",
+            text: "Below are the routes we most often use to launch the first pilot.",
           },
           demoBlock: {
-            title: "What we can show in a demo",
+            title: "What you will see in a demo",
             items: [
               "Procurement route",
               "Deal card",
@@ -1071,6 +1145,12 @@ window.SITE_CONFIG = {
                 "Clear ownership of the next step",
                 "Decision history and risk control across the route",
               ],
+              demo: [
+                "Procurement card and document list",
+                "Route stages and RFQ",
+                "Quote comparison, economics and risk memo",
+                "Decision log for the deal",
+              ],
             },
             {
               id: "ops-case",
@@ -1087,6 +1167,11 @@ window.SITE_CONFIG = {
                 "Clear stage map and ownership",
                 "Visibility into stalled steps and escalations",
                 "Action history for every case",
+              ],
+              demo: [
+                "Stages and owners",
+                "Stalled steps and SLA signals",
+                "Comments and action history",
               ],
             },
             {
@@ -1105,13 +1190,17 @@ window.SITE_CONFIG = {
                 "Potential risk and deviation highlights",
                 "Version history and comments",
               ],
+              demo: [
+                "Completeness checklist",
+                "Detected gaps and potential risks",
+                "Human comments and final memo",
+              ],
             },
           ],
           cta: {
-            title:
-              "If you want to see a similar route applied to your workflow, we can build a demo around the exact process",
-            text: "No invented numbers: we show what can actually be measured in the pilot and which first scenario makes sense.",
-            primary: "Get an assessment",
+            title: "We can review the same route on your workflow",
+            text: "We will show which scenario makes sense first and what to measure in the pilot.",
+            primary: "Request a demo for a similar workflow",
             secondary: "Open solutions",
           },
         },
@@ -1126,13 +1215,13 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "Approach",
-            title: "Diagnostics, MVP and pilot without abstract AI noise",
-            text: "The Arvectum approach is built around one real workflow: first the route and constraints, then architecture and MVP, followed by a measurable pilot.",
+            title: "Diagnostics, MVP and pilot on one real workflow",
+            text: "We start with the route and constraints, then move into MVP and pilot.",
           },
           quickLinks: [
-            { id: "signals", label: "When to start" },
             { id: "deliverables", label: "After stage one" },
             { id: "timeline", label: "Stages" },
+            { id: "formats", label: "Work formats" },
             { id: "limits", label: "What we do not promise" },
             { id: "faq", label: "FAQ" },
           ],
@@ -1164,7 +1253,7 @@ window.SITE_CONFIG = {
           },
           deliverables: {
             title: "What the client gets after the first stage",
-            text: "The first stage should reduce uncertainty, not increase it. That is why we lock in concrete artifacts and constraints.",
+            text: "After the first stage, you have a clear map of the work and the next step.",
             items: [
               {
                 label: "Artifact",
@@ -1174,7 +1263,7 @@ window.SITE_CONFIG = {
               {
                 label: "Artifact",
                 title: "List of automatable steps",
-                text: "Which actions can be automated first and which should stay human-led for now.",
+                text: "Which actions are worth automating first.",
               },
               {
                 label: "Artifact",
@@ -1183,35 +1272,56 @@ window.SITE_CONFIG = {
               },
               {
                 label: "Artifact",
-                title: "Prototype interface or MVP",
-                text: "The first scenario that can be tested against a real route.",
-              },
-              {
-                label: "Artifact",
-                title: "Quality criteria",
-                text: "How we decide that the pilot is useful and still controlled.",
-              },
-              {
-                label: "Artifact",
-                title: "Pilot plan",
-                text: "Who participates, which scenarios are tested and what gets measured.",
-              },
-              {
-                label: "Artifact",
-                title: "Risks and constraints",
-                text: "Where manual review remains necessary and which data cannot be exposed.",
+                title: "Prototype or MVP",
+                text: "The first working scenario that can be tested on a live workflow.",
               },
             ],
           },
           timeline: {
             title: "How the work moves",
-            text: "The route is designed to validate value quickly on one workflow instead of building a large product too early.",
+            text: "We move in short stages to validate value quickly.",
             items: [
               "Workflow diagnostics and business challenge review",
               "Map of roles, data and decisions",
-              "Architecture and AI responsibility boundaries",
               "MVP on one real scenario",
               "Pilot, metrics and the next step",
+            ],
+          },
+          formats: {
+            title: "Work formats",
+            text: "The entry format depends on how clear the workflow already is and how much proof is needed.",
+            note: "Pricing depends on the workflow, data, integrations and secure deployment requirements. An initial review is enough for a first estimate.",
+            items: [
+              {
+                title: "Workflow diagnostics",
+                audienceLabel: "For whom",
+                audience: "When you need to understand what to automate first.",
+                resultLabel: "Result",
+                result: "Workflow map, bottlenecks and an MVP scenario.",
+                timingLabel: "Timing",
+                timing: "1-2 weeks",
+              },
+              {
+                title: "MVP of one route",
+                audienceLabel: "For whom",
+                audience:
+                  "When there is already a specific procurement or operations route to improve.",
+                resultLabel: "Result",
+                result:
+                  "A working prototype with roles, statuses, documents and a decision log.",
+                timingLabel: "Timing",
+                timing: "2-4 weeks",
+              },
+              {
+                title: "Pilot with metrics",
+                audienceLabel: "For whom",
+                audience: "When value needs to be validated on real data.",
+                resultLabel: "Result",
+                result:
+                  "Pilot scenario, metrics, constraints and scale-up plan.",
+                timingLabel: "Timing",
+                timing: "4-8 weeks",
+              },
             ],
           },
           trust: {
@@ -1264,9 +1374,8 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title:
-              "If you want to identify which workflow should come first, we can begin with diagnostics and an automation map",
-            text: "After that, it becomes clear whether the next step should be an MVP, a pilot or a secure architecture review.",
+            title: "A short workflow diagnosis is usually enough to start",
+            text: "That is enough to define the first MVP and pilot route.",
             primary: "Get an assessment",
             secondary: "Open contact",
           },
@@ -1284,8 +1393,18 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "Contact",
-            title: "Get a workflow assessment and discuss the first pilot",
-            text: "Tell us where documents, statuses, timing, vendor quotes, economics or decision history get lost. We will suggest the most sensible first scenario.",
+            title: "Request a workflow assessment",
+            text: "Describe the workflow, its constraints and the result you want to achieve. We will suggest the next step.",
+          },
+          firstCall: {
+            title: "What happens in the first review call",
+            items: [
+              "We clarify which workflow you want to speed up or make controllable.",
+              "We find where documents, statuses and decision context are getting lost.",
+              "We choose one scenario for MVP or pilot.",
+              "We align data, access and security constraints.",
+              "We outline the next 1-2 week and 2-4 week plan.",
+            ],
           },
         },
       },

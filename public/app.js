@@ -8,6 +8,11 @@
   const CONSENT_VERSION = "v2";
   const FOCUSABLE_SELECTOR =
     'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const TELEGRAM_ICON = `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M21.4 4.6a1.2 1.2 0 0 0-1.25-.18L3.36 11.4a1.15 1.15 0 0 0 .08 2.16l4.1 1.46 1.59 5.1a1.16 1.16 0 0 0 2.02.36l2.3-2.8 4.5 3.3a1.16 1.16 0 0 0 1.83-.68l2.8-14.47a1.2 1.2 0 0 0-.38-1.23ZM9.3 14.56l8.86-6.28-6.98 7.72-.38 1.82-.67-3.26-.83-.3Zm1.84 3.64.37-1.77 1.02.75-1.39 1.02Z" fill="currentColor"/>
+    </svg>
+  `;
 
   let currentLanguage = defaultLanguage;
   let currentCommon = null;
@@ -45,6 +50,17 @@
     return `${file}${query}${hash}`;
   };
 
+  const buildAbsoluteUrl = (slug, language = currentLanguage) => {
+    const file = routes[slug] || routes.home || "index.html";
+    const pageUrl =
+      file === "index.html"
+        ? "https://arvectum.com/"
+        : `https://arvectum.com/${file}`;
+    return language === defaultLanguage
+      ? pageUrl
+      : `${pageUrl}?lang=${language}`;
+  };
+
   const createLinkList = (items) =>
     (items || [])
       .map(
@@ -80,17 +96,86 @@
     if (ogLocale)
       ogLocale.setAttribute("content", currentCommon?.locale || "ru_RU");
 
-    const pageFile = routes[currentPage] || routes.home || "index.html";
-    const pageUrl =
-      pageFile === "index.html"
-        ? "https://arvectum.com/"
-        : `https://arvectum.com/${pageFile}`;
-    const localizedUrl =
-      currentLanguage === defaultLanguage
-        ? pageUrl
-        : `${pageUrl}?lang=${currentLanguage}`;
+    const localizedUrl = buildAbsoluteUrl(currentPage, currentLanguage);
     if (ogUrl) ogUrl.setAttribute("content", localizedUrl);
     if (canonical) canonical.setAttribute("href", localizedUrl);
+
+    const hreflangRu = document.getElementById("hrefLangRu");
+    const hreflangEn = document.getElementById("hrefLangEn");
+    const hreflangDefault = document.getElementById("hrefLangDefault");
+    if (hreflangRu)
+      hreflangRu.setAttribute("href", buildAbsoluteUrl(currentPage, "ru"));
+    if (hreflangEn)
+      hreflangEn.setAttribute("href", buildAbsoluteUrl(currentPage, "en"));
+    if (hreflangDefault) {
+      hreflangDefault.setAttribute(
+        "href",
+        buildAbsoluteUrl(currentPage, defaultLanguage),
+      );
+    }
+  };
+
+  const renderStructuredData = () => {
+    const footer = currentCommon?.footer || {};
+    const organizationLd = document.getElementById("organizationLd");
+    if (organizationLd) {
+      organizationLd.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: footer.companyName || currentCommon.brandMeta,
+        url: "https://arvectum.com",
+        logo: "https://arvectum.com/assets/brand/arvectum-logo-primary.png",
+        email: footer.email || "info@arvectum.com",
+        sameAs: footer.telegramUrl ? [footer.telegramUrl] : [],
+      });
+    }
+
+    const serviceLd = document.getElementById("serviceLd");
+    if (serviceLd && currentPage === "home") {
+      serviceLd.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name:
+          currentLanguage === "ru"
+            ? "AI-автоматизация закупок и операционных процессов"
+            : "AI automation for procurement and operational workflows",
+        provider: {
+          "@type": "Organization",
+          name: footer.companyName || currentCommon.brandMeta,
+          url: "https://arvectum.com",
+        },
+        areaServed: currentLanguage === "ru" ? "RU" : "RU / international",
+        serviceType:
+          currentLanguage === "ru"
+            ? [
+                "Автоматизация бизнес-процессов",
+                "Автоматизация закупок",
+                "Автоматизация рабочих процессов с AI",
+              ]
+            : [
+                "Business process automation",
+                "Procurement automation",
+                "AI workflow automation",
+              ],
+        url: buildAbsoluteUrl("home", currentLanguage),
+      });
+    }
+
+    const faqLd = document.getElementById("faqLd");
+    if (faqLd && currentPage === "approach" && currentContent?.faq?.items) {
+      faqLd.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: currentContent.faq.items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      });
+    }
   };
 
   const renderHeader = () => {
@@ -159,27 +244,51 @@
           `<a href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`,
       )
       .join("");
-    const requisites = (footer.requisites || [])
-      .filter((item) => item.value)
-      .map((item) => {
-        const value =
-          item.type === "email"
-            ? `<a href="mailto:${escapeHtml(item.value)}">${escapeHtml(item.value)}</a>`
-            : escapeHtml(item.value);
-        return `
-          <div class="footer-requisite">
-            <dt>${escapeHtml(item.label)}</dt>
-            <dd>${value}</dd>
-          </div>
-        `;
-      })
-      .join("");
+    const contactItems = [];
+    if (footer.companyName) {
+      contactItems.push(`<p>${escapeHtml(footer.companyName)}</p>`);
+    }
+    if (footer.inn) {
+      contactItems.push(`<p>${escapeHtml(footer.inn)}</p>`);
+    }
+    if (footer.ogrn) {
+      contactItems.push(`<p>${escapeHtml(footer.ogrn)}</p>`);
+    }
+    if (footer.address) {
+      contactItems.push(`<p>${escapeHtml(footer.address)}</p>`);
+    }
+    if (footer.phone) {
+      const phoneHref = footer.phone.replace(/[^\d+]/g, "");
+      contactItems.push(
+        `<a href="tel:${escapeHtml(phoneHref)}">${escapeHtml(footer.phone)}</a>`,
+      );
+    }
+    if (footer.email) {
+      contactItems.push(
+        `<a href="mailto:${escapeHtml(footer.email)}">${escapeHtml(footer.email)}</a>`,
+      );
+    }
+    if (footer.telegramUrl) {
+      contactItems.push(`
+        <a
+          class="telegram-link"
+          href="${escapeHtml(footer.telegramUrl)}"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="${escapeHtml(footer.telegramLabel || footer.telegramHandle || "Telegram")}"
+        >
+          <span class="telegram-link__icon">${TELEGRAM_ICON}</span>
+          <span>${escapeHtml(footer.telegramHandle || footer.telegramUrl)}</span>
+        </a>
+      `);
+    }
+    if (footer.note) {
+      contactItems.push(
+        `<p class="footer-note">${escapeHtml(footer.note)}</p>`,
+      );
+    }
 
     footerGrid.innerHTML = `
-      <div class="footer-block footer-block--lead">
-        <h2>${escapeHtml(footer.companyName)}</h2>
-        <p>${escapeHtml(footer.shortText)}</p>
-      </div>
       <div class="footer-block">
         <span>${escapeHtml(currentCommon.pagesLabel)}</span>
         <div class="footer-links">${navLinks}</div>
@@ -188,17 +297,9 @@
         <span>${escapeHtml(footer.legalLinksTitle)}</span>
         <div class="footer-links">${legalLinks}</div>
       </div>
-      <div class="footer-block">
-        <span>${escapeHtml(currentCommon.contactBand.directTitle)}</span>
-        <div class="footer-links">
-          <a href="mailto:info@arvectum.com">info@arvectum.com</a>
-          <a href="https://t.me/arvectum" target="_blank" rel="noreferrer">t.me/arvectum</a>
-        </div>
-        ${
-          requisites
-            ? `<dl class="footer-requisites footer-requisites--compact">${requisites}</dl>`
-            : ""
-        }
+      <div class="footer-block footer-block--contacts">
+        <span>${escapeHtml(footer.contactsTitle)}</span>
+        <div class="footer-contact-stack">${contactItems.join("")}</div>
       </div>
     `;
   };
@@ -271,36 +372,44 @@
 
     <section class="section">
       <div class="container reveal">
-        <div class="section-head">
-          <h2>${escapeHtml(page.audiences.title)}</h2>
-          <p>${escapeHtml(page.audiences.text)}</p>
-        </div>
-        <div class="grid grid-4">
-          ${renderInfoCards(page.audiences.items)}
+        <div class="split split-compact">
+          <div>
+            <div class="section-head section-head--left">
+              <h2>${escapeHtml(page.audiences.title)}</h2>
+              <p>${escapeHtml(page.audiences.text)}</p>
+            </div>
+            <div class="grid grid-2">
+              ${renderInfoCards(page.audiences.items)}
+            </div>
+          </div>
+          <article class="info-card info-card--accent">
+            <div class="section-head section-head--left">
+              <h2>${escapeHtml(page.automation.title)}</h2>
+              <p>${escapeHtml(page.automation.text)}</p>
+            </div>
+            <div class="chip-grid">
+              ${(page.automation.items || [])
+                .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
+                .join("")}
+            </div>
+          </article>
         </div>
       </div>
     </section>
-
-    <section class="section section-soft">
-      <div class="container reveal">
-        <div class="section-head">
-          <h2>${escapeHtml(page.automation.title)}</h2>
-          <p>${escapeHtml(page.automation.text)}</p>
-        </div>
-        <div class="chip-grid">
-          ${(page.automation.items || [])
-            .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
-            .join("")}
-        </div>
-      </div>
-    </section>
-
-    ${renderFlow(page.flow)}
 
     <section class="section">
       <div class="container reveal">
         <div class="section-head">
           <h2>${escapeHtml(page.process.title)}</h2>
+          <p>${escapeHtml(page.process.text)}</p>
+        </div>
+        <div class="process-flow" aria-label="${escapeHtml(page.flow.title)}">
+          ${(page.flow.items || [])
+            .map(
+              (item) =>
+                `<span class="process-flow__step">${escapeHtml(item)}</span>`,
+            )
+            .join("")}
         </div>
         <div class="step-grid">
           ${(page.process.items || [])
@@ -320,15 +429,35 @@
     <section class="section section-soft">
       <div class="container reveal">
         <div class="section-head">
-          <h2>${escapeHtml(page.safety.title)}</h2>
+          <h2>${escapeHtml(page.who.title)}</h2>
+          <p>${escapeHtml(page.who.text)}</p>
         </div>
-        <div class="chip-grid">
-          ${(page.safety.items || [])
-            .map(
-              (item) =>
-                `<span class="chip chip--solid">${escapeHtml(item)}</span>`,
-            )
-            .join("")}
+        <div class="grid grid-3">
+          ${renderInfoCards(page.who.items)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="split split-compact">
+          <article class="info-card info-card--accent">
+            <div class="section-head section-head--left">
+              <h2>${escapeHtml(page.firstCall.title)}</h2>
+            </div>
+            ${renderListItems(page.firstCall.items)}
+          </article>
+          <article class="info-card">
+            <div class="section-head section-head--left">
+              <h2>${escapeHtml(page.safety.title)}</h2>
+              <p>${escapeHtml(page.safety.text)}</p>
+            </div>
+            <div class="chip-grid">
+              ${(page.safety.items || [])
+                .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
+                .join("")}
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -353,27 +482,12 @@
     <article class="solution-card" id="${escapeHtml(card.id)}">
       <span class="card-label">${escapeHtml(card.label)}</span>
       <h2>${escapeHtml(card.title)}</h2>
-      <div class="solution-meta">
-        <div>
-          <span>${escapeHtml(currentCommon.labels.audience)}</span>
-          <p>${escapeHtml(card.audience)}</p>
-        </div>
-        <div>
-          <span>${escapeHtml(currentCommon.labels.challenge)}</span>
-          <p>${escapeHtml(card.pain)}</p>
-        </div>
-        <div>
-          <span>${currentLanguage === "ru" ? "Что делаем" : "What we do"}</span>
-          ${renderListItems(card.modules)}
-        </div>
-        <div>
-          <span>${escapeHtml(currentCommon.labels.firstResult)}</span>
-          <p>${escapeHtml(card.firstResult)}</p>
-        </div>
-        <div>
-          <span>${escapeHtml(currentCommon.labels.timing)}</span>
-          <p>${escapeHtml(card.timing)}</p>
-        </div>
+      <p class="solution-card__lead">${escapeHtml(card.audience)}</p>
+      <p>${escapeHtml(card.pain)}</p>
+      ${renderListItems(card.modules)}
+      <div class="solution-meta solution-meta--compact">
+        <p><strong>${escapeHtml(currentCommon.labels.firstResult)}:</strong> ${escapeHtml(card.firstResult)}</p>
+        <p><strong>${escapeHtml(currentCommon.labels.timing)}:</strong> ${escapeHtml(card.timing)}</p>
       </div>
       <a class="text-link" href="${buildUrl("contact")}">${escapeHtml(card.cta)}</a>
     </article>
@@ -442,6 +556,10 @@
         </div>
       </div>
       ${renderListItems(item.outcomes, "compact-list compact-list--light")}
+      <div class="case-card__demo">
+        <span>${escapeHtml(currentCommon.labels.demo)}</span>
+        ${renderListItems(item.demo, "compact-list compact-list--light")}
+      </div>
     </article>
   `;
 
@@ -508,28 +626,6 @@
       </div>
     </section>
 
-    <section class="section" id="signals">
-      <div class="container reveal">
-        <div class="section-head">
-          <h2>${escapeHtml(page.signals.title)}</h2>
-          <p>${escapeHtml(page.signals.text)}</p>
-        </div>
-        <div class="grid grid-4">
-          ${(page.signals.items || [])
-            .map(
-              (item) => `
-                <article class="info-card metric-card">
-                  <strong>${escapeHtml(item.value)}</strong>
-                  <h3>${escapeHtml(item.title)}</h3>
-                  <p>${escapeHtml(item.text)}</p>
-                </article>
-              `,
-            )
-            .join("")}
-        </div>
-      </div>
-    </section>
-
     <section class="section section-soft" id="deliverables">
       <div class="container reveal">
         <div class="section-head">
@@ -573,15 +669,27 @@
       </div>
     </section>
 
-    <section class="section section-soft" id="trust">
+    <section class="section section-soft" id="formats">
       <div class="container reveal">
         <div class="section-head">
-          <h2>${escapeHtml(page.trust.title)}</h2>
-          <p>${escapeHtml(page.trust.text)}</p>
+          <h2>${escapeHtml(page.formats.title)}</h2>
+          <p>${escapeHtml(page.formats.text)}</p>
         </div>
         <div class="grid grid-3">
-          ${renderInfoCards(page.trust.items)}
+          ${(page.formats.items || [])
+            .map(
+              (item) => `
+                <article class="info-card">
+                  <h3>${escapeHtml(item.title)}</h3>
+                  <p><strong>${escapeHtml(item.audienceLabel)}:</strong> ${escapeHtml(item.audience)}</p>
+                  <p><strong>${escapeHtml(item.resultLabel)}:</strong> ${escapeHtml(item.result)}</p>
+                  <p><strong>${escapeHtml(item.timingLabel)}:</strong> ${escapeHtml(item.timing)}</p>
+                </article>
+              `,
+            )
+            .join("")}
         </div>
+        <p class="section-note">${escapeHtml(page.formats.note)}</p>
       </div>
     </section>
 
@@ -599,14 +707,14 @@
         <div class="section-head">
           <h2>${escapeHtml(page.faq.title)}</h2>
         </div>
-        <div class="faq-list">
+        <div class="grid grid-3">
           ${(page.faq.items || [])
             .map(
               (item) => `
-                <details class="faq-item">
-                  <summary>${escapeHtml(item.question)}</summary>
+                <article class="info-card faq-card">
+                  <h3>${escapeHtml(item.question)}</h3>
                   <p>${escapeHtml(item.answer)}</p>
-                </details>
+                </article>
               `,
             )
             .join("")}
@@ -806,52 +914,6 @@
     `;
   };
 
-  const renderContactBand = () => {
-    const band = currentCommon.contactBand;
-    const requisites = (currentCommon.footer.requisites || [])
-      .filter((item) => item.value)
-      .map((item) => {
-        const value =
-          item.type === "email"
-            ? `<a href="mailto:${escapeHtml(item.value)}">${escapeHtml(item.value)}</a>`
-            : escapeHtml(item.value);
-        return `
-          <div class="footer-requisite">
-            <dt>${escapeHtml(item.label)}</dt>
-            <dd>${value}</dd>
-          </div>
-        `;
-      })
-      .join("");
-
-    return `
-      <section class="contact-band glass">
-        <div class="contact-band__intro">
-          <h2>${escapeHtml(band.title)}</h2>
-          <p>${escapeHtml(band.text)}</p>
-        </div>
-        <div class="grid grid-3">
-          <article class="contact-panel">
-            <span>${escapeHtml(band.directTitle)}</span>
-            <div class="contact-links">
-              <a href="mailto:info@arvectum.com">info@arvectum.com</a>
-              <a href="https://t.me/arvectum" target="_blank" rel="noreferrer">t.me/arvectum</a>
-            </div>
-          </article>
-          <article class="contact-panel">
-            <span>${escapeHtml(band.formatTitle)}</span>
-            <p>${escapeHtml(band.formatText)}</p>
-            ${renderListItems(band.demoItems)}
-          </article>
-          <article class="contact-panel">
-            <span>${escapeHtml(band.requisitesTitle)}</span>
-            <dl class="footer-requisites footer-requisites--inverted">${requisites}</dl>
-          </article>
-        </div>
-      </section>
-    `;
-  };
-
   const renderContact = (page) => `
     <section class="page-hero">
       <div class="container reveal">
@@ -861,15 +923,34 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-soft">
       <div class="container reveal">
-        ${renderForm()}
+        <div class="section-head">
+          <h2>${escapeHtml(page.firstCall.title)}</h2>
+        </div>
+        <div class="step-grid">
+          ${(page.firstCall.items || [])
+            .map(
+              (item, index) => `
+                <article class="step-card">
+                  <strong>${String(index + 1).padStart(2, "0")}</strong>
+                  <p>${escapeHtml(item)}</p>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
       </div>
     </section>
 
-    <section class="section section-soft">
+    <section class="section">
       <div class="container reveal">
-        ${renderContactBand()}
+        ${
+          new URLSearchParams(window.location.search).get("status") === "error"
+            ? `<div class="contact-status contact-status--error">${escapeHtml(currentCommon.form.errorFallback)}</div>`
+            : ""
+        }
+        ${renderForm()}
       </div>
     </section>
   `;
@@ -1461,13 +1542,22 @@
       try {
         const response = await fetch("/api/submit.php", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(payload),
         });
 
-        const result = await response.json().catch(() => ({ ok: false }));
-        if (!response.ok || !result.ok) {
-          throw new Error("Request failed");
+        const result = await response.json().catch(() => null);
+        if (!response.ok || !result?.ok) {
+          if (result?.fields) {
+            Object.entries(result.fields).forEach(([field, message]) => {
+              setFieldError(field, String(message || ""));
+            });
+          }
+          setStatus(result?.error || formConfig.errorFallback, true);
+          return;
         }
 
         form.reset();
@@ -1493,6 +1583,7 @@
     if (!currentCommon) return;
 
     renderMeta();
+    renderStructuredData();
     renderHeader();
     renderPage();
     renderFooter();

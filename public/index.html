@@ -30,11 +30,29 @@
     <meta name="theme-color" content="#041a33" />
     <link id="canonicalLink" rel="canonical" href="https://arvectum.com/" />
     <link
+      id="hrefLangRu"
+      rel="alternate"
+      hreflang="ru"
+      href="https://arvectum.com/"
+    />
+    <link
+      id="hrefLangEn"
+      rel="alternate"
+      hreflang="en"
+      href="https://arvectum.com/?lang=en"
+    />
+    <link
+      id="hrefLangDefault"
+      rel="alternate"
+      hreflang="x-default"
+      href="https://arvectum.com/"
+    />
+    <link
       rel="icon"
       type="image/png"
       href="assets/brand/arvectum-logo-primary.png"
     />
-    <script type="application/ld+json">
+    <script id="organizationLd" type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -45,10 +63,29 @@
         "sameAs": ["https://t.me/arvectum"]
       }
     </script>
+    <script id="serviceLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "AI-автоматизация закупок и операционных процессов",
+        "provider": {
+          "@type": "Organization",
+          "name": "Arvectum LLC",
+          "url": "https://arvectum.com"
+        },
+        "areaServed": "RU",
+        "serviceType": [
+          "Автоматизация бизнес-процессов",
+          "Автоматизация закупок",
+          "Автоматизация рабочих процессов с AI"
+        ],
+        "url": "https://arvectum.com/"
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=PT+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260616a" />
@@ -168,6 +205,13 @@
       </div>
     </header>
 
+    <noscript>
+      <div class="noscript-note">
+        Сайт работает без JavaScript в базовом режиме. Для переключения языка и
+        расширенной формы включите JavaScript.
+      </div>
+    </noscript>
+
     <main id="pageRoot">
       <section class="hero">
         <div class="container hero-grid">
@@ -235,19 +279,185 @@
 
       <section class="section section-soft">
         <div class="container">
+          <div class="split split-compact">
+            <div>
+              <div class="section-head section-head--left">
+                <h2>Кому это нужно</h2>
+                <p>
+                  Там, где ручной процесс уже влияет на сроки, маржу и качество
+                  решений.
+                </p>
+              </div>
+              <div class="grid grid-2">
+                <article class="info-card">
+                  <h3>Поставщикам и тендерным командам</h3>
+                  <p>Чтобы быстрее собирать заявку и видеть следующий шаг.</p>
+                </article>
+                <article class="info-card">
+                  <h3>Закупочным отделам</h3>
+                  <p>
+                    Чтобы держать в одном маршруте статусы, ТКП и проверку
+                    рисков.
+                  </p>
+                </article>
+                <article class="info-card">
+                  <h3>Операционным руководителям</h3>
+                  <p>
+                    Чтобы процесс читался без чатов, таблиц и ручных уточнений.
+                  </p>
+                </article>
+                <article class="info-card">
+                  <h3>Компаниям с закрытым контуром данных</h3>
+                  <p>Чтобы данные, роли и доступы оставались под контролем.</p>
+                </article>
+              </div>
+            </div>
+            <article class="info-card info-card--accent">
+              <div class="section-head section-head--left">
+                <h2>Что автоматизируем</h2>
+                <p>
+                  Под контуром мы понимаем не чат-бота, а рабочую систему: роли,
+                  статусы, документы, проверки, логи и понятный следующий шаг.
+                </p>
+              </div>
+              <div class="chip-grid">
+                <span class="chip">Закупочный маршрут</span>
+                <span class="chip">RFQ и ТКП</span>
+                <span class="chip">Коммерческие и договорные риски</span>
+                <span class="chip">Согласования и статусы</span>
+                <span class="chip">Контроль исполнения</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
           <div class="section-head">
-            <h2>Кому это нужно</h2>
+            <h2>Как начинается проект</h2>
+            <p>Стартуем с одного процесса и быстро доводим его до пилота.</p>
+          </div>
+          <div class="process-flow" aria-label="Процессный маршрут">
+            <span class="process-flow__step">Закупка</span>
+            <span class="process-flow__step">Разбор требований</span>
+            <span class="process-flow__step">RFQ</span>
+            <span class="process-flow__step">ТКП</span>
+            <span class="process-flow__step">Экономика</span>
+            <span class="process-flow__step">Риски</span>
+            <span class="process-flow__step">Заявка</span>
+            <span class="process-flow__step">Исполнение</span>
+          </div>
+          <div class="step-grid">
+            <article class="step-card">
+              <strong>01</strong>
+              <p>Диагностика процесса</p>
+            </article>
+            <article class="step-card">
+              <strong>02</strong>
+              <p>Карта ролей, данных и решений</p>
+            </article>
+            <article class="step-card">
+              <strong>03</strong>
+              <p>MVP на одном реальном сценарии</p>
+            </article>
+            <article class="step-card">
+              <strong>04</strong>
+              <p>Пилот, метрики и следующий шаг</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head">
+            <h2>Кто стоит за Arvectum</h2>
             <p>
-              Компаниям, где закупочный или операционный процесс уже влияет на
-              сроки, маржу, качество исполнения и чувствительность данных.
+              Arvectum развивает Никита Арутюнов — разработчик и основатель
+              компании. Фокус проекта — практическая автоматизация закупочных,
+              тендерных и операционных процессов.
             </p>
           </div>
-          <div class="chip-grid">
-            <span class="chip">Поставщикам и тендерным командам</span>
-            <span class="chip">Закупочным отделам</span>
-            <span class="chip">Операционным руководителям</span>
-            <span class="chip">Компаниям с закрытым контуром данных</span>
+          <div class="grid grid-3">
+            <article class="info-card">
+              <h3>Практический фокус</h3>
+              <p>Закупки, тендеры, документы, риски и статусы.</p>
+            </article>
+            <article class="info-card">
+              <h3>Закрытая архитектура</h3>
+              <p>Контроль данных, доступов и логов без хаотичного AI-слоя.</p>
+            </article>
+            <article class="info-card">
+              <h3>MVP-подход</h3>
+              <p>Сначала один реальный процесс, потом масштабирование.</p>
+            </article>
           </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="split split-compact">
+            <article class="info-card info-card--accent">
+              <div class="section-head section-head--left">
+                <h2>Что будет на первом разборе</h2>
+              </div>
+              <ul class="compact-list">
+                <li>
+                  Уточним процесс: закупка, тендер, RFQ, ТКП, согласование или
+                  операционная проверка.
+                </li>
+                <li>
+                  Определим, где теряются документы, статусы, сроки и решения.
+                </li>
+                <li>Выберем один сценарий для MVP или пилота.</li>
+                <li>
+                  Зафиксируем ограничения по данным, доступам и безопасности.
+                </li>
+                <li>
+                  Сформируем первый план: что можно сделать за 1-2 недели и что
+                  проверить за 2-4 недели.
+                </li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <div class="section-head section-head--left">
+                <h2>Почему это безопаснее чат-бота</h2>
+                <p>
+                  Система собирается вокруг процесса и ответственности, а не
+                  вокруг свободного чата без границ.
+                </p>
+              </div>
+              <div class="chip-grid">
+                <span class="chip">Роли и доступы</span>
+                <span class="chip">Журнал действий</span>
+                <span class="chip">Локальный или гибридный контур</span>
+                <span class="chip">Проверяемые артефакты</span>
+                <span class="chip">Финальные решения остаются у человека</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <article class="cta-band">
+            <div>
+              <h2>Первый шаг — короткий разбор процесса</h2>
+              <p>
+                После него станет понятно, какой сценарий брать в MVP и как
+                быстро запускать пилот.
+              </p>
+            </div>
+            <div class="cta-band__actions">
+              <a class="button" href="contact.html">Получить разбор процесса</a>
+              <a class="button button-ghost" href="solutions.html"
+                >Открыть решения</a
+              >
+            </div>
+          </article>
         </div>
       </section>
     </main>
@@ -255,13 +465,6 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid glass">
-          <div class="footer-block footer-block--lead">
-            <h2>ООО "Арвектум"</h2>
-            <p>
-              Arvectum автоматизирует закупочные, тендерные и операционные
-              процессы с помощью AI-агентов и управляемых цифровых контуров.
-            </p>
-          </div>
           <div class="footer-block">
             <span>Разделы</span>
             <div class="footer-links">
@@ -284,24 +487,22 @@
           </div>
           <div class="footer-block">
             <span>Контакты</span>
-            <div class="footer-links">
+            <div class="footer-contact-stack">
+              <p>ООО "Арвектум"</p>
               <a href="mailto:info@arvectum.com">info@arvectum.com</a>
-              <a href="https://t.me/arvectum" target="_blank" rel="noreferrer"
-                >t.me/arvectum</a
+              <a
+                class="telegram-link"
+                href="https://t.me/arvectum"
+                target="_blank"
+                rel="noreferrer"
+                ><span class="telegram-link__icon" aria-hidden="true">↗</span
+                ><span>t.me/arvectum</span></a
               >
+              <p class="footer-note">
+                Реквизиты и договорные данные предоставляются по запросу перед
+                началом работ.
+              </p>
             </div>
-            <dl class="footer-requisites footer-requisites--compact">
-              <div class="footer-requisite">
-                <dt>Название</dt>
-                <dd>ООО "Арвектум"</dd>
-              </div>
-              <div class="footer-requisite">
-                <dt>Почта</dt>
-                <dd>
-                  <a href="mailto:info@arvectum.com">info@arvectum.com</a>
-                </dd>
-              </div>
-            </dl>
           </div>
         </div>
       </div>

@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Кейсы и сценарии внедрения — Arvectum</title>
+    <title>Сценарии внедрения — Arvectum</title>
     <meta
       id="metaDescription"
       name="description"
-      content="Примеры маршрутов внедрения AI-контуров: от ручных процессов и разрозненных документов к статусам, журналу решений и прозрачному управлению."
+      content="Сценарии внедрения для закупок, согласований и проверки документов: маршруты, статусы, журнал решений и демонстрация без выдуманных метрик."
     />
     <meta
       id="metaOgTitle"
       property="og:title"
-      content="Кейсы и сценарии внедрения — Arvectum"
+      content="Сценарии внедрения — Arvectum"
     />
     <meta
       id="metaOgDescription"
       property="og:description"
-      content="Примеры маршрутов внедрения AI-контуров: от ручных процессов и разрозненных документов к статусам, журналу решений и прозрачному управлению."
+      content="Сценарии внедрения для закупок, согласований и проверки документов: маршруты, статусы, журнал решений и демонстрация без выдуманных метрик."
     />
     <meta
       id="metaOgUrl"
@@ -38,14 +38,43 @@
       href="https://arvectum.com/cases.html"
     />
     <link
+      id="hrefLangRu"
+      rel="alternate"
+      hreflang="ru"
+      href="https://arvectum.com/cases.html"
+    />
+    <link
+      id="hrefLangEn"
+      rel="alternate"
+      hreflang="en"
+      href="https://arvectum.com/cases.html?lang=en"
+    />
+    <link
+      id="hrefLangDefault"
+      rel="alternate"
+      hreflang="x-default"
+      href="https://arvectum.com/cases.html"
+    />
+    <link
       rel="icon"
       type="image/png"
       href="assets/brand/arvectum-logo-primary.png"
     />
+    <script id="organizationLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Arvectum LLC",
+        "url": "https://arvectum.com",
+        "logo": "https://arvectum.com/assets/brand/arvectum-logo-primary.png",
+        "email": "info@arvectum.com",
+        "sameAs": ["https://t.me/arvectum"]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=PT+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260616a" />
@@ -70,7 +99,13 @@
               class="desktop-nav"
               id="desktopNav"
               aria-label="Основная навигация"
-            ></nav>
+            >
+              <a class="nav-link" href="index.html">Главная</a>
+              <a class="nav-link" href="solutions.html">Решения</a>
+              <a class="nav-link is-active" href="cases.html">Сценарии</a>
+              <a class="nav-link" href="approach.html">Подход</a>
+              <a class="nav-link" href="contact.html">Контакты</a>
+            </nav>
             <div class="topbar-tools">
               <div
                 class="lang-switch desktop-lang-switch"
@@ -112,11 +147,13 @@
               <span id="menuCloseText">Закрыть меню</span>
             </button>
           </div>
-          <nav
-            class="menu-nav"
-            id="menuNav"
-            aria-label="Навигация по разделам"
-          ></nav>
+          <nav class="menu-nav" id="menuNav" aria-label="Навигация по разделам">
+            <a class="nav-link" href="index.html">Главная</a>
+            <a class="nav-link" href="solutions.html">Решения</a>
+            <a class="nav-link is-active" href="cases.html">Сценарии</a>
+            <a class="nav-link" href="approach.html">Подход</a>
+            <a class="nav-link" href="contact.html">Контакты</a>
+          </nav>
           <div class="menu-drawer__extras">
             <div
               class="lang-switch menu-lang-switch"
@@ -148,6 +185,12 @@
         </div>
       </div>
     </header>
+    <noscript>
+      <div class="noscript-note">
+        Сайт работает без JavaScript в базовом режиме. Для переключения языка и
+        расширенной формы включите JavaScript.
+      </div>
+    </noscript>
     <main id="pageRoot">
       <section class="page-hero">
         <div class="container">
@@ -166,7 +209,7 @@
       <section class="section section-soft">
         <div class="container">
           <div class="section-head">
-            <h2>Что можно показать на демо</h2>
+            <h2>Что вы увидите на демо</h2>
           </div>
           <div class="chip-grid">
             <span class="chip">Маршрут закупки</span>
@@ -177,10 +220,202 @@
           </div>
         </div>
       </section>
+      <section class="section">
+        <div class="container">
+          <div class="case-list">
+            <article class="case-card">
+              <div class="case-card__top">
+                <span class="case-card__label">Сценарий закупки</span>
+                <span class="case-card__status">Статус: Пилотный сценарий</span>
+              </div>
+              <h2>Закупочный маршрут с прозрачными статусами</h2>
+              <div class="case-flow">
+                <div>
+                  <span>Бизнес-вызов</span>
+                  <p>
+                    Документы, вопросы поставщикам и согласования живут в разных
+                    каналах, поэтому состояние сделки приходится собирать
+                    заново.
+                  </p>
+                </div>
+                <div>
+                  <span>Что строим</span>
+                  <p>
+                    Один маршрут со статусами, RFQ, сравнением ТКП, рисками и
+                    журналом решений.
+                  </p>
+                </div>
+                <div>
+                  <span>Ожидаемый эффект / результат</span>
+                  <p>
+                    Видимый следующий шаг, меньше ручного пересбора и понятная
+                    точка контроля по сделке.
+                  </p>
+                </div>
+              </div>
+              <ul class="compact-list">
+                <li>Единая карточка закупки и документов</li>
+                <li>Контроль ответственных и зависших этапов</li>
+                <li>История решений и проверка рисков</li>
+              </ul>
+              <div class="case-card__demo">
+                <span>Что увидите на демо</span>
+                <ul class="compact-list">
+                  <li>Карточку закупки и список документов</li>
+                  <li>Этапы маршрута и RFQ</li>
+                  <li>Сравнение ТКП, экономику и риск-мемо</li>
+                  <li>Журнал решений по сделке</li>
+                </ul>
+              </div>
+            </article>
+            <article class="case-card">
+              <div class="case-card__top">
+                <span class="case-card__label">Сценарий согласований</span>
+                <span class="case-card__status">Статус: Демо-маршрут</span>
+              </div>
+              <h2>Контур согласований и зависших шагов</h2>
+              <div class="case-flow">
+                <div>
+                  <span>Бизнес-вызов</span>
+                  <p>
+                    Руководителю трудно увидеть, где процесс остановился и кто
+                    отвечает за следующий шаг.
+                  </p>
+                </div>
+                <div>
+                  <span>Что строим</span>
+                  <p>
+                    Этапы, ответственные, SLA и история действий в одном
+                    маршруте.
+                  </p>
+                </div>
+                <div>
+                  <span>Ожидаемый эффект / результат</span>
+                  <p>
+                    Быстрее видно узкие места, меньше напоминаний и ручной
+                    координации.
+                  </p>
+                </div>
+              </div>
+              <div class="case-card__demo">
+                <span>Что увидите на демо</span>
+                <ul class="compact-list">
+                  <li>Этапы и ответственных</li>
+                  <li>Зависшие шаги и SLA</li>
+                  <li>Комментарии и историю действий</li>
+                </ul>
+              </div>
+            </article>
+            <article class="case-card">
+              <div class="case-card__top">
+                <span class="case-card__label"
+                  >Сценарий проверки документов</span
+                >
+                <span class="case-card__status"
+                  >Статус: Внутренний прототип</span
+                >
+              </div>
+              <h2>Проверка комплектности и договорных рисков</h2>
+              <div class="case-flow">
+                <div>
+                  <span>Бизнес-вызов</span>
+                  <p>
+                    Команда тратит время на ручную сверку комплектности,
+                    требований и ограничений перед подачей или согласованием.
+                  </p>
+                </div>
+                <div>
+                  <span>Что строим</span>
+                  <p>
+                    Маршрут, где система помогает находить пробелы, версии и
+                    потенциальные риски до финального решения человека.
+                  </p>
+                </div>
+                <div>
+                  <span>Ожидаемый эффект / результат</span>
+                  <p>
+                    Меньше пропусков, быстрее проверка и более понятная точка
+                    входа для финального решения.
+                  </p>
+                </div>
+              </div>
+              <div class="case-card__demo">
+                <span>Что увидите на демо</span>
+                <ul class="compact-list">
+                  <li>Чек-лист комплектности</li>
+                  <li>Найденные пробелы и потенциальные риски</li>
+                  <li>Комментарии человека и итоговый memo</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <article class="cta-band">
+            <div>
+              <h2>Запросить демо на похожем процессе</h2>
+              <p>
+                Покажем, какой маршрут имеет смысл запускать первым и что
+                измерять в пилоте.
+              </p>
+            </div>
+            <div class="cta-band__actions">
+              <a class="button" href="contact.html"
+                >Запросить демо на похожем процессе</a
+              >
+              <a class="button button-ghost" href="solutions.html"
+                >Открыть решения</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
     <footer class="site-footer">
       <div class="container">
-        <div class="footer-grid glass"></div>
+        <div class="footer-grid glass">
+          <div class="footer-block">
+            <span>Разделы</span>
+            <div class="footer-links">
+              <a href="index.html">Главная</a>
+              <a href="solutions.html">Решения</a>
+              <a href="cases.html">Сценарии</a>
+              <a href="approach.html">Подход</a>
+              <a href="contact.html">Контакты</a>
+            </div>
+          </div>
+          <div class="footer-block">
+            <span>Юридическая информация</span>
+            <div class="footer-links">
+              <a href="privacy.html">Политика конфиденциальности</a>
+              <a href="personal-data-consent.html"
+                >Согласие на обработку персональных данных</a
+              >
+              <a href="cookies.html">Политика cookies</a>
+            </div>
+          </div>
+          <div class="footer-block footer-block--contacts">
+            <span>Контакты</span>
+            <div class="footer-contact-stack">
+              <p>ООО "Арвектум"</p>
+              <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+              <a
+                class="telegram-link"
+                href="https://t.me/arvectum"
+                target="_blank"
+                rel="noreferrer"
+                ><span class="telegram-link__icon" aria-hidden="true">↗</span
+                ><span>t.me/arvectum</span></a
+              >
+              <p class="footer-note">
+                Реквизиты и договорные данные предоставляются по запросу перед
+                началом работ.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
     <section class="cookie-banner glass" id="cookieBanner" hidden>

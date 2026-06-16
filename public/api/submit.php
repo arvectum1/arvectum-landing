@@ -1,17 +1,7 @@
 <?php
-header('Content-Type: application/json; charset=UTF-8');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode([
-        'ok' => false,
-        'error' => 'Method not allowed',
-    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
 
@@ -76,6 +66,103 @@ function encode_subject(string $subject): string
     return '=?UTF-8?B?' . base64_encode($subject) . '?=';
 }
 
+function request_prefers_json(): bool
+{
+    $contentType = strtolower((string) ($_SERVER['CONTENT_TYPE'] ?? ''));
+    $accept = strtolower((string) ($_SERVER['HTTP_ACCEPT'] ?? ''));
+    $requestedWith = strtolower((string) ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? ''));
+
+    return str_contains($contentType, 'application/json')
+        || str_contains($accept, 'application/json')
+        || $requestedWith === 'xmlhttprequest';
+}
+
+function respond_json(int $status, array $payload): void
+{
+    http_response_code($status);
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    exit;
+}
+
+function redirect_to(string $location, int $status = 303): void
+{
+    header('Location: ' . $location, true, $status);
+    exit;
+}
+
+function respond_html_error(string $message, int $status = 502): void
+{
+    http_response_code($status);
+    header('Content-Type: text/html; charset=UTF-8');
+    ?>
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Не удалось отправить заявку — Arvectum</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f5f7fb;
+        color: #122033;
+        font: 16px/1.5 Arial, sans-serif;
+      }
+
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .panel {
+        background: #fff;
+        border: 1px solid #d8e2ef;
+        border-radius: 16px;
+        padding: 24px;
+      }
+
+      a {
+        color: #0b7d6d;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="panel">
+        <h1>Не удалось отправить заявку</h1>
+        <p><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
+        <p>
+          Напишите напрямую:
+          <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+          или
+          <a href="https://t.me/arvectum" target="_blank" rel="noreferrer">t.me/arvectum</a>.
+        </p>
+        <p><a href="/contact.html">Вернуться к форме</a></p>
+      </div>
+    </main>
+  </body>
+</html>
+    <?php
+    exit;
+}
+
+$wantsJson = request_prefers_json();
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $payload = [
+        'ok' => false,
+        'error' => 'Method not allowed',
+    ];
+
+    if ($wantsJson) {
+        respond_json(405, $payload);
+    }
+
+    respond_html_error('Используйте форму на странице контактов.', 405);
+}
+
 $raw = file_get_contents('php://input');
 $data = json_decode((string) $raw, true);
 
@@ -95,12 +182,14 @@ $deadline = normalize_string($data['deadline'] ?? '');
 $website = normalize_string($data['website'] ?? '');
 
 if ($website !== '') {
-    http_response_code(200);
-    echo json_encode([
-        'ok' => true,
-        'message' => 'Request accepted',
-    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    exit;
+    if ($wantsJson) {
+        respond_json(200, [
+            'ok' => true,
+            'message' => 'Request accepted',
+        ]);
+    }
+
+    redirect_to('/thank-you.html');
 }
 
 $isOtherMethod = in_array(mb_strtolower($contactMethod), ['other', 'другое'], true) || $contactMethodOther !== '';
@@ -132,13 +221,15 @@ if ($message === '') {
 }
 
 if ($validationErrors !== []) {
-    http_response_code(422);
-    echo json_encode([
-        'ok' => false,
-        'error' => 'Заполните обязательные поля.',
-        'fields' => $validationErrors,
-    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    exit;
+    if ($wantsJson) {
+        respond_json(422, [
+            'ok' => false,
+            'error' => 'Заполните обязательные поля.',
+            'fields' => $validationErrors,
+        ]);
+    }
+
+    redirect_to('/contact.html?status=error');
 }
 
 $envVars = load_env_file(dirname(__DIR__) . '/.env');
@@ -193,6 +284,8 @@ if ($telegramToken !== '' && $telegramChatId !== '') {
             'response' => $telegramResult,
         ]);
     }
+
+    curl_close($ch);
 }
 
 $subject = encode_subject('Arvectum: новая заявка с сайта');
@@ -235,13 +328,15 @@ if ($telegramSent || $mailSent) {
         $channels[] = 'email';
     }
 
-    http_response_code(200);
-    echo json_encode([
-        'ok' => true,
-        'message' => 'Заявка отправлена.',
-        'channels' => $channels,
-    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    exit;
+    if ($wantsJson) {
+        respond_json(200, [
+            'ok' => true,
+            'message' => 'Заявка отправлена.',
+            'channels' => $channels,
+        ]);
+    }
+
+    redirect_to('/thank-you.html');
 }
 
 write_technical_log('submit-errors.log', [
@@ -251,8 +346,11 @@ write_technical_log('submit-errors.log', [
     'emailConfigured' => $formToEmail !== '',
 ]);
 
-http_response_code(502);
-echo json_encode([
-    'ok' => false,
-    'error' => 'Не удалось отправить заявку. Напишите напрямую на info@arvectum.com или в Telegram.',
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+if ($wantsJson) {
+    respond_json(502, [
+        'ok' => false,
+        'error' => 'Не удалось отправить заявку. Напишите напрямую на info@arvectum.com или в Telegram.',
+    ]);
+}
+
+respond_html_error('Напишите напрямую на info@arvectum.com или в Telegram.');
