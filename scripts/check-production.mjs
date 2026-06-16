@@ -40,6 +40,38 @@ const checks = [
       status === 200 &&
       (contentType.includes("xml") || body.includes("<urlset")),
   },
+  {
+    url: "https://arvectum.com/solutions/procurement.html",
+    ok: ({ status, body }) =>
+      status === 200 && body.includes("Автоматизация закупок и тендеров"),
+  },
+  {
+    url: "https://arvectum.com/solutions/document-workflow.html",
+    ok: ({ status, body }) =>
+      status === 200 && body.includes("Согласования и документооборот"),
+  },
+  {
+    url: "https://arvectum.com/solutions/operations.html",
+    ok: ({ status, body }) =>
+      status === 200 && body.includes("Автоматизация операционных процессов"),
+  },
+  {
+    url: "https://arvectum.com/solutions/ai-document-checks.html",
+    ok: ({ status, body }) =>
+      status === 200 && body.includes("Проверка документов с AI"),
+  },
+  {
+    url: "https://arvectum.com/materials.html",
+    ok: ({ status, body }) =>
+      status === 200 &&
+      body.includes("Материалы об автоматизации бизнес-процессов"),
+  },
+  {
+    url: "https://arvectum.com/materials/how-to-choose-first-process.html",
+    ok: ({ status, body }) =>
+      status === 200 &&
+      body.includes("Как выбрать первый бизнес-процесс для автоматизации"),
+  },
 ];
 
 const normalizeSnippet = (body) =>
@@ -51,7 +83,7 @@ const runCurl = (url, insecure = false) =>
     [
       "-sS",
       "--max-time",
-      "20",
+      "45",
       "-D",
       "-",
       "-o",
@@ -61,6 +93,32 @@ const runCurl = (url, insecure = false) =>
     ],
     { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
   );
+
+const runCurlWithRetry = (url, insecure = false, attempts = 3) => {
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return runCurl(url, insecure);
+    } catch (error) {
+      lastError = error;
+      const stderr =
+        error && typeof error === "object" && "stderr" in error
+          ? String(error.stderr || "")
+          : "";
+      const isTransient =
+        stderr.includes("Connection timed out") ||
+        stderr.includes("Couldn't connect to server") ||
+        stderr.includes("Operation timed out");
+
+      if (!isTransient || attempt === attempts) {
+        throw error;
+      }
+    }
+  }
+
+  throw lastError;
+};
 
 const parseCurlResponse = (raw) => {
   const normalized = raw.replace(/\r\n/g, "\n");
@@ -104,7 +162,7 @@ let hasFailures = false;
 
 for (const item of checks) {
   try {
-    const raw = runCurl(item.url);
+    const raw = runCurlWithRetry(item.url);
     const result = parseCurlResponse(raw);
     const passed = item.ok(result);
     hasFailures ||= !passed;
@@ -122,7 +180,7 @@ for (const item of checks) {
 
     if (stderr.includes("SSL certificate problem")) {
       try {
-        const insecureRaw = runCurl(item.url, true);
+        const insecureRaw = runCurlWithRetry(item.url, true);
         const insecureResult = parseCurlResponse(insecureRaw);
         console.log(`FAIL ${item.url}`);
         console.log(
