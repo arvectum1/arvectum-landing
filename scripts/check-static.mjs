@@ -75,6 +75,8 @@ const sitemapUrls = Array.from(
 const robotsContent = fs.readFileSync(robotsPath, "utf8");
 const siteConfigContent = fs.readFileSync(siteConfigPath, "utf8");
 const cssContent = fs.readFileSync(cssPath, "utf8");
+const legacyHomepageH1 =
+  "Автоматизируем процессы, где теряются документы, статусы и сроки";
 
 const isExternalUrl = (value) =>
   /^(?:[a-z]+:|\/\/|#)/i.test(value) ||
@@ -247,8 +249,16 @@ for (const fileName of htmlFiles) {
     const h1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, " ").trim() : "";
     record(h1.length > 0, "index.html: homepage H1 is missing");
     record(
+      !/где теряются/iu.test(h1),
+      "index.html: homepage H1 must not use negative 'где теряются' wording",
+    );
+    record(
       !/закупочн(ый|ого|ому|ом)? маршрут/iu.test(h1),
       "index.html: homepage H1 must not position procurement as the only focus",
+    );
+    record(
+      !html.includes(legacyHomepageH1),
+      "index.html: legacy homepage H1 must be removed",
     );
 
     for (const link of [
@@ -420,6 +430,10 @@ record(
 record(
   !/Посмотреть сценарии|View scenarios/u.test(siteConfigContent),
   "site-config.js: must not expose scenarios in public CTAs",
+);
+record(
+  !siteConfigContent.includes(legacyHomepageH1),
+  "site-config.js: legacy homepage H1 must be removed",
 );
 
 if (failures.length) {

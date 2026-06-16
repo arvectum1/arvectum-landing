@@ -119,7 +119,7 @@ window.SITE_CONFIG = {
           ],
           messageLabel: "Кратко опишите задачу",
           messagePlaceholder:
-            "Какой процесс сейчас ручной, где теряются документы, статусы, сроки или риски, и какой первый результат хотите получить",
+            "Какой процесс сейчас занимает много ручной координации, какие документы или статусы важно контролировать и какой первый результат хотите получить",
           deadlineLabel: "Горизонт пилота",
           deadlinePlaceholder: "Например, 2-4 недели",
           budgetLabel: "Бюджетный диапазон",
@@ -195,30 +195,29 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "AI-автоматизация бизнес-процессов",
-            title:
-              "Автоматизируем процессы, где теряются документы, статусы и сроки",
-            text: "Собираем рабочую систему для закупок, согласований, документооборота и операционных проверок без потери контроля.",
+            title: "Помогаем навести порядок в сложных бизнес-процессах",
+            text: "Собираем рабочие системы для закупок, согласований, документооборота и операционных проверок: с понятными ролями, статусами, документами и историей решений.",
             bullets: [
               "Один процесс вместо большой платформы",
-              "MVP за 2-4 недели",
-              "Закрытая архитектура и контроль доступов",
-              "Роли, доступы и история решений под контролем",
+              "MVP за 2–4 недели",
+              "Роли, статусы и документы в одном маршруте",
+              "AI-модули помогают проверять, сравнивать и готовить memo",
             ],
-            primaryCta: "Связаться с нами",
-            secondaryCta: "Открыть решения",
-            sideLabel: "Где запускаем",
+            primaryCta: "Разобрать процесс",
+            secondaryCta: "Посмотреть решения",
+            sideLabel: "Где можно начать",
             sideItems: [
               {
                 title: "Закупки и тендеры",
-                text: "RFQ, ТКП, риски и исполнение.",
+                text: "RFQ, ТКП, документы, риски и контроль исполнения.",
               },
               {
-                title: "Согласования",
-                text: "Документы, версии и ответственные.",
+                title: "Согласования и документы",
+                text: "Маршруты, версии, ответственные и история решений.",
               },
               {
-                title: "Проверки",
-                text: "Комплектность, статусы и журнал решений.",
+                title: "Операционные проверки",
+                text: "Статусы, комплектность, контроль шагов и короткие memo.",
               },
             ],
           },
@@ -976,7 +975,7 @@ window.SITE_CONFIG = {
             title: "Что будет на первом разборе",
             items: [
               "Уточним, какой именно процесс вы хотите ускорить или привести в порядок.",
-              "Найдем точки, где теряются документы, статусы и управленческий контекст.",
+              "Определим, какие документы, статусы и решения важно держать под контролем.",
               "Выберем один сценарий для MVP или пилота.",
               "Согласуем ограничения по данным, доступам и безопасности.",
               "Зафиксируем ближайший план работ на 1-2 и 2-4 недели.",
@@ -1086,7 +1085,7 @@ window.SITE_CONFIG = {
           ],
           messageLabel: "Briefly describe the task",
           messagePlaceholder:
-            "Which workflow is still manual, where documents or statuses get lost, and what first result matters most",
+            "Which workflow takes too much manual coordination now, which documents or statuses need better control, and what first result matters most",
           deadlineLabel: "Pilot timeline",
           deadlinePlaceholder: "For example, 2-4 weeks",
           budgetLabel: "Budget range",
@@ -1160,30 +1159,29 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "AI automation for business processes",
-            title:
-              "We automate workflows where documents, statuses and deadlines get lost",
-            text: "We build practical systems for procurement, approvals, document-heavy workflows and operational checks without losing control.",
+            title: "We help bring order to complex business workflows",
+            text: "We build working systems for procurement, approvals, document-heavy workflows and operational checks, with clear roles, statuses, documents and decision history.",
             bullets: [
               "One process instead of a large platform",
-              "MVP in 2-4 weeks",
-              "Closed architecture and access control",
-              "Roles, access and decision history stay under control",
+              "MVP in 2–4 weeks",
+              "Roles, statuses and documents in one workflow",
+              "AI modules help review, compare and prepare memos",
             ],
-            primaryCta: "Contact us",
-            secondaryCta: "Open solutions",
-            sideLabel: "Where we start",
+            primaryCta: "Review your process",
+            secondaryCta: "See solutions",
+            sideLabel: "Where to start",
             sideItems: [
               {
                 title: "Procurement and tenders",
                 text: "RFQ, quotes, risks and execution.",
               },
               {
-                title: "Approvals",
-                text: "Documents, versions and owners.",
+                title: "Approvals and documents",
+                text: "Routes, versions, owners and decision history.",
               },
               {
-                title: "Checks",
-                text: "Completeness, statuses and decision logs.",
+                title: "Operational checks",
+                text: "Statuses, completeness, step control and short memos.",
               },
             ],
           },
@@ -2025,7 +2023,7 @@ window.SITE_CONFIG = {
             title: "What happens in the first review call",
             items: [
               "We clarify which workflow you want to speed up or make controllable.",
-              "We find where documents, statuses and decision context are getting lost.",
+              "We identify which documents, statuses and decisions should stay under control.",
               "We choose one scenario for MVP or pilot.",
               "We align data, access and security constraints.",
               "We outline the next 1-2 week and 2-4 week plan.",
