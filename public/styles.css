@@ -299,6 +299,7 @@ img {
   display: none;
   width: clamp(112px, 22vw, 158px);
   height: auto;
+  flex-shrink: 0;
 }
 
 .mobile-actions {
