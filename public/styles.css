@@ -1667,23 +1667,29 @@ textarea[aria-invalid="true"] {
   .topbar-tools {
     width: 100%;
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
     gap: 0.55rem;
   }
 
   .header-cta,
   .menu-toggle {
+    width: 100%;
     min-height: 46px;
     border: 1px solid rgba(4, 26, 51, 0.14);
     background: rgba(255, 255, 255, 0.92);
     box-shadow: 0 10px 24px rgba(8, 28, 54, 0.08);
   }
 
+  .header-cta {
+    order: 2;
+  }
+
   .menu-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    order: 1;
     min-width: 0;
     padding-inline: 0.85rem;
     border-radius: 18px;
@@ -1746,7 +1752,7 @@ textarea[aria-invalid="true"] {
   }
 
   .menu-toggle__logo {
-    width: clamp(112px, 34vw, 142px);
+    width: min(100%, clamp(124px, 34vw, 152px));
   }
 
   .hero {
