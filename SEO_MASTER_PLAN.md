@@ -10,14 +10,26 @@
 ## Public SEO Structure
 
 - Homepage: `https://arvectum.com/`
+- About: `https://arvectum.com/about.html`
 - Solutions: `https://arvectum.com/solutions.html`
+- Direction pages:
+  - `https://arvectum.com/solutions/procurement.html`
+  - `https://arvectum.com/solutions/document-workflow.html`
+  - `https://arvectum.com/solutions/operations.html`
+  - `https://arvectum.com/solutions/ai-document-checks.html`
 - Approach: `https://arvectum.com/approach.html`
 - Contacts: `https://arvectum.com/contact.html`
+- Materials:
+  - `https://arvectum.com/materials.html`
+  - `https://arvectum.com/materials/how-to-choose-first-process.html`
+  - `https://arvectum.com/materials/ai-automation-simple.html`
+  - `https://arvectum.com/materials/chatbot-vs-process-automation.html`
+  - `https://arvectum.com/materials/mvp-automation-2-4-weeks.html`
 - Legal pages, while they remain public:
   - `https://arvectum.com/privacy.html`
   - `https://arvectum.com/personal-data-consent.html`
   - `https://arvectum.com/cookies.html`
-- Future direction pages, materials, and blog content can be added in later sprints.
+- Future blog content can be added in later sprints.
 
 ## Hidden / Non-Promoted Structure
 

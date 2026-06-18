@@ -12,6 +12,7 @@ Date: `2026-06-18`
 - `https://arvectum.com/solutions/ai-document-checks.html`
 - `https://arvectum.com/approach.html`
 - `https://arvectum.com/contact.html`
+- `https://arvectum.com/about.html`
 - `https://arvectum.com/materials.html`
 - `https://arvectum.com/materials/how-to-choose-first-process.html`
 - `https://arvectum.com/materials/ai-automation-simple.html`
@@ -34,6 +35,13 @@ Date: `2026-06-18`
 - Description: `Arvectum помогает автоматизировать операционные процессы, корпоративные регламенты, снабжение, документооборот и контроль поручений с помощью AI-модулей и цифровых маршрутов.`
 - H1: `Автоматизация операционных процессов и корпоративных регламентов на базе ИИ`
 - Lead: `Помогаем снизить ручную рутину, уменьшить риск ошибок и настроить цифровой маршрут под специфику вашей организации. Первый рабочий контур можно проверить за 2–4 недели.`
+
+## About page snippet
+
+- Title: `О компании Arvectum — философия и подход`
+- Description: `Философия Arvectum: прикладная автоматизация бизнеса, порядок в процессах, контроль, безопасность, честность и развитие цифровых продуктов.`
+- H1: `Arvectum`
+- Lead: `Arvectum — продуктовая компания в сфере прикладной автоматизации бизнеса.`
 
 ## Final solution pages
 

@@ -15,6 +15,7 @@ Queries:
 Target pages:
 
 - `/`
+- `/about.html`
 - `/approach.html`
 - `/materials/ai-automation-simple.html`
 - `/materials/how-to-choose-first-process.html`
@@ -114,3 +115,23 @@ Supporting pages:
 
 - `/contact.html`
 - `/materials/ai-automation-simple.html`
+
+## Group 7 — Brand and company intent
+
+Queries:
+
+- Arvectum
+- Арвектум
+- о компании Arvectum
+- философия Arvectum
+- миссия Arvectum
+
+Target pages:
+
+- `/about.html`
+- `/`
+
+Supporting pages:
+
+- `/contact.html`
+- `/solutions.html`

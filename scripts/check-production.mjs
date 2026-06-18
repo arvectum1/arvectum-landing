@@ -77,6 +77,10 @@ const checks = [
     ok: ({ status, body }) =>
       status === 200 && body.includes("Оставьте заявку на разбор процесса"),
   },
+  {
+    url: "https://arvectum.com/about.html",
+    ok: ({ status, body }) => status === 200 && body.includes("<h1>Arvectum"),
+  },
 ];
 
 const normalizeSnippet = (body) =>

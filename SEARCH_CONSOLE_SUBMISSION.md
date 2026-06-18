@@ -10,6 +10,7 @@
 
 4. Use `URL Inspection` for:
    - `https://arvectum.com/`
+   - `https://arvectum.com/about.html`
    - `https://arvectum.com/solutions.html`
    - `https://arvectum.com/solutions/procurement.html`
    - `https://arvectum.com/materials.html`
@@ -26,6 +27,7 @@
 
 4. Use page re-crawl / переобход for:
    - `https://arvectum.com/`
+   - `https://arvectum.com/about.html`
    - `https://arvectum.com/solutions.html`
    - `https://arvectum.com/solutions/procurement.html`
    - `https://arvectum.com/materials.html`
