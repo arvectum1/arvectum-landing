@@ -141,7 +141,7 @@
       organizationLd.textContent = JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Organization",
-        name: footer.companyName || 'ООО "Арвектум"',
+        name: footer.companyName || "ООО «Арвектум»",
         alternateName: "Arvectum",
         url: "https://arvectum.com/",
         logo: "https://arvectum.com/assets/brand/logo-horizontal.svg",
@@ -157,8 +157,8 @@
         "@type": "Service",
         name:
           currentLanguage === "ru"
-            ? "AI-автоматизация бизнес-процессов"
-            : "AI automation for business processes",
+            ? "Автоматизация операционных процессов и корпоративных регламентов на базе ИИ"
+            : "AI automation for operational workflows and corporate regulations",
         provider: {
           "@type": "Organization",
           name: footer.companyName || currentCommon.brandMeta,
@@ -168,10 +168,10 @@
         serviceType:
           currentLanguage === "ru"
             ? [
-                "Автоматизация бизнес-процессов",
-                "Автоматизация закупок",
-                "Автоматизация согласований и документооборота",
-                "Автоматизация рабочих процессов с AI",
+                "Автоматизация операционных процессов",
+                "Автоматизация корпоративных регламентов",
+                "Автоматизация снабжения и документооборота",
+                "AI-модули для рабочих процессов",
               ]
             : [
                 "Business process automation",
@@ -464,6 +464,24 @@
       )
       .join("");
 
+  const renderInfoSection = (section, options = {}) =>
+    section?.items?.length
+      ? `
+        <section class="section${options.soft ? " section-soft" : ""}">
+          <div class="container reveal">
+            <div class="section-head">
+              <h2>${escapeHtml(section.title)}</h2>
+              ${section.text ? `<p>${escapeHtml(section.text)}</p>` : ""}
+            </div>
+            <div class="grid ${section.items.length === 4 ? "grid-2" : "grid-3"}">
+              ${renderInfoCards(section.items)}
+            </div>
+            ${section.note ? `<p class="section-note">${escapeHtml(section.note)}</p>` : ""}
+          </div>
+        </section>
+      `
+      : "";
+
   const renderResourceSection = (resources, fallbackSlug = "materials") =>
     resources?.items?.length
       ? `
@@ -521,17 +539,13 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container reveal">
-        <div class="section-head">
-          <h2>${escapeHtml(page.automation.title)}</h2>
-          <p>${escapeHtml(page.automation.text)}</p>
-        </div>
-        <div class="grid ${page.automation.items?.length === 4 ? "grid-2" : "grid-3"}">
-          ${renderInfoCards(page.automation.items)}
-        </div>
-      </div>
-    </section>
+    ${renderInfoSection(page.scenarios)}
+
+    ${renderInfoSection(page.platform, { soft: true })}
+
+    ${renderInfoSection(page.integration)}
+
+    ${renderInfoSection(page.reliability, { soft: true })}
 
     <section class="section">
       <div class="container reveal">
@@ -589,6 +603,24 @@
     </section>
 
     <section class="section">
+      <div class="container reveal">
+        ${
+          page.scenarios?.items?.length
+            ? `
+              <div class="section-head">
+                <h2>${escapeHtml(page.scenarios.title)}</h2>
+                ${page.scenarios.text ? `<p>${escapeHtml(page.scenarios.text)}</p>` : ""}
+              </div>
+              <div class="grid ${page.scenarios.items.length === 4 ? "grid-2" : "grid-3"}">
+                ${renderInfoCards(page.scenarios.items)}
+              </div>
+            `
+            : ""
+        }
+      </div>
+    </section>
+
+    <section class="section section-soft">
       <div class="container reveal">
         <div class="grid grid-2">
           ${(page.cards || []).map(renderSolutionCard).join("")}

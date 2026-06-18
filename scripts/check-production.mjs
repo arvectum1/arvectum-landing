@@ -72,6 +72,11 @@ const checks = [
       status === 200 &&
       body.includes("Как выбрать первый бизнес-процесс для автоматизации"),
   },
+  {
+    url: "https://arvectum.com/contact.html",
+    ok: ({ status, body }) =>
+      status === 200 && body.includes("Оставьте заявку на разбор процесса"),
+  },
 ];
 
 const normalizeSnippet = (body) =>

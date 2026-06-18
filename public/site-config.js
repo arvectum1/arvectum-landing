@@ -46,7 +46,7 @@ window.SITE_CONFIG = {
           { slug: "contact", label: "Контакты" },
         ],
         footer: {
-          companyName: 'ООО "Арвектум"',
+          companyName: "ООО «Арвектум»",
           contactsTitle: "Контакты",
           inn: "",
           ogrn: "",
@@ -197,77 +197,134 @@ window.SITE_CONFIG = {
           meta: {
             title: "Arvectum — AI-автоматизация бизнес-процессов",
             description:
-              "Arvectum помогает автоматизировать закупки, согласования, документооборот и операционные процессы: диагностика, MVP, AI-модули, роли, статусы и контроль исполнения.",
+              "Arvectum помогает автоматизировать операционные процессы, корпоративные регламенты, снабжение, документооборот и контроль поручений с помощью AI-модулей и цифровых маршрутов.",
             ogTitle: "Arvectum — AI-автоматизация бизнес-процессов",
             ogDescription:
-              "Arvectum помогает автоматизировать закупки, согласования, документооборот и операционные процессы: диагностика, MVP, AI-модули, роли, статусы и контроль исполнения.",
+              "Arvectum помогает автоматизировать операционные процессы, корпоративные регламенты, снабжение, документооборот и контроль поручений с помощью AI-модулей и цифровых маршрутов.",
           },
           hero: {
             eyebrow: "AI-автоматизация бизнес-процессов",
-            title: "Помогаем навести порядок в сложных бизнес-процессах",
-            text: "Собираем рабочие системы для закупок, согласований, документооборота и операционных проверок: с понятными ролями, статусами, документами и историей решений.",
+            title:
+              "Автоматизация операционных процессов и корпоративных регламентов на базе ИИ",
+            text: "Помогаем снизить ручную рутину, уменьшить риск ошибок и настроить цифровой маршрут под специфику вашей организации. Первый рабочий контур можно проверить за 2–4 недели.",
             bullets: [
               "Один процесс вместо большой платформы",
-              "MVP за 2–4 недели",
+              "Первый рабочий контур можно проверить за 2–4 недели",
               "Роли, статусы и документы в одном маршруте",
-              "AI-модули помогают проверять, сравнивать и готовить memo",
+              "AI-модули помогают анализировать, проверять и готовить черновики решений",
             ],
-            primaryCta: "Разобрать процесс",
+            primaryCta: "Запросить демонстрацию",
             secondaryCta: "Посмотреть решения",
             sideLabel: "Где можно начать",
             sideItems: [
               {
-                title: "Закупки и тендеры",
+                title: "Снабжение и закупки",
                 text: "RFQ, ТКП, документы, риски и контроль исполнения.",
               },
               {
-                title: "Согласования и документы",
+                title: "Документы и согласования",
                 text: "Маршруты, версии, ответственные и история решений.",
               },
               {
-                title: "Операционные проверки",
+                title: "Поручения и контроль",
                 text: "Статусы, комплектность, контроль шагов и короткие memo.",
               },
             ],
           },
-          automation: {
-            title: "Что можно автоматизировать",
-            text: "Главная сфера может быть разной, но логика запуска у нас одна: сначала один полезный процесс, потом масштабирование.",
+          scenarios: {
+            title: "Сценарии использования",
+            text: "Начать можно с одного маршрута: снабжение, документы, поручения или отраслевой алгоритм.",
             items: [
               {
-                label: "Флагманское направление",
-                title: "Закупки и тендеры",
-                text: "RFQ, ТКП, документы, риски и контроль исполнения.",
+                title: "Управление снабжением",
+                text: "Автоматизация заявок, сверка спецификаций, сбор предложений и контроль бюджетов в одном маршруте.",
                 link: { slug: "procurement" },
-                cta: "Открыть страницу",
+                cta: "Подробнее",
               },
               {
-                title: "Согласования и документооборот",
-                text: "Маршруты, роли, версии документов и журнал решений.",
+                title: "Умный документооборот",
+                text: "Распознавание, проверка рисков и согласование договоров с прозрачными статусами и историей решений.",
                 link: { slug: "documentWorkflow" },
-                cta: "Открыть страницу",
+                cta: "Подробнее",
               },
               {
-                title: "Операционные процессы",
-                text: "Статусы, SLA, зависшие шаги и контроль исполнения.",
+                title: "Контроль поручений",
+                text: "AI-модули помогают отслеживать исполнительскую дисциплину, напоминать ответственным и заранее подсвечивать риск срыва сроков.",
                 link: { slug: "operationsAutomation" },
-                cta: "Открыть страницу",
+                cta: "Подробнее",
               },
               {
-                title: "Проверка документов с AI",
-                text: "Комплектность, замечания, риски и короткие memo.",
+                title: "Отраслевые задачи",
+                text: "Адаптация цифрового маршрута под внутренние алгоритмы, регламенты и специфику вашей организации.",
                 link: { slug: "aiDocumentChecks" },
-                cta: "Открыть страницу",
+                cta: "Подробнее",
+              },
+            ],
+          },
+          platform: {
+            title: "Возможности платформы",
+            items: [
+              {
+                title: "Смысловой поиск",
+                text: "Находит файлы, документы и информацию по смыслу запроса, а не только по точным ключевым словам.",
+              },
+              {
+                title: "Анализ данных",
+                text: "AI-модули извлекают ключевые условия из текстов, таблиц и отчётов, помогают находить расхождения и готовить короткие выводы для ответственного человека.",
+              },
+              {
+                title: "Рабочие маршруты",
+                text: "Связывает документы, роли, статусы и контрольные точки в единый процесс с журналом действий.",
+              },
+            ],
+          },
+          integration: {
+            title: "Стыковка с ИТ-контуром",
+            text: "Проектируем обмен данными с учётными системами, сервисами электронного документооборота и корпоративной авторизацией.",
+            items: [
+              {
+                title: "Учётные системы",
+                text: "Интеграция с 1С и другими учётными системами через согласованный обмен данными — без лишнего ручного переноса между системами.",
+              },
+              {
+                title: "Внешний обмен",
+                text: "Возможность проектирования обмена документами с Диадок, СБИС и другими сервисами ЭДО в рамках согласованного контура.",
+              },
+              {
+                title: "Доступ",
+                text: "Поддержка корпоративной модели доступа: роли, права, журнал действий и интеграция с единой учётной записью организации при необходимости.",
+              },
+            ],
+          },
+          reliability: {
+            title: "Надёжность и законность",
+            note: "Конкретная схема размещения, состав мер защиты и требования к персональным данным определяются на этапе обследования процесса и согласуются с заказчиком.",
+            items: [
+              {
+                title: "Размещение",
+                text: "Возможна установка в контуре компании или размещение в защищённой инфраструктуре под требования проекта.",
+              },
+              {
+                title: "Данные под контролем",
+                text: "Можно проектировать контур без отправки рабочих данных за рубеж: модель, хранилище и обработка размещаются в согласованной инфраструктуре.",
+              },
+              {
+                title: "Персональные данные",
+                text: "Проектируем обработку данных с учётом требований ФЗ-152, разграничения доступа, журналирования действий и корпоративных правил безопасности.",
+              },
+              {
+                title: "Решение за человеком",
+                text: "AI-модули помогают анализировать и готовить выводы, а финальные решения остаются за ответственными сотрудниками.",
               },
             ],
           },
           cta: {
-            title: "Первый шаг — короткий разбор процесса",
-            text: "Поймём, что имеет смысл автоматизировать первым.",
-            primary: "Связаться с нами",
-            secondary: "Перейти в контакты",
+            title: "Запросить демонстрацию",
+            text: "Покажем, как может выглядеть первый рабочий контур под ваш процесс, документы и ограничения по доступам.",
+            primary: "Запросить демонстрацию",
+            secondary: "Как запускаем",
             primaryLink: { slug: "contact" },
-            secondaryLink: { slug: "contact" },
+            secondaryLink: { slug: "approach" },
           },
         },
         materials: {
@@ -331,26 +388,56 @@ window.SITE_CONFIG = {
         solutions: {
           meta: {
             title:
-              "Решения Arvectum — автоматизация закупок, согласований и операций",
+              "Решения Arvectum — автоматизация снабжения, документов и операций",
             description:
-              "Решения Arvectum для автоматизации закупок, согласований, документооборота, операционных процессов и проверок документов с помощью AI-модулей.",
+              "Решения Arvectum для снабжения, документооборота, контроля поручений, операционных процессов и проверок документов с помощью AI-модулей.",
             ogTitle:
-              "Решения Arvectum — автоматизация закупок, согласований и операций",
+              "Решения Arvectum — автоматизация снабжения, документов и операций",
             ogDescription:
-              "Решения Arvectum для автоматизации закупок, согласований, документооборота, операционных процессов и проверок документов с помощью AI-модулей.",
+              "Решения Arvectum для снабжения, документооборота, контроля поручений, операционных процессов и проверок документов с помощью AI-модулей.",
           },
           hero: {
             eyebrow: "Решения",
             title:
-              "Решения для закупок, документооборота, операций и проверок документов",
-            text: "Закупки и тендеры остаются флагманским сценарием, но та же логика подходит и для других документных и операционных процессов.",
+              "Решения для снабжения, документооборота, поручений и операционных процессов",
+            text: "Собираем рабочие маршруты для процессов, где важны документы, статусы, роли, сроки и понятный следующий шаг.",
           },
           quickLinks: [
-            { id: "procurement", label: "Закупки и тендеры" },
-            { id: "document-workflow", label: "Согласования и документы" },
-            { id: "operations", label: "Операционные процессы" },
-            { id: "ai-document-checks", label: "Проверка документов с AI" },
+            { id: "procurement", label: "Снабжение" },
+            { id: "document-workflow", label: "Документы" },
+            { id: "operations", label: "Поручения" },
+            { id: "ai-document-checks", label: "Проверки" },
           ],
+          scenarios: {
+            title: "Типовые сценарии",
+            text: "Один и тот же подход можно адаптировать под снабжение, договоры, поручения и проверку документов.",
+            items: [
+              {
+                title: "Управление снабжением",
+                text: "Заявки, спецификации, предложения, бюджеты и контроль исполнения в одном маршруте.",
+                link: { slug: "procurement" },
+                cta: "Открыть решение",
+              },
+              {
+                title: "Умный документооборот",
+                text: "Согласование договоров, проверка рисков, статусы и история решений без ручной путаницы.",
+                link: { slug: "documentWorkflow" },
+                cta: "Открыть решение",
+              },
+              {
+                title: "Контроль поручений",
+                text: "Статусы, SLA, ответственные и ранние сигналы о риске срыва сроков.",
+                link: { slug: "operationsAutomation" },
+                cta: "Открыть решение",
+              },
+              {
+                title: "Отраслевые задачи",
+                text: "Проверка комплектности, анализ документов и настройка сценариев под внутренние регламенты.",
+                link: { slug: "aiDocumentChecks" },
+                cta: "Открыть решение",
+              },
+            ],
+          },
           cards: [
             {
               id: "procurement",
@@ -465,9 +552,9 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title: "Нужен первый сценарий для запуска?",
-            text: "Опишите задачу, и мы предложим, с какого процесса лучше начать и как собрать первый MVP.",
-            primary: "Связаться с нами",
+            title: "Нужен рабочий маршрут под ваш процесс?",
+            text: "Опишите задачу, и мы предложим, с какого сценария лучше начать и как проверить его в первом контуре.",
+            primary: "Запросить демонстрацию",
             secondary: "Как запускаем",
             primaryLink: { slug: "contact" },
             secondaryLink: { slug: "approach" },
@@ -1359,77 +1446,134 @@ window.SITE_CONFIG = {
           meta: {
             title: "Arvectum — AI automation for business processes",
             description:
-              "Arvectum helps automate procurement, approvals, document workflows and operations: diagnostics, MVP, AI modules, roles, statuses and execution control.",
+              "Arvectum helps automate operational workflows, corporate regulations, supply processes, document flows and task control with AI modules and structured digital routes.",
             ogTitle: "Arvectum — AI automation for business processes",
             ogDescription:
-              "Arvectum helps automate procurement, approvals, document workflows and operations: diagnostics, MVP, AI modules, roles, statuses and execution control.",
+              "Arvectum helps automate operational workflows, corporate regulations, supply processes, document flows and task control with AI modules and structured digital routes.",
           },
           hero: {
             eyebrow: "AI automation for business processes",
-            title: "We help bring order to complex business workflows",
-            text: "We build working systems for procurement, approvals, document-heavy workflows and operational checks, with clear roles, statuses, documents and decision history.",
+            title:
+              "AI automation for operational workflows and corporate regulations",
+            text: "We help reduce manual routine, lower the risk of errors and shape a digital workflow around your organisation's specific process. The first working contour can be validated in 2–4 weeks.",
             bullets: [
               "One process instead of a large platform",
-              "MVP in 2–4 weeks",
+              "The first working contour can be validated in 2–4 weeks",
               "Roles, statuses and documents in one workflow",
-              "AI modules help review, compare and prepare memos",
+              "AI modules help analyse, review and prepare draft decisions",
             ],
-            primaryCta: "Review your process",
+            primaryCta: "Request a demo",
             secondaryCta: "See solutions",
             sideLabel: "Where to start",
             sideItems: [
               {
-                title: "Procurement and tenders",
-                text: "RFQ, quotes, risks and execution.",
+                title: "Supply and procurement",
+                text: "RFQ, quotes, risks and execution control.",
               },
               {
-                title: "Approvals and documents",
+                title: "Documents and approvals",
                 text: "Routes, versions, owners and decision history.",
               },
               {
-                title: "Operational checks",
+                title: "Tasks and control",
                 text: "Statuses, completeness, step control and short memos.",
               },
             ],
           },
-          automation: {
-            title: "What we can automate",
-            text: "The starting point may vary, but the launch logic stays the same: one useful process first, then scale.",
+          scenarios: {
+            title: "Use cases",
+            text: "You can start with one route: supply, documents, tasks or a domain-specific internal algorithm.",
             items: [
               {
-                label: "Flagship direction",
-                title: "Procurement and tenders",
-                text: "RFQ, quotes, documents, risks and execution control.",
+                title: "Supply management",
+                text: "Automate requests, specification checks, quote collection and budget control in one route.",
                 link: { slug: "procurement" },
-                cta: "Open page",
+                cta: "Learn more",
               },
               {
-                title: "Approvals and document flow",
-                text: "Approval routes, roles, document versions and decision logs.",
+                title: "Smart document workflow",
+                text: "Contract review, risk checks and approval routes with clear statuses and decision history.",
                 link: { slug: "documentWorkflow" },
-                cta: "Open page",
+                cta: "Learn more",
               },
               {
-                title: "Operational workflows",
-                text: "Statuses, SLA, stalled steps and execution control.",
+                title: "Task control",
+                text: "AI modules help track execution discipline, remind owners and highlight early risks of missed deadlines.",
                 link: { slug: "operationsAutomation" },
-                cta: "Open page",
+                cta: "Learn more",
               },
               {
-                title: "AI document checks",
-                text: "Completeness, comments, risks and short memos.",
+                title: "Industry-specific workflows",
+                text: "Adapt the digital route to your internal algorithms, policies and operating specifics.",
                 link: { slug: "aiDocumentChecks" },
-                cta: "Open page",
+                cta: "Learn more",
+              },
+            ],
+          },
+          platform: {
+            title: "Platform capabilities",
+            items: [
+              {
+                title: "Semantic search",
+                text: "Finds files, documents and details by meaning, not only by exact keywords.",
+              },
+              {
+                title: "Data analysis",
+                text: "AI modules extract key conditions from texts, tables and reports, highlight mismatches and prepare concise findings for the responsible person.",
+              },
+              {
+                title: "Structured workflows",
+                text: "Connects documents, roles, statuses and checkpoints into one process with an action log.",
+              },
+            ],
+          },
+          integration: {
+            title: "IT landscape alignment",
+            text: "We design data exchange with accounting systems, EDI services and corporate access models.",
+            items: [
+              {
+                title: "Accounting systems",
+                text: "Integration with 1C and other accounting systems through agreed data exchange, reducing unnecessary manual transfer between tools.",
+              },
+              {
+                title: "External document exchange",
+                text: "A workable architecture for document exchange with Diadoc, SBIS and other EDI services inside the agreed contour.",
+              },
+              {
+                title: "Access control",
+                text: "Support for corporate access models: roles, permissions, audit logs and integration with a unified organisational account when required.",
+              },
+            ],
+          },
+          reliability: {
+            title: "Reliability and compliance",
+            note: "The exact deployment model, protection measures and personal-data requirements are defined during the process review and agreed with the client.",
+            items: [
+              {
+                title: "Deployment",
+                text: "The system can be deployed inside the company perimeter or in a protected infrastructure matched to project requirements.",
+              },
+              {
+                title: "Data stays under control",
+                text: "The contour can be designed without sending working data abroad: the model, storage and processing stay in the agreed infrastructure.",
+              },
+              {
+                title: "Personal data and security",
+                text: "We design data processing with personal-data requirements, access separation, action logging and corporate security rules in mind.",
+              },
+              {
+                title: "Human-in-the-loop",
+                text: "AI modules assist with analysis and draft outputs, while final decisions remain with responsible employees.",
               },
             ],
           },
           cta: {
-            title: "The first step is a short workflow review",
-            text: "We will identify what is worth automating first.",
-            primary: "Contact us",
-            secondary: "Go to contact",
+            title: "Request a demo",
+            text: "We will show what the first working contour can look like for your process, documents and access constraints.",
+            primary: "Request a demo",
+            secondary: "How we launch",
             primaryLink: { slug: "contact" },
-            secondaryLink: { slug: "contact" },
+            secondaryLink: { slug: "approach" },
           },
         },
         materials: {
@@ -1494,26 +1638,56 @@ window.SITE_CONFIG = {
         solutions: {
           meta: {
             title:
-              "Arvectum solutions — procurement, approvals and operations automation",
+              "Arvectum solutions — supply, document and operations automation",
             description:
-              "Arvectum solutions for procurement, approvals, document workflows, operational automation and AI-powered document checks.",
+              "Arvectum solutions for supply workflows, document approvals, task control, operational automation and AI-assisted document checks.",
             ogTitle:
-              "Arvectum solutions — procurement, approvals and operations automation",
+              "Arvectum solutions — supply, document and operations automation",
             ogDescription:
-              "Arvectum solutions for procurement, approvals, document workflows, operational automation and AI-powered document checks.",
+              "Arvectum solutions for supply workflows, document approvals, task control, operational automation and AI-assisted document checks.",
           },
           hero: {
             eyebrow: "Solutions",
             title:
-              "Solutions for procurement, document workflows, operations and document checks",
-            text: "Procurement and tenders are a flagship scenario, but the same architecture also works for other document-heavy and operational workflows.",
+              "Solutions for supply workflows, documents, task control and operational routes",
+            text: "We build working routes for processes where documents, statuses, ownership, timing and the next action must stay visible.",
           },
           quickLinks: [
-            { id: "procurement", label: "Procurement and tenders" },
-            { id: "document-workflow", label: "Approvals and documents" },
-            { id: "operations", label: "Operational workflows" },
-            { id: "ai-document-checks", label: "AI document checks" },
+            { id: "procurement", label: "Supply" },
+            { id: "document-workflow", label: "Documents" },
+            { id: "operations", label: "Tasks" },
+            { id: "ai-document-checks", label: "Checks" },
           ],
+          scenarios: {
+            title: "Typical use cases",
+            text: "The same architecture can be adapted for supply, contracts, task control and document review.",
+            items: [
+              {
+                title: "Supply management",
+                text: "Requests, specifications, quotes, budgets and execution control in one route.",
+                link: { slug: "procurement" },
+                cta: "Open solution",
+              },
+              {
+                title: "Smart document workflow",
+                text: "Contract approvals, risk review, statuses and decision history without manual confusion.",
+                link: { slug: "documentWorkflow" },
+                cta: "Open solution",
+              },
+              {
+                title: "Task control",
+                text: "Statuses, SLA, owners and early signals when deadlines are at risk.",
+                link: { slug: "operationsAutomation" },
+                cta: "Open solution",
+              },
+              {
+                title: "Industry-specific workflows",
+                text: "Completeness checks, document analysis and routes adapted to internal policies and operating logic.",
+                link: { slug: "aiDocumentChecks" },
+                cta: "Open solution",
+              },
+            ],
+          },
           cards: [
             {
               id: "procurement",
@@ -1628,9 +1802,9 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title: "Need a first scenario to launch?",
-            text: "Describe the task and we will suggest which process should move first and how to frame the first MVP.",
-            primary: "Contact us",
+            title: "Need a working route for your process?",
+            text: "Describe the task and we will suggest which scenario is best for the first contour and how to validate it safely.",
+            primary: "Request a demo",
             secondary: "How we launch",
             primaryLink: { slug: "contact" },
             secondaryLink: { slug: "approach" },

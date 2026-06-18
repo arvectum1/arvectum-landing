@@ -2,8 +2,9 @@
 
 ## Product Positioning
 
-- Arvectum automates business processes with AI modules, roles, statuses, documents, logs, and controlled workflows.
-- Procurement and tenders are a flagship scenario, but not the only company direction.
+- Arvectum automates operational workflows and corporate regulations with AI modules, roles, statuses, documents, logs, and controlled digital routes.
+- Supply and procurement are a flagship scenario, but not the only company direction.
+- Public positioning should also cover document workflow, task control, IT-contour alignment, deployment, and careful data-security wording.
 - The homepage should stay a compact company overview, not a long procurement-only SEO landing page.
 
 ## Public SEO Structure

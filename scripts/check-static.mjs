@@ -89,6 +89,8 @@ const siteConfigContent = fs.readFileSync(siteConfigPath, "utf8");
 const cssContent = fs.readFileSync(cssPath, "utf8");
 const legacyHomepageH1 =
   "Автоматизируем процессы, где теряются документы, статусы и сроки";
+const previousHomepageH1 =
+  "Помогаем навести порядок в сложных бизнес-процессах";
 const incomingLinks = new Map(
   htmlFiles.map((fileName) => [fileName, new Set()]),
 );
@@ -190,6 +192,10 @@ for (const fileName of htmlFiles) {
     !html.includes("file://"),
     `${fileName}: must not contain file:// links`,
   );
+  record(
+    !html.includes("Сайт работает без JavaScript"),
+    `${fileName}: must not show public no-JavaScript messaging`,
+  );
 
   record(
     /<link[^>]+rel="icon"[^>]+type="image\/svg\+xml"[^>]+href="\/assets\/brand\/favicon\.svg\?v=20260616-seo24"/i.test(
@@ -252,6 +258,9 @@ for (const fileName of htmlFiles) {
     /Будет добавлено/iu,
     /\bTODO\b/u,
     /placeholder/iu,
+    /\bTBD\b/u,
+    /ИНН:\s*(?:XXX|0000+)/iu,
+    /ОГРН:\s*(?:XXX|0000+)/iu,
   ];
   for (const pattern of placeholderPatterns) {
     record(
@@ -293,6 +302,20 @@ for (const fileName of htmlFiles) {
       canonical === toCanonicalUrl(fileName),
       `${fileName}: canonical must equal ${toCanonicalUrl(fileName)}`,
     );
+    record(
+      html.includes("ООО «Арвектум»") || html.includes("Arvectum LLC"),
+      `${fileName}: footer must contain company legal name`,
+    );
+    for (const legalLink of [
+      "privacy.html",
+      "personal-data-consent.html",
+      "cookies.html",
+    ]) {
+      record(
+        html.includes(legalLink),
+        `${fileName}: footer must contain legal link -> ${legalLink}`,
+      );
+    }
   }
 
   if (fileName === "index.html") {
@@ -316,6 +339,33 @@ for (const fileName of htmlFiles) {
       !html.includes(legacyHomepageH1),
       "index.html: legacy homepage H1 must be removed",
     );
+    record(
+      !html.includes(previousHomepageH1),
+      "index.html: previous homepage H1 must be removed",
+    );
+    record(
+      h1 ===
+        "Автоматизация операционных процессов и корпоративных регламентов на базе ИИ",
+      "index.html: homepage H1 must match the enterprise positioning copy",
+    );
+    record(
+      normalizeText(html).includes(
+        "Помогаем снизить ручную рутину, уменьшить риск ошибок и настроить цифровой маршрут под специфику вашей организации.",
+      ),
+      "index.html: homepage lead must match the refined enterprise copy",
+    );
+    record(
+      !html.includes("исключаем ошибки"),
+      "index.html: homepage lead must not promise to eliminate errors",
+    );
+    record(
+      !html.includes("исключаем человеческий фактор"),
+      "index.html: homepage lead must not use anti-human-factor wording",
+    );
+    record(
+      html.includes(">Запросить демонстрацию<"),
+      "index.html: homepage must include the Request Demo CTA",
+    );
 
     for (const link of [
       "solutions/procurement.html",
@@ -328,6 +378,10 @@ for (const fileName of htmlFiles) {
   }
 
   if (fileName === "solutions.html") {
+    record(
+      html.includes("Типовые сценарии"),
+      "solutions.html: missing typical use cases block",
+    );
     for (const link of [
       "solutions/procurement.html",
       "solutions/document-workflow.html",
@@ -478,6 +532,27 @@ for (const jsFile of ["app.js", "site-config.js"]) {
     record(
       fs.existsSync(path.join(publicDir, resolved)),
       `${jsFile}: missing asset -> ${match[1]}`,
+    );
+  }
+
+  if (jsFile === "site-config.js") {
+    record(
+      !content.includes(previousHomepageH1),
+      "site-config.js: previous homepage H1 must be removed",
+    );
+    record(
+      content.includes(
+        "Автоматизация операционных процессов и корпоративных регламентов на базе ИИ",
+      ),
+      "site-config.js: homepage H1 must use the new enterprise positioning copy",
+    );
+    record(
+      !content.includes("исключаем ошибки"),
+      "site-config.js: must not claim to eliminate errors",
+    );
+    record(
+      !content.includes("исключаем человеческий фактор"),
+      "site-config.js: must not claim to eliminate the human factor",
     );
   }
 }
