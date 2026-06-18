@@ -2,6 +2,7 @@ window.SITE_CONFIG = {
   defaultLanguage: "ru",
   routes: {
     home: "index.html",
+    about: "about.html",
     solutions: "solutions.html",
     procurement: "solutions/procurement.html",
     documentWorkflow: "solutions/document-workflow.html",
@@ -40,6 +41,7 @@ window.SITE_CONFIG = {
         ],
         footerNav: [
           { slug: "home", label: "Главная" },
+          { slug: "about", label: "О компании" },
           { slug: "solutions", label: "Решения" },
           { slug: "approach", label: "Как запускаем" },
           { slug: "materials", label: "Материалы" },
@@ -48,8 +50,9 @@ window.SITE_CONFIG = {
         footer: {
           companyName: "ООО «Арвектум»",
           contactsTitle: "Контакты",
-          inn: "",
-          ogrn: "",
+          inn: "ИНН: 000",
+          kpp: "КПП: 000",
+          ogrn: "ОГРН: 000",
           address: "",
           phone: "",
           email: "info@arvectum.com",
@@ -57,7 +60,10 @@ window.SITE_CONFIG = {
           telegramLabel: "Telegram Arvectum",
           telegramHandle: "t.me/arvectum",
           note: "",
-          resourceLinks: [{ slug: "materials", label: "Материалы" }],
+          resourceLinks: [
+            { slug: "about", label: "О компании" },
+            { slug: "materials", label: "Материалы" },
+          ],
           legalLinksTitle: "Юридическая информация",
           legalLinks: [
             {
@@ -325,6 +331,86 @@ window.SITE_CONFIG = {
             secondary: "Как запускаем",
             primaryLink: { slug: "contact" },
             secondaryLink: { slug: "approach" },
+          },
+        },
+        about: {
+          meta: {
+            title: "О компании Arvectum — философия и подход",
+            description:
+              "Философия Arvectum: прикладная автоматизация бизнеса, порядок в процессах, контроль, безопасность, честность и развитие цифровых продуктов.",
+            ogTitle: "О компании Arvectum — философия и подход",
+            ogDescription:
+              "Философия Arvectum: прикладная автоматизация бизнеса, порядок в процессах, контроль, безопасность, честность и развитие цифровых продуктов.",
+          },
+          hero: {
+            eyebrow: "О компании",
+            title: "Arvectum",
+            subtitle:
+              "Arvectum — продуктовая компания в сфере прикладной автоматизации бизнеса.",
+            text: "Мы помогаем компаниям наводить порядок в процессах, снижать ручную нагрузку и работать эффективнее в условиях нестабильности.",
+          },
+          philosophy: {
+            title: "Философия",
+            text: "Бизнес развивается, когда процессы понятны, данные доступны, решения зафиксированы, а люди сосредоточены на результате. Мы верим, что развитие экономики начинается с эффективности конкретных компаний.",
+          },
+          mission: {
+            title: "Миссия",
+            text: "Помогать бизнесу работать эффективнее через порядок, автоматизацию и контроль.",
+          },
+          products: {
+            title: "Что мы создаём",
+            items: [
+              "Закупки",
+              "Продажи",
+              "Тендеры",
+              "Документооборот",
+              "Согласования",
+              "Операционный контроль",
+            ],
+          },
+          approach: {
+            title: "Наш подход",
+            text: "Мы применяем технологии и искусственный интеллект к практическим задачам бизнеса: анализу документов, проверке данных, поиску рисков, подготовке материалов и поддержке решений.",
+            note: "Технология усиливает команду. Ответственность остаётся за человеком.",
+          },
+          values: {
+            title: "Ценности",
+            items: [
+              {
+                title: "Польза",
+                text: "Решение должно давать понятный и измеримый эффект.",
+              },
+              {
+                title: "Порядок",
+                text: "Статусы, документы, ответственные и решения находятся в единой системе.",
+              },
+              {
+                title: "Контроль",
+                text: "Важные процессы понятны, проверяемы и управляемы.",
+              },
+              {
+                title: "Безопасность",
+                text: "Данные клиента защищаются с учётом конфиденциальности, разграничения доступов и требований 152-ФЗ.",
+              },
+              {
+                title: "Честность",
+                text: "Возможности, ограничения и зоны проверки обозначены заранее.",
+              },
+              {
+                title: "Развитие",
+                text: "Продукты поддерживаются, улучшаются и масштабируются.",
+              },
+            ],
+          },
+          promise: {
+            title: "Обещание",
+            text: "Порядок в процессах. Эффективность в бизнесе.",
+          },
+          cta: {
+            primary: "Обсудить процесс",
+            secondary: "Посмотреть решения",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "solutions" },
           },
         },
         materials: {
@@ -1294,6 +1380,7 @@ window.SITE_CONFIG = {
         ],
         footerNav: [
           { slug: "home", label: "Home" },
+          { slug: "about", label: "About" },
           { slug: "solutions", label: "Solutions" },
           { slug: "approach", label: "How We Launch" },
           { slug: "materials", label: "Materials" },
@@ -1302,8 +1389,9 @@ window.SITE_CONFIG = {
         footer: {
           companyName: "Arvectum LLC",
           contactsTitle: "Contacts",
-          inn: "",
-          ogrn: "",
+          inn: "TIN: 000",
+          kpp: "KPP: 000",
+          ogrn: "OGRN: 000",
           address: "",
           phone: "",
           email: "info@arvectum.com",
@@ -1311,7 +1399,10 @@ window.SITE_CONFIG = {
           telegramLabel: "Arvectum Telegram",
           telegramHandle: "t.me/arvectum",
           note: "",
-          resourceLinks: [{ slug: "materials", label: "Materials" }],
+          resourceLinks: [
+            { slug: "about", label: "About" },
+            { slug: "materials", label: "Materials" },
+          ],
           legalLinksTitle: "Legal",
           legalLinks: [
             { slug: "privacy", label: "Privacy policy" },
@@ -1574,6 +1665,86 @@ window.SITE_CONFIG = {
             secondary: "How we launch",
             primaryLink: { slug: "contact" },
             secondaryLink: { slug: "approach" },
+          },
+        },
+        about: {
+          meta: {
+            title: "About Arvectum — philosophy and approach",
+            description:
+              "Arvectum's philosophy: practical business automation, process order, control, security, honesty and long-term digital product development.",
+            ogTitle: "About Arvectum — philosophy and approach",
+            ogDescription:
+              "Arvectum's philosophy: practical business automation, process order, control, security, honesty and long-term digital product development.",
+          },
+          hero: {
+            eyebrow: "About",
+            title: "Arvectum",
+            subtitle:
+              "Arvectum is a product company focused on practical business automation.",
+            text: "We help companies bring order to workflows, reduce manual effort and operate more effectively in unstable environments.",
+          },
+          philosophy: {
+            title: "Philosophy",
+            text: "Business grows when workflows are clear, data is accessible, decisions are recorded, and people stay focused on outcomes. We believe economic development starts with the efficiency of individual companies.",
+          },
+          mission: {
+            title: "Mission",
+            text: "Help businesses work more effectively through order, automation and control.",
+          },
+          products: {
+            title: "What we build",
+            items: [
+              "Procurement",
+              "Sales",
+              "Tenders",
+              "Document workflow",
+              "Approvals",
+              "Operational control",
+            ],
+          },
+          approach: {
+            title: "Our approach",
+            text: "We apply technology and AI to practical business tasks: document analysis, data checks, risk discovery, materials preparation and decision support.",
+            note: "Technology strengthens the team. Responsibility stays with people.",
+          },
+          values: {
+            title: "Values",
+            items: [
+              {
+                title: "Value",
+                text: "A solution should deliver a clear and measurable effect.",
+              },
+              {
+                title: "Order",
+                text: "Statuses, documents, owners and decisions live in one system.",
+              },
+              {
+                title: "Control",
+                text: "Important workflows remain transparent, verifiable and manageable.",
+              },
+              {
+                title: "Security",
+                text: "Client data is protected with confidentiality, access separation and 152-FZ requirements in mind.",
+              },
+              {
+                title: "Honesty",
+                text: "Capabilities, limits and validation areas are defined upfront.",
+              },
+              {
+                title: "Development",
+                text: "Products are maintained, improved and scaled over time.",
+              },
+            ],
+          },
+          promise: {
+            title: "Promise",
+            text: "Order in workflows. Efficiency in business.",
+          },
+          cta: {
+            primary: "Discuss a workflow",
+            secondary: "See solutions",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "solutions" },
           },
         },
         materials: {

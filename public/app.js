@@ -315,6 +315,7 @@
         currentLanguage === "ru"
           ? "MVP автоматизации: что можно проверить за 2–4 недели"
           : "Automation MVP: what you can validate in 2–4 weeks",
+      about: currentLanguage === "ru" ? "О компании" : "About",
       contact: currentLanguage === "ru" ? "Контакты" : "Contact",
       cases: currentLanguage === "ru" ? "Сценарии" : "Scenarios",
       privacy:
@@ -389,6 +390,9 @@
     }
     if (footer.inn) {
       contactItems.push(`<p>${escapeHtml(footer.inn)}</p>`);
+    }
+    if (footer.kpp) {
+      contactItems.push(`<p>${escapeHtml(footer.kpp)}</p>`);
     }
     if (footer.ogrn) {
       contactItems.push(`<p>${escapeHtml(footer.ogrn)}</p>`);
@@ -831,6 +835,77 @@
     </section>
   `;
 
+  const renderAbout = (page) => `
+    <section class="page-hero">
+      <div class="container reveal">
+        <p class="eyebrow">${escapeHtml(page.hero.eyebrow)}</p>
+        <h1>${escapeHtml(page.hero.title)}</h1>
+        <p class="hero-text"><strong>${escapeHtml(page.hero.subtitle)}</strong></p>
+        <p class="page-hero__text">${escapeHtml(page.hero.text)}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.philosophy.title)}</h2>
+          <p>${escapeHtml(page.philosophy.text)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container reveal">
+        <article class="cta-band">
+          <div>
+            <h2>${escapeHtml(page.mission.title)}</h2>
+            <p>${escapeHtml(page.mission.text)}</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.products.title)}</h2>
+        </div>
+        <div class="chip-grid">
+          ${(page.products.items || [])
+            .map((item) => `<span class="chip">${escapeHtml(item)}</span>`)
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2>${escapeHtml(page.approach.title)}</h2>
+          <p>${escapeHtml(page.approach.text)}</p>
+        </div>
+        <p class="section-note">${escapeHtml(page.approach.note)}</p>
+      </div>
+    </section>
+
+    ${renderInfoSection(page.values)}
+
+    <section class="section section-soft">
+      <div class="container reveal">
+        <article class="cta-band">
+          <div>
+            <h2>${escapeHtml(page.promise.title)}</h2>
+            <p>${escapeHtml(page.promise.text)}</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="button" href="${buildConfigLink(page.cta.primaryLink, "contact")}">${escapeHtml(page.cta.primary)}</a>
+            <a class="button button-ghost" href="${buildConfigLink(page.cta.secondaryLink, "solutions")}">${escapeHtml(page.cta.secondary)}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  `;
+
   const createErrorMarkup = (field) =>
     `<p class="form-field-error" id="${field}Error" aria-live="polite"></p>`;
 
@@ -1163,6 +1238,7 @@
 
   const pageRenderers = {
     home: renderHome,
+    about: renderAbout,
     solutions: renderSolutions,
     cases: renderCases,
     approach: renderApproach,

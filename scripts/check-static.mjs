@@ -39,6 +39,7 @@ const htmlSet = new Set(htmlFiles);
 
 const publicIndexablePages = [
   "index.html",
+  "about.html",
   "solutions.html",
   "solutions/procurement.html",
   "solutions/document-workflow.html",
@@ -260,6 +261,7 @@ for (const fileName of htmlFiles) {
     /placeholder/iu,
     /\bTBD\b/u,
     /ИНН:\s*(?:XXX|0000+)/iu,
+    /КПП:\s*(?:XXX|0000+)/iu,
     /ОГРН:\s*(?:XXX|0000+)/iu,
   ];
   for (const pattern of placeholderPatterns) {
@@ -306,6 +308,22 @@ for (const fileName of htmlFiles) {
       html.includes("ООО «Арвектум»") || html.includes("Arvectum LLC"),
       `${fileName}: footer must contain company legal name`,
     );
+    for (const requisite of ["ИНН: 000", "КПП: 000", "ОГРН: 000"]) {
+      record(
+        html.includes(requisite) ||
+          html.includes(
+            requisite
+              .replace("ИНН", "TIN")
+              .replace("КПП", "KPP")
+              .replace("ОГРН", "OGRN"),
+          ),
+        `${fileName}: footer must contain placeholder requisite -> ${requisite}`,
+      );
+    }
+    record(
+      !html.includes("Юридический адрес: 000"),
+      `${fileName}: must not show a fake legal address`,
+    );
     for (const legalLink of [
       "privacy.html",
       "personal-data-consent.html",
@@ -316,6 +334,10 @@ for (const fileName of htmlFiles) {
         `${fileName}: footer must contain legal link -> ${legalLink}`,
       );
     }
+    record(
+      html.includes("about.html"),
+      `${fileName}: footer must contain link to about.html`,
+    );
   }
 
   if (fileName === "index.html") {
@@ -405,6 +427,28 @@ for (const fileName of htmlFiles) {
     record(
       /href="(?:\/)?contact\.html"/i.test(html),
       "materials.html: missing contact CTA",
+    );
+  }
+
+  if (fileName === "about.html") {
+    record(
+      /aria-label="Хлебные крошки"/i.test(html) && /index\.html/.test(html),
+      "about.html: missing visible breadcrumbs",
+    );
+    record(
+      getJsonLd(html, "aboutPageLd") &&
+        getJsonLd(html, "aboutPageLd") !== "INVALID",
+      "about.html: missing or invalid AboutPage JSON-LD",
+    );
+    record(
+      getJsonLd(html, "breadcrumbLd") &&
+        getJsonLd(html, "breadcrumbLd") !== "INVALID",
+      "about.html: missing or invalid BreadcrumbList JSON-LD",
+    );
+    record(
+      /href="(?:\/)?contact\.html"/i.test(html) &&
+        /href="(?:\/)?solutions\.html"/i.test(html),
+      "about.html: missing CTA links to contact and solutions",
     );
   }
 
