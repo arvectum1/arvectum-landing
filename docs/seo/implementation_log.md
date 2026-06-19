@@ -111,3 +111,26 @@ All pages have: unique H1, title, meta description, OG tags, canonical, hreflang
 - No broken route links
 - No forbidden claims
 - Content is procurement-specific
+
+---
+
+## Sprint 03 — Agent Roles, Demo Case & Product Proof
+
+### Created
+- `public/cases/tender-operator-demo.html` — Demo-case page "AI-оператор тендера" with 10-step workflow, output examples, disclaimer
+
+### Updated
+- `public/solutions/procurement-ai-agents.html` — Added agent roles section (4 AI agent roles with input/output/checkpoint) and proof block "Почему это не просто AI на сайте"
+- `public/cases.html` — (existing, verified noindex)
+- `public/index.html` — Added demo-case link from "Что автоматизируем" section
+- `public/solutions/procurement-ai-agents.html` — Added demo-case link in CTA band
+- `public/solutions/tender-department-ai-agent.html` — Added demo-case link in CTA band
+
+### Agent roles documented
+1. AI-оператор тендера — tender docs → summary
+2. AI-менеджер RFQ — requirements → RFQ draft
+3. AI-аналитик ТКП — commercial offers → normalized comparison
+4. AI-рецензент договорных рисков — contract draft → risk memo
+
+### Proof block
+- Route-based workflow, restricted outputs, human approval, logs, MVP testing
