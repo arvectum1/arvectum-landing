@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Автоматизация RFQ и сравнения ТКП — Arvectum</title>
+    <meta
+      id="metaDescription"
+      name="description"
+      content="RFQ-first подход: подготовка запроса предложений, нормализация ТКП, сравнение цен и условий поставщиков, экономика сделки и контроль решений."
+    />
+    <meta
+      id="metaOgTitle"
+      property="og:title"
+      content="Автоматизация RFQ и сравнения ТКП — Arvectum"
+    />
+    <meta
+      id="metaOgDescription"
+      property="og:description"
+      content="RFQ-first подход: подготовка запроса предложений, нормализация ТКП, сравнение цен и условий поставщиков, экономика сделки и контроль решений."
+    />
+    <meta
+      id="metaOgUrl"
+      property="og:url"
+      content="https://arvectum.com/solutions/rfq-tkp-comparison.html"
+    />
+    <meta
+      property="og:image"
+      content="https://arvectum.com/assets/brand/logo-horizontal.svg"
+    />
+    <meta property="og:type" content="website" />
+    <meta id="metaOgLocale" property="og:locale" content="ru_RU" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#041a33" />
+    <link
+      id="canonicalLink"
+      rel="canonical"
+      href="https://arvectum.com/solutions/rfq-tkp-comparison.html"
+    />
+    <link
+      id="hrefLangRu"
+      rel="alternate"
+      hreflang="ru"
+      href="https://arvectum.com/solutions/rfq-tkp-comparison.html"
+    />
+    <link
+      id="hrefLangEn"
+      rel="alternate"
+      hreflang="en"
+      href="https://arvectum.com/solutions/rfq-tkp-comparison.html?lang=en"
+    />
+    <link
+      id="hrefLangDefault"
+      rel="alternate"
+      hreflang="x-default"
+      href="https://arvectum.com/solutions/rfq-tkp-comparison.html"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/assets/brand/favicon.svg?v=20260616-seo24"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/brand/favicon-32x32.png?v=20260616-seo24"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/brand/favicon-16x16.png?v=20260616-seo24"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/assets/brand/apple-touch-icon.png?v=20260616-seo24"
+    />
+    <link rel="shortcut icon" href="/favicon.ico?v=20260616-seo24" />
+    <script id="organizationLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ООО \"Арвектум\"",
+        "alternateName": "Arvectum",
+        "url": "https://arvectum.com/",
+        "logo": "https://arvectum.com/assets/brand/logo-horizontal.svg",
+        "email": "info@arvectum.com",
+        "sameAs": ["https://t.me/arvectum"]
+      }
+    </script>
+    <script id="breadcrumbLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Главная",
+            "item": "https://arvectum.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Решения",
+            "item": "https://arvectum.com/solutions.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Автоматизация RFQ и сравнения ТКП",
+            "item": "https://arvectum.com/solutions/rfq-tkp-comparison.html"
+          }
+        ]
+      }
+    </script>
+    <script id="serviceLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Автоматизация RFQ и сравнения ТКП",
+        "serviceType": [
+          "RFQ и ТКП",
+          "Сравнение коммерческих предложений",
+          "Автоматизация закупок",
+          "AI normalization of supplier offers"
+        ],
+        "provider": {
+          "@type": "Organization",
+          "name": "ООО \"Арвектум\"",
+          "url": "https://arvectum.com/"
+        },
+        "areaServed": "RU",
+        "url": "https://arvectum.com/solutions/rfq-tkp-comparison.html"
+      }
+    </script>
+    <script id="faqLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Какие форматы ТКП поддерживаются?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "PDF, Excel, Word, вложенные архивы. Система нормализует табличные и текстовые данные в единую сравнительную сетку."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Есть ли ограничения по числу предложений в сравнении?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Нет. Сравнивать можно от двух до нескольких десятков коммерческих предложений — система масштабируется под объём вашей закупки."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Можно ли вручную корректировать данные после нормализации?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. Все результаты нормализации можно править: уточнять позиции, переопределять единицы измерения, добавлять и исключать строки вручную."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Сохраняется ли история версий сравнения?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. Каждое изменение фиксируется: вы видите, кто и когда правил сравнительную таблицу, и можете вернуться к предыдущей версии."
+            }
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css?v=20260618b" />
+  </head>
+
+  <body data-page="rfq-tkp-comparison" data-nav="solutions">
+    <a class="skip-link" href="#pageRoot" id="skipLink"
+      >Перейти к содержимому</a
+    >
+    <header class="site-header">
+      <div class="container">
+        <div class="header-shell glass">
+          <div class="topbar">
+            <a class="brand" href="/" aria-label="Arvectum">
+              <img
+                id="brandLogo"
+                src="/assets/brand/arvectum-logo-header-light.svg"
+                alt="Логотип Arvectum"
+              />
+              <span class="brand-meta" id="brandMeta"></span>
+            </a>
+            <nav
+              class="desktop-nav"
+              id="desktopNav"
+              aria-label="Основная навигация"
+            >
+              <a class="nav-link" href="/">Главная</a>
+              <a class="nav-link is-active" href="/solutions.html">Решения</a>
+              <a class="nav-link" href="/approach.html">Как запускаем</a>
+            </nav>
+            <div class="topbar-tools">
+              <div
+                class="lang-switch desktop-lang-switch"
+                aria-label="Переключатель языка"
+              >
+                <button
+                  class="lang-switch__button is-active"
+                  type="button"
+                  data-lang="ru"
+                >
+                  RU
+                </button>
+                <button
+                  class="lang-switch__button"
+                  type="button"
+                  data-lang="en"
+                >
+                  EN
+                </button>
+              </div>
+              <a class="button header-cta" id="topbarCta" href="/contact.html"
+                >Связаться с нами</a
+              >
+              <button class="menu-toggle" id="menuToggle" type="button">
+                <svg
+                  class="menu-toggle__logo"
+                  viewBox="0 0 425.2 72.06"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    fill="#41b599"
+                    fill-rule="evenodd"
+                    d="M137.55,385.55,155,417.74,172.81,385h26.56l-39.12,72.06H149.81l-18.62-34.3-2.62,4.82H119l12.23-22.52,23.63,43.52h.42l29.92-55.1h-7.34l-22.79,42-22.79-42h-2.11l-29.92,55.1h7.35l8.52-15.7h15.59l4.6,8.48H121.09l-8.52,15.7H86L125.12,385h12.13Z"
+                    transform="translate(-86 -385)"
+                  ></path>
+                  <path
+                    fill="#41b599"
+                    fill-rule="evenodd"
+                    d="M330.86,431.22c.41-5.6,11.74-6.18,12,0ZM339,443.15c-3.78,0-7.33-1.13-8.39-5.21h20.89c6,0,2.87-19.67-15-19.66-16.61,0-24.17,21.17-9.84,31,8.48,5.81,22.07,2,24.9-1.73.9-1.18.52-1.77-.12-2.9-.72-1.28-1.81-2.94-2-3.12-3-3.17-4.52,1.68-10.46,1.65Zm-62.23-13.52c-2.54-1-8.53.24-8.53,4.91v14.4a2.56,2.56,0,0,1-2.61,2.49H259a2.56,2.56,0,0,1-2.61-2.49V421.48A2.55,2.55,0,0,1,259,419h6.09a2.55,2.55,0,0,1,2.6,2.48v.22c2.62-2.28,4.56-3.47,8.3-3.33,3.46.14,3.42,2.11,3.42,5.33v.72c.05,4.33-.13,6.24-2.67,5.21Zm-66.24,16.91L224.41,410c.72-1.9,1.41-3.48,3.49-3.48h7.17c2.11,0,2.76,1.57,3.5,3.5l13.91,36.57c.87,2.29-.5,4.89-2.58,4.89h-6.69a2.9,2.9,0,0,1-2.66-2.24l-1.84-5.89H224.26l-1.85,5.89a2.89,2.89,0,0,1-2.66,2.24h-6.69c-2.08,0-3.45-2.6-2.58-4.89Zm25.3-12.6-4.3-13.71-4.29,13.71Zm46.34-11.42a2.47,2.47,0,0,1,2.19-3.52h6.87a2.39,2.39,0,0,1,2.26,1.61L300,438.39l6.53-17.78a2.38,2.38,0,0,1,2.26-1.61h6.86a2.48,2.48,0,0,1,2.2,3.52L306,448.9c-.62,1.39-1.17,2.53-3,2.53h-6.09c-1.77,0-2.36-1.15-3-2.52l-11.83-26.39Zm93.09,29.71A19.71,19.71,0,0,1,365.9,450c-14.54-7.92-10.09-31.51,8.88-31.74,4-.05,17.08,2.36,13.2,8.22-1.3,2-3.39,5.2-6.45,3.2-2.62-1.72-5.42-2.8-8.92-.95-5.7,3-4.93,12,1.52,13.54,4.93,1.16,7.31-2,8.51-2.58,2.59-1.22,5.4,3.22,6.14,4.73,2.31,4.72-8.35,7.82-13.57,7.82Zm18.59-24.34h2.13v10.48c0,8.43,3.88,13.63,12,14,6.11.3,11.07-2.71,12-9.49,1-7.15-7.7-7.25-8.67-2.16-.56,3-3.43,2.15-3.43-2.27V427.89h5.84a2.47,2.47,0,0,0,2.45-2.48v-3.93a2.47,2.47,0,0,0-2.45-2.48h-5.84v-6.55a2.57,2.57,0,0,0-2.62-2.49H399.7a2.65,2.65,0,0,0-2.62,2.49l-.59,6.55H393.8a2.47,2.47,0,0,0-2.45,2.48v3.93a2.47,2.47,0,0,0,2.45,2.48Zm29.83,10.48V421.48a2.55,2.55,0,0,1,2.61-2.48h6.67a2.55,2.55,0,0,1,2.61,2.48v17c0,6.71,8.78,7,8.78-.11V421.48a2.55,2.55,0,0,1,2.6-2.48h6.6a2.55,2.55,0,0,1,2.61,2.48v27.46a2.56,2.56,0,0,1-2.61,2.49H448a2.56,2.56,0,0,1-2.61-2.49v-.21c-9.69,7.78-21.77.6-21.77-10.36Zm86.66-12.44a18,18,0,0,1,.91,6v17a2.43,2.43,0,0,1-2.37,2.49h-6a2.43,2.43,0,0,1-2.36-2.49V432c0-6.73-8.55-7-8.5... (line truncated to 2000 chars)
+                    transform="translate(-86 -385)"
+                  ></path>
+                </svg>
+                <span class="sr-only" id="menuButtonText">Меню</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-drawer" id="menuDrawer">
+        <div class="menu-drawer__panel glass">
+          <div class="menu-drawer__top">
+            <div>
+              <p class="eyebrow" id="menuTitle">Навигация по сайту</p>
+              <h2 id="menuSectionTitle">Разделы</h2>
+            </div>
+            <button class="menu-close" id="menuClose" type="button">
+              <span id="menuCloseText">Закрыть меню</span>
+            </button>
+          </div>
+          <nav class="menu-nav" id="menuNav" aria-label="Навигация по разделам">
+            <a class="nav-link" href="/">Главная</a>
+            <a class="nav-link is-active" href="/solutions.html">Решения</a>
+            <a class="nav-link" href="/approach.html">Как запускаем</a>
+          </nav>
+          <div class="menu-drawer__extras">
+            <div
+              class="lang-switch menu-lang-switch"
+              aria-label="Language switcher"
+            >
+              <button
+                class="lang-switch__button is-active"
+                type="button"
+                data-lang="ru"
+              >
+                RU
+              </button>
+              <button class="lang-switch__button" type="button" data-lang="en">
+                EN
+              </button>
+            </div>
+            <a
+              class="menu-telegram"
+              id="menuTelegramLink"
+              href="https://t.me/arvectum"
+              target="_blank"
+              rel="noreferrer"
+              >Телеграм</a
+            >
+          </div>
+          <a class="button" id="menuPrimaryCta" href="/contact.html"
+            >Связаться с нами</a
+          >
+        </div>
+      </div>
+    </header>
+    <section class="breadcrumbs-band">
+      <div class="container">
+        <nav class="breadcrumbs" id="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <span class="breadcrumbs__sep">/</span>
+          <a href="/solutions.html">Решения</a>
+          <span class="breadcrumbs__sep">/</span>
+          <span aria-current="page">Автоматизация RFQ и сравнения ТКП</span>
+        </nav>
+      </div>
+    </section>
+    <noscript>
+      <div class="sr-only">Основная информация сайта доступна на странице.</div>
+    </noscript>
+    <main id="pageRoot">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">RFQ-first подход Arvectum</p>
+          <h1>Автоматизация RFQ и сравнения ТКП</h1>
+          <p class="page-hero__text">
+            Помогаем превратить разрозненные коммерческие предложения в единую
+            сравнительную таблицу: нормализация данных, сопоставление условий,
+            экономика сделки и контроль решений.
+          </p>
+          <div class="page-pills">
+            <span class="page-pill">RFQ-first</span
+            ><span class="page-pill">Нормализация ТКП</span
+            ><span class="page-pill">Сравнение цен</span
+            ><span class="page-pill">Экономика сделки</span>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>RFQ-first подход</h2>
+            <p>
+              Вместо ручного сбора предложений мы начинаем с формализованного
+              запроса — это основа для прозрачного сравнения и объективного
+              выбора.
+            </p>
+          </div>
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Структура запроса</h3>
+              <p>
+                Заранее собираем требования, спецификации, условия поставки и
+                критерии оценки — поставщики получают единую форму RFQ.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Автоматическая рассылка</h3>
+              <p>
+                RFQ направляется выбранным поставщикам через систему с
+                контролем статусов: отправлено, прочитано, ответ получен.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Единый канал коммуникации</h3>
+              <p>
+                Все вопросы поставщиков, уточнения и дополнительные документы
+                собираются в одном месте — без потери контекста в email и чатах.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Нормализация ответов</h3>
+              <p>
+                ТКП от поставщиков автоматически приводятся к единому
+                формату — таблицы, цены, единицы измерения и условия
+                сопоставляются строка к строке.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head">
+            <h2>Сравнение коммерческих предложений</h2>
+            <p>
+              Нормализованные ТКП сводятся в единую сравнительную таблицу,
+              где видны расхождения по каждой позиции.
+            </p>
+          </div>
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Построчная нормализация</h3>
+              <ul class="compact-list">
+                <li>Сопоставление номенклатуры по артикулам и описанию</li>
+                <li>Приведение единиц измерения к общему знаменателю</li>
+                <li>Выявление пропущенных и лишних позиций</li>
+                <li>Автоматическое выделение разночтений</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>Сводная таблица сравнения</h3>
+              <ul class="compact-list">
+                <li>Цены за единицу и итоговые суммы по каждому поставщику</li>
+                <li>Условия оплаты, сроки поставки, гарантии</li>
+                <li>Процент отклонения от среднерыночной цены</li>
+                <li>Итоговый рейтинг по заданным критериям</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Вопросы поставщикам</h2>
+            <p>
+              Все уточнения по заявке фиксируются в системе — вопросы,
+              ответы и приложенные документы привязаны к конкретной
+              позиции RFQ.
+            </p>
+          </div>
+          <div class="grid grid-3">
+            <article class="info-card">
+              <h3>Привязка к позициям</h3>
+              <p>
+                Вопрос относится к конкретной строке спецификации — ответ
+                сразу виден в контексте сравнения.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Журнал переписки</h3>
+              <p>
+                История всех уточнений сохраняется и доступна участникам
+                процесса с разграничением по ролям.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Массовые запросы</h3>
+              <p>
+                Один вопрос можно направить всем поставщикам одновременно,
+                ответы агрегируются для анализа.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head">
+            <h2>Экономика и условия сделки</h2>
+            <p>
+              Система помогает оценить не только цену, но и полную стоимость
+              владения с учётом условий оплаты, доставки и гарантий.
+            </p>
+          </div>
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Экономика сделки</h3>
+              <ul class="compact-list">
+                <li>Сравнение общей стоимости включая доставку и страхование</li>
+                <li>Учёт валютных курсов и условий индексации</li>
+                <li>График платежей и дисконтирование</li>
+                <li>Прогноз совокупной стоимости владения (TCO)</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>Условия платежей и поставок</h3>
+              <ul class="compact-list">
+                <li>Сопоставление отсрочек, авансов и аккредитивов</li>
+                <li>Сроки поставки и штрафные санкции</li>
+                <li>Гарантийные обязательства и сервисное обслуживание</li>
+                <li>Условия расторжения и разрешения споров</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Процесс работы</h2>
+            <p>
+              Полный цикл от сбора требований до выбора поставщика в едином
+              маршруте.
+            </p>
+          </div>
+          <div class="grid grid-3">
+            <article class="info-card">
+              <h3>Требования</h3>
+              <p>
+                Формирование спецификации, условий и критериев оценки —
+                единая структура для всех участников.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>RFQ</h3>
+              <p>
+                Подготовка и рассылка запроса предложений с контролем
+                получения и статусом ответов.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Вопросы</h3>
+              <p>
+                Уточнения поставщиков с привязкой к позициям —
+                все данные в контексте сравнения.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>ТКП</h3>
+              <p>
+                Сбор коммерческих предложений, нормализация данных и
+                загрузка в сравнительную таблицу.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Сравнение</h3>
+              <p>
+                Построчный анализ, выявление отклонений, рейтингование
+                поставщиков по заданным критериям.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Экономика</h3>
+              <p>
+                Расчёт полной стоимости, графика платежей, оценка рисков
+                и подготовка обоснования выбора.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-head"><h2>Частые вопросы</h2></div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>
+                Какие форматы ТКП поддерживаются?
+              </summary>
+              <p>
+                PDF, Excel, Word, вложенные архивы. Система нормализует
+                табличные и текстовые данные в единую сравнительную сетку.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Есть ли ограничения по числу предложений в сравнении?
+              </summary>
+              <p>
+                Нет. Сравнивать можно от двух до нескольких десятков
+                коммерческих предложений — система масштабируется под объём
+                вашей закупки.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Можно ли вручную корректировать данные после нормализации?
+              </summary>
+              <p>
+                Да. Все результаты нормализации можно править: уточнять
+                позиции, переопределять единицы измерения, добавлять и
+                исключать строки вручную.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Сохраняется ли история версий сравнения?
+              </summary>
+              <p>
+                Да. Каждое изменение фиксируется: вы видите, кто и когда
+                правил сравнительную таблицу, и можете вернуться к предыдущей
+                версии.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <article class="cta-band">
+            <div>
+              <h2>Хотите автоматизировать RFQ и сравнение ТКП</h2>
+              <p>
+                Опишите, с каким объёмом закупок вы работаете, и мы покажем,
+                как будет выглядеть процесс в системе.
+              </p>
+            </div>
+            <div class="cta-band__actions">
+              <a class="button" href="/contact.html">Связаться с нами</a>
+              <a class="button button-ghost" href="/solutions.html"
+                >Вернуться к решениям</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid glass">
+          <div class="footer-block">
+            <span>Контакты</span>
+            <div class="footer-contact-row">
+              <div class="footer-contact-stack">
+                <p>ООО «Арвектум»</p>
+                <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+              </div>
+              <a
+                class="telegram-link"
+                href="https://t.me/arvectum"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Telegram Arvectum"
+                ><span class="telegram-link__icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+            </div>
+          </div>
+          <details class="footer-legal">
+            <summary>Юридическая информация</summary>
+            <div class="footer-links">
+              <a href="/privacy.html">Политика конфиденциальности</a>
+              <a href="/personal-data-consent.html"
+                >Согласие на обработку персональных данных</a
+              >
+              <a href="/cookies.html">Политика cookies</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </footer>
+    <section class="cookie-banner glass" id="cookieBanner" hidden>
+      <div class="cookie-banner__content">
+        <p class="cookie-banner__eyebrow" id="cookieBannerEyebrow">Cookies</p>
+        <h2 id="cookieBannerTitle">Настройки cookies</h2>
+        <p id="cookieBannerText">
+          Обязательные cookies поддерживают работу сайта. Аналитику включаем
+          только с вашего согласия.
+        </p>
+        <div id="cookieBannerLinks"></div>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="button button-ghost" id="cookieDeclineBtn" type="button">
+          Только обязательные
+        </button>
+        <button
+          class="button button-ghost"
+          id="cookieCustomizeBtn"
+          type="button"
+        >
+          Настроить
+        </button>
+        <button class="button" id="cookieAcceptBtn" type="button">
+          Принять все
+        </button>
+      </div>
+    </section>
+    <section class="cookie-modal-backdrop" id="cookieModalBackdrop" hidden>
+      <div
+        class="cookie-modal glass"
+        id="cookieModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookieModalTitle"
+      >
+        <div class="cookie-modal__header">
+          <div>
+            <p class="cookie-banner__eyebrow" id="cookiePrefsEyebrow">
+              Настройки cookies
+            </p>
+            <h2 id="cookieModalTitle">Настройки cookies</h2>
+          </div>
+          <button
+            class="cookie-modal__close"
+            id="cookieModalClose"
+            type="button"
+            aria-label="Закрыть"
+          >
+            ×
+          </button>
+        </div>
+        <div class="cookie-modal__body">
+          <article class="cookie-option">
+            <div>
+              <h3 id="cookieEssentialTitle">Обязательные cookies</h3>
+              <p id="cookieEssentialText">
+                Нужны для базовой работы сайта, формы и хранения вашего выбора
+                по cookies.
+              </p>
+            </div>
+            <label class="cookie-switch cookie-switch--locked"
+              ><input type="checkbox" checked disabled /><span
+                id="cookieEssentialAlwaysOn"
+                >Всегда включено</span
+              ></label
+            >
+          </article>
+          <article class="cookie-option">
+            <div>
+              <h3 id="cookieAnalyticsTitle">Аналитические cookies</h3>
+              <p id="cookieAnalyticsText">
+                Сохраняют first-party идентификатор визита, источник перехода и
+                UTM-параметры только при согласии на аналитику.
+              </p>
+            </div>
+            <label class="cookie-switch"
+              ><input type="checkbox" id="cookieAnalyticsToggle" /><span
+                id="cookieAnalyticsLabel"
+                >Выключено</span
+              ></label
+            >
+          </article>
+        </div>
+        <div class="cookie-modal__footer">
+          <button
+            class="button button-ghost"
+            id="cookieSaveEssentialBtn"
+            type="button"
+          >
+            Сохранить только обязательные
+          </button>
+          <button class="button" id="cookieSavePrefsBtn" type="button">
+            Сохранить настройки
+          </button>
+        </div>
+      </div>
+    </section>
+    <script src="/site-config.js?v=20260618b"></script>
+    <script src="/app.js?v=20260618b"></script>
+  </body>
+</html>
