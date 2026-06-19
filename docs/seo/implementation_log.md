@@ -134,3 +134,31 @@ All pages have: unique H1, title, meta description, OG tags, canonical, hreflang
 
 ### Proof block
 - Route-based workflow, restricted outputs, human approval, logs, MVP testing
+
+---
+
+## Sprint 04 — Diagnostics, Lead Magnet & Forms
+
+### Created
+- `public/diagnostics/procurement-process-audit.html` — Diagnostics page with:
+  - Checklist: 10 questions for self-diagnosis of procurement process
+  - Sections: what is reviewed, what client receives, what can be automated first
+  - Safe conversion copy with MVP framing
+  - CTA to contact and demo case
+
+### Updated
+- `public/index.html` — Hero CTA now links to diagnostics page; CTA band links to diagnostics + demo case
+- `public/solutions/procurement-ai-agents.html` — CTA band links to diagnostics, demo-case, MVP
+- `public/solutions/tender-department-ai-agent.html` — CTA band links to diagnostics, demo-case, MVP
+- `public/sitemap.xml` — Added diagnostics and demo-case URLs
+
+### Forms/contact flow
+- Existing working PHP form at contact.html (api/submit.php) — unchanged
+- No fake backend introduced
+- Legal/privacy links preserved
+
+### CTA architecture
+- «Разобрать закупочный процесс» → diagnostics page
+- «Показать демо на вашем тендере» → contact page (demo flow)
+- «Посмотреть demo-case» → demo case page
+- «Обсудить MVP» → contact page
