@@ -162,3 +162,33 @@ All pages have: unique H1, title, meta description, OG tags, canonical, hreflang
 - «Показать демо на вашем тендере» → contact page (demo flow)
 - «Посмотреть demo-case» → demo case page
 - «Обсудить MVP» → contact page
+
+---
+
+## Sprint 05 — Trust, Security & Technical SEO
+
+### Created
+- `public/security-control.html` — Security and control page with:
+  - Principles: human approval, no autonomous submissions, audit trail, restricted MVP
+  - AI automation boundaries (explicit list of what AI cannot do)
+  - Data and infrastructure section
+  - Important legal disclaimer
+  - FAQ
+
+### Updated
+- `public/solutions/procurement-ai-agents.html` — Added trust block before FAQ
+- `public/solutions/tender-department-ai-agent.html` — Added trust block before FAQ
+- `public/solutions/rfq-tkp-comparison.html` — Added trust block before FAQ
+- `public/solutions/contract-risk-ai-review.html` — Added trust block before FAQ
+- `public/solutions/closed-loop-ai-documents.html` — Added trust block before FAQ
+- `public/sitemap.xml` — Added security-control.html, cases.html URLs
+
+### Trust block text
+"AI готовит аналитику и черновики. Решения, отправки, подача заявок и юридические выводы остаются за ответственными специалистами."
+
+### Technical SEO
+- All new pages have unique title, description, canonical, OG, hreflang
+- Schema.org: Organization, BreadcrumbList, FAQPage, Service on solution pages
+- Sitemap updated with all new URLs
+- robots.txt unchanged (already correct)
+- No broken internal links detected
