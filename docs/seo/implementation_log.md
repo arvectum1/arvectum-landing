@@ -59,3 +59,29 @@
 
 ### Guardrails created
 - `docs/seo/procurement_ai_positioning_guardrails.md`
+
+---
+
+## Sprint 01 — Homepage Repositioning
+
+### Changes to `public/index.html`
+- Updated `<title>` to "ИИ-агенты для закупок и тендеров — Arvectum"
+- Updated meta description and OG tags with procurement focus
+- Replaced hero: new H1 "ИИ-агенты для закупок и тендеров", procurement CTAs
+- Replaced "Сценарии использования" with "Что автоматизируем в закупках и тендерах"
+- Added "Контролируемый маршрут" section with 5-step process flow
+- Added "Чем Arvectum отличается" differentiation block
+- Added "Как выглядит MVP" section
+- Updated schema.org Service type
+- Updated CTA band
+
+### Changes to `public/styles.css`
+- Added `.step-grid--five` grid class
+- Added responsive rules for `.step-grid--five` at tablet and mobile breakpoints
+
+### Verification
+- Homepage clearly presents procurement AI agents as main category
+- Hero, CTAs, process route and human-control statement are implemented
+- No forbidden claims present
+- Existing legal/contact blocks preserved
+- "Возможности платформы", "Стыковка с ИТ-контуром", "Надёжность и законность" sections preserved
