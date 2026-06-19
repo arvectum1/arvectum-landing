@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo-case: AI-оператор тендера — Arvectum</title>
+    <meta
+      id="metaDescription"
+      name="description"
+      content="Сценарий: поставщик получает тендер и должен решить, участвовать ли. AI помогает разобрать требования, подготовить RFQ, сравнить ТКП, оценить риски и собрать материалы."
+    />
+    <meta
+      id="metaOgTitle"
+      property="og:title"
+      content="Demo-case: AI-оператор тендера — Arvectum"
+    />
+    <meta
+      id="metaOgDescription"
+      property="og:description"
+      content="Сценарий: поставщик получает тендер и должен решить, участвовать ли. AI помогает разобрать требования, подготовить RFQ, сравнить ТКП, оценить риски и собрать материалы."
+    />
+    <meta
+      id="metaOgUrl"
+      property="og:url"
+      content="https://arvectum.com/cases/tender-operator-demo.html"
+    />
+    <meta
+      property="og:image"
+      content="https://arvectum.com/assets/brand/logo-horizontal.svg"
+    />
+    <meta property="og:type" content="website" />
+    <meta id="metaOgLocale" property="og:locale" content="ru_RU" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#041a33" />
+    <link
+      id="canonicalLink"
+      rel="canonical"
+      href="https://arvectum.com/cases/tender-operator-demo.html"
+    />
+    <link
+      id="hrefLangRu"
+      rel="alternate"
+      hreflang="ru"
+      href="https://arvectum.com/cases/tender-operator-demo.html"
+    />
+    <link
+      id="hrefLangEn"
+      rel="alternate"
+      hreflang="en"
+      href="https://arvectum.com/cases/tender-operator-demo.html?lang=en"
+    />
+    <link
+      id="hrefLangDefault"
+      rel="alternate"
+      hreflang="x-default"
+      href="https://arvectum.com/cases/tender-operator-demo.html"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/assets/brand/favicon.svg?v=20260616-seo24"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/brand/favicon-32x32.png?v=20260616-seo24"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/brand/favicon-16x16.png?v=20260616-seo24"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/assets/brand/apple-touch-icon.png?v=20260616-seo24"
+    />
+    <link rel="shortcut icon" href="/favicon.ico?v=20260616-seo24" />
+    <script id="organizationLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ООО \"Арвектум\"",
+        "alternateName": "Arvectum",
+        "url": "https://arvectum.com/",
+        "logo": "https://arvectum.com/assets/brand/logo-horizontal.svg",
+        "email": "info@arvectum.com",
+        "sameAs": ["https://t.me/arvectum"]
+      }
+    </script>
+    <script id="breadcrumbLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Главная",
+            "item": "https://arvectum.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Кейсы",
+            "item": "https://arvectum.com/cases.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Demo-case: AI-оператор тендера",
+            "item": "https://arvectum.com/cases/tender-operator-demo.html"
+          }
+        ]
+      }
+    </script>
+    <script id="faqLd" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Это работает с реальными тендерами?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. Сценарий разворачивается на реальных данных: загрузка тендерной документации, работа с ТКП, проверка рисков. Пилот проводится на контролируемом контуре — AI-агент обрабатывает документы, специалист проверяет результаты."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Может ли AI подать заявку автоматически?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Нет. Этот сценарий — помощник для анализа и подготовки материалов. Внешние отправки, подписание и подача заявки выполняются ответственными специалистами."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Что нужно для запуска такого сценария?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Достаточно предоставить пример тендерной документации и доступ к процессу. Адаптация сценария под вашу номенклатуру, шаблоны RFQ и критерии оценки занимает 1–2 недели."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Сколько времени занимает пилот?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Обычно 2–4 недели: загрузка данных, настройка логики, пробный прогон на 1–2 тендерах и демонстрация результатов."
+            }
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css?v=20260618b" />
+  </head>
+
+  <body data-page="tender-operator-demo" data-nav="cases">
+    <a class="skip-link" href="#pageRoot" id="skipLink"
+      >Перейти к содержимому</a
+    >
+    <header class="site-header">
+      <div class="container">
+        <div class="header-shell glass">
+          <div class="topbar">
+            <a class="brand" href="/" aria-label="Arvectum">
+              <img
+                id="brandLogo"
+                src="/assets/brand/arvectum-logo-header-light.svg"
+                alt="Логотип Arvectum"
+              />
+              <span class="brand-meta" id="brandMeta"></span>
+            </a>
+            <nav
+              class="desktop-nav"
+              id="desktopNav"
+              aria-label="Основная навигация"
+            >
+              <a class="nav-link" href="/">Главная</a>
+              <a class="nav-link" href="/solutions.html">Решения</a>
+              <a class="nav-link" href="/approach.html">Как запускаем</a>
+            </nav>
+            <div class="topbar-tools">
+              <div
+                class="lang-switch desktop-lang-switch"
+                aria-label="Переключатель языка"
+              >
+                <button
+                  class="lang-switch__button is-active"
+                  type="button"
+                  data-lang="ru"
+                >
+                  RU
+                </button>
+                <button
+                  class="lang-switch__button"
+                  type="button"
+                  data-lang="en"
+                >
+                  EN
+                </button>
+              </div>
+              <a class="button header-cta" id="topbarCta" href="/contact.html"
+                >Связаться с нами</a
+              >
+              <button class="menu-toggle" id="menuToggle" type="button">
+                <svg
+                  class="menu-toggle__logo"
+                  viewBox="0 0 425.2 72.06"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    fill="#41b599"
+                    fill-rule="evenodd"
+                    d="M137.55,385.55,155,417.74,172.81,385h26.56l-39.12,72.06H149.81l-18.62-34.3-2.62,4.82H119l12.23-22.52,23.63,43.52h.42l29.92-55.1h-7.34l-22.79,42-22.79-42h-2.11l-29.92,55.1h7.35l8.52-15.7h15.59l4.6,8.48H121.09l-8.52,15.7H86L125.12,385h12.13Z"
+                    transform="translate(-86 -385)"
+                  ></path>
+                  <path
+                    fill="#41b599"
+                    fill-rule="evenodd"
+                    d="M330.86,431.22c.41-5.6,11.74-6.18,12,0ZM339,443.15c-3.78,0-7.33-1.13-8.39-5.21h20.89c6,0,2.87-19.67-15-19.66-16.61,0-24.17,21.17-9.84,31,8.48,5.81,22.07,2,24.9-1.73.9-1.18.52-1.77-.12-2.9-.72-1.28-1.81-2.94-2-3.12-3-3.17-4.52,1.68-10.46,1.65Zm-62.23-13.52c-2.54-1-8.53.24-8.53,4.91v14.4a2.56,2.56,0,0,1-2.61,2.49H259a2.56,2.56,0,0,1-2.61-2.49V421.48A2.55,2.55,0,0,1,259,419h6.09a2.55,2.55,0,0,1,2.6,2.48v.22c2.62-2.28,4.56-3.47,8.3-3.33,3.46.14,3.42,2.11,3.42,5.33v.72c.05,4.33-.13,6.24-2.67,5.21Zm-66.24,16.91L224.41,410c.72-1.9,1.41-3.48,3.49-3.48h7.17c2.11,0,2.76,1.57,3.5,3.5l13.91,36.57c.87,2.29-.5,4.89-2.58,4.89h-6.69a2.9,2.9,0,0,1-2.66-2.24l-1.84-5.89H224.26l-1.85,5.89a2.89,2.89,0,0,1-2.66,2.24h-6.69c-2.08,0-3.45-2.6-2.58-4.89Zm25.3-12.6-4.3-13.71-4.29,13.71Zm46.34-11.42a2.47,2.47,0,0,1,2.19-3.52h6.87a2.39,2.39,0,0,1,2.26,1.61L300,438.39l6.53-17.78a2.38,2.38,0,0,1,2.26-1.61h6.86a2.48,2.48,0,0,1,2.2,3.52L306,448.9c-.62,1.39-1.17,2.53-3,2.53h-6.09c-1.77,0-2.36-1.15-3-2.52l-11.83-26.39Zm93.09,29.71A19.71,19.71,0,0,1,365.9,450c-14.54-7.92-10.09-31.51,8.88-31.74,4-.05,17.08,2.36,13.2,8.22-1.3,2-3.39,5.2-6.45,3.2-2.62-1.72-5.42-2.8-8.92-.95-5.7,3-4.93,12,1.52,13.54,4.93,1.16,7.31-2,8.51-2.58,2.59-1.22,5.4,3.22,6.14,4.73,2.31,4.72-8.35,7.82-13.57,7.82Zm18.59-24.34h2.13v10.48c0,8.43,3.88,13.63,12,14,6.11.3,11.07-2.71,12-9.49,1-7.15-7.7-7.25-8.67-2.16-.56,3-3.43,2.15-3.43-2.27V427.89h5.84a2.47,2.47,0,0,0,2.45-2.48v-3.93a2.47,2.47,0,0,0-2.45-2.48h-5.84v-6.55a2.57,2.57,0,0,0-2.62-2.49H399.7a2.65,2.65,0,0,0-2.62,2.49l-.59,6.55H393.8a2.47,2.47,0,0,0-2.45,2.48v3.93a2.47,2.47,0,0,0,2.45,2.48Zm29.83,10.48V421.48a2.55,2.55,0,0,1,2.61-2.48h6.67a2.55,2.55,0,0,1,2.61,2.48v17c0,6.71,8.78,7,8.78-.11V421.48a2.55,2.55,0,0,1,2.6-2.48h6.6a2.55,2.55,0,0,1,2.61,2.48v27.46a2.56,2.56,0,0,1-2.61,2.49H448a2.56,2.56,0,0,1-2.61-2.49v-.21c-9.69,7.78-21.77.6-21.77-10.36Zm86.66-12.44a18,18,0,0,1,.91,6v17a2.43,2.43,0,0,1-2.37,2.49h-6a2.43,2.43,0,0,1-2.36-2.49V432c0-6.73-8.55-7-8.5-16.87a16,16,0,0,1,.47-4.05c.25-1.31,1.48-2,2.77-2h2.22a2.5,2.5,0,0,1,2.33,1.52c.89,2.35,2.17,4.7,3.11,7.1,1-2.52,2.18-5.09,2.92-7.18a2.08,2.08,0,0,1,2-1.44h6.51c2.9,0,2.4,2.22,2.4,5.29Z"
+                    transform="translate(-86 -385)"
+                  ></path>
+                </svg>
+                <span class="sr-only" id="menuButtonText">Меню</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-drawer" id="menuDrawer">
+        <div class="menu-drawer__panel glass">
+          <div class="menu-drawer__top">
+            <div>
+              <p class="eyebrow" id="menuTitle">Навигация по сайту</p>
+              <h2 id="menuSectionTitle">Разделы</h2>
+            </div>
+            <button class="menu-close" id="menuClose" type="button">
+              <span id="menuCloseText">Закрыть меню</span>
+            </button>
+          </div>
+          <nav class="menu-nav" id="menuNav" aria-label="Навигация по разделам">
+            <a class="nav-link" href="/">Главная</a>
+            <a class="nav-link" href="/solutions.html">Решения</a>
+            <a class="nav-link" href="/approach.html">Как запускаем</a>
+          </nav>
+          <div class="menu-drawer__extras">
+            <div
+              class="lang-switch menu-lang-switch"
+              aria-label="Language switcher"
+            >
+              <button
+                class="lang-switch__button is-active"
+                type="button"
+                data-lang="ru"
+              >
+                RU
+              </button>
+              <button class="lang-switch__button" type="button" data-lang="en">
+                EN
+              </button>
+            </div>
+            <a
+              class="menu-telegram"
+              id="menuTelegramLink"
+              href="https://t.me/arvectum"
+              target="_blank"
+              rel="noreferrer"
+              >Телеграм</a
+            >
+          </div>
+          <a class="button" id="menuPrimaryCta" href="/contact.html"
+            >Связаться с нами</a
+          >
+        </div>
+      </div>
+    </header>
+    <section class="breadcrumbs-band">
+      <div class="container">
+        <nav class="breadcrumbs" id="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <span class="breadcrumbs__sep">/</span>
+          <a href="/cases.html">Кейсы</a>
+          <span class="breadcrumbs__sep">/</span>
+          <span aria-current="page">Demo-case: AI-оператор тендера</span>
+        </nav>
+      </div>
+    </section>
+    <noscript>
+      <div class="sr-only">Основная информация сайта доступна на странице.</div>
+    </noscript>
+    <main id="pageRoot">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Демонстрационный сценарий</p>
+          <h1>Demo-case: AI-оператор тендера</h1>
+          <p class="page-hero__text">
+            Как AI-агент помогает поставщику обработать входящий тендер и подготовить материалы для решения об участии.
+          </p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Исходные данные</h3>
+              <p>
+                Тендерная документация от заказчика, требования и спецификации, ответы поставщиков на RFQ, коммерческие предложения (ТКП).
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Что делает AI-агент</h3>
+              <p>
+                Разбор требований и ограничений, подготовка RFQ draft, получение и нормализация ТКП, сравнение цены, сроков и условий, экономика сделки, оценка рисков.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head">
+            <h2>Workflow: от тендера до решения</h2>
+          </div>
+          <div class="step-grid step-grid--five">
+            <div class="step-card">
+              <div class="step-card__num">1</div>
+              <h4>Входящий тендер / закупочная документация</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">2</div>
+              <h4>Выделение требований и ограничений</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">3</div>
+              <h4>Вопросы поставщикам и RFQ draft</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">4</div>
+              <h4>Получение и нормализация ТКП</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">5</div>
+              <h4>Сравнение цены, сроков, условий</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">6</div>
+              <h4>Экономика сделки и cash-gap</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">7</div>
+              <h4>Предварительная проверка договорных рисков</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">8</div>
+              <h4>Memo для решения об участии</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">9</div>
+              <h4>Подготовка материалов для заявки</h4>
+            </div>
+            <div class="step-card">
+              <div class="step-card__num">10</div>
+              <h4>Контроль статусов и истории решений</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Что получает клиент на выходе</h2>
+            <p>AI-агент формирует пакет документов для принятия решения.</p>
+          </div>
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Сводка требований</h3>
+              <p>Структурированное изложение ключевых условий тендера, ограничений и сроков.</p>
+            </article>
+            <article class="info-card">
+              <h3>RFQ draft</h3>
+              <p>Черновик запроса коммерческих предложений с перечнем вопросов поставщикам.</p>
+            </article>
+            <article class="info-card">
+              <h3>Таблица сравнения ТКП</h3>
+              <p>Нормализованное сравнение предложений по цене, срокам, условиям оплаты, гарантиям и рискам.</p>
+            </article>
+            <article class="info-card">
+              <h3>Экономическая модель участия</h3>
+              <p>Расчёт маржинальности, cash-gap и окупаемости сделки на основе ТКП.</p>
+            </article>
+            <article class="info-card">
+              <h3>Risk memo</h3>
+              <p>Сводка выявленных договорных и коммерческих рисков с категоризацией по степени критичности.</p>
+            </article>
+            <article class="info-card">
+              <h3>Bid-decision memo</h3>
+              <p>Итоговая рекомендация с обоснованием: участвовать, не участвовать или запросить уточнение.</p>
+            </article>
+            <article class="info-card">
+              <h3>Чеклист комплектности заявки</h3>
+              <p>Перечень необходимых документов с отметкой о наличии и подсветкой отсутствующих.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head">
+            <h2>Пример сравнения ТКП</h2>
+            <p>Демонстрационные данные. В реальном проекте таблица формируется на основе ТКП поставщиков.</p>
+          </div>
+          <div class="table-wrapper" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+              <thead>
+                <tr style="background:var(--navy-deep); color:var(--white);">
+                  <th style="padding:0.75rem 1rem; text-align:left; border-bottom:2px solid var(--mint);">Критерий</th>
+                  <th style="padding:0.75rem 1rem; text-align:center; border-bottom:2px solid var(--mint);">Поставщик A</th>
+                  <th style="padding:0.75rem 1rem; text-align:center; border-bottom:2px solid var(--mint);">Поставщик B</th>
+                  <th style="padding:0.75rem 1rem; text-align:center; border-bottom:2px solid var(--mint);">Поставщик C</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Цена</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">1 240 000 ₽</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">1 180 000 ₽</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">1 310 000 ₽</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Срок</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">21 день</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">35 дней</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">18 дней</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Оплата</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">50/50</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">100% предоплата</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">30/70</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Гарантия</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">12 мес.</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">6 мес.</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">12 мес.</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Риск</td>
+                  <td style="padding:0.75rem 1rem; text-align:center; color:var(--mint);">средний</td>
+                  <td style="padding:0.75rem 1rem; text-align:center; color:#e74c3c;">высокий</td>
+                  <td style="padding:0.75rem 1rem; text-align:center; color:var(--mint);">низкий</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="section-note" style="margin-top:1rem;">Данные демонстрационные, не являются реальными коммерческими предложениями.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Пример risk memo</h2>
+            <p>AI подсвечивает условия, требующие внимания ответственного специалиста.</p>
+          </div>
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Жёсткая приёмка</h3>
+              <p>Подписание акта приёмки в течение 2 рабочих дней с момента поставки. При неподписании товар считается принятым, а претензии не принимаются.</p>
+              <p style="color:#e74c3c; font-size:0.9rem;">Высокий риск — требуется согласование с юристом.</p>
+            </article>
+            <article class="info-card">
+              <h3>Штраф за просрочку</h3>
+              <p>0,5% от суммы договора за каждый день просрочки. Без ограничения максимальной суммы.</p>
+              <p style="color:#e67e22; font-size:0.9rem;">Коммерчески значимый риск — требуется оценка возможности соблюдения сроков.</p>
+            </article>
+            <article class="info-card">
+              <h3>Риск кассового разрыва</h3>
+              <p>100% предоплата Поставщика B создаёт отвлечение оборотных средств на весь период поставки.</p>
+              <p style="color:#e67e22; font-size:0.9rem;">Коммерчески значимый риск — рассмотреть Поставщика A или C с частичной предоплатой.</p>
+            </article>
+            <article class="info-card">
+              <h3>Неполный ответ поставщика</h3>
+              <p>Поставщик C не указал условия гарантийного обслуживания после 12 месяцев.</p>
+              <p style="color:var(--mint); font-size:0.9rem;">Стандартное уточнение — запросить дополнение.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head">
+            <h2>Пример bid-decision memo</h2>
+          </div>
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Рекомендация</h3>
+              <p><strong>Участвовать</strong> — с поставщиком C при условии уточнения гарантийного обслуживания.</p>
+            </article>
+            <article class="info-card">
+              <h3>Маржинальность</h3>
+              <p>Расчётная маржинальность сделки: 18,5% (Поставщик C) — 22,3% (Поставщик A).</p>
+            </article>
+            <article class="info-card">
+              <h3>Cash gap</h3>
+              <p>Поставщик A: 21 день. Поставщик C: 18 дней. Поставщик B: 35 дней + 100% предоплата.</p>
+            </article>
+            <article class="info-card">
+              <h3>Критические риски</h3>
+              <p>Жёсткая приёмка по всем вариантам — требуется согласование. Штрафные санкции без ограничения суммы — предложить лимит.</p>
+            </article>
+            <article class="info-card">
+              <h3>Документы к подготовке</h3>
+              <p>Запрос уточнения по гарантии Поставщику C. Формулировка условия по приёмке. Подготовка проекта договора с Поставщиком C.</p>
+            </article>
+            <article class="info-card">
+              <h3>Вопросы к заказчику</h3>
+              <p>Возможна ли поэтапная приёмка? Есть ли возможность ограничения штрафа 10% от суммы договора?</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <article class="info-card info-card--caution">
+            <h3>Дисклеймер</h3>
+            <p>
+              Demo-case показывает типовой сценарий работы AI-оператора. Данные условные, не являются реальными коммерческими предложениями или юридическим заключением. В реальном проекте логика адаптируется под регламент, документы и процесс клиента. Финальные решения, внешние отправки и подача заявок остаются за ответственными специалистами.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-head"><h2>Частые вопросы</h2></div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Это работает с реальными тендерами?</summary>
+              <p>
+                Да. Сценарий разворачивается на реальных данных: загрузка тендерной документации, работа с ТКП, проверка рисков. Пилот проводится на контролируемом контуре — AI-агент обрабатывает документы, специалист проверяет результаты.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>Может ли AI подать заявку автоматически?</summary>
+              <p>
+                Нет. Этот сценарий — помощник для анализа и подготовки материалов. Внешние отправки, подписание и подача заявки выполняются ответственными специалистами.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>Что нужно для запуска такого сценария?</summary>
+              <p>
+                Достаточно предоставить пример тендерной документации и доступ к процессу. Адаптация сценария под вашу номенклатуру, шаблоны RFQ и критерии оценки занимает 1–2 недели.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>Сколько времени занимает пилот?</summary>
+              <p>
+                Обычно 2–4 недели: загрузка данных, настройка логики, пробный прогон на 1–2 тендерах и демонстрация результатов.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <article class="cta-band">
+            <div>
+              <h2>Хотите попробовать на своём тендере</h2>
+              <p>
+                Запустим демо на реальных данных вашего процесса. Вы увидите, как AI-агент обрабатывает тендерную документацию и готовит материалы для решения.
+              </p>
+            </div>
+            <div class="cta-band__actions">
+              <a class="button" href="/contact.html">Показать демо на вашем тендере</a>
+              <a class="button button-ghost" href="/cases.html">Вернуться к сценариям</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid glass">
+          <div class="footer-block">
+            <span>Контакты</span>
+            <div class="footer-contact-row">
+              <div class="footer-contact-stack">
+                <p>ООО «Арвектум»</p>
+                <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+              </div>
+              <a
+                class="telegram-link"
+                href="https://t.me/arvectum"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Telegram Arvectum"
+                ><span class="telegram-link__icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+            </div>
+          </div>
+          <details class="footer-legal">
+            <summary>Юридическая информация</summary>
+            <div class="footer-links">
+              <a href="/privacy.html">Политика конфиденциальности</a>
+              <a href="/personal-data-consent.html"
+                >Согласие на обработку персональных данных</a
+              >
+              <a href="/cookies.html">Политика cookies</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </footer>
+    <section class="cookie-banner glass" id="cookieBanner" hidden>
+      <div class="cookie-banner__content">
+        <p class="cookie-banner__eyebrow" id="cookieBannerEyebrow">Cookies</p>
+        <h2 id="cookieBannerTitle">Настройки cookies</h2>
+        <p id="cookieBannerText">
+          Обязательные cookies поддерживают работу сайта. Аналитику включаем
+          только с вашего согласия.
+        </p>
+        <div id="cookieBannerLinks"></div>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="button button-ghost" id="cookieDeclineBtn" type="button">
+          Только обязательные
+        </button>
+        <button
+          class="button button-ghost"
+          id="cookieCustomizeBtn"
+          type="button"
+        >
+          Настроить
+        </button>
+        <button class="button" id="cookieAcceptBtn" type="button">
+          Принять все
+        </button>
+      </div>
+    </section>
+    <section class="cookie-modal-backdrop" id="cookieModalBackdrop" hidden>
+      <div
+        class="cookie-modal glass"
+        id="cookieModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookieModalTitle"
+      >
+        <div class="cookie-modal__header">
+          <div>
+            <p class="cookie-banner__eyebrow" id="cookiePrefsEyebrow">
+              Настройки cookies
+            </p>
+            <h2 id="cookieModalTitle">Настройки cookies</h2>
+          </div>
+          <button
+            class="cookie-modal__close"
+            id="cookieModalClose"
+            type="button"
+            aria-label="Закрыть"
+          >
+            ×
+          </button>
+        </div>
+        <div class="cookie-modal__body">
+          <article class="cookie-option">
+            <div>
+              <h3 id="cookieEssentialTitle">Обязательные cookies</h3>
+              <p id="cookieEssentialText">
+                Нужны для базовой работы сайта, формы и хранения вашего выбора
+                по cookies.
+              </p>
+            </div>
+            <label class="cookie-switch cookie-switch--locked"
+              ><input type="checkbox" checked disabled /><span
+                id="cookieEssentialAlwaysOn"
+                >Всегда включено</span
+              ></label
+            >
+          </article>
+          <article class="cookie-option">
+            <div>
+              <h3 id="cookieAnalyticsTitle">Аналитические cookies</h3>
+              <p id="cookieAnalyticsText">
+                Сохраняют first-party идентификатор визита, источник перехода и
+                UTM-параметры только при согласии на аналитику.
+              </p>
+            </div>
+            <label class="cookie-switch"
+              ><input type="checkbox" id="cookieAnalyticsToggle" /><span
+                id="cookieAnalyticsLabel"
+                >Выключено</span
+              ></label
+            >
+          </article>
+        </div>
+        <div class="cookie-modal__footer">
+          <button
+            class="button button-ghost"
+            id="cookieSaveEssentialBtn"
+            type="button"
+          >
+            Сохранить только обязательные
+          </button>
+          <button class="button" id="cookieSavePrefsBtn" type="button">
+            Сохранить настройки
+          </button>
+        </div>
+      </div>
+    </section>
+    <script src="/site-config.js?v=20260618b"></script>
+    <script src="/app.js?v=20260618b"></script>
+  </body>
+</html>
