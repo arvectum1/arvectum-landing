@@ -902,6 +902,10 @@ main {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.step-grid--five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
 .step-card {
   display: grid;
   gap: 0.9rem;
@@ -1624,7 +1628,8 @@ textarea[aria-invalid="true"] {
     grid-template-columns: 1fr;
   }
 
-  .step-grid--four {
+  .step-grid--four,
+  .step-grid--five {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1871,7 +1876,8 @@ textarea[aria-invalid="true"] {
 
   .page-pills,
   .step-grid,
-  .step-grid--four {
+  .step-grid--four,
+  .step-grid--five {
     grid-template-columns: 1fr;
   }
 }
