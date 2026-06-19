@@ -94,10 +94,27 @@ Findings:
 - After this merge, trigger a redeploy in Cloudflare Pages dashboard (or wait for auto-deploy on push).
 - Optionally purge nginx cache if the site uses a reverse proxy cache.
 
+## Homepage CTA option A alignment
+
+Already aligned since commit `d51766b`. No further changes needed.
+
+- Hero primary CTA: `Обсудить автоматизацию` → `/contact.html` (line 272)
+- Hero secondary CTA: `AI-агенты для закупок` → `/solutions/procurement.html` (line 273–274)
+- Procurement-specific CTAs (`Все сценарии закупок`, `Запросить диагностику`) preserved in флагманский block below hero (lines 499–501)
+- Homepage remains broad AI automation page with procurement as flagship scenario
+
+Checks:
+- Build result: No build step required (static HTML)
+- Verified homepage H1: `AI-автоматизация операционных процессов и корпоративных регламентов`
+- Verified CTA targets: `/contact.html`, `/solutions/procurement.html`
+
 ## Final verification checklist
 
 - [x] Homepage source has broad H1 (`AI-автоматизация операционных процессов и корпоративных регламентов`)
 - [x] Homepage title is broad + procurement flagship (`Arvectum — AI-автоматизация бизнес-процессов и ИИ-агенты для закупок`)
+- [x] Hero CTA 1: `Обсудить автоматизацию` → `/contact.html`
+- [x] Hero CTA 2: `AI-агенты для закупок` → `/solutions/procurement.html`
+- [x] Procurement links preserved below hero
 - [x] `main` branch now contains the updated homepage
 - [x] `/solutions/procurement.html` remains narrow procurement hub (unchanged)
 - [x] Public site shows correct content
