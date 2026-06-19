@@ -373,31 +373,167 @@
       <section class="section">
         <div class="container">
           <div class="section-head">
-            <h2>Что получает пользователь</h2>
-            <p>AI-агент формирует готовые документы для человека.</p>
+            <h2>Что получает клиент на выходе</h2>
+            <p>AI-агент формирует пакет документов для принятия решения.</p>
           </div>
-          <div class="grid grid-3">
+          <div class="grid grid-2">
             <article class="info-card">
               <h3>Сводка требований</h3>
-              <p>Выделенные ключевые условия и ограничения тендера в структурированном виде.</p>
+              <p>Структурированное изложение ключевых условий тендера, ограничений и сроков.</p>
             </article>
             <article class="info-card">
-              <h3>RFQ и сравнение ТКП</h3>
-              <p>Нормализованная таблица сравнения предложений по цене, срокам, условиям поставки.</p>
+              <h3>RFQ draft</h3>
+              <p>Черновик запроса коммерческих предложений с перечнем вопросов поставщикам.</p>
             </article>
             <article class="info-card">
-              <h3>Risk-memo и bid-decision memo</h3>
-              <p>Итоговые документы для человека: оценка рисков и аргументированная рекомендация об участии.</p>
+              <h3>Таблица сравнения ТКП</h3>
+              <p>Нормализованное сравнение предложений по цене, срокам, условиям оплаты, гарантиям и рискам.</p>
+            </article>
+            <article class="info-card">
+              <h3>Экономическая модель участия</h3>
+              <p>Расчёт маржинальности, cash-gap и окупаемости сделки на основе ТКП.</p>
+            </article>
+            <article class="info-card">
+              <h3>Risk memo</h3>
+              <p>Сводка выявленных договорных и коммерческих рисков с категоризацией по степени критичности.</p>
+            </article>
+            <article class="info-card">
+              <h3>Bid-decision memo</h3>
+              <p>Итоговая рекомендация с обоснованием: участвовать, не участвовать или запросить уточнение.</p>
+            </article>
+            <article class="info-card">
+              <h3>Чеклист комплектности заявки</h3>
+              <p>Перечень необходимых документов с отметкой о наличии и подсветкой отсутствующих.</p>
             </article>
           </div>
         </div>
       </section>
+
       <section class="section section-soft">
         <div class="container">
+          <div class="section-head">
+            <h2>Пример сравнения ТКП</h2>
+            <p>Демонстрационные данные. В реальном проекте таблица формируется на основе ТКП поставщиков.</p>
+          </div>
+          <div class="table-wrapper" style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+              <thead>
+                <tr style="background:var(--navy-deep); color:var(--white);">
+                  <th style="padding:0.75rem 1rem; text-align:left; border-bottom:2px solid var(--mint);">Критерий</th>
+                  <th style="padding:0.75rem 1rem; text-align:center; border-bottom:2px solid var(--mint);">Поставщик A</th>
+                  <th style="padding:0.75rem 1rem; text-align:center; border-bottom:2px solid var(--mint);">Поставщик B</th>
+                  <th style="padding:0.75rem 1rem; text-align:center; border-bottom:2px solid var(--mint);">Поставщик C</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Цена</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">1 240 000 ₽</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">1 180 000 ₽</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">1 310 000 ₽</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Срок</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">21 день</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">35 дней</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">18 дней</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Оплата</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">50/50</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">100% предоплата</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">30/70</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Гарантия</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">12 мес.</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">6 мес.</td>
+                  <td style="padding:0.75rem 1rem; text-align:center;">12 мес.</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.75rem 1rem; font-weight:600;">Риск</td>
+                  <td style="padding:0.75rem 1rem; text-align:center; color:var(--mint);">средний</td>
+                  <td style="padding:0.75rem 1rem; text-align:center; color:#e74c3c;">высокий</td>
+                  <td style="padding:0.75rem 1rem; text-align:center; color:var(--mint);">низкий</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="section-note" style="margin-top:1rem;">Данные демонстрационные, не являются реальными коммерческими предложениями.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Пример risk memo</h2>
+            <p>AI подсвечивает условия, требующие внимания ответственного специалиста.</p>
+          </div>
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Жёсткая приёмка</h3>
+              <p>Подписание акта приёмки в течение 2 рабочих дней с момента поставки. При неподписании товар считается принятым, а претензии не принимаются.</p>
+              <p style="color:#e74c3c; font-size:0.9rem;">Высокий риск — требуется согласование с юристом.</p>
+            </article>
+            <article class="info-card">
+              <h3>Штраф за просрочку</h3>
+              <p>0,5% от суммы договора за каждый день просрочки. Без ограничения максимальной суммы.</p>
+              <p style="color:#e67e22; font-size:0.9rem;">Коммерчески значимый риск — требуется оценка возможности соблюдения сроков.</p>
+            </article>
+            <article class="info-card">
+              <h3>Риск кассового разрыва</h3>
+              <p>100% предоплата Поставщика B создаёт отвлечение оборотных средств на весь период поставки.</p>
+              <p style="color:#e67e22; font-size:0.9rem;">Коммерчески значимый риск — рассмотреть Поставщика A или C с частичной предоплатой.</p>
+            </article>
+            <article class="info-card">
+              <h3>Неполный ответ поставщика</h3>
+              <p>Поставщик C не указал условия гарантийного обслуживания после 12 месяцев.</p>
+              <p style="color:var(--mint); font-size:0.9rem;">Стандартное уточнение — запросить дополнение.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-head">
+            <h2>Пример bid-decision memo</h2>
+          </div>
+          <div class="grid grid-2">
+            <article class="info-card">
+              <h3>Рекомендация</h3>
+              <p><strong>Участвовать</strong> — с поставщиком C при условии уточнения гарантийного обслуживания.</p>
+            </article>
+            <article class="info-card">
+              <h3>Маржинальность</h3>
+              <p>Расчётная маржинальность сделки: 18,5% (Поставщик C) — 22,3% (Поставщик A).</p>
+            </article>
+            <article class="info-card">
+              <h3>Cash gap</h3>
+              <p>Поставщик A: 21 день. Поставщик C: 18 дней. Поставщик B: 35 дней + 100% предоплата.</p>
+            </article>
+            <article class="info-card">
+              <h3>Критические риски</h3>
+              <p>Жёсткая приёмка по всем вариантам — требуется согласование. Штрафные санкции без ограничения суммы — предложить лимит.</p>
+            </article>
+            <article class="info-card">
+              <h3>Документы к подготовке</h3>
+              <p>Запрос уточнения по гарантии Поставщику C. Формулировка условия по приёмке. Подготовка проекта договора с Поставщиком C.</p>
+            </article>
+            <article class="info-card">
+              <h3>Вопросы к заказчику</h3>
+              <p>Возможна ли поэтапная приёмка? Есть ли возможность ограничения штрафа 10% от суммы договора?</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
           <article class="info-card info-card--caution">
-            <h3>Ограничения</h3>
+            <h3>Дисклеймер</h3>
             <p>
-              Это демонстрационный/пилотный сценарий. Финальные решения, внешние отправки и подача заявок остаются за ответственными специалистами. Результаты AI-агента не являются гарантией исхода тендера.
+              Demo-case показывает типовой сценарий работы AI-оператора. Данные условные, не являются реальными коммерческими предложениями или юридическим заключением. В реальном проекте логика адаптируется под регламент, документы и процесс клиента. Финальные решения, внешние отправки и подача заявок остаются за ответственными специалистами.
             </p>
           </article>
         </div>
