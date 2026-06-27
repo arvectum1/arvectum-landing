@@ -143,6 +143,10 @@ const extractH1s = (html) =>
     normalizeText(match[1]),
   ).filter(Boolean);
 
+const isThinAliasPage = (html) =>
+  /<meta[^>]+name="robots"[^>]+content="noindex,follow"/i.test(html) &&
+  /<meta[^>]+http-equiv="refresh"/i.test(html);
+
 const getJsonLd = (html, id) => {
   const match = html.match(
     new RegExp(
@@ -461,6 +465,15 @@ for (const fileName of htmlFiles) {
   }
 
   if (fileName.startsWith("solutions/")) {
+    if (isThinAliasPage(html)) {
+      record(
+        /window\.location\.replace\(/.test(html) ||
+          /<meta[^>]+http-equiv="refresh"/i.test(html),
+        `${fileName}: thin alias page must redirect to the canonical URL`,
+      );
+      continue;
+    }
+
     const faqLd = getJsonLd(html, "faqLd");
     record(
       /aria-label="Хлебные крошки"/i.test(html) && /solutions\.html/.test(html),

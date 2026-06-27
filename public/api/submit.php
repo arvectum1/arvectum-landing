@@ -180,6 +180,18 @@ $message = normalize_string($data['message'] ?? '');
 $budget = normalize_string($data['budget'] ?? '');
 $deadline = normalize_string($data['deadline'] ?? '');
 $website = normalize_string($data['website'] ?? '');
+$personalDataConsentRaw = $data['personalDataConsent'] ?? '';
+$consentSource = normalize_string($data['consentSource'] ?? 'contact form');
+$consentDocumentUrl = normalize_string($data['consentDocumentUrl'] ?? 'https://arvectum.com/personal-data-consent.html');
+$consentPolicyUrl = normalize_string($data['consentPolicyUrl'] ?? 'https://arvectum.com/privacy.html');
+$consentVersion = normalize_string($data['consentVersion'] ?? 'pdn-2026-06-24');
+$consentTimestamp = gmdate('c');
+$personalDataConsent = $personalDataConsentRaw === true
+    || $personalDataConsentRaw === 1
+    || $personalDataConsentRaw === '1'
+    || $personalDataConsentRaw === 'true'
+    || $personalDataConsentRaw === 'on'
+    || $personalDataConsentRaw === 'yes';
 
 if ($website !== '') {
     if ($wantsJson) {
@@ -219,6 +231,9 @@ if ($projectType === '') {
 if ($message === '') {
     $validationErrors['message'] = 'Пожалуйста, кратко опишите задачу.';
 }
+if (!$personalDataConsent) {
+    $validationErrors['personalDataConsent'] = 'Пожалуйста, подтвердите согласие на обработку персональных данных.';
+}
 
 if ($validationErrors !== []) {
     if ($wantsJson) {
@@ -253,6 +268,12 @@ if ($telegramToken !== '' && $telegramChatId !== '') {
     if ($budget !== '') {
         $telegramText .= "Бюджет: {$budget}\n";
     }
+    $telegramText .= "Согласие на ПДн: да\n";
+    $telegramText .= "Время согласия: {$consentTimestamp}\n";
+    $telegramText .= "Источник согласия: {$consentSource}\n";
+    $telegramText .= "Версия согласия: {$consentVersion}\n";
+    $telegramText .= "URL согласия: {$consentDocumentUrl}\n";
+    $telegramText .= "URL политики: {$consentPolicyUrl}\n";
     $telegramText .= "\nОписание:\n{$message}";
 
     $telegramData = [
@@ -306,6 +327,12 @@ $emailBody .= "Контакт: {$contact}\n";
 $emailBody .= "Тип запроса: {$projectType}\n";
 $emailBody .= "Горизонт пилота: " . ($deadline !== '' ? $deadline : 'не указан') . "\n";
 $emailBody .= "Бюджет: " . ($budget !== '' ? $budget : 'не указан') . "\n\n";
+$emailBody .= "Согласие на ПДн: да\n";
+$emailBody .= "Время согласия: {$consentTimestamp}\n";
+$emailBody .= "Источник согласия: {$consentSource}\n";
+$emailBody .= "Версия согласия: {$consentVersion}\n";
+$emailBody .= "URL согласия: {$consentDocumentUrl}\n";
+$emailBody .= "URL политики: {$consentPolicyUrl}\n\n";
 $emailBody .= "Описание:\n{$message}\n";
 
 if ($formToEmail !== '') {

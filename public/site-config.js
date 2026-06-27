@@ -3,6 +3,7 @@ window.SITE_CONFIG = {
   routes: {
     home: "index.html",
     solutions: "solutions.html",
+    procurementAiAgent: "services/ai-tender-agent.html",
     procurement: "solutions/procurement.html",
     documentWorkflow: "solutions/document-workflow.html",
     operationsAutomation: "solutions/operations.html",
@@ -48,21 +49,25 @@ window.SITE_CONFIG = {
         footer: {
           companyName: "ООО «Арвектум»",
           contactsTitle: "Контакты",
-          inn: "",
-          ogrn: "",
-          address: "",
+          inn: "ИНН 7716261422",
+          kpp: "КПП 771601001",
+          ogrn: "ОГРН 1267700213725",
           phone: "",
           email: "info@arvectum.com",
+          website: "https://arvectum.com/",
           telegramUrl: "https://t.me/arvectum",
           telegramLabel: "Telegram Arvectum",
           telegramHandle: "t.me/arvectum",
           note: "",
-          resourceLinks: [{ slug: "materials", label: "Материалы" }],
+          resourceLinks: [
+            { slug: "procurementAiAgent", label: "AI-агент для анализа ТЗ" },
+            { slug: "materials", label: "Материалы" },
+          ],
           legalLinksTitle: "Юридическая информация",
           legalLinks: [
             {
               slug: "privacy",
-              label: "Политика конфиденциальности",
+              label: "Политика обработки персональных данных",
             },
             {
               slug: "personalDataConsent",
@@ -70,7 +75,7 @@ window.SITE_CONFIG = {
             },
             {
               slug: "cookiesPolicy",
-              label: "Политика cookies",
+              label: "Политика использования файлов cookie",
             },
           ],
         },
@@ -91,9 +96,9 @@ window.SITE_CONFIG = {
           ],
         },
         form: {
-          title: "Получить разбор процесса",
+          title: "Получить разбор одного ТЗ или процесса",
           intro:
-            "Опишите закупочный, тендерный или операционный процесс, который хотите перевести в рабочую систему со статусами, документами и контролем шагов. Заявка уйдет в Телеграм и на email.",
+            "Опишите один комплект тендерной документации или процесс, который хотите перевести в рабочую систему со статусами, документами и контролем шагов. Заявка уйдет в Телеграм и на email.",
           nameLabel: "Как вас зовут?",
           namePlaceholder: "Например, Александр",
           contactMethodLabel: "Удобный способ связи",
@@ -119,6 +124,10 @@ window.SITE_CONFIG = {
           projectTypeLabel: "Что нужно автоматизировать?",
           projectTypePlaceholder: "Выберите ближайший вариант",
           projectTypeOptions: [
+            {
+              value: "tender_tz_review",
+              label: "Разбор одного ТЗ и RFQ",
+            },
             { value: "procurement_route", label: "Закупочный маршрут" },
             { value: "rfq_quotes", label: "RFQ и сравнение ТКП" },
             { value: "risk_review", label: "Договорные и коммерческие риски" },
@@ -128,14 +137,18 @@ window.SITE_CONFIG = {
           ],
           messageLabel: "Кратко опишите задачу",
           messagePlaceholder:
-            "Какой процесс сейчас занимает много ручной координации, какие документы или статусы важно контролировать и какой первый результат хотите получить",
+            "Какой комплект ТЗ или процесс сейчас занимает много ручной координации, какие документы или статусы важно контролировать и какой первый результат хотите получить",
           deadlineLabel: "Горизонт пилота",
           deadlinePlaceholder: "Например, 2-4 недели",
           budgetLabel: "Бюджетный диапазон",
           budgetPlaceholder: "Например, от 300 000 ₽",
           submitLabel: "Отправить заявку",
+          consentPrefix:
+            "Я согласен(на) на обработку персональных данных в соответствии с ",
+          consentMiddle: " и ",
+          consentSuffix: ".",
           legalNotice:
-            "Отправляя заявку, вы соглашаетесь на обработку персональных данных для подготовки ответа и обсуждения пилота.",
+            "Персональные данные используются для ответа на обращение, подготовки предложения, демонстрации или пилота.",
           successContacts:
             "Если письмо не пришло сразу, напишите напрямую: info@arvectum.com или t.me/arvectum",
           errorFallback:
@@ -150,6 +163,9 @@ window.SITE_CONFIG = {
               "Пожалуйста, выберите тип процесса или сценария.",
             messageRequired:
               "Пожалуйста, опишите задачу хотя бы в нескольких словах.",
+            personalDataConsentRequired:
+              "Пожалуйста, подтвердите согласие на обработку персональных данных.",
+            fixErrors: "Пожалуйста, проверьте обязательные поля формы.",
             sending: "Отправляем заявку в Телеграм и на email...",
             success:
               "Заявка отправлена. Мы вернемся после первичного разбора процесса.",
@@ -673,6 +689,12 @@ window.SITE_CONFIG = {
             text: "Материалы для тех, кто хочет сначала очертить первый сценарий и формат запуска.",
             items: [
               {
+                title: "AI-агент для анализа ТЗ",
+                text: "Продуктовая страница: от требований и RFQ до сравнения ТКП, экономики и риск-мемо.",
+                link: { slug: "procurementAiAgent" },
+                cta: "Открыть страницу",
+              },
+              {
                 title: "Как выбрать первый процесс",
                 text: "На что смотреть, если хочется начать с одного рабочего маршрута.",
                 link: { slug: "materialsHowToChooseFirstProcess" },
@@ -693,12 +715,12 @@ window.SITE_CONFIG = {
             ],
           },
           cta: {
-            title: "Хотите разобрать закупочный процесс",
-            text: "Достаточно коротко описать текущий маршрут, болевые точки и желаемый первый результат.",
-            primary: "Связаться с нами",
-            secondary: "Вернуться к решениям",
+            title: "Хотите проверить это на реальном ТЗ",
+            text: "Пришлите один пример закупочной документации или коротко опишите маршрут. Покажем, как может выглядеть первый результат и пилот.",
+            primary: "Получить разбор одного ТЗ",
+            secondary: "Запросить пилот",
             primaryLink: { slug: "contact" },
-            secondaryLink: { slug: "solutions" },
+            secondaryLink: { slug: "contact" },
           },
         },
         documentWorkflow: {
@@ -1260,13 +1282,13 @@ window.SITE_CONFIG = {
           },
           hero: {
             eyebrow: "Контакты",
-            title: "Оставьте заявку на разбор процесса",
-            text: "Опишите задачу, текущие ограничения и желаемый результат. Мы предложим следующий шаг.",
+            title: "Оставьте заявку на разбор одного ТЗ или процесса",
+            text: "Опишите задачу, приложите контекст по документам и ограничениям, и мы предложим следующий шаг.",
           },
           firstCall: {
             title: "Что будет на первом разборе",
             items: [
-              "Уточним, какой именно процесс вы хотите ускорить или привести в порядок.",
+              "Уточним, какой комплект ТЗ или процесс вы хотите ускорить или привести в порядок.",
               "Определим, какие документы, статусы и решения важно держать под контролем.",
               "Выберем один сценарий для MVP или пилота.",
               "Согласуем ограничения по данным, доступам и безопасности.",
@@ -1302,16 +1324,20 @@ window.SITE_CONFIG = {
         footer: {
           companyName: "Arvectum LLC",
           contactsTitle: "Contacts",
-          inn: "",
-          ogrn: "",
-          address: "",
+          inn: "INN 7716261422",
+          kpp: "KPP 771601001",
+          ogrn: "OGRN 1267700213725",
           phone: "",
           email: "info@arvectum.com",
+          website: "https://arvectum.com/",
           telegramUrl: "https://t.me/arvectum",
           telegramLabel: "Arvectum Telegram",
           telegramHandle: "t.me/arvectum",
           note: "",
-          resourceLinks: [{ slug: "materials", label: "Materials" }],
+          resourceLinks: [
+            { slug: "procurementAiAgent", label: "Tender AI agent" },
+            { slug: "materials", label: "Materials" },
+          ],
           legalLinksTitle: "Legal",
           legalLinks: [
             { slug: "privacy", label: "Privacy policy" },
@@ -1339,9 +1365,9 @@ window.SITE_CONFIG = {
           ],
         },
         form: {
-          title: "Get a workflow assessment",
+          title: "Get a single tender file or workflow review",
           intro:
-            "Describe the procurement, tender or operational workflow you want to turn into a working system with documents, statuses and clear next steps. The request will be sent to Telegram and email.",
+            "Describe one tender document set or workflow you want to turn into a working system with documents, statuses and clear next steps. The request will be sent to Telegram and email.",
           nameLabel: "What is your name?",
           namePlaceholder: "For example, Alex",
           contactMethodLabel: "Preferred contact channel",
@@ -1367,6 +1393,10 @@ window.SITE_CONFIG = {
           projectTypeLabel: "What should we automate?",
           projectTypePlaceholder: "Choose the closest option",
           projectTypeOptions: [
+            {
+              value: "tender_tz_review",
+              label: "Single tender file and RFQ review",
+            },
             { value: "procurement_route", label: "Procurement route" },
             { value: "rfq_quotes", label: "RFQ and vendor quotes" },
             {
@@ -1385,8 +1415,12 @@ window.SITE_CONFIG = {
           budgetLabel: "Budget range",
           budgetPlaceholder: "For example, from $5,000",
           submitLabel: "Send request",
+          consentPrefix:
+            "I agree to the processing of personal data under the ",
+          consentMiddle: " and ",
+          consentSuffix: ".",
           legalNotice:
-            "By sending the request, you agree to the processing of personal data for preparing a reply and discussing the pilot.",
+            "Personal data is used to prepare a reply, proposal, demo or pilot discussion.",
           successContacts:
             "If you do not hear back immediately, contact us directly: info@arvectum.com or t.me/arvectum",
           errorFallback:
@@ -1399,6 +1433,9 @@ window.SITE_CONFIG = {
             projectTypeRequired: "Please choose the workflow or scenario type.",
             messageRequired:
               "Please describe the task in at least a few words.",
+            personalDataConsentRequired:
+              "Please confirm your consent to the processing of personal data.",
+            fixErrors: "Please check the required form fields.",
             sending: "Sending your request to Telegram and email...",
             success:
               "Request sent. We will get back to you after the initial workflow review.",

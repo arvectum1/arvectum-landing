@@ -11,9 +11,9 @@
   <url><loc>https://arvectum.com/solutions/document-workflow.html</loc></url>
   <url><loc>https://arvectum.com/solutions/operations.html</loc></url>
   <url><loc>https://arvectum.com/solutions/ai-document-checks.html</loc></url>
-  <url><loc>https://arvectum.com/cases.html</loc></url>
   <url><loc>https://arvectum.com/cases/tender-operator-demo.html</loc></url>
   <url><loc>https://arvectum.com/diagnostics/procurement-process-audit.html</loc></url>
+  <!-- /solutions/procurement-ai-agent.html is a noindex redirect alias to the canonical service URL below. -->
   <url><loc>https://arvectum.com/services/ai-tender-agent.html</loc></url>
   <url><loc>https://arvectum.com/services/rfq-automation.html</loc></url>
   <url><loc>https://arvectum.com/services/tkp-comparison.html</loc></url>

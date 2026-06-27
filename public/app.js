@@ -138,7 +138,7 @@
 
     const organizationLd = document.getElementById("organizationLd");
     if (organizationLd) {
-      organizationLd.textContent = JSON.stringify({
+      const organizationPayload = {
         "@context": "https://schema.org",
         "@type": "Organization",
         name: footer.companyName || "ООО «Арвектум»",
@@ -147,7 +147,11 @@
         logo: "https://arvectum.com/assets/brand/logo-horizontal.svg",
         email: footer.email || "info@arvectum.com",
         sameAs: footer.telegramUrl ? [footer.telegramUrl] : [],
-      });
+      };
+      if (footer.phone) {
+        organizationPayload.telephone = footer.phone;
+      }
+      organizationLd.textContent = JSON.stringify(organizationPayload);
     }
 
     const serviceLd = document.getElementById("serviceLd");
@@ -320,7 +324,7 @@
       privacy:
         legalMap.privacy ||
         (currentLanguage === "ru"
-          ? "Политика конфиденциальности"
+          ? "Политика обработки персональных данных"
           : "Privacy policy"),
       "personal-data-consent":
         legalMap.personalDataConsent ||
@@ -334,10 +338,14 @@
           : "Personal data consent"),
       cookies:
         legalMap.cookiesPolicy ||
-        (currentLanguage === "ru" ? "Политика cookies" : "Cookies policy"),
+        (currentLanguage === "ru"
+          ? "Политика использования файлов cookie"
+          : "Cookies policy"),
       cookiesPolicy:
         legalMap.cookiesPolicy ||
-        (currentLanguage === "ru" ? "Политика cookies" : "Cookies policy"),
+        (currentLanguage === "ru"
+          ? "Политика использования файлов cookie"
+          : "Cookies policy"),
     };
 
     const currentLabel = labels[currentPage] || labels.home;
@@ -405,6 +413,13 @@
     if (footer.email) {
       contactItems.push(
         `<a href="mailto:${escapeHtml(footer.email)}">${escapeHtml(footer.email)}</a>`,
+      );
+    }
+    if (footer.website) {
+      contactItems.push(
+        `<a href="${escapeHtml(footer.website)}">${escapeHtml(
+          footer.website.replace(/^https?:\/\//, ""),
+        )}</a>`,
       );
     }
     if (footer.telegramUrl) {
@@ -856,6 +871,20 @@
           `<a href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`,
       )
       .join(" · ");
+    const privacyLabel =
+      currentCommon.footer.legalLinks?.find((item) => item.slug === "privacy")
+        ?.label ||
+      (currentLanguage === "ru"
+        ? "Политика обработки персональных данных"
+        : "Privacy policy");
+    const consentLabel =
+      currentCommon.footer.legalLinks?.find(
+        (item) => item.slug === "personalDataConsent",
+      )?.label ||
+      (currentLanguage === "ru"
+        ? "Согласие на обработку персональных данных"
+        : "Personal data consent");
+    const consentMarkup = `${escapeHtml(form.consentPrefix || "")}<a href="${buildUrl("personalDataConsent")}">${escapeHtml(consentLabel)}</a>${escapeHtml(form.consentMiddle || "")}<a href="${buildUrl("privacy")}">${escapeHtml(privacyLabel)}</a>${escapeHtml(form.consentSuffix || "")}`;
 
     return `
       <section class="form-shell">
@@ -995,6 +1024,35 @@
               autocomplete="off"
               aria-hidden="true"
             />
+            <input type="hidden" name="consentSource" value="contact form" />
+            <input
+              type="hidden"
+              name="consentDocumentUrl"
+              value="https://arvectum.com/personal-data-consent.html"
+            />
+            <input
+              type="hidden"
+              name="consentPolicyUrl"
+              value="https://arvectum.com/privacy.html"
+            />
+            <input
+              type="hidden"
+              name="consentVersion"
+              value="pdn-2026-06-24"
+            />
+
+            <label class="form-consent" for="personalDataConsent">
+              <input
+                id="personalDataConsent"
+                type="checkbox"
+                name="personalDataConsent"
+                required
+                aria-required="true"
+                aria-describedby="personalDataConsentError"
+              />
+              <span>${consentMarkup}</span>
+            </label>
+            ${createErrorMarkup("personalDataConsent")}
 
             <button class="button" type="submit">${escapeHtml(form.submitLabel)}</button>
             <p class="form-status" id="formStatus" aria-live="polite"></p>
@@ -1633,6 +1691,7 @@
         "contactValue",
         "projectType",
         "message",
+        "personalDataConsent",
       ].forEach((field) => setFieldError(field, ""));
       setStatus("");
       if (directContactsEl) directContactsEl.hidden = true;
@@ -1668,6 +1727,7 @@
       "contactValue",
       "projectType",
       "message",
+      "personalDataConsent",
     ].forEach((field) => {
       const input = form.querySelector(`[name="${field}"]`);
       if (!input) return;
@@ -1692,6 +1752,13 @@
         budget: String(formData.get("budget") || "").trim(),
         deadline: String(formData.get("deadline") || "").trim(),
         website: String(formData.get("website") || "").trim(),
+        personalDataConsent: formData.get("personalDataConsent") === "on",
+        consentSource: String(formData.get("consentSource") || "").trim(),
+        consentDocumentUrl: String(
+          formData.get("consentDocumentUrl") || "",
+        ).trim(),
+        consentPolicyUrl: String(formData.get("consentPolicyUrl") || "").trim(),
+        consentVersion: String(formData.get("consentVersion") || "").trim(),
       };
 
       const validation = formConfig.validation || {};
@@ -1724,9 +1791,16 @@
         setFieldError("message", validation.messageRequired);
         hasError = true;
       }
+      if (!payload.personalDataConsent) {
+        setFieldError(
+          "personalDataConsent",
+          validation.personalDataConsentRequired,
+        );
+        hasError = true;
+      }
 
       if (hasError) {
-        setStatus(formConfig.errorFallback, true);
+        setStatus(validation.fixErrors || formConfig.errorFallback, true);
         return;
       }
 

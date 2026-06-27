@@ -1128,6 +1128,28 @@ textarea[aria-invalid="true"] {
   font-size: 0.88rem;
 }
 
+.form-consent {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.form-consent input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: 0.2rem;
+}
+
+.form-consent a {
+  color: var(--deep-navy);
+  font-weight: 600;
+}
+
 .hp {
   position: absolute;
   left: -9999px;
