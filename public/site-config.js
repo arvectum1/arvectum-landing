@@ -37,7 +37,18 @@ window.SITE_CONFIG = {
         nav: [
           { slug: "home", label: "Главная" },
           { slug: "solutions", label: "Решения" },
+          { slug: "procurementAiAgent", label: "AI-агент ТЗ/RFQ" },
+          { slug: "materials", label: "Материалы" },
           { slug: "approach", label: "Как запускаем" },
+        ],
+        menuLinks: [
+          { slug: "home", label: "Главная" },
+          { slug: "solutions", label: "Решения" },
+          { slug: "procurementAiAgent", label: "AI-агент для анализа ТЗ" },
+          { slug: "materials", label: "Материалы" },
+          { href: "/cases.html", label: "Кейсы" },
+          { slug: "approach", label: "Как запускаем" },
+          { slug: "contact", label: "Контакты" },
         ],
         footerNav: [
           { slug: "home", label: "Главная" },
@@ -58,6 +69,12 @@ window.SITE_CONFIG = {
           telegramUrl: "https://t.me/arvectum",
           telegramLabel: "Telegram Arvectum",
           telegramHandle: "t.me/arvectum",
+          socialLinks: [
+            { label: "Telegram", href: "https://t.me/arvectum" },
+            { label: "VK", href: "https://vk.com/arvectum" },
+            { label: "Дзен", href: "https://dzen.ru/arvectum" },
+            { label: "X", href: "https://x.com/arvectum" },
+          ],
           note: "",
           resourceLinks: [
             { slug: "procurementAiAgent", label: "AI-агент для анализа ТЗ" },
@@ -246,6 +263,14 @@ window.SITE_CONFIG = {
                 text: "Статусы, комплектность, контроль шагов и короткие memo.",
               },
             ],
+          },
+          tenderSpotlight: {
+            title: "Разберите одно ТЗ за первый шаг",
+            text: "Загрузите или пришлите один комплект тендерной документации — покажем, какие требования, вопросы поставщикам, RFQ, сравнение ТКП, экономика и риски могут быть собраны в управляемый маршрут.",
+            primary: "Получить разбор одного ТЗ",
+            secondary: "Посмотреть демо AI-агента",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "procurementAiAgent", hash: "#demo" },
           },
           scenarios: {
             title: "Сценарии использования",
@@ -1312,7 +1337,18 @@ window.SITE_CONFIG = {
         nav: [
           { slug: "home", label: "Home" },
           { slug: "solutions", label: "Solutions" },
+          { slug: "procurementAiAgent", label: "Tender AI agent" },
+          { slug: "materials", label: "Materials" },
           { slug: "approach", label: "How We Launch" },
+        ],
+        menuLinks: [
+          { slug: "home", label: "Home" },
+          { slug: "solutions", label: "Solutions" },
+          { slug: "procurementAiAgent", label: "Tender file AI agent" },
+          { slug: "materials", label: "Materials" },
+          { href: "/cases.html", label: "Cases" },
+          { slug: "approach", label: "How We Launch" },
+          { slug: "contact", label: "Contact" },
         ],
         footerNav: [
           { slug: "home", label: "Home" },
@@ -1333,6 +1369,12 @@ window.SITE_CONFIG = {
           telegramUrl: "https://t.me/arvectum",
           telegramLabel: "Arvectum Telegram",
           telegramHandle: "t.me/arvectum",
+          socialLinks: [
+            { label: "Telegram", href: "https://t.me/arvectum" },
+            { label: "VK", href: "https://vk.com/arvectum" },
+            { label: "Zen", href: "https://dzen.ru/arvectum" },
+            { label: "X", href: "https://x.com/arvectum" },
+          ],
           note: "",
           resourceLinks: [
             { slug: "procurementAiAgent", label: "Tender AI agent" },
@@ -1516,6 +1558,14 @@ window.SITE_CONFIG = {
                 text: "Statuses, completeness, step control and short memos.",
               },
             ],
+          },
+          tenderSpotlight: {
+            title: "Review one tender file as the first step",
+            text: "Send one tender document package and we will show which requirements, vendor questions, RFQ draft, quote comparison, commercial view and risks can be assembled into a managed workflow.",
+            primary: "Get one tender file review",
+            secondary: "View the tender AI demo",
+            primaryLink: { slug: "contact" },
+            secondaryLink: { slug: "procurementAiAgent", hash: "#demo" },
           },
           scenarios: {
             title: "Use cases",

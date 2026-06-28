@@ -146,7 +146,9 @@
         url: "https://arvectum.com/",
         logo: "https://arvectum.com/assets/brand/logo-horizontal.svg",
         email: footer.email || "info@arvectum.com",
-        sameAs: footer.telegramUrl ? [footer.telegramUrl] : [],
+        sameAs: (footer.socialLinks || [])
+          .map((item) => item.href)
+          .filter(Boolean),
       };
       if (footer.phone) {
         organizationPayload.telephone = footer.phone;
@@ -220,16 +222,49 @@
       brandLink.setAttribute("href", buildUrl("home"));
     }
 
+    const currentPathname = window.location.pathname;
+    const resolveNavHref = (item) => item.href || buildUrl(item.slug);
     const primaryNav = currentCommon.nav || [];
+    const menuNav = currentCommon.menuLinks || [
+      ...primaryNav,
+      ...(primaryNav.some((item) => item.slug === "contact")
+        ? []
+        : [
+            {
+              slug: "contact",
+              label: currentLanguage === "ru" ? "Контакты" : "Contact",
+            },
+          ]),
+    ];
     const navMarkup = primaryNav
       .map((item) => {
         const isActive = item.slug === currentNav ? " is-active" : "";
-        return `<a class="nav-link${isActive}" href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`;
+        return `<a class="nav-link${isActive}" href="${resolveNavHref(item)}">${escapeHtml(item.label)}</a>`;
       })
+      .join("");
+    const menuMarkup = menuNav
+      .map((item) => {
+        const isActive =
+          item.slug === currentNav ||
+          item.slug === currentPage ||
+          (item.href && currentPathname.endsWith(item.href.replace(/^\//, "")))
+            ? " is-active"
+            : "";
+        return `<a class="nav-link${isActive}" href="${resolveNavHref(item)}">${escapeHtml(item.label)}</a>`;
+      })
+      .join("");
+    const menuLegalMarkup = (currentCommon.footer?.legalLinks || [])
+      .map(
+        (item) =>
+          `<a class="nav-link nav-link--meta" href="${buildUrl(item.slug)}">${escapeHtml(item.label)}</a>`,
+      )
       .join("");
 
     setHtml("desktopNav", navMarkup);
-    setHtml("menuNav", navMarkup);
+    setHtml(
+      "menuNav",
+      `${menuMarkup}${menuLegalMarkup ? `<div class="menu-nav__divider" aria-hidden="true"></div><div class="menu-nav__meta">${menuLegalMarkup}</div>` : ""}`,
+    );
 
     const ctaUrl = buildUrl("contact");
     ["topbarCta", "menuPrimaryCta"].forEach((id) => {
@@ -386,6 +421,12 @@
       .join("");
     const contactItems = [];
     let telegramLink = "";
+    const socialLinks = (footer.socialLinks || [])
+      .map(
+        (item) =>
+          `<a href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)}</a>`,
+      )
+      .join("");
     const resourceLinks = (footer.resourceLinks || [])
       .map(
         (item) =>
@@ -416,10 +457,11 @@
       );
     }
     if (footer.website) {
+      const websiteLabel = footer.website
+        .replace(/^https?:\/\//, "")
+        .replace(/\/+$/, "");
       contactItems.push(
-        `<a href="${escapeHtml(footer.website)}">${escapeHtml(
-          footer.website.replace(/^https?:\/\//, ""),
-        )}</a>`,
+        `<a href="${escapeHtml(footer.website)}">${escapeHtml(websiteLabel)}</a>`,
       );
     }
     if (footer.telegramUrl) {
@@ -444,6 +486,11 @@
         ${
           resourceLinks
             ? `<div class="footer-resource-links">${resourceLinks}</div>`
+            : ""
+        }
+        ${
+          socialLinks
+            ? `<div class="footer-social-links">${socialLinks}</div>`
             : ""
         }
       </div>
@@ -553,6 +600,27 @@
         }
       </div>
     </section>
+
+    ${
+      page.tenderSpotlight
+        ? `
+      <section class="section">
+        <div class="container reveal">
+          <article class="cta-band cta-band--spotlight">
+            <div>
+              <h2>${escapeHtml(page.tenderSpotlight.title)}</h2>
+              <p>${escapeHtml(page.tenderSpotlight.text)}</p>
+            </div>
+            <div class="cta-band__actions">
+              <a class="button" href="${buildConfigLink(page.tenderSpotlight.primaryLink, "contact")}">${escapeHtml(page.tenderSpotlight.primary)}</a>
+              <a class="button button-ghost" href="${buildConfigLink(page.tenderSpotlight.secondaryLink, "procurementAiAgent")}">${escapeHtml(page.tenderSpotlight.secondary)}</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    `
+        : ""
+    }
 
     ${renderInfoSection(page.scenarios)}
 

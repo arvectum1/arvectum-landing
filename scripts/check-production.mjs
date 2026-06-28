@@ -64,7 +64,7 @@ const checks = [
     url: "https://arvectum.com/materials.html",
     ok: ({ status, body }) =>
       status === 200 &&
-      body.includes("Материалы об автоматизации бизнес-процессов"),
+      body.includes("Материалы по AI-автоматизации закупок"),
   },
   {
     url: "https://arvectum.com/materials/how-to-choose-first-process.html",
@@ -75,7 +75,23 @@ const checks = [
   {
     url: "https://arvectum.com/contact.html",
     ok: ({ status, body }) =>
-      status === 200 && body.includes("Оставьте заявку на разбор процесса"),
+      status === 200 &&
+      body.includes("Оставьте заявку на разбор бизнес-процесса"),
+  },
+  {
+    url: "https://arvectum.com/services/ai-tender-agent.html",
+    ok: ({ status, body }) =>
+      status === 200 &&
+      body.includes("Форматы работы / пакеты") &&
+      body.includes("Что нужно от клиента") &&
+      body.includes('id="demo"'),
+  },
+  {
+    url: "https://arvectum.com/solutions/procurement-ai-agent.html",
+    ok: ({ status, body }) =>
+      status === 200 &&
+      body.includes("/services/ai-tender-agent.html") &&
+      body.includes("/services/ai-tender-agent.html#demo"),
   },
 ];
 
