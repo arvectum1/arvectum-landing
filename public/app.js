@@ -464,13 +464,13 @@
         `<a href="${escapeHtml(footer.website)}">${escapeHtml(websiteLabel)}</a>`,
       );
     }
-    if (footer.telegramUrl) {
+    if (footer.telegramUrl && !socialLinks) {
       telegramLink = `
         <a
           class="telegram-link"
           href="${escapeHtml(footer.telegramUrl)}"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           aria-label="${escapeHtml(footer.telegramLabel || footer.telegramHandle || "Telegram")}"
         ><span class="telegram-link__icon">${TELEGRAM_ICON}</span></a>
       `;

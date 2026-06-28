@@ -40,6 +40,7 @@ window.SITE_CONFIG = {
           { slug: "procurementAiAgent", label: "AI-агент ТЗ/RFQ" },
           { slug: "materials", label: "Материалы" },
           { slug: "approach", label: "Как запускаем" },
+          { slug: "contact", label: "Контакты" },
         ],
         menuLinks: [
           { slug: "home", label: "Главная" },
@@ -1340,6 +1341,7 @@ window.SITE_CONFIG = {
           { slug: "procurementAiAgent", label: "Tender AI agent" },
           { slug: "materials", label: "Materials" },
           { slug: "approach", label: "How We Launch" },
+          { slug: "contact", label: "Contact" },
         ],
         menuLinks: [
           { slug: "home", label: "Home" },

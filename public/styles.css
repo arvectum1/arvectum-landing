@@ -186,7 +186,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.55rem, 1vw, 1.15rem);
+  gap: clamp(0.45rem, 0.85vw, 1rem);
 }
 
 .nav-link {
@@ -212,6 +212,12 @@ img {
 
 .header-cta {
   white-space: nowrap;
+}
+
+@media (min-width: 981px) {
+  #topbarCta {
+    display: none;
+  }
 }
 
 .hero-grid--single {

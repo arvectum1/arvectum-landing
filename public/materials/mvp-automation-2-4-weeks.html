@@ -88,7 +88,12 @@
         "url": "https://arvectum.com/",
         "logo": "https://arvectum.com/assets/brand/logo-horizontal.svg",
         "email": "info@arvectum.com",
-        "sameAs": ["https://t.me/arvectum"]
+        "sameAs": [
+          "https://t.me/arvectum",
+          "https://vk.com/arvectum",
+          "https://dzen.ru/arvectum",
+          "https://x.com/arvectum"
+        ]
       }
     </script>
     <script id="breadcrumbLd" type="application/ld+json">
@@ -137,25 +142,25 @@
         "mainEntityOfPage": "https://arvectum.com/materials/mvp-automation-2-4-weeks.html"
       }
     </script>
-    <link rel="stylesheet" href="/styles.css?v=20260618b" />
+    <link rel="stylesheet" href="/styles.css?v=20260628-prod2" />
   </head>
   <body data-page="materialsMvpAutomation">
     <a class="skip-link" href="#pageRoot" id="skipLink"
       >Перейти к содержимому</a
     >
+
     <header class="site-header">
       <div class="container">
         <div class="header-shell glass">
           <div class="topbar">
-            <a class="brand" href="/" aria-label="Arvectum"
-              ><img
+            <a class="brand" href="/" aria-label="Arvectum">
+              <img
                 id="brandLogo"
                 src="/assets/brand/arvectum-logo-header-light.svg"
-                alt="Логотип Arvectum" /><span
-                class="brand-meta"
-                id="brandMeta"
-              ></span
-            ></a>
+                alt="Логотип Arvectum"
+              />
+              <span class="brand-meta" id="brandMeta"></span>
+            </a>
             <nav
               class="desktop-nav"
               id="desktopNav"
@@ -163,7 +168,11 @@
             >
               <a class="nav-link" href="/">Главная</a
               ><a class="nav-link" href="/solutions.html">Решения</a
-              ><a class="nav-link" href="/approach.html">Как запускаем</a>
+              ><a class="nav-link" href="/services/ai-tender-agent.html"
+                >AI-агент ТЗ/RFQ</a
+              ><a class="nav-link is-active" href="/materials.html">Материалы</a
+              ><a class="nav-link" href="/approach.html">Как запускаем</a
+              ><a class="nav-link" href="/contact.html">Контакты</a>
             </nav>
             <div class="topbar-tools">
               <div
@@ -175,8 +184,9 @@
                   type="button"
                   data-lang="ru"
                 >
-                  RU</button
-                ><button
+                  RU
+                </button>
+                <button
                   class="lang-switch__button"
                   type="button"
                   data-lang="en"
@@ -186,7 +196,8 @@
               </div>
               <a class="button header-cta" id="topbarCta" href="/contact.html"
                 >Связаться с нами</a
-              ><button class="menu-toggle" id="menuToggle" type="button">
+              >
+              <button class="menu-toggle" id="menuToggle" type="button">
                 <svg
                   class="menu-toggle__logo"
                   viewBox="0 0 425.2 72.06"
@@ -204,8 +215,9 @@
                     fill-rule="evenodd"
                     d="M330.86,431.22c.41-5.6,11.74-6.18,12,0ZM339,443.15c-3.78,0-7.33-1.13-8.39-5.21h20.89c6,0,2.87-19.67-15-19.66-16.61,0-24.17,21.17-9.84,31,8.48,5.81,22.07,2,24.9-1.73.9-1.18.52-1.77-.12-2.9-.72-1.28-1.81-2.94-2-3.12-3-3.17-4.52,1.68-10.46,1.65Zm-62.23-13.52c-2.54-1-8.53.24-8.53,4.91v14.4a2.56,2.56,0,0,1-2.61,2.49H259a2.56,2.56,0,0,1-2.61-2.49V421.48A2.55,2.55,0,0,1,259,419h6.09a2.55,2.55,0,0,1,2.6,2.48v.22c2.62-2.28,4.56-3.47,8.3-3.33,3.46.14,3.42,2.11,3.42,5.33v.72c.05,4.33-.13,6.24-2.67,5.21Zm-66.24,16.91L224.41,410c.72-1.9,1.41-3.48,3.49-3.48h7.17c2.11,0,2.76,1.57,3.5,3.5l13.91,36.57c.87,2.29-.5,4.89-2.58,4.89h-6.69a2.9,2.9,0,0,1-2.66-2.24l-1.84-5.89H224.26l-1.85,5.89a2.89,2.89,0,0,1-2.66,2.24h-6.69c-2.08,0-3.45-2.6-2.58-4.89Zm25.3-12.6-4.3-13.71-4.29,13.71Zm46.34-11.42a2.47,2.47,0,0,1,2.19-3.52h6.87a2.39,2.39,0,0,1,2.26,1.61L300,438.39l6.53-17.78a2.38,2.38,0,0,1,2.26-1.61h6.86a2.48,2.48,0,0,1,2.2,3.52L306,448.9c-.62,1.39-1.17,2.53-3,2.53h-6.09c-1.77,0-2.36-1.15-3-2.52l-11.83-26.39Zm93.09,29.71A19.71,19.71,0,0,1,365.9,450c-14.54-7.92-10.09-31.51,8.88-31.74,4-.05,17.08,2.36,13.2,8.22-1.3,2-3.39,5.2-6.45,3.2-2.62-1.72-5.42-2.8-8.92-.95-5.7,3-4.93,12,1.52,13.54,4.93,1.16,7.31-2,8.51-2.58,2.59-1.22,5.4,3.22,6.14,4.73,2.31,4.72-8.35,7.82-13.57,7.82Zm18.59-24.34h2.13v10.48c0,8.43,3.88,13.63,12,14,6.11.3,11.07-2.71,12-9.49,1-7.15-7.7-7.25-8.67-2.16-.56,3-3.43,2.15-3.43-2.27V427.89h5.84a2.47,2.47,0,0,0,2.45-2.48v-3.93a2.47,2.47,0,0,0-2.45-2.48h-5.84v-6.55a2.57,2.57,0,0,0-2.62-2.49H399.7a2.65,2.65,0,0,0-2.62,2.49l-.59,6.55H393.8a2.47,2.47,0,0,0-2.45,2.48v3.93a2.47,2.47,0,0,0,2.45,2.48Zm29.83,10.48V421.48a2.55,2.55,0,0,1,2.61-2.48h6.67a2.55,2.55,0,0,1,2.61,2.48v17c0,6.71,8.78,7,8.78-.11V421.48a2.55,2.55,0,0,1,2.6-2.48h6.6a2.55,2.55,0,0,1,2.61,2.48v27.46a2.56,2.56,0,0,1-2.61,2.49H448a2.56,2.56,0,0,1-2.61-2.49v-.21c-9.69,7.78-21.77.6-21.77-10.36Zm86.66-12.44a18,18,0,0,1,.91,6v17a2.43,2.43,0,0,1-2.37,2.49h-6a2.43,2.43,0,0,1-2.36-2.49V432c0-6.73-8.55-7-8.55.1v16.89a2.43,2.43,0,0,1-2.37,2.49h-6.05a2.43,2.43,0,0,1-2.36-2.49V432c0-6.72-8-7-8,.1v16.89a2.43,2.43,0,0,1-2.36,2.49h-6a2.43,2.43,0,0,1-2.36-2.49V421.48a2.42,2.42,0,0,1,2.36-2.48h5a2.43,2.43,0,0,1,2.37,2.48v.22a11.73,11.73,0,0,1,17.33,1.4C495.11,416.19,507.24,417,510.29,425.93Z"
                     transform="translate(-86 -385)"
-                  ></path></svg
-                ><span class="sr-only" id="menuButtonText">Меню</span>
+                  ></path>
+                </svg>
+                <span class="sr-only" id="menuButtonText">Меню</span>
               </button>
             </div>
           </div>
@@ -225,7 +237,21 @@
           <nav class="menu-nav" id="menuNav" aria-label="Навигация по разделам">
             <a class="nav-link" href="/">Главная</a
             ><a class="nav-link" href="/solutions.html">Решения</a
-            ><a class="nav-link" href="/approach.html">Как запускаем</a>
+            ><a class="nav-link" href="/services/ai-tender-agent.html"
+              >AI-агент ТЗ/RFQ</a
+            ><a class="nav-link is-active" href="/materials.html">Материалы</a>
+            <div class="menu-nav__divider" aria-hidden="true"></div>
+            <div class="menu-nav__meta">
+              <a class="nav-link nav-link--meta" href="/privacy.html"
+                >Политика обработки персональных данных</a
+              ><a
+                class="nav-link nav-link--meta"
+                href="/personal-data-consent.html"
+                >Согласие на обработку персональных данных</a
+              ><a class="nav-link nav-link--meta" href="/cookies.html"
+                >Политика использования файлов cookie</a
+              >
+            </div>
           </nav>
           <div class="menu-drawer__extras">
             <div
@@ -237,8 +263,9 @@
                 type="button"
                 data-lang="ru"
               >
-                RU</button
-              ><button class="lang-switch__button" type="button" data-lang="en">
+                RU
+              </button>
+              <button class="lang-switch__button" type="button" data-lang="en">
                 EN
               </button>
             </div>
@@ -247,7 +274,7 @@
               id="menuTelegramLink"
               href="https://t.me/arvectum"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               >Телеграм</a
             >
           </div>
@@ -400,6 +427,7 @@
         </div>
       </section>
     </main>
+
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid glass">
@@ -408,24 +436,39 @@
             <div class="footer-contact-row">
               <div class="footer-contact-stack">
                 <p>ООО «Арвектум»</p>
+                <p>ИНН 7716261422</p>
+                <p>ОГРН 1267700213725</p>
                 <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+                <a
+                  href="https://arvectum.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >arvectum.com</a
+                >
               </div>
+            </div>
+            <div class="footer-social-links">
               <a
-                class="telegram-link"
                 href="https://t.me/arvectum"
                 target="_blank"
-                rel="noreferrer"
-                aria-label="Telegram Arvectum"
-                ><span class="telegram-link__icon" aria-hidden="true"
-                  ><svg viewBox="0 0 24 24" focusable="false">
-                    <path
-                      d="M21.4 4.6a1.2 1.2 0 0 0-1.25-.18L3.36 11.4a1.15 1.15 0 0 0 .08 2.16l4.1 1.46 1.59 5.1a1.16 1.16 0 0 0 2.02.36l2.3-2.8 4.5 3.3a1.16 1.16 0 0 0 1.83-.68l2.8-14.47a1.2 1.2 0 0 0-.38-1.23Z"
-                      fill="currentColor"
-                    /></svg></span
-              ></a>
-            </div>
-            <div class="footer-resource-links">
-              <a href="/materials.html">Материалы</a>
+                rel="noopener noreferrer"
+                >Telegram</a
+              ><a
+                href="https://vk.com/arvectum"
+                target="_blank"
+                rel="noopener noreferrer"
+                >VK</a
+              ><a
+                href="https://dzen.ru/arvectum"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Дзен</a
+              ><a
+                href="https://x.com/arvectum"
+                target="_blank"
+                rel="noopener noreferrer"
+                >X</a
+              >
             </div>
           </div>
           <details class="footer-legal">
@@ -526,7 +569,7 @@
         </div>
       </div>
     </section>
-    <script src="/site-config.js?v=20260618b"></script>
-    <script src="/app.js?v=20260618b"></script>
+    <script src="/site-config.js?v=20260628-prod2"></script>
+    <script src="/app.js?v=20260628-prod2"></script>
   </body>
 </html>

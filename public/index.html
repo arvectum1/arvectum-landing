@@ -88,7 +88,12 @@
         "url": "https://arvectum.com",
         "logo": "https://arvectum.com/assets/brand/logo-horizontal.svg",
         "email": "info@arvectum.com",
-        "sameAs": ["https://t.me/arvectum"]
+        "sameAs": [
+          "https://t.me/arvectum",
+          "https://vk.com/arvectum",
+          "https://dzen.ru/arvectum",
+          "https://x.com/arvectum"
+        ]
       }
     </script>
     <script id="serviceLd" type="application/ld+json">
@@ -112,7 +117,7 @@
         "url": "https://arvectum.com/"
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260618b" />
+    <link rel="stylesheet" href="/styles.css?v=20260628-prod2" />
   </head>
   <body data-page="home">
     <a class="skip-link" href="#pageRoot" id="skipLink"
@@ -123,25 +128,27 @@
       <div class="container">
         <div class="header-shell glass">
           <div class="topbar">
-            <a class="brand" href="index.html" aria-label="Arvectum">
+            <a class="brand" href="/" aria-label="Arvectum">
               <img
                 id="brandLogo"
-                src="assets/brand/arvectum-logo-header-light.svg"
+                src="/assets/brand/arvectum-logo-header-light.svg"
                 alt="Логотип Arvectum"
               />
               <span class="brand-meta" id="brandMeta"></span>
             </a>
-
             <nav
               class="desktop-nav"
               id="desktopNav"
               aria-label="Основная навигация"
             >
-              <a class="nav-link is-active" href="index.html">Главная</a>
-              <a class="nav-link" href="solutions.html">Решения</a>
-              <a class="nav-link" href="approach.html">Как запускаем</a>
+              <a class="nav-link is-active" href="/">Главная</a
+              ><a class="nav-link" href="/solutions.html">Решения</a
+              ><a class="nav-link" href="/services/ai-tender-agent.html"
+                >AI-агент ТЗ/RFQ</a
+              ><a class="nav-link" href="/materials.html">Материалы</a
+              ><a class="nav-link" href="/approach.html">Как запускаем</a
+              ><a class="nav-link" href="/contact.html">Контакты</a>
             </nav>
-
             <div class="topbar-tools">
               <div
                 class="lang-switch desktop-lang-switch"
@@ -162,7 +169,7 @@
                   EN
                 </button>
               </div>
-              <a class="button header-cta" id="topbarCta" href="contact.html"
+              <a class="button header-cta" id="topbarCta" href="/contact.html"
                 >Связаться с нами</a
               >
               <button class="menu-toggle" id="menuToggle" type="button">
@@ -191,7 +198,6 @@
           </div>
         </div>
       </div>
-
       <div class="menu-drawer" id="menuDrawer">
         <div class="menu-drawer__panel glass">
           <div class="menu-drawer__top">
@@ -203,13 +209,25 @@
               <span id="menuCloseText">Закрыть меню</span>
             </button>
           </div>
-
           <nav class="menu-nav" id="menuNav" aria-label="Навигация по разделам">
-            <a class="nav-link is-active" href="index.html">Главная</a>
-            <a class="nav-link" href="solutions.html">Решения</a>
-            <a class="nav-link" href="approach.html">Как запускаем</a>
+            <a class="nav-link is-active" href="/">Главная</a
+            ><a class="nav-link" href="/solutions.html">Решения</a
+            ><a class="nav-link" href="/services/ai-tender-agent.html"
+              >AI-агент ТЗ/RFQ</a
+            ><a class="nav-link" href="/materials.html">Материалы</a>
+            <div class="menu-nav__divider" aria-hidden="true"></div>
+            <div class="menu-nav__meta">
+              <a class="nav-link nav-link--meta" href="/privacy.html"
+                >Политика обработки персональных данных</a
+              ><a
+                class="nav-link nav-link--meta"
+                href="/personal-data-consent.html"
+                >Согласие на обработку персональных данных</a
+              ><a class="nav-link nav-link--meta" href="/cookies.html"
+                >Политика использования файлов cookie</a
+              >
+            </div>
           </nav>
-
           <div class="menu-drawer__extras">
             <div
               class="lang-switch menu-lang-switch"
@@ -231,13 +249,11 @@
               id="menuTelegramLink"
               href="https://t.me/arvectum"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              >Телеграм</a
             >
-              Телеграм
-            </a>
           </div>
-
-          <a class="button" id="menuPrimaryCta" href="contact.html"
+          <a class="button" id="menuPrimaryCta" href="/contact.html"
             >Связаться с нами</a
           >
         </div>
@@ -310,6 +326,31 @@
               </article>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <article class="cta-band cta-band--spotlight">
+            <div>
+              <h2>Разберите одно ТЗ за первый шаг</h2>
+              <p>
+                Пришлите один комплект тендерной документации — покажем, какие
+                требования, вопросы поставщикам, RFQ, сравнение ТКП, экономика и
+                риски могут быть собраны в управляемый маршрут.
+              </p>
+            </div>
+            <div class="cta-band__actions">
+              <a class="button" href="/contact.html"
+                >Получить разбор одного ТЗ</a
+              >
+              <a
+                class="button button-ghost"
+                href="/services/ai-tender-agent.html#demo"
+                >Посмотреть демо AI-агента</a
+              >
+            </div>
+          </article>
         </div>
       </section>
 
@@ -854,28 +895,48 @@
             <div class="footer-contact-row">
               <div class="footer-contact-stack">
                 <p>ООО «Арвектум»</p>
+                <p>ИНН 7716261422</p>
+                <p>ОГРН 1267700213725</p>
                 <a href="mailto:info@arvectum.com">info@arvectum.com</a>
+                <a
+                  href="https://arvectum.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >arvectum.com</a
+                >
               </div>
+            </div>
+            <div class="footer-social-links">
               <a
-                class="telegram-link"
                 href="https://t.me/arvectum"
                 target="_blank"
-                rel="noreferrer"
-                aria-label="Telegram Arvectum"
-                ><span class="telegram-link__icon" aria-hidden="true"
-                  >↗</span
-                ></a
+                rel="noopener noreferrer"
+                >Telegram</a
+              ><a
+                href="https://vk.com/arvectum"
+                target="_blank"
+                rel="noopener noreferrer"
+                >VK</a
+              ><a
+                href="https://dzen.ru/arvectum"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Дзен</a
+              ><a
+                href="https://x.com/arvectum"
+                target="_blank"
+                rel="noopener noreferrer"
+                >X</a
               >
             </div>
           </div>
           <details class="footer-legal">
             <summary>Юридическая информация</summary>
             <div class="footer-links">
-              <a href="privacy.html">Политика обработки персональных данных</a>
-              <a href="personal-data-consent.html"
+              <a href="/privacy.html">Политика обработки персональных данных</a
+              ><a href="/personal-data-consent.html"
                 >Согласие на обработку персональных данных</a
-              >
-              <a href="cookies.html">Политика использования файлов cookie</a>
+              ><a href="/cookies.html">Политика использования файлов cookie</a>
             </div>
           </details>
         </div>
@@ -976,7 +1037,7 @@
       </div>
     </section>
 
-    <script src="site-config.js?v=20260618b"></script>
-    <script src="app.js?v=20260618b"></script>
+    <script src="/site-config.js?v=20260628-prod2"></script>
+    <script src="/app.js?v=20260628-prod2"></script>
   </body>
 </html>
