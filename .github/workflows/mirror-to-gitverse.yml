@@ -56,7 +56,8 @@ jobs:
 
           # Mirror only normal branches and tags.
           # GitHub-specific refs/pull/* are intentionally excluded.
-          git push --force --prune gitverse \
+          # --prune omitted: GitVerse default branch cannot be deleted.
+          git push --force gitverse \
             'refs/heads/*:refs/heads/*' \
             'refs/tags/*:refs/tags/*'
 
